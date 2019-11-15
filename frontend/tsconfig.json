@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
+      "~app*": ["*"],
       "~design": ["design/index.ts"],
       "~design*": ["design/*"]
     }
