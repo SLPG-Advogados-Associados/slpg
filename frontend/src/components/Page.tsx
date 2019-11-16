@@ -12,6 +12,7 @@ interface Props {
 const Page: React.FC<Props> = ({ children, title }) => (
   <>
     <Head>
+      <link rel="shortcut icon" href="/favicon.ico" />
       <title>{getTitle(title)}</title>
     </Head>
 
