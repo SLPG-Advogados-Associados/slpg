@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "eslint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx",
+    "lint": "yarn eslint src",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -16,8 +18,16 @@
   "devDependencies": {
     "@types/node": "^12.12.7",
     "@types/react": "^16.9.11",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
     "babel-plugin-module-resolver": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
     "next-images": "^1.2.0",
+    "prettier": "^1.19.1",
     "typescript": "^3.7.2"
   },
   "prettier": {
