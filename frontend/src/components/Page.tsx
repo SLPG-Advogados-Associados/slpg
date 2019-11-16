@@ -5,7 +5,7 @@ import { Logo } from '~design'
 const getTitle = (title?: string) =>
   'SLPG Advogados Associados' + (title ? ` - ${title}` : '')
 
-interface Props {
+type Props = {
   title?: string
 }
 
