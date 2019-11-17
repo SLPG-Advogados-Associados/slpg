@@ -1,4 +1,5 @@
 next.config.js
 postcss.config.js
-tailwind.js
+tailwind.config.js
+babel-plugin-macros.config.js
 src/generated/**/*
