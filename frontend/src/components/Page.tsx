@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import { GlobalStyles } from '~design'
 import { Header } from './Header'
 
 const getTitle = (title?: string) =>
@@ -16,8 +15,6 @@ const Page: React.FC<Props> = ({ children, title }) => (
       <link rel="shortcut icon" href="/favicon.ico" />
       <title>{getTitle(title)}</title>
     </Head>
-
-    <GlobalStyles />
 
     <Header />
 

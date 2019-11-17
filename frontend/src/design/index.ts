@@ -1,2 +1,5 @@
+export * from './theme'
+
+// components
 export * from './components/Logo'
-export * from './components/GlobalStyles'
+export * from './components/ThemeProvider'
