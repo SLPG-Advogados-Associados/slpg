@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import { Logo } from '~design'
+import { Header } from './Header'
 
 const getTitle = (title?: string) =>
   'SLPG Advogados Associados' + (title ? ` - ${title}` : '')
@@ -16,9 +16,7 @@ const Page: React.FC<Props> = ({ children, title }) => (
       <title>{getTitle(title)}</title>
     </Head>
 
-    <nav>
-      <Logo></Logo>
-    </nav>
+    <Header />
 
     {children}
   </>
