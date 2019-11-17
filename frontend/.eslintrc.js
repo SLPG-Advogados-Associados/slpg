@@ -38,6 +38,7 @@ module.exports = {
   },
   rules: {
     'react/prop-types': 'off',
+    'react/self-closing-comp': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
   },
 }
