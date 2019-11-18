@@ -1,7 +1,7 @@
 module.exports = {
   overwrite: true,
   schema: 'http://localhost:1337/graphql',
-  // documents: './src/**/*.gql',
+  documents: './src/**/*.gql',
   pluginLoader,
   generates: {
     'src/api/generated/types.ts': {
