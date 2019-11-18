@@ -16,6 +16,8 @@
     "baseUrl": "src",
     "paths": {
       "~app/*": ["*"],
+      "~api": ["api/index.ts"],
+      "~api/*": ["api/*"],
       "~design": ["design/index.ts"],
       "~design/*": ["design/*"]
     }

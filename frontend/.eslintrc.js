@@ -30,6 +30,7 @@ module.exports = {
       alias: {
         map: [
           ['~app', `${__dirname}/src`],
+          ['~api', `${__dirname}/src/api`],
           ['~design', `${__dirname}/src/design`],
         ],
         extensions,
