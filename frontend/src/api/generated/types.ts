@@ -448,3 +448,7 @@ export type UsersPermissionsUser = {
   created_at: Scalars['DateTime']
   updated_at: Scalars['DateTime']
 }
+
+export type STATUS_QUERY_VARIABLES = {}
+
+export type STATUS_QUERY = { __typename?: 'Query' } & Pick<Query, 'status'>
