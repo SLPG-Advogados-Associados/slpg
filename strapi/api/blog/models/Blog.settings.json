@@ -21,6 +21,9 @@
     "body": {
       "required": true,
       "type": "richtext"
+    },
+    "summary": {
+      "type": "text"
     }
   }
 }
