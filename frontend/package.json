@@ -6,6 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "eslint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx",
+    "gen": "yarn graphql:codegen",
     "graphql:codegen": "graphql-codegen --config graphql-codegen.js",
     "lint": "yarn eslint src",
     "qa": "run-p type-check test lint",
