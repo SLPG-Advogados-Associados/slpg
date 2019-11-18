@@ -3,6 +3,7 @@ directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITI
 type Blog {
   title: String!
   body: String!
+  summary: String
   id: ID!
   created_at: DateTime!
   updated_at: DateTime!
@@ -11,6 +12,7 @@ type Blog {
 input BlogInput {
   title: String!
   body: String!
+  summary: String
 }
 
 enum CacheControlScope {
@@ -74,6 +76,7 @@ type deleteUserPayload {
 input editBlogInput {
   title: String
   body: String
+  summary: String
 }
 
 input editFileInput {

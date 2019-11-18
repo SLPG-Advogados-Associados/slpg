@@ -19,6 +19,7 @@ export type Blog = {
   __typename?: 'Blog'
   title: Scalars['String']
   body: Scalars['String']
+  summary?: Maybe<Scalars['String']>
   id: Scalars['ID']
   created_at: Scalars['DateTime']
   updated_at: Scalars['DateTime']
@@ -27,6 +28,7 @@ export type Blog = {
 export type BlogInput = {
   title: Scalars['String']
   body: Scalars['String']
+  summary?: Maybe<Scalars['String']>
 }
 
 export enum CacheControlScope {
@@ -91,6 +93,7 @@ export type DeleteUserPayload = {
 export type EditBlogInput = {
   title?: Maybe<Scalars['String']>
   body?: Maybe<Scalars['String']>
+  summary?: Maybe<Scalars['String']>
 }
 
 export type EditFileInput = {
@@ -449,6 +452,17 @@ export type UsersPermissionsUser = {
   updated_at: Scalars['DateTime']
 }
 
-export type STATUS_QUERY_VARIABLES = {}
+export type BLOG_LATEST_QUERY_VARIABLES = {}
 
-export type STATUS_QUERY = { __typename?: 'Query' } & Pick<Query, 'status'>
+export type BLOG_LATEST_QUERY = { __typename?: 'Query' } & {
+  blogs: Maybe<
+    Array<
+      Maybe<
+        { __typename?: 'Blog' } & Pick<
+          Blog,
+          'id' | 'title' | 'summary' | 'created_at'
+        >
+      >
+    >
+  >
+}
