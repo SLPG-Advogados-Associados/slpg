@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { STATUS } from './index.gql'
 
 const Home = () => {
-  const { data } = useQuery<GT.Query>(STATUS)
+  const { data } = useQuery<GT.STATUS_QUERY>(STATUS)
 
   return (
     <Page>
