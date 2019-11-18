@@ -5,6 +5,7 @@ const withImages = require('next-images')
 const plugins = [[withImages], [withCSS]]
 
 const config = {
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js'].map(ext => `page.${ext}`),
   webpack: config => {
     // disable TypeScript checks (use `yarn type-check` and editor plugins instead)
     config.plugins = config.plugins.filter(
