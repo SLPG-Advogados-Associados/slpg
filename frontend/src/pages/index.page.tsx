@@ -1,17 +1,11 @@
 import React from 'react'
 import { Page } from '~app/components/Page'
 import { withGraphQL, GT } from '~api'
-import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
-
-const QUERY = gql`
-  query STATUS {
-    status
-  }
-`
+import { STATUS } from './index.gql'
 
 const Home = () => {
-  const { data } = useQuery<GT.Query>(QUERY)
+  const { data } = useQuery<GT.Query>(STATUS)
 
   return (
     <Page>
