@@ -12,6 +12,12 @@ const config = {
       plugin => plugin.constructor.name !== 'ForkTsCheckerWebpackPlugin'
     )
 
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/u,
+      exclude: /node_modules/u,
+      loader: 'graphql-tag/loader',
+    })
+
     return config
   },
 }

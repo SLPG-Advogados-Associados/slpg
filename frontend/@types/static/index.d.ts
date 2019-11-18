@@ -1,15 +1,13 @@
-declare module "*.svg" {
-  const url: string;
+const url: string
 
-  export default url;
+declare module '*.svg' {
+  export default url
 }
 
-declare module "*.graphql";
+declare module '*.graphql'
 
-declare module "*.gql";
+declare module '*.gql'
 
-declare module "*.png" {
-  const url: string;
-
-  export default url;
+declare module '*.png' {
+  export default url
 }
