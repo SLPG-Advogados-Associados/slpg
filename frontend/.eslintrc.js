@@ -36,7 +36,13 @@ module.exports = {
       },
     },
   },
+  globals: {
+    process: false,
+    require: false,
+    console: false,
+  },
   rules: {
+    'no-console': 'error',
     'react/prop-types': 'off',
     'react/self-closing-comp': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
