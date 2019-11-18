@@ -1,19 +1,21 @@
 import React from 'react'
-import { Logo } from '~design'
+import { Logo, Container } from '~design'
 import styled from 'styled-components'
 
 const NavbarLogo = styled(Logo)`
   max-width: 252px;
 `
 
+const HeaderContainer = Container.withComponent('header')
+
 const Header = () => (
-  <header>
+  <HeaderContainer>
     <nav>
       <a href="/">
         <NavbarLogo />
       </a>
     </nav>
-  </header>
+  </HeaderContainer>
 )
 
 export { Header }
