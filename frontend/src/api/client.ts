@@ -1,6 +1,5 @@
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost'
 import fetch from 'isomorphic-unfetch'
-import Maybe from '~app/api/tsutils/Maybe'
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 const NEXT_STATIC_BACKEND_API_HOST = process.env.NEXT_STATIC_BACKEND_API_HOST
@@ -27,7 +26,7 @@ const createApolloClient = (initialState = {}) =>
     cache: new InMemoryCache().restore(initialState),
   })
 
-let apolloClient: Maybe<ReturnType<typeof createApolloClient>> = null
+let apolloClient: ReturnType<typeof createApolloClient> | null = null
 
 /**
  * Always creates a new apollo client on the server
