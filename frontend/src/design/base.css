@@ -10,3 +10,7 @@ body {
   font-family: 'montserrat', sans-serif;
   color: #7f7f7f;
 }
+
+p {
+  margin-bottom: 1.25em;
+}
