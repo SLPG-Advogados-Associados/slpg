@@ -56,6 +56,7 @@ const functional = {
   },
 
   backgroundColor: {
+    reverse: t('colors.darkBlue'),
     button: t('colors.darkBlue'),
   },
 
@@ -93,8 +94,10 @@ const extend = [initial, semantic, functional].reduce((theme, curr) => {
       continue
     }
 
+    const prev = theme[key]
+
     // ensure structure
-    theme[key] = theme[key] || {}
+    theme[key] = prev || {}
 
     for (const sub in val) {
       let subVal = val[sub]
@@ -109,6 +112,12 @@ const extend = [initial, semantic, functional].reduce((theme, curr) => {
       }
 
       theme[key] = val
+    }
+
+    // handle default first-level processed theme.
+    if (typeof prev === 'function') {
+      const extend = theme[key]
+      theme[key] = (...args) => ({ ...prev(...args), ...extend })
     }
   }
 
