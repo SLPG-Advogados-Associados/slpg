@@ -10,7 +10,6 @@ if (NODE_ENV === 'production' && !NEXT_STATIC_BACKEND_API_HOST) {
 
 const link = new HttpLink({
   uri: NEXT_STATIC_BACKEND_API_HOST || 'http://localhost:1337/graphql',
-  credentials: 'include',
   fetch: !process.browser ? fetch : null,
 })
 
