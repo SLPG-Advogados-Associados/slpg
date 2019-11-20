@@ -31,6 +31,7 @@ module.exports = {
         map: [
           ['~app', `${__dirname}/src`],
           ['~api', `${__dirname}/src/api`],
+          ['~modules', `${__dirname}/src/modules`],
           ['~design', `${__dirname}/src/design`],
         ],
         extensions,

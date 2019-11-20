@@ -18,6 +18,7 @@
       "~app/*": ["*"],
       "~api": ["api/index.ts"],
       "~api/*": ["api/*"],
+      "~modules/*": ["modules/*"],
       "~design": ["design/index.ts"],
       "~design/*": ["design/*"]
     }
