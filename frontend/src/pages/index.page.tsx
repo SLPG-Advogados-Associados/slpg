@@ -1,8 +1,7 @@
 import React from 'react'
-import dayjs from 'dayjs'
 import { Page } from '~app/components/Page'
 import { withGraphQL, GT } from '~api'
-import { Container } from '~design'
+import { Container, Heading } from '~design'
 import { PostListItem } from '~modules/blog'
 import { useQuery } from '@apollo/react-hooks'
 import { BLOG_LATEST } from './index.gql'
@@ -13,7 +12,7 @@ const HomePage = () => {
   return (
     <Page>
       <Container>
-        <h2>Blogue</h2>
+        <Heading>Blogue</Heading>
 
         {blog.data ? (
           <ul>
