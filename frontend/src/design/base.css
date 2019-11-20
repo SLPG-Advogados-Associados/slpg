@@ -20,3 +20,8 @@ body {
 p {
   margin-bottom: 1.25em;
 }
+
+a {
+  text-decoration: none;
+  transition: all 250ms;
+}

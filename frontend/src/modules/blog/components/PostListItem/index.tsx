@@ -1,12 +1,20 @@
 import React from 'react'
 import dayjs from 'dayjs'
+import styled from 'styled-components'
 import { ItemTitle } from '~design'
+
+const Anchor = styled.a`
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+`
 
 const PostListItem = ({ post }) => {
   const date = dayjs(post.created_at)
 
   return (
-    <a href="" className="block">
+    <Anchor href={`/posts/${post.id}`} className="block">
       <article className="flex">
         <aside className="w-32 pt-10 text-aside text-center text-primary uppercase flex-shrink-0">
           <div>{date.format('MMM')}</div>
@@ -19,7 +27,7 @@ const PostListItem = ({ post }) => {
           <p>{post.summary}</p>
         </div>
       </article>
-    </a>
+    </Anchor>
   )
 }
 
