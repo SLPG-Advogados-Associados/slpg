@@ -4,6 +4,8 @@ import Head from 'next/head'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { initApolloClient } from './client'
 
+const SSR_GRAPHQL_OFF = Boolean(process.env.SSR_GRAPHQL_OFF)
+
 /**
  * Creates and provides the apolloContext
  * to a next.js PageTree. Use it by wrapping
@@ -40,7 +42,7 @@ const withGraphQL = (PageComponent, { ssr = true } = {}) => {
 
   // Allow Next.js to remove getInitialProps from the browser build
   if (typeof window === 'undefined') {
-    if (ssr) {
+    if (ssr && !SSR_GRAPHQL_OFF) {
       WithGraphQL.getInitialProps = async ctx => {
         const { AppTree } = ctx
 
