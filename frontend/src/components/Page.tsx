@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { Header } from './Header'
+import { Footer } from './Footer'
 
 const getTitle = (title?: string) =>
   'SLPG Advogados Associados' + (title ? ` - ${title}` : '')
@@ -19,6 +20,8 @@ const Page: React.FC<Props> = ({ children, title }) => (
     <Header />
 
     {children}
+
+    <Footer />
   </>
 )
 
