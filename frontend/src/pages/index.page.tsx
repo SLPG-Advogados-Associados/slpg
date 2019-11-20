@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import { Page } from '~app/components/Page'
 import { withGraphQL, GT } from '~api'
 import { Container } from '~design'
+import { PostListItem } from '~modules/blog'
 import { useQuery } from '@apollo/react-hooks'
 import { BLOG_LATEST } from './index.gql'
 
@@ -16,28 +17,11 @@ const HomePage = () => {
 
         {blog.data ? (
           <ul>
-            {blog.data.blogs.map(post => {
-              const date = dayjs('2019-04-03')
-
-              return (
-                <li key={post.id} className="py-lg border-b-2">
-                  <article className="flex">
-                    <aside className="w-32 pt-10 text-aside text-center text-primary uppercase">
-                      <div>{date.format('MMM')}</div>
-                      <div>{date.format('DD')}</div>
-                    </aside>
-
-                    <div>
-                      <h3 className="text-item-title font-semibold pb-2">
-                        {post.title}
-                      </h3>
-
-                      <p>{post.summary}</p>
-                    </div>
-                  </article>
-                </li>
-              )
-            })}
+            {blog.data.blogs.map(post => (
+              <li key={post.id} className="py-lg border-b-2">
+                <PostListItem post={post} />
+              </li>
+            ))}
           </ul>
         ) : null}
       </Container>

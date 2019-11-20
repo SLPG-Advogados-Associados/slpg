@@ -1,0 +1,6 @@
+fragment PostListItem on Blog {
+  id
+  title
+  summary
+  created_at
+}

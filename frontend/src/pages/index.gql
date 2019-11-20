@@ -1,8 +1,8 @@
+#import "../modules/blog/components/PostListItem/fragment.gql"
+
 query BLOG_LATEST {
   blogs(limit: 3) {
     id
-    title
-    summary
-    created_at
+    ...PostListItem
   }
 }
