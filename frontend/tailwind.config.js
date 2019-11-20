@@ -115,8 +115,6 @@ const extend = [initial, semantic, functional].reduce((theme, curr) => {
   return theme
 }, defaultTheme)
 
-console.log({ extend })
-
 module.exports = {
   theme: { extend },
   variants: {},
