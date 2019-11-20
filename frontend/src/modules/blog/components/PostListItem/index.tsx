@@ -1,5 +1,6 @@
 import React from 'react'
 import dayjs from 'dayjs'
+import { ItemTitle } from '~design'
 
 const PostListItem = ({ post }) => {
   const date = dayjs(post.created_at)
@@ -7,13 +8,13 @@ const PostListItem = ({ post }) => {
   return (
     <a href="" className="block">
       <article className="flex">
-        <aside className="w-32 pt-10 text-aside text-center text-primary uppercase">
+        <aside className="w-32 pt-10 text-aside text-center text-primary uppercase flex-shrink-0">
           <div>{date.format('MMM')}</div>
           <div>{date.format('DD')}</div>
         </aside>
 
         <div>
-          <h3 className="text-item-title font-semibold pb-2">{post.title}</h3>
+          <ItemTitle>{post.title}</ItemTitle>
 
           <p>{post.summary}</p>
         </div>
