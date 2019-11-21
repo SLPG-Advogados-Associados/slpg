@@ -452,17 +452,27 @@ export type UsersPermissionsUser = {
   updated_at: Scalars['DateTime']
 }
 
+export type PostListItemFragment = { __typename?: 'Blog' } & Pick<
+  Blog,
+  'id' | 'title' | 'summary' | 'created_at'
+>
+
 export type BLOG_LATEST_QUERY_VARIABLES = {}
 
 export type BLOG_LATEST_QUERY = { __typename?: 'Query' } & {
   blogs: Maybe<
     Array<
-      Maybe<
-        { __typename?: 'Blog' } & Pick<
-          Blog,
-          'id' | 'title' | 'summary' | 'created_at'
-        >
-      >
+      Maybe<{ __typename?: 'Blog' } & Pick<Blog, 'id'> & PostListItemFragment>
     >
+  >
+}
+
+export type BLOG_POST_QUERY_VARIABLES = {
+  post: Scalars['ID']
+}
+
+export type BLOG_POST_QUERY = { __typename?: 'Query' } & {
+  post: Maybe<
+    { __typename?: 'Blog' } & Pick<Blog, 'id' | 'title' | 'created_at' | 'body'>
   >
 }
