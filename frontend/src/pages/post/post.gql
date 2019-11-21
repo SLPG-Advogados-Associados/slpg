@@ -1,0 +1,8 @@
+query BLOG_POST($post: ID!) {
+  post: blog(id: $post) {
+    id
+    title
+    created_at
+    body
+  }
+}
