@@ -6,9 +6,9 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  JSON: any
   /** The `DateTime` scalar represents a date and time following the ISO 8601 standard */
   DateTime: any
-  JSON: any
   /** The `Upload` scalar type represents a file upload. */
   Upload: any
   /** The `Long` scalar type represents 52-bit integers */
@@ -20,6 +20,7 @@ export type Blog = {
   title: Scalars['String']
   body: Scalars['String']
   summary?: Maybe<Scalars['String']>
+  image?: Maybe<UploadFile>
   id: Scalars['ID']
   created_at: Scalars['DateTime']
   updated_at: Scalars['DateTime']
@@ -29,6 +30,7 @@ export type BlogInput = {
   title: Scalars['String']
   body: Scalars['String']
   summary?: Maybe<Scalars['String']>
+  image?: Maybe<Scalars['ID']>
 }
 
 export enum CacheControlScope {
@@ -43,6 +45,15 @@ export type CreateBlogInput = {
 export type CreateBlogPayload = {
   __typename?: 'createBlogPayload'
   blog?: Maybe<Blog>
+}
+
+export type CreatePageInput = {
+  data?: Maybe<PageInput>
+}
+
+export type CreatePagePayload = {
+  __typename?: 'createPagePayload'
+  page?: Maybe<Page>
 }
 
 export type CreateRoleInput = {
@@ -72,6 +83,15 @@ export type DeleteBlogPayload = {
   blog?: Maybe<Blog>
 }
 
+export type DeletePageInput = {
+  where?: Maybe<InputId>
+}
+
+export type DeletePagePayload = {
+  __typename?: 'deletePagePayload'
+  page?: Maybe<Page>
+}
+
 export type DeleteRoleInput = {
   where?: Maybe<InputId>
 }
@@ -94,6 +114,7 @@ export type EditBlogInput = {
   title?: Maybe<Scalars['String']>
   body?: Maybe<Scalars['String']>
   summary?: Maybe<Scalars['String']>
+  image?: Maybe<Scalars['ID']>
 }
 
 export type EditFileInput = {
@@ -107,6 +128,10 @@ export type EditFileInput = {
   provider?: Maybe<Scalars['String']>
   provider_metadata?: Maybe<Scalars['JSON']>
   related?: Maybe<Array<Maybe<Scalars['ID']>>>
+}
+
+export type EditPageInput = {
+  title?: Maybe<Scalars['String']>
 }
 
 export type EditRoleInput = {
@@ -153,6 +178,10 @@ export type Morph =
   | CreateBlogPayload
   | UpdateBlogPayload
   | DeleteBlogPayload
+  | Page
+  | CreatePagePayload
+  | UpdatePagePayload
+  | DeletePagePayload
   | UploadFile
   | UsersPermissionsPermission
   | UsersPermissionsRole
@@ -169,6 +198,9 @@ export type Mutation = {
   createBlog?: Maybe<CreateBlogPayload>
   updateBlog?: Maybe<UpdateBlogPayload>
   deleteBlog?: Maybe<DeleteBlogPayload>
+  createPage?: Maybe<CreatePagePayload>
+  updatePage?: Maybe<UpdatePagePayload>
+  deletePage?: Maybe<DeletePagePayload>
   /** Create a new role */
   createRole?: Maybe<CreateRolePayload>
   /** Update an existing role */
@@ -197,6 +229,18 @@ export type MutationUpdateBlogArgs = {
 
 export type MutationDeleteBlogArgs = {
   input?: Maybe<DeleteBlogInput>
+}
+
+export type MutationCreatePageArgs = {
+  input?: Maybe<CreatePageInput>
+}
+
+export type MutationUpdatePageArgs = {
+  input?: Maybe<UpdatePageInput>
+}
+
+export type MutationDeletePageArgs = {
+  input?: Maybe<DeletePageInput>
 }
 
 export type MutationCreateRoleArgs = {
@@ -247,10 +291,24 @@ export type MutationRegisterArgs = {
   input: UserInput
 }
 
+export type Page = {
+  __typename?: 'Page'
+  title?: Maybe<Scalars['String']>
+  id: Scalars['ID']
+  created_at: Scalars['DateTime']
+  updated_at: Scalars['DateTime']
+}
+
+export type PageInput = {
+  title?: Maybe<Scalars['String']>
+}
+
 export type Query = {
   __typename?: 'Query'
   blog?: Maybe<Blog>
   blogs?: Maybe<Array<Maybe<Blog>>>
+  page?: Maybe<Page>
+  pages?: Maybe<Array<Maybe<Page>>>
   files?: Maybe<Array<Maybe<UploadFile>>>
   role?: Maybe<UsersPermissionsRole>
   /** Retrieve all the existing roles. You can't apply filters on this query. */
@@ -266,6 +324,17 @@ export type QueryBlogArgs = {
 }
 
 export type QueryBlogsArgs = {
+  sort?: Maybe<Scalars['String']>
+  limit?: Maybe<Scalars['Int']>
+  start?: Maybe<Scalars['Int']>
+  where?: Maybe<Scalars['JSON']>
+}
+
+export type QueryPageArgs = {
+  id: Scalars['ID']
+}
+
+export type QueryPagesArgs = {
   sort?: Maybe<Scalars['String']>
   limit?: Maybe<Scalars['Int']>
   start?: Maybe<Scalars['Int']>
@@ -317,6 +386,16 @@ export type UpdateBlogInput = {
 export type UpdateBlogPayload = {
   __typename?: 'updateBlogPayload'
   blog?: Maybe<Blog>
+}
+
+export type UpdatePageInput = {
+  where?: Maybe<InputId>
+  data?: Maybe<EditPageInput>
+}
+
+export type UpdatePagePayload = {
+  __typename?: 'updatePagePayload'
+  page?: Maybe<Page>
 }
 
 export type UpdateRoleInput = {
