@@ -7,21 +7,15 @@
   },
   "options": {
     "increments": true,
-    "timestamps": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
     "comment": ""
   },
   "attributes": {
-    "Title": {
-      "type": "string",
-      "required": true
-    },
-    "Body": {
-      "type": "richtext"
-    },
-    "URL": {
-      "type": "string",
-      "unique": true,
-      "required": true
+    "title": {
+      "type": "string"
     }
   }
 }

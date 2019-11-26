@@ -24,6 +24,11 @@
     },
     "summary": {
       "type": "text"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }
