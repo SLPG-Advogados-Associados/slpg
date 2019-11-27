@@ -53,6 +53,12 @@ const HomePage = () => {
             ))}
           </ul>
         ) : null}
+
+        <div className="text-center my-20">
+          <Button as="a" href="/blogue">
+            Visite Nosso Blogue
+          </Button>
+        </div>
       </Container>
     </Page>
   )
