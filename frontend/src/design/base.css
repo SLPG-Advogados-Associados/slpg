@@ -25,3 +25,12 @@ a {
   text-decoration: none;
   transition: all 250ms;
 }
+
+.clear::before,
+.clear::after,
+.clear-top::before,
+.clear-bottom::after {
+  content: '';
+  display: table;
+  clear: both;
+}
