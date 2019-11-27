@@ -15,7 +15,10 @@ const initial = {
       700: '#6b6c6d',
     },
 
-    darkBlue: '#072242',
+    blue: {
+      500: '#17365C',
+      700: '#072242',
+    },
   },
 
   fontSize: {
@@ -42,7 +45,8 @@ const initial = {
 
 const semantic = {
   colors: {
-    primary: t('colors.darkBlue'),
+    primary: t('colors.blue.700'),
+    'primary:active': t('colors.blue.500'),
   },
 }
 
@@ -50,21 +54,23 @@ const functional = {
   colors: {
     body: t('colors.gray.500'),
     heading: t('colors.gray.700'),
-    link: t('colors.darkBlue'),
+    link: t('colors.primary'),
+    'link:active': t('colors.primary:active'),
     button: t('colors.white'),
     divisor: t('colors.gray.300'),
   },
 
   backgroundColor: {
-    reverse: t('colors.darkBlue'),
-    button: t('colors.darkBlue'),
+    reverse: t('colors.primary'),
+    button: t('colors.primary'),
+    'button:active': t('colors.primary:active'),
   },
 
   fontSize: {
     footnote: t('fontSize.100'),
     // 200
     meta: t('fontSize.200'),
-    button: t('fontSize.200'),
+    button: t('fontSize.400'),
     // 400
     base: t('fontSize.400'),
     menu: t('fontSize.400'),
