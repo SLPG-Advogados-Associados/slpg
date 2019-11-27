@@ -1,137 +1,137 @@
 import styled from 'styled-components'
 
-export const a = (classNames: TemplateStringsArray) => styled.a.attrs({ className: classNames.join(' ') })``
-export const abbr = (classNames: TemplateStringsArray) => styled.abbr.attrs({ className: classNames.join(' ') })``
-export const address = (classNames: TemplateStringsArray) => styled.address.attrs({ className: classNames.join(' ') })``
-export const area = (classNames: TemplateStringsArray) => styled.area.attrs({ className: classNames.join(' ') })``
-export const article = (classNames: TemplateStringsArray) => styled.article.attrs({ className: classNames.join(' ') })``
-export const aside = (classNames: TemplateStringsArray) => styled.aside.attrs({ className: classNames.join(' ') })``
-export const audio = (classNames: TemplateStringsArray) => styled.audio.attrs({ className: classNames.join(' ') })``
-export const b = (classNames: TemplateStringsArray) => styled.b.attrs({ className: classNames.join(' ') })``
-export const base = (classNames: TemplateStringsArray) => styled.base.attrs({ className: classNames.join(' ') })``
-export const bdi = (classNames: TemplateStringsArray) => styled.bdi.attrs({ className: classNames.join(' ') })``
-export const bdo = (classNames: TemplateStringsArray) => styled.bdo.attrs({ className: classNames.join(' ') })``
-export const big = (classNames: TemplateStringsArray) => styled.big.attrs({ className: classNames.join(' ') })``
-export const blockquote = (classNames: TemplateStringsArray) => styled.blockquote.attrs({ className: classNames.join(' ') })``
-export const body = (classNames: TemplateStringsArray) => styled.body.attrs({ className: classNames.join(' ') })``
-export const br = (classNames: TemplateStringsArray) => styled.br.attrs({ className: classNames.join(' ') })``
-export const button = (classNames: TemplateStringsArray) => styled.button.attrs({ className: classNames.join(' ') })``
-export const canvas = (classNames: TemplateStringsArray) => styled.canvas.attrs({ className: classNames.join(' ') })``
-export const caption = (classNames: TemplateStringsArray) => styled.caption.attrs({ className: classNames.join(' ') })``
-export const cite = (classNames: TemplateStringsArray) => styled.cite.attrs({ className: classNames.join(' ') })``
-export const code = (classNames: TemplateStringsArray) => styled.code.attrs({ className: classNames.join(' ') })``
-export const col = (classNames: TemplateStringsArray) => styled.col.attrs({ className: classNames.join(' ') })``
-export const colgroup = (classNames: TemplateStringsArray) => styled.colgroup.attrs({ className: classNames.join(' ') })``
-export const data = (classNames: TemplateStringsArray) => styled.data.attrs({ className: classNames.join(' ') })``
-export const datalist = (classNames: TemplateStringsArray) => styled.datalist.attrs({ className: classNames.join(' ') })``
-export const dd = (classNames: TemplateStringsArray) => styled.dd.attrs({ className: classNames.join(' ') })``
-export const del = (classNames: TemplateStringsArray) => styled.del.attrs({ className: classNames.join(' ') })``
-export const details = (classNames: TemplateStringsArray) => styled.details.attrs({ className: classNames.join(' ') })``
-export const dfn = (classNames: TemplateStringsArray) => styled.dfn.attrs({ className: classNames.join(' ') })``
-export const dialog = (classNames: TemplateStringsArray) => styled.dialog.attrs({ className: classNames.join(' ') })``
-export const div = (classNames: TemplateStringsArray) => styled.div.attrs({ className: classNames.join(' ') })``
-export const dl = (classNames: TemplateStringsArray) => styled.dl.attrs({ className: classNames.join(' ') })``
-export const dt = (classNames: TemplateStringsArray) => styled.dt.attrs({ className: classNames.join(' ') })``
-export const em = (classNames: TemplateStringsArray) => styled.em.attrs({ className: classNames.join(' ') })``
-export const embed = (classNames: TemplateStringsArray) => styled.embed.attrs({ className: classNames.join(' ') })``
-export const fieldset = (classNames: TemplateStringsArray) => styled.fieldset.attrs({ className: classNames.join(' ') })``
-export const figcaption = (classNames: TemplateStringsArray) => styled.figcaption.attrs({ className: classNames.join(' ') })``
-export const figure = (classNames: TemplateStringsArray) => styled.figure.attrs({ className: classNames.join(' ') })``
-export const footer = (classNames: TemplateStringsArray) => styled.footer.attrs({ className: classNames.join(' ') })``
-export const form = (classNames: TemplateStringsArray) => styled.form.attrs({ className: classNames.join(' ') })``
-export const h1 = (classNames: TemplateStringsArray) => styled.h1.attrs({ className: classNames.join(' ') })``
-export const h2 = (classNames: TemplateStringsArray) => styled.h2.attrs({ className: classNames.join(' ') })``
-export const h3 = (classNames: TemplateStringsArray) => styled.h3.attrs({ className: classNames.join(' ') })``
-export const h4 = (classNames: TemplateStringsArray) => styled.h4.attrs({ className: classNames.join(' ') })``
-export const h5 = (classNames: TemplateStringsArray) => styled.h5.attrs({ className: classNames.join(' ') })``
-export const h6 = (classNames: TemplateStringsArray) => styled.h6.attrs({ className: classNames.join(' ') })``
-export const head = (classNames: TemplateStringsArray) => styled.head.attrs({ className: classNames.join(' ') })``
-export const header = (classNames: TemplateStringsArray) => styled.header.attrs({ className: classNames.join(' ') })``
-export const hgroup = (classNames: TemplateStringsArray) => styled.hgroup.attrs({ className: classNames.join(' ') })``
-export const hr = (classNames: TemplateStringsArray) => styled.hr.attrs({ className: classNames.join(' ') })``
-export const html = (classNames: TemplateStringsArray) => styled.html.attrs({ className: classNames.join(' ') })``
-export const i = (classNames: TemplateStringsArray) => styled.i.attrs({ className: classNames.join(' ') })``
-export const iframe = (classNames: TemplateStringsArray) => styled.iframe.attrs({ className: classNames.join(' ') })``
-export const img = (classNames: TemplateStringsArray) => styled.img.attrs({ className: classNames.join(' ') })``
-export const input = (classNames: TemplateStringsArray) => styled.input.attrs({ className: classNames.join(' ') })``
-export const ins = (classNames: TemplateStringsArray) => styled.ins.attrs({ className: classNames.join(' ') })``
-export const kbd = (classNames: TemplateStringsArray) => styled.kbd.attrs({ className: classNames.join(' ') })``
-export const keygen = (classNames: TemplateStringsArray) => styled.keygen.attrs({ className: classNames.join(' ') })``
-export const label = (classNames: TemplateStringsArray) => styled.label.attrs({ className: classNames.join(' ') })``
-export const legend = (classNames: TemplateStringsArray) => styled.legend.attrs({ className: classNames.join(' ') })``
-export const li = (classNames: TemplateStringsArray) => styled.li.attrs({ className: classNames.join(' ') })``
-export const link = (classNames: TemplateStringsArray) => styled.link.attrs({ className: classNames.join(' ') })``
-export const main = (classNames: TemplateStringsArray) => styled.main.attrs({ className: classNames.join(' ') })``
-export const map = (classNames: TemplateStringsArray) => styled.map.attrs({ className: classNames.join(' ') })``
-export const mark = (classNames: TemplateStringsArray) => styled.mark.attrs({ className: classNames.join(' ') })``
-export const marquee = (classNames: TemplateStringsArray) => styled.marquee.attrs({ className: classNames.join(' ') })``
-export const menu = (classNames: TemplateStringsArray) => styled.menu.attrs({ className: classNames.join(' ') })``
-export const menuitem = (classNames: TemplateStringsArray) => styled.menuitem.attrs({ className: classNames.join(' ') })``
-export const meta = (classNames: TemplateStringsArray) => styled.meta.attrs({ className: classNames.join(' ') })``
-export const meter = (classNames: TemplateStringsArray) => styled.meter.attrs({ className: classNames.join(' ') })``
-export const nav = (classNames: TemplateStringsArray) => styled.nav.attrs({ className: classNames.join(' ') })``
-export const noscript = (classNames: TemplateStringsArray) => styled.noscript.attrs({ className: classNames.join(' ') })``
-export const object = (classNames: TemplateStringsArray) => styled.object.attrs({ className: classNames.join(' ') })``
-export const ol = (classNames: TemplateStringsArray) => styled.ol.attrs({ className: classNames.join(' ') })``
-export const optgroup = (classNames: TemplateStringsArray) => styled.optgroup.attrs({ className: classNames.join(' ') })``
-export const option = (classNames: TemplateStringsArray) => styled.option.attrs({ className: classNames.join(' ') })``
-export const output = (classNames: TemplateStringsArray) => styled.output.attrs({ className: classNames.join(' ') })``
-export const p = (classNames: TemplateStringsArray) => styled.p.attrs({ className: classNames.join(' ') })``
-export const param = (classNames: TemplateStringsArray) => styled.param.attrs({ className: classNames.join(' ') })``
-export const picture = (classNames: TemplateStringsArray) => styled.picture.attrs({ className: classNames.join(' ') })``
-export const pre = (classNames: TemplateStringsArray) => styled.pre.attrs({ className: classNames.join(' ') })``
-export const progress = (classNames: TemplateStringsArray) => styled.progress.attrs({ className: classNames.join(' ') })``
-export const q = (classNames: TemplateStringsArray) => styled.q.attrs({ className: classNames.join(' ') })``
-export const rp = (classNames: TemplateStringsArray) => styled.rp.attrs({ className: classNames.join(' ') })``
-export const rt = (classNames: TemplateStringsArray) => styled.rt.attrs({ className: classNames.join(' ') })``
-export const ruby = (classNames: TemplateStringsArray) => styled.ruby.attrs({ className: classNames.join(' ') })``
-export const s = (classNames: TemplateStringsArray) => styled.s.attrs({ className: classNames.join(' ') })``
-export const samp = (classNames: TemplateStringsArray) => styled.samp.attrs({ className: classNames.join(' ') })``
-export const script = (classNames: TemplateStringsArray) => styled.script.attrs({ className: classNames.join(' ') })``
-export const section = (classNames: TemplateStringsArray) => styled.section.attrs({ className: classNames.join(' ') })``
-export const select = (classNames: TemplateStringsArray) => styled.select.attrs({ className: classNames.join(' ') })``
-export const small = (classNames: TemplateStringsArray) => styled.small.attrs({ className: classNames.join(' ') })``
-export const source = (classNames: TemplateStringsArray) => styled.source.attrs({ className: classNames.join(' ') })``
-export const span = (classNames: TemplateStringsArray) => styled.span.attrs({ className: classNames.join(' ') })``
-export const strong = (classNames: TemplateStringsArray) => styled.strong.attrs({ className: classNames.join(' ') })``
-export const style = (classNames: TemplateStringsArray) => styled.style.attrs({ className: classNames.join(' ') })``
-export const sub = (classNames: TemplateStringsArray) => styled.sub.attrs({ className: classNames.join(' ') })``
-export const summary = (classNames: TemplateStringsArray) => styled.summary.attrs({ className: classNames.join(' ') })``
-export const sup = (classNames: TemplateStringsArray) => styled.sup.attrs({ className: classNames.join(' ') })``
-export const table = (classNames: TemplateStringsArray) => styled.table.attrs({ className: classNames.join(' ') })``
-export const tbody = (classNames: TemplateStringsArray) => styled.tbody.attrs({ className: classNames.join(' ') })``
-export const td = (classNames: TemplateStringsArray) => styled.td.attrs({ className: classNames.join(' ') })``
-export const textarea = (classNames: TemplateStringsArray) => styled.textarea.attrs({ className: classNames.join(' ') })``
-export const tfoot = (classNames: TemplateStringsArray) => styled.tfoot.attrs({ className: classNames.join(' ') })``
-export const th = (classNames: TemplateStringsArray) => styled.th.attrs({ className: classNames.join(' ') })``
-export const thead = (classNames: TemplateStringsArray) => styled.thead.attrs({ className: classNames.join(' ') })``
-export const time = (classNames: TemplateStringsArray) => styled.time.attrs({ className: classNames.join(' ') })``
-export const title = (classNames: TemplateStringsArray) => styled.title.attrs({ className: classNames.join(' ') })``
-export const tr = (classNames: TemplateStringsArray) => styled.tr.attrs({ className: classNames.join(' ') })``
-export const track = (classNames: TemplateStringsArray) => styled.track.attrs({ className: classNames.join(' ') })``
-export const u = (classNames: TemplateStringsArray) => styled.u.attrs({ className: classNames.join(' ') })``
-export const ul = (classNames: TemplateStringsArray) => styled.ul.attrs({ className: classNames.join(' ') })``
-// export const var = (classNames: TemplateStringsArray) => styled.var.attrs({ className: classNames.join(' ') })``
-export const video = (classNames: TemplateStringsArray) => styled.video.attrs({ className: classNames.join(' ') })``
-export const wbr = (classNames: TemplateStringsArray) => styled.wbr.attrs({ className: classNames.join(' ') })``
-export const circle = (classNames: TemplateStringsArray) => styled.circle.attrs({ className: classNames.join(' ') })``
-export const clipPath = (classNames: TemplateStringsArray) => styled.clipPath.attrs({ className: classNames.join(' ') })``
-export const defs = (classNames: TemplateStringsArray) => styled.defs.attrs({ className: classNames.join(' ') })``
-export const ellipse = (classNames: TemplateStringsArray) => styled.ellipse.attrs({ className: classNames.join(' ') })``
-export const foreignObject = (classNames: TemplateStringsArray) => styled.foreignObject.attrs({ className: classNames.join(' ') })``
-export const g = (classNames: TemplateStringsArray) => styled.g.attrs({ className: classNames.join(' ') })``
-export const image = (classNames: TemplateStringsArray) => styled.image.attrs({ className: classNames.join(' ') })``
-export const line = (classNames: TemplateStringsArray) => styled.line.attrs({ className: classNames.join(' ') })``
-export const linearGradient = (classNames: TemplateStringsArray) => styled.linearGradient.attrs({ className: classNames.join(' ') })``
-export const marker = (classNames: TemplateStringsArray) => styled.marker.attrs({ className: classNames.join(' ') })``
-export const mask = (classNames: TemplateStringsArray) => styled.mask.attrs({ className: classNames.join(' ') })``
-export const path = (classNames: TemplateStringsArray) => styled.path.attrs({ className: classNames.join(' ') })``
-export const pattern = (classNames: TemplateStringsArray) => styled.pattern.attrs({ className: classNames.join(' ') })``
-export const polygon = (classNames: TemplateStringsArray) => styled.polygon.attrs({ className: classNames.join(' ') })``
-export const polyline = (classNames: TemplateStringsArray) => styled.polyline.attrs({ className: classNames.join(' ') })``
-export const radialGradient = (classNames: TemplateStringsArray) => styled.radialGradient.attrs({ className: classNames.join(' ') })``
-export const rect = (classNames: TemplateStringsArray) => styled.rect.attrs({ className: classNames.join(' ') })``
-export const stop = (classNames: TemplateStringsArray) => styled.stop.attrs({ className: classNames.join(' ') })``
-export const svg = (classNames: TemplateStringsArray) => styled.svg.attrs({ className: classNames.join(' ') })``
-export const text = (classNames: TemplateStringsArray) => styled.text.attrs({ className: classNames.join(' ') })``
-export const tspan = (classNames: TemplateStringsArray) => styled.tspan.attrs({ className: classNames.join(' ') })``
+export const a = <Props extends {}>(classNames: TemplateStringsArray) => styled.a.attrs<Props>({ className: classNames.join(' ') })``
+export const abbr = <Props extends {}>(classNames: TemplateStringsArray) => styled.abbr.attrs<Props>({ className: classNames.join(' ') })``
+export const address = <Props extends {}>(classNames: TemplateStringsArray) => styled.address.attrs<Props>({ className: classNames.join(' ') })``
+export const area = <Props extends {}>(classNames: TemplateStringsArray) => styled.area.attrs<Props>({ className: classNames.join(' ') })``
+export const article = <Props extends {}>(classNames: TemplateStringsArray) => styled.article.attrs<Props>({ className: classNames.join(' ') })``
+export const aside = <Props extends {}>(classNames: TemplateStringsArray) => styled.aside.attrs<Props>({ className: classNames.join(' ') })``
+export const audio = <Props extends {}>(classNames: TemplateStringsArray) => styled.audio.attrs<Props>({ className: classNames.join(' ') })``
+export const b = <Props extends {}>(classNames: TemplateStringsArray) => styled.b.attrs<Props>({ className: classNames.join(' ') })``
+export const base = <Props extends {}>(classNames: TemplateStringsArray) => styled.base.attrs<Props>({ className: classNames.join(' ') })``
+export const bdi = <Props extends {}>(classNames: TemplateStringsArray) => styled.bdi.attrs<Props>({ className: classNames.join(' ') })``
+export const bdo = <Props extends {}>(classNames: TemplateStringsArray) => styled.bdo.attrs<Props>({ className: classNames.join(' ') })``
+export const big = <Props extends {}>(classNames: TemplateStringsArray) => styled.big.attrs<Props>({ className: classNames.join(' ') })``
+export const blockquote = <Props extends {}>(classNames: TemplateStringsArray) => styled.blockquote.attrs<Props>({ className: classNames.join(' ') })``
+export const body = <Props extends {}>(classNames: TemplateStringsArray) => styled.body.attrs<Props>({ className: classNames.join(' ') })``
+export const br = <Props extends {}>(classNames: TemplateStringsArray) => styled.br.attrs<Props>({ className: classNames.join(' ') })``
+export const button = <Props extends {}>(classNames: TemplateStringsArray) => styled.button.attrs<Props>({ className: classNames.join(' ') })``
+export const canvas = <Props extends {}>(classNames: TemplateStringsArray) => styled.canvas.attrs<Props>({ className: classNames.join(' ') })``
+export const caption = <Props extends {}>(classNames: TemplateStringsArray) => styled.caption.attrs<Props>({ className: classNames.join(' ') })``
+export const cite = <Props extends {}>(classNames: TemplateStringsArray) => styled.cite.attrs<Props>({ className: classNames.join(' ') })``
+export const code = <Props extends {}>(classNames: TemplateStringsArray) => styled.code.attrs<Props>({ className: classNames.join(' ') })``
+export const col = <Props extends {}>(classNames: TemplateStringsArray) => styled.col.attrs<Props>({ className: classNames.join(' ') })``
+export const colgroup = <Props extends {}>(classNames: TemplateStringsArray) => styled.colgroup.attrs<Props>({ className: classNames.join(' ') })``
+export const data = <Props extends {}>(classNames: TemplateStringsArray) => styled.data.attrs<Props>({ className: classNames.join(' ') })``
+export const datalist = <Props extends {}>(classNames: TemplateStringsArray) => styled.datalist.attrs<Props>({ className: classNames.join(' ') })``
+export const dd = <Props extends {}>(classNames: TemplateStringsArray) => styled.dd.attrs<Props>({ className: classNames.join(' ') })``
+export const del = <Props extends {}>(classNames: TemplateStringsArray) => styled.del.attrs<Props>({ className: classNames.join(' ') })``
+export const details = <Props extends {}>(classNames: TemplateStringsArray) => styled.details.attrs<Props>({ className: classNames.join(' ') })``
+export const dfn = <Props extends {}>(classNames: TemplateStringsArray) => styled.dfn.attrs<Props>({ className: classNames.join(' ') })``
+export const dialog = <Props extends {}>(classNames: TemplateStringsArray) => styled.dialog.attrs<Props>({ className: classNames.join(' ') })``
+export const div = <Props extends {}>(classNames: TemplateStringsArray) => styled.div.attrs<Props>({ className: classNames.join(' ') })``
+export const dl = <Props extends {}>(classNames: TemplateStringsArray) => styled.dl.attrs<Props>({ className: classNames.join(' ') })``
+export const dt = <Props extends {}>(classNames: TemplateStringsArray) => styled.dt.attrs<Props>({ className: classNames.join(' ') })``
+export const em = <Props extends {}>(classNames: TemplateStringsArray) => styled.em.attrs<Props>({ className: classNames.join(' ') })``
+export const embed = <Props extends {}>(classNames: TemplateStringsArray) => styled.embed.attrs<Props>({ className: classNames.join(' ') })``
+export const fieldset = <Props extends {}>(classNames: TemplateStringsArray) => styled.fieldset.attrs<Props>({ className: classNames.join(' ') })``
+export const figcaption = <Props extends {}>(classNames: TemplateStringsArray) => styled.figcaption.attrs<Props>({ className: classNames.join(' ') })``
+export const figure = <Props extends {}>(classNames: TemplateStringsArray) => styled.figure.attrs<Props>({ className: classNames.join(' ') })``
+export const footer = <Props extends {}>(classNames: TemplateStringsArray) => styled.footer.attrs<Props>({ className: classNames.join(' ') })``
+export const form = <Props extends {}>(classNames: TemplateStringsArray) => styled.form.attrs<Props>({ className: classNames.join(' ') })``
+export const h1 = <Props extends {}>(classNames: TemplateStringsArray) => styled.h1.attrs<Props>({ className: classNames.join(' ') })``
+export const h2 = <Props extends {}>(classNames: TemplateStringsArray) => styled.h2.attrs<Props>({ className: classNames.join(' ') })``
+export const h3 = <Props extends {}>(classNames: TemplateStringsArray) => styled.h3.attrs<Props>({ className: classNames.join(' ') })``
+export const h4 = <Props extends {}>(classNames: TemplateStringsArray) => styled.h4.attrs<Props>({ className: classNames.join(' ') })``
+export const h5 = <Props extends {}>(classNames: TemplateStringsArray) => styled.h5.attrs<Props>({ className: classNames.join(' ') })``
+export const h6 = <Props extends {}>(classNames: TemplateStringsArray) => styled.h6.attrs<Props>({ className: classNames.join(' ') })``
+export const head = <Props extends {}>(classNames: TemplateStringsArray) => styled.head.attrs<Props>({ className: classNames.join(' ') })``
+export const header = <Props extends {}>(classNames: TemplateStringsArray) => styled.header.attrs<Props>({ className: classNames.join(' ') })``
+export const hgroup = <Props extends {}>(classNames: TemplateStringsArray) => styled.hgroup.attrs<Props>({ className: classNames.join(' ') })``
+export const hr = <Props extends {}>(classNames: TemplateStringsArray) => styled.hr.attrs<Props>({ className: classNames.join(' ') })``
+export const html = <Props extends {}>(classNames: TemplateStringsArray) => styled.html.attrs<Props>({ className: classNames.join(' ') })``
+export const i = <Props extends {}>(classNames: TemplateStringsArray) => styled.i.attrs<Props>({ className: classNames.join(' ') })``
+export const iframe = <Props extends {}>(classNames: TemplateStringsArray) => styled.iframe.attrs<Props>({ className: classNames.join(' ') })``
+export const img = <Props extends {}>(classNames: TemplateStringsArray) => styled.img.attrs<Props>({ className: classNames.join(' ') })``
+export const input = <Props extends {}>(classNames: TemplateStringsArray) => styled.input.attrs<Props>({ className: classNames.join(' ') })``
+export const ins = <Props extends {}>(classNames: TemplateStringsArray) => styled.ins.attrs<Props>({ className: classNames.join(' ') })``
+export const kbd = <Props extends {}>(classNames: TemplateStringsArray) => styled.kbd.attrs<Props>({ className: classNames.join(' ') })``
+export const keygen = <Props extends {}>(classNames: TemplateStringsArray) => styled.keygen.attrs<Props>({ className: classNames.join(' ') })``
+export const label = <Props extends {}>(classNames: TemplateStringsArray) => styled.label.attrs<Props>({ className: classNames.join(' ') })``
+export const legend = <Props extends {}>(classNames: TemplateStringsArray) => styled.legend.attrs<Props>({ className: classNames.join(' ') })``
+export const li = <Props extends {}>(classNames: TemplateStringsArray) => styled.li.attrs<Props>({ className: classNames.join(' ') })``
+export const link = <Props extends {}>(classNames: TemplateStringsArray) => styled.link.attrs<Props>({ className: classNames.join(' ') })``
+export const main = <Props extends {}>(classNames: TemplateStringsArray) => styled.main.attrs<Props>({ className: classNames.join(' ') })``
+export const map = <Props extends {}>(classNames: TemplateStringsArray) => styled.map.attrs<Props>({ className: classNames.join(' ') })``
+export const mark = <Props extends {}>(classNames: TemplateStringsArray) => styled.mark.attrs<Props>({ className: classNames.join(' ') })``
+export const marquee = <Props extends {}>(classNames: TemplateStringsArray) => styled.marquee.attrs<Props>({ className: classNames.join(' ') })``
+export const menu = <Props extends {}>(classNames: TemplateStringsArray) => styled.menu.attrs<Props>({ className: classNames.join(' ') })``
+export const menuitem = <Props extends {}>(classNames: TemplateStringsArray) => styled.menuitem.attrs<Props>({ className: classNames.join(' ') })``
+export const meta = <Props extends {}>(classNames: TemplateStringsArray) => styled.meta.attrs<Props>({ className: classNames.join(' ') })``
+export const meter = <Props extends {}>(classNames: TemplateStringsArray) => styled.meter.attrs<Props>({ className: classNames.join(' ') })``
+export const nav = <Props extends {}>(classNames: TemplateStringsArray) => styled.nav.attrs<Props>({ className: classNames.join(' ') })``
+export const noscript = <Props extends {}>(classNames: TemplateStringsArray) => styled.noscript.attrs<Props>({ className: classNames.join(' ') })``
+export const object = <Props extends {}>(classNames: TemplateStringsArray) => styled.object.attrs<Props>({ className: classNames.join(' ') })``
+export const ol = <Props extends {}>(classNames: TemplateStringsArray) => styled.ol.attrs<Props>({ className: classNames.join(' ') })``
+export const optgroup = <Props extends {}>(classNames: TemplateStringsArray) => styled.optgroup.attrs<Props>({ className: classNames.join(' ') })``
+export const option = <Props extends {}>(classNames: TemplateStringsArray) => styled.option.attrs<Props>({ className: classNames.join(' ') })``
+export const output = <Props extends {}>(classNames: TemplateStringsArray) => styled.output.attrs<Props>({ className: classNames.join(' ') })``
+export const p = <Props extends {}>(classNames: TemplateStringsArray) => styled.p.attrs<Props>({ className: classNames.join(' ') })``
+export const param = <Props extends {}>(classNames: TemplateStringsArray) => styled.param.attrs<Props>({ className: classNames.join(' ') })``
+export const picture = <Props extends {}>(classNames: TemplateStringsArray) => styled.picture.attrs<Props>({ className: classNames.join(' ') })``
+export const pre = <Props extends {}>(classNames: TemplateStringsArray) => styled.pre.attrs<Props>({ className: classNames.join(' ') })``
+export const progress = <Props extends {}>(classNames: TemplateStringsArray) => styled.progress.attrs<Props>({ className: classNames.join(' ') })``
+export const q = <Props extends {}>(classNames: TemplateStringsArray) => styled.q.attrs<Props>({ className: classNames.join(' ') })``
+export const rp = <Props extends {}>(classNames: TemplateStringsArray) => styled.rp.attrs<Props>({ className: classNames.join(' ') })``
+export const rt = <Props extends {}>(classNames: TemplateStringsArray) => styled.rt.attrs<Props>({ className: classNames.join(' ') })``
+export const ruby = <Props extends {}>(classNames: TemplateStringsArray) => styled.ruby.attrs<Props>({ className: classNames.join(' ') })``
+export const s = <Props extends {}>(classNames: TemplateStringsArray) => styled.s.attrs<Props>({ className: classNames.join(' ') })``
+export const samp = <Props extends {}>(classNames: TemplateStringsArray) => styled.samp.attrs<Props>({ className: classNames.join(' ') })``
+export const script = <Props extends {}>(classNames: TemplateStringsArray) => styled.script.attrs<Props>({ className: classNames.join(' ') })``
+export const section = <Props extends {}>(classNames: TemplateStringsArray) => styled.section.attrs<Props>({ className: classNames.join(' ') })``
+export const select = <Props extends {}>(classNames: TemplateStringsArray) => styled.select.attrs<Props>({ className: classNames.join(' ') })``
+export const small = <Props extends {}>(classNames: TemplateStringsArray) => styled.small.attrs<Props>({ className: classNames.join(' ') })``
+export const source = <Props extends {}>(classNames: TemplateStringsArray) => styled.source.attrs<Props>({ className: classNames.join(' ') })``
+export const span = <Props extends {}>(classNames: TemplateStringsArray) => styled.span.attrs<Props>({ className: classNames.join(' ') })``
+export const strong = <Props extends {}>(classNames: TemplateStringsArray) => styled.strong.attrs<Props>({ className: classNames.join(' ') })``
+export const style = <Props extends {}>(classNames: TemplateStringsArray) => styled.style.attrs<Props>({ className: classNames.join(' ') })``
+export const sub = <Props extends {}>(classNames: TemplateStringsArray) => styled.sub.attrs<Props>({ className: classNames.join(' ') })``
+export const summary = <Props extends {}>(classNames: TemplateStringsArray) => styled.summary.attrs<Props>({ className: classNames.join(' ') })``
+export const sup = <Props extends {}>(classNames: TemplateStringsArray) => styled.sup.attrs<Props>({ className: classNames.join(' ') })``
+export const table = <Props extends {}>(classNames: TemplateStringsArray) => styled.table.attrs<Props>({ className: classNames.join(' ') })``
+export const tbody = <Props extends {}>(classNames: TemplateStringsArray) => styled.tbody.attrs<Props>({ className: classNames.join(' ') })``
+export const td = <Props extends {}>(classNames: TemplateStringsArray) => styled.td.attrs<Props>({ className: classNames.join(' ') })``
+export const textarea = <Props extends {}>(classNames: TemplateStringsArray) => styled.textarea.attrs<Props>({ className: classNames.join(' ') })``
+export const tfoot = <Props extends {}>(classNames: TemplateStringsArray) => styled.tfoot.attrs<Props>({ className: classNames.join(' ') })``
+export const th = <Props extends {}>(classNames: TemplateStringsArray) => styled.th.attrs<Props>({ className: classNames.join(' ') })``
+export const thead = <Props extends {}>(classNames: TemplateStringsArray) => styled.thead.attrs<Props>({ className: classNames.join(' ') })``
+export const time = <Props extends {}>(classNames: TemplateStringsArray) => styled.time.attrs<Props>({ className: classNames.join(' ') })``
+export const title = <Props extends {}>(classNames: TemplateStringsArray) => styled.title.attrs<Props>({ className: classNames.join(' ') })``
+export const tr = <Props extends {}>(classNames: TemplateStringsArray) => styled.tr.attrs<Props>({ className: classNames.join(' ') })``
+export const track = <Props extends {}>(classNames: TemplateStringsArray) => styled.track.attrs<Props>({ className: classNames.join(' ') })``
+export const u = <Props extends {}>(classNames: TemplateStringsArray) => styled.u.attrs<Props>({ className: classNames.join(' ') })``
+export const ul = <Props extends {}>(classNames: TemplateStringsArray) => styled.ul.attrs<Props>({ className: classNames.join(' ') })``
+// export const var = <Props extends {}>(classNames: TemplateStringsArray) => styled.var.attrs<Props>({ className: classNames.join(' ') })``
+export const video = <Props extends {}>(classNames: TemplateStringsArray) => styled.video.attrs<Props>({ className: classNames.join(' ') })``
+export const wbr = <Props extends {}>(classNames: TemplateStringsArray) => styled.wbr.attrs<Props>({ className: classNames.join(' ') })``
+export const circle = <Props extends {}>(classNames: TemplateStringsArray) => styled.circle.attrs<Props>({ className: classNames.join(' ') })``
+export const clipPath = <Props extends {}>(classNames: TemplateStringsArray) => styled.clipPath.attrs<Props>({ className: classNames.join(' ') })``
+export const defs = <Props extends {}>(classNames: TemplateStringsArray) => styled.defs.attrs<Props>({ className: classNames.join(' ') })``
+export const ellipse = <Props extends {}>(classNames: TemplateStringsArray) => styled.ellipse.attrs<Props>({ className: classNames.join(' ') })``
+export const foreignObject = <Props extends {}>(classNames: TemplateStringsArray) => styled.foreignObject.attrs<Props>({ className: classNames.join(' ') })``
+export const g = <Props extends {}>(classNames: TemplateStringsArray) => styled.g.attrs<Props>({ className: classNames.join(' ') })``
+export const image = <Props extends {}>(classNames: TemplateStringsArray) => styled.image.attrs<Props>({ className: classNames.join(' ') })``
+export const line = <Props extends {}>(classNames: TemplateStringsArray) => styled.line.attrs<Props>({ className: classNames.join(' ') })``
+export const linearGradient = <Props extends {}>(classNames: TemplateStringsArray) => styled.linearGradient.attrs<Props>({ className: classNames.join(' ') })``
+export const marker = <Props extends {}>(classNames: TemplateStringsArray) => styled.marker.attrs<Props>({ className: classNames.join(' ') })``
+export const mask = <Props extends {}>(classNames: TemplateStringsArray) => styled.mask.attrs<Props>({ className: classNames.join(' ') })``
+export const path = <Props extends {}>(classNames: TemplateStringsArray) => styled.path.attrs<Props>({ className: classNames.join(' ') })``
+export const pattern = <Props extends {}>(classNames: TemplateStringsArray) => styled.pattern.attrs<Props>({ className: classNames.join(' ') })``
+export const polygon = <Props extends {}>(classNames: TemplateStringsArray) => styled.polygon.attrs<Props>({ className: classNames.join(' ') })``
+export const polyline = <Props extends {}>(classNames: TemplateStringsArray) => styled.polyline.attrs<Props>({ className: classNames.join(' ') })``
+export const radialGradient = <Props extends {}>(classNames: TemplateStringsArray) => styled.radialGradient.attrs<Props>({ className: classNames.join(' ') })``
+export const rect = <Props extends {}>(classNames: TemplateStringsArray) => styled.rect.attrs<Props>({ className: classNames.join(' ') })``
+export const stop = <Props extends {}>(classNames: TemplateStringsArray) => styled.stop.attrs<Props>({ className: classNames.join(' ') })``
+export const svg = <Props extends {}>(classNames: TemplateStringsArray) => styled.svg.attrs<Props>({ className: classNames.join(' ') })``
+export const text = <Props extends {}>(classNames: TemplateStringsArray) => styled.text.attrs<Props>({ className: classNames.join(' ') })``
+export const tspan = <Props extends {}>(classNames: TemplateStringsArray) => styled.tspan.attrs<Props>({ className: classNames.join(' ') })``
