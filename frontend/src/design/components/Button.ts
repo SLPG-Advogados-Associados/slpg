@@ -10,7 +10,7 @@ const Button = styled(
     target?: string
   }>
 )`
-  display: block;
+  display: inline-block;
   padding: 1.375em 1.875em 1.25em 1.875em;
 `
 
