@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { theme } from 'styled-tools'
 import { Page } from '~app/components/Page'
 import { withGraphQL, GT } from '~api'
-import { Container, Heading, Button } from '~design'
+import { Container, Heading, ItemTitle, Button, classed } from '~design'
 import { PostListItem } from '~modules/blog'
 import { list as expertises } from '~modules/expertise'
 import { useQuery } from '@apollo/react-hooks'
@@ -17,6 +17,15 @@ const Welcome = styled.div`
   color: white;
   background: url('/background.jpg') center no-repeat;
   background-size: cover;
+`
+
+const MoreCard = styled(classed.article`px-md pb-md text-center`)`
+  flex-grow: 1;
+  flex-basis: 0;
+
+  ${ItemTitle} {
+    padding: 1.5rem 0 2rem;
+  }
 `
 
 const HomePage = () => {
@@ -60,6 +69,43 @@ const HomePage = () => {
           </Button>
         </div>
       </Container>
+
+      <section className="bg-aside pb-12 clear">
+        <Container>
+          <Heading>Saiba mais sobre o Escritório</Heading>
+
+          <div className="flex">
+            <MoreCard>
+              <img
+                src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
+                alt="Logotipo do CNASP"
+              />
+              <ItemTitle>Atuação em outros estados da federação</ItemTitle>
+              <Button>Saiba Mais</Button>
+            </MoreCard>
+
+            <MoreCard>
+              <img
+                src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
+                alt="Logotipo do CNASP"
+              />
+              <ItemTitle>Atuação nos Tribunais Superiores</ItemTitle>
+              <Button>Saiba Mais</Button>
+            </MoreCard>
+
+            <MoreCard>
+              <img
+                src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
+                alt="Logotipo do CNASP"
+              />
+              <ItemTitle>
+                O Coletivo Nacional de Advogados de Servidores Públicos
+              </ItemTitle>
+              <Button>Saiba Mais</Button>
+            </MoreCard>
+          </div>
+        </Container>
+      </section>
     </Page>
   )
 }

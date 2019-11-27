@@ -7,6 +7,7 @@ const initial = {
   colors: {
     black: '#010101',
     white: '#ffffff',
+    pampas: '#F8F6F3',
 
     gray: {
       default: '#7F7F7F',
@@ -64,6 +65,7 @@ const functional = {
     reverse: t('colors.primary'),
     button: t('colors.primary'),
     'button:active': t('colors.primary:active'),
+    aside: t('colors.pampas'),
   },
 
   fontSize: {
