@@ -11,7 +11,7 @@ const HeaderContainer = Container.withComponent('header')
 const Header = () => (
   <HeaderContainer>
     <nav>
-      <a href="/">
+      <a href="/" title="Início">
         <NavbarLogo />
       </a>
     </nav>
