@@ -47,7 +47,7 @@ const initial = {
 const semantic = {
   colors: {
     primary: t('colors.blue.700'),
-    'primary:active': t('colors.blue.500'),
+    'primary--active': t('colors.blue.500'),
   },
 }
 
@@ -56,7 +56,7 @@ const functional = {
     body: t('colors.gray.500'),
     heading: t('colors.gray.700'),
     link: t('colors.primary'),
-    'link:active': t('colors.primary:active'),
+    'link--active': t('colors.black'),
     button: t('colors.white'),
     divisor: t('colors.gray.300'),
   },
@@ -64,7 +64,7 @@ const functional = {
   backgroundColor: {
     reverse: t('colors.primary'),
     button: t('colors.primary'),
-    'button:active': t('colors.primary:active'),
+    'button--active': t('colors.primary--active'),
     aside: t('colors.pampas'),
   },
 
