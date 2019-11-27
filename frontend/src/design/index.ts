@@ -1,4 +1,5 @@
 export * from './theme'
+export * from './lib/styled'
 export * from './lib/classed'
 
 // components
