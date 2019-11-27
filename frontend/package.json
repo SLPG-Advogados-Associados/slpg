@@ -85,5 +85,8 @@
     "prettier": "^1.19.1",
     "sort-package-json": "^1.23.1",
     "typescript": "^3.7.2"
+  },
+  "resolutions": {
+    "hoist-non-react-statics": "3.0.0"
   }
 }
