@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import { theme } from 'styled-tools'
 import { Page } from '~app/components/Page'
 import { withGraphQL, GT } from '~api'
-import { Container, Heading } from '~design'
+import { Container, Heading, Button } from '~design'
 import { PostListItem } from '~modules/blog'
+import { list as expertises } from '~modules/expertise'
 import { useQuery } from '@apollo/react-hooks'
 import { BLOG_LATEST } from './index.gql'
 
-const Header = styled.div`
+const Welcome = styled.div`
   height: 450px;
   padding: 60px;
   font-size: ${theme('fontSize.heading')};
@@ -23,12 +24,22 @@ const HomePage = () => {
 
   return (
     <Page>
-      <Header>
+      <Welcome>
         <p className="mb-4">
           Nosso trabalho é defender os direitos da classe trabalhadora.
         </p>
         <p className="mb-4">Ligue: (48) 3024-4166</p>
-      </Header>
+      </Welcome>
+
+      <nav className="bg-button">
+        <Container className="text-center">
+          {expertises.map(({ id, href, label }) => (
+            <Button as="a" key={id} href={href} title={label} alt={label}>
+              {label}
+            </Button>
+          ))}
+        </Container>
+      </nav>
 
       <Container>
         <Heading>Blogue</Heading>
