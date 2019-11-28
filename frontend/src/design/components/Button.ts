@@ -27,7 +27,7 @@ const circle = css`
 `
 
 const Button = styled(
-  classed.button`text-button bg-button hover:bg-button--active` as React.FC<
+  classed.button`text-button bg-button hover:bg-button--active hover:text-button` as React.FC<
     Props
   >
 )`
