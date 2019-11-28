@@ -48,5 +48,6 @@ module.exports = {
     'react/prop-types': 'off',
     'react/self-closing-comp': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
   },
 }
