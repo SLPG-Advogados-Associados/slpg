@@ -1,23 +1,34 @@
 import React from 'react'
 import { Page } from '~app/components/Page'
-import { Button, Container, Title, Heading } from '~design'
+import { Button, Container, Heading, Title, styled } from '~design'
 import { Section } from '~app/components/Section'
 
-const sections = [
-  {
+const sections = {
+  apresentacao: {
     href: '/quem-somos#apresentacao',
     label: 'Apresentação',
   },
-  {
+  compromissos: {
     href: '/quem-somos#compromissos-e-principios',
     label: 'Compromissos e princípios',
   },
-  {
+  historia: {
     href: '/quem-somos#historia',
     label: 'História',
   },
-  { href: '/quem-somos#equipe', label: 'Equipe' },
-]
+  equipe: { href: '/quem-somos#equipe', label: 'Equipe' },
+}
+
+const sectionsList = Object.values(sections)
+
+const SectionTitle: React.FC<{ href: string; label: string }> = ({
+  href,
+  label,
+}) => (
+  <a href={href} title={label}>
+    {label}
+  </a>
+)
 
 const PostPage = () => (
   <Page>
@@ -27,7 +38,7 @@ const PostPage = () => (
 
     <nav className="bg-button sticky top-0">
       <Container className="text-center border-t-2 border-reverse-border">
-        {sections.map(({ href, label }) => (
+        {sectionsList.map(({ href, label }) => (
           <Button as="a" key={href} href={href} title={label} alt={label}>
             {label}
           </Button>
@@ -36,7 +47,11 @@ const PostPage = () => (
     </nav>
 
     <main>
-      <Section id="apresentacao" title="Apresentação">
+      <Section
+        id="apresentacao"
+        title={<SectionTitle {...sections.apresentacao} />}
+        textual
+      >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           feugiat odio nec dui pulvinar pretium. Donec pellentesque accumsan
@@ -69,7 +84,8 @@ const PostPage = () => (
       <Section
         id="compromissos-e-principios"
         className="bg-aside"
-        title="Compromissos e princípios"
+        title={<SectionTitle {...sections.compromissos} />}
+        textual
       >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
@@ -100,7 +116,11 @@ const PostPage = () => (
         </p>
       </Section>
 
-      <Section id="historia" title="História">
+      <Section
+        id="historia"
+        title={<SectionTitle {...sections.historia} />}
+        textual
+      >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           feugiat odio nec dui pulvinar pretium. Donec pellentesque accumsan
@@ -130,7 +150,12 @@ const PostPage = () => (
         </p>
       </Section>
 
-      <Section id="equipe" className="bg-aside" title="Equipe">
+      <Section
+        id="equipe"
+        className="bg-aside"
+        title={<SectionTitle {...sections.equipe} />}
+        textual
+      >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           feugiat odio nec dui pulvinar pretium. Donec pellentesque accumsan
