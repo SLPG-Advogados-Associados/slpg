@@ -5,7 +5,7 @@ import * as classedTags from './classed-tags'
 type Classed = typeof classedTags & {
   <C extends ElementType<any>>(Component: C): (
     classNames: TemplateStringsArray
-  ) => (props: ComponentPropsWithRef<C>) => ReactElement
+  ) => C
 }
 
 // @ts-ignore
