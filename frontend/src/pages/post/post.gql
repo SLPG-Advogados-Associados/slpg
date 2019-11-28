@@ -4,5 +4,10 @@ query BLOG_POST($post: ID!) {
     title
     created_at
     body
+
+    image {
+      url
+      size
+    }
   }
 }
