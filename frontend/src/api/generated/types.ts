@@ -552,6 +552,13 @@ export type BLOG_POST_QUERY_VARIABLES = {
 
 export type BLOG_POST_QUERY = { __typename?: 'Query' } & {
   post: Maybe<
-    { __typename?: 'Blog' } & Pick<Blog, 'id' | 'title' | 'created_at' | 'body'>
+    { __typename?: 'Blog' } & Pick<
+      Blog,
+      'id' | 'title' | 'created_at' | 'body'
+    > & {
+        image: Maybe<
+          { __typename?: 'UploadFile' } & Pick<UploadFile, 'url' | 'size'>
+        >
+      }
   >
 }
