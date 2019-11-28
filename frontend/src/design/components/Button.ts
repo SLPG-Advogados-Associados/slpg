@@ -1,7 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import { ifProp } from 'styled-tools'
-import * as classed from '../lib/classed-tags'
+import { styled, css, classed, t } from '../lib/styled'
 
 interface Props {
   alt?: string
@@ -10,11 +8,20 @@ interface Props {
   target?: string
   // variants
   small?: boolean
+  cta?: boolean
   circle?: boolean
 }
 
 const small = css`
   font-size: 0.95em;
+`
+
+const big = css`
+  font-size: 1.25em;
+`
+
+const cta = css`
+  border: 0.1em solid white;
 `
 
 const circle = css`
@@ -27,15 +34,14 @@ const circle = css`
 `
 
 const Button = styled(
-  classed.button`text-button bg-button hover:bg-button--active hover:text-button` as React.FC<
+  classed.button`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button` as React.FC<
     Props
   >
 )`
-  display: inline-block;
+  display: inline-flex;
   padding: 1.175em 1.875em 1.05em;
 
-  ${ifProp('small', small)}
-  ${ifProp('circle', circle)}
+  ${t.variants({ small, big, cta, circle })}
 `
 
 export { Button }
