@@ -4,7 +4,7 @@ import { Container, Title, TextualTitle, classed } from '~design'
 type HTMLProps = React.HTMLAttributes<HTMLElement>
 
 const SectionRaw: React.FC<{
-  title?: React.ReactNode
+  title?: any
   textual?: boolean
 } & HTMLProps> = ({ children, title, textual, ...props }) => (
   <section {...props}>
