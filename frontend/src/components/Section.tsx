@@ -1,10 +1,26 @@
 import React from 'react'
-import { Container, classed } from '~design'
+import { Container, Title, classed } from '~design'
 
-const Section = classed(({ children, ...props }) => (
+type HTMLProps = React.HTMLAttributes<HTMLElement>
+
+const SectionRaw: React.FC<{ title?: string } & HTMLProps> = ({
+  children,
+  title,
+  ...props
+}) => (
   <section {...props}>
-    <Container>{children}</Container>
+    <Container>
+      {title ? (
+        <header className="mb-8">
+          <Title>{title}</Title>
+        </header>
+      ) : null}
+
+      {children}
+    </Container>
   </section>
-))`py-12 border-b border-divisor`
+)
+
+const Section = classed(SectionRaw)`py-12 border-b border-divisor`
 
 export { Section }
