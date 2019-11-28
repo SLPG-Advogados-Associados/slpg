@@ -72,7 +72,7 @@ const functional = {
     footnote: t('fontSize.100'),
     // 200
     meta: t('fontSize.200'),
-    button: t('fontSize.400'),
+    button: '1em',
     // 400
     base: t('fontSize.400'),
     menu: t('fontSize.400'),
