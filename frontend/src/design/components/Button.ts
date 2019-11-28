@@ -1,5 +1,6 @@
 import React from 'react'
-import { styled, css, classed, t } from '../lib/styled'
+import { styled, css, t } from '../lib/styled'
+import { classed } from '../lib/classed'
 
 interface Props {
   alt?: string
