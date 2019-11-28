@@ -82,6 +82,7 @@ const functional = {
     // 700
     cta: t('fontSize.700'),
     'item-title': t('fontSize.700'),
+    'textual-title': t('fontSize.700'),
     // 800
     title: t('fontSize.800'),
     // 1000
