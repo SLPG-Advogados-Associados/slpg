@@ -6,10 +6,6 @@ import { useQuery } from '@apollo/react-hooks'
 import { BLOG_POST } from './post.gql'
 import { useRouter } from '~app/lib/router'
 
-const StyledHeading = styled(Heading)`
-  margin: 0;
-`
-
 const Image = styled.img`
   display: inline-block;
   max-height: 40vh;
@@ -26,20 +22,24 @@ const PostPage = () => {
   return (
     <Page>
       <div className="bg-reverse text-white py-8">
-        <StyledHeading>Blogue</StyledHeading>
+        <Heading noMargins>Blogue</Heading>
       </div>
 
       {post ? (
         <Container className="py-12">
-          <Title>{post.title}</Title>
+          <main>
+            <header>
+              <Title>{post.title}</Title>
+            </header>
 
-          {post.image ? (
-            <div className="text-center">
-              <Image src={'http://localhost:1337' + post.image.url} />
-            </div>
-          ) : null}
+            {post.image ? (
+              <div className="text-center">
+                <Image src={'http://localhost:1337' + post.image.url} />
+              </div>
+            ) : null}
 
-          <div>{post.body}</div>
+            <div>{post.body}</div>
+          </main>
         </Container>
       ) : null}
     </Page>
