@@ -36,11 +36,7 @@ const PostPage = () => (
     </nav>
 
     <main>
-      <Section id="apresentacao">
-        <header>
-          <Title>Apresentação</Title>
-        </header>
-
+      <Section id="apresentacao" title="Apresentação">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           feugiat odio nec dui pulvinar pretium. Donec pellentesque accumsan
@@ -70,11 +66,11 @@ const PostPage = () => (
         </p>
       </Section>
 
-      <Section id="compromissos-e-principios" className="bg-aside">
-        <header>
-          <Title>Compromissos e princípios</Title>
-        </header>
-
+      <Section
+        id="compromissos-e-principios"
+        className="bg-aside"
+        title="Compromissos e princípios"
+      >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           feugiat odio nec dui pulvinar pretium. Donec pellentesque accumsan
@@ -104,11 +100,7 @@ const PostPage = () => (
         </p>
       </Section>
 
-      <Section id="historia">
-        <header>
-          <Title>História</Title>
-        </header>
-
+      <Section id="historia" title="História">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           feugiat odio nec dui pulvinar pretium. Donec pellentesque accumsan
@@ -138,11 +130,7 @@ const PostPage = () => (
         </p>
       </Section>
 
-      <Section id="equipe" className="bg-aside">
-        <header>
-          <Title>Equipe</Title>
-        </header>
-
+      <Section id="equipe" className="bg-aside" title="Equipe">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           feugiat odio nec dui pulvinar pretium. Donec pellentesque accumsan

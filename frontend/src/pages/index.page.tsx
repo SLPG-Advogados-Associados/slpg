@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { theme } from 'styled-tools'
 import { Page } from '~app/components/Page'
+import { Section } from '~app/components/Section'
 import { withGraphQL, GT } from '~api'
 import { Container, Heading, ItemTitle, Button, classed } from '~design'
 import { PostListItem } from '~modules/blog'
@@ -50,9 +51,7 @@ const HomePage = () => {
         </Container>
       </nav>
 
-      <Container>
-        <Heading>Blogue</Heading>
-
+      <Section title="Blogue">
         {blog.data ? (
           <ul>
             {blog.data.blogs.map(post => (
@@ -68,44 +67,43 @@ const HomePage = () => {
             Visite Nosso Blogue
           </Button>
         </div>
-      </Container>
+      </Section>
 
-      <section className="bg-aside pb-12 clear">
-        <Container>
-          <Heading>Saiba mais sobre o Escritório</Heading>
+      <Section
+        className="bg-aside pb-12 clear"
+        title="Saiba mais sobre o Escritório"
+      >
+        <div className="flex">
+          <MoreCard>
+            <img
+              src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
+              alt="Logotipo do CNASP"
+            />
+            <ItemTitle>Atuação em outros estados da federação</ItemTitle>
+            <Button>Saiba Mais</Button>
+          </MoreCard>
 
-          <div className="flex">
-            <MoreCard>
-              <img
-                src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
-                alt="Logotipo do CNASP"
-              />
-              <ItemTitle>Atuação em outros estados da federação</ItemTitle>
-              <Button>Saiba Mais</Button>
-            </MoreCard>
+          <MoreCard>
+            <img
+              src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
+              alt="Logotipo do CNASP"
+            />
+            <ItemTitle>Atuação nos Tribunais Superiores</ItemTitle>
+            <Button>Saiba Mais</Button>
+          </MoreCard>
 
-            <MoreCard>
-              <img
-                src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
-                alt="Logotipo do CNASP"
-              />
-              <ItemTitle>Atuação nos Tribunais Superiores</ItemTitle>
-              <Button>Saiba Mais</Button>
-            </MoreCard>
-
-            <MoreCard>
-              <img
-                src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
-                alt="Logotipo do CNASP"
-              />
-              <ItemTitle>
-                O Coletivo Nacional de Advogados de Servidores Públicos
-              </ItemTitle>
-              <Button>Saiba Mais</Button>
-            </MoreCard>
-          </div>
-        </Container>
-      </section>
+          <MoreCard>
+            <img
+              src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
+              alt="Logotipo do CNASP"
+            />
+            <ItemTitle>
+              O Coletivo Nacional de Advogados de Servidores Públicos
+            </ItemTitle>
+            <Button>Saiba Mais</Button>
+          </MoreCard>
+        </div>
+      </Section>
     </Page>
   )
 }
