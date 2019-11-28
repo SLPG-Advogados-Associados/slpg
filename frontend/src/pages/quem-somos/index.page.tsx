@@ -1,8 +1,7 @@
 import React from 'react'
 import { Page } from '~app/components/Page'
-import { Button, Container, Title, Heading, classed, t } from '~design'
-
-const Section = classed.section`py-12 border-b border-divisor`
+import { Button, Container, Title, Heading } from '~design'
+import { Section } from '~app/components/Section'
 
 const sections = [
   {
@@ -36,7 +35,7 @@ const PostPage = () => (
       </Container>
     </nav>
 
-    <Container as="main">
+    <main>
       <Section id="apresentacao">
         <header>
           <Title>Apresentação</Title>
@@ -71,7 +70,7 @@ const PostPage = () => (
         </p>
       </Section>
 
-      <Section id="compromissos-e-principios">
+      <Section id="compromissos-e-principios" className="bg-aside">
         <header>
           <Title>Compromissos e princípios</Title>
         </header>
@@ -139,7 +138,7 @@ const PostPage = () => (
         </p>
       </Section>
 
-      <Section id="equipe">
+      <Section id="equipe" className="bg-aside">
         <header>
           <Title>Equipe</Title>
         </header>
@@ -172,7 +171,7 @@ const PostPage = () => (
           eleifend ex placerat non.
         </p>
       </Section>
-    </Container>
+    </main>
   </Page>
 )
 
