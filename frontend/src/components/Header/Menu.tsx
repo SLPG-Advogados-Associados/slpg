@@ -36,7 +36,7 @@ const main: Array<MenuItem> = [
   },
   {
     id: 'o-que-fazemos',
-    href: 'javascript: void(0);',
+    href: '',
     label: 'O que fazemos',
     items: expertise,
   },
