@@ -1,10 +1,18 @@
 import React from 'react'
-import { Page } from '~app/components/Page'
-import { withGraphQL, GT } from '~api'
-import { Container, Title, Heading, styled } from '~design'
+import dayjs from 'dayjs'
 import { useQuery } from '@apollo/react-hooks'
-import { BLOG_POST } from './post.gql'
+import { withGraphQL, GT } from '~api'
+import { Container, Title, Heading, HTMLContent, styled } from '~design'
+import { Page } from '~app/components/Page'
+import { Section } from '~app/components/Section'
 import { useRouter } from '~app/lib/router'
+import { BLOG_POST } from './post.gql'
+
+const StyledTitle = styled(Title)`
+  font-weight: normal;
+  text-align: left;
+  text-transform: none;
+`
 
 const Image = styled.img`
   display: inline-block;
@@ -17,19 +25,24 @@ const PostPage = () => {
   const { query: variables } = useRouter<{ post: string }>()
   const { data } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, { variables })
 
-  const post = data && data.post
+  let body: React.ReactNode | null = null
 
-  return (
-    <Page>
-      <div className="bg-reverse text-white py-8">
-        <Heading noMargins>Blogue</Heading>
-      </div>
+  if (data) {
+    const post = data.post
+    const date = dayjs(post.created_at)
 
-      {post ? (
-        <Container className="py-12">
+    body = (
+      <Container className="py-12">
+        <Section>
           <main>
-            <header>
-              <Title>{post.title}</Title>
+            <header className="border-b pb-2">
+              <StyledTitle className="mb-0">{post.title}</StyledTitle>
+              <time
+                dateTime={date.toISOString()}
+                className="italic text-silent text-meta"
+              >
+                {date.format('DD/MM/YYYY')}
+              </time>
             </header>
 
             {post.image ? (
@@ -38,10 +51,20 @@ const PostPage = () => {
               </div>
             ) : null}
 
-            <div>{post.body}</div>
+            <HTMLContent>{post.body}</HTMLContent>
           </main>
-        </Container>
-      ) : null}
+        </Section>
+      </Container>
+    )
+  }
+
+  return (
+    <Page>
+      <div className="bg-reverse text-white py-8">
+        <Heading noMargins>Blogue</Heading>
+      </div>
+
+      {body}
     </Page>
   )
 }
