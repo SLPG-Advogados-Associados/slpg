@@ -9,6 +9,7 @@ interface Props {
   target?: string
   // variants
   small?: boolean
+  big?: boolean
   cta?: boolean
   circle?: boolean
 }
