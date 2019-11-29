@@ -22,6 +22,7 @@ const Title = c(classed.h2`text-title font-semibold my-4 text-center uppercase`)
 // prettier-ignore
 const TextualTitle = c(classed.h2`text-textual-title my-4 text-left pb-2 border-b`)
 const ItemTitle = c(classed.h3`text-item-title font-semibold mb-2`)
-const AsideTitle = c(classed.h4`text-aside font-bold uppercase mb-2`)
+// prettier-ignore
+const AsideTitle = c(classed.h4`text-text text-aside-title font-bold uppercase mb-2`)
 
 export { Title, TextualTitle, ItemTitle, Heading, AsideTitle }

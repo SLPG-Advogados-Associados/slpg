@@ -83,7 +83,7 @@ const functional = {
     menu: t('fontSize.400'),
     text: t('fontSize.400'),
     // 500
-    aside: t('fontSize.500'),
+    'aside-title': t('fontSize.500'),
     // 700
     cta: t('fontSize.700'),
     'item-title': t('fontSize.700'),
