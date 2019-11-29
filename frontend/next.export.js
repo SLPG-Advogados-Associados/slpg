@@ -21,7 +21,7 @@ module.exports.exportPathMap = async (pages, { dev }) => {
   }
 
   delete pages['/blogue/[page]']
-  delete pages['/noticias/[post]']
+  delete pages['/noticias/[slug]']
 
   /**
    * build blog post pages.
@@ -44,7 +44,7 @@ module.exports.exportPathMap = async (pages, { dev }) => {
 
     for (const { id } of posts) {
       pages[`/noticias/${id}`] = {
-        page: '/noticias/[post]',
+        page: '/noticias/[slug]',
         query: { post: id },
       }
     }

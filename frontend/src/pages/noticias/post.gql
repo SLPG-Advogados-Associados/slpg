@@ -1,9 +1,10 @@
-query BLOG_POST($post: ID!) {
-  post: blog(id: $post) {
+query BLOG_POST($where: JSON!) {
+  blogs(where: $where) {
     id
+    slug
+    body
     title
     created_at
-    body
 
     image {
       url
