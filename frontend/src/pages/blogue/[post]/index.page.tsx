@@ -21,6 +21,17 @@ const Image = styled.img`
   margin: 2rem 0 3rem;
 `
 
+const BlogueAnchor = styled.a`
+  display: block;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    opacity: 0.7;
+  }
+`
+
 const PostPage = () => {
   const { query: variables } = useRouter<{ post: string }>()
   const { data } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, { variables })
@@ -34,7 +45,7 @@ const PostPage = () => {
     body = (
       <Section>
         <Container as="main">
-          <header className="border-b pb-2">
+          <header className="border-b pb-2 mb-8">
             <StyledTitle className="mb-0">{post.title}</StyledTitle>
             <time
               dateTime={date.toISOString()}
@@ -59,7 +70,9 @@ const PostPage = () => {
   return (
     <Page>
       <div className="bg-reverse text-white py-8">
-        <Heading noMargins>Blogue</Heading>
+        <BlogueAnchor href="/blogue">
+          <Heading noMargins>Blogue</Heading>
+        </BlogueAnchor>
       </div>
 
       {body}
