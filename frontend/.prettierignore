@@ -1,1 +1,7 @@
+next.config.js
+postcss.config.js
+tailwind.config.js
+graphql-codegen.js
+babel-plugin-macros.config.js
+src/**/generated/**/*
 src/design/lib/classed-tags.ts
