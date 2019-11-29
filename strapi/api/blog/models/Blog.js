@@ -1,13 +1,22 @@
-'use strict';
+"use strict";
+
+const slugify = require("slugify");
 
 /**
  * Lifecycle callbacks for the `Blog` model.
  */
 
+const setSlug = (model, attrs, options) => {
+  // @TODO: ensure redirects
+  attrs.slug = slugify(attrs.title).toLowerCase();
+};
+
 module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
-  // beforeSave: async (model, attrs, options) => {},
+  beforeSave: async (model, attrs, options) => {
+    setSlug(model, attrs, options);
+  }
 
   // After saving a value.
   // Fired after an `insert` or `update` query.

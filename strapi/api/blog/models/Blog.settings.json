@@ -16,7 +16,14 @@
   "attributes": {
     "title": {
       "required": true,
-      "type": "string"
+      "type": "string",
+      "unique": true
+    },
+    "slug": {
+      "required": true,
+      "type": "string",
+      "unique": true,
+      "default": "Preenchido automaticamente"
     },
     "body": {
       "required": true,
