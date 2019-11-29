@@ -2,6 +2,7 @@ directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITI
 
 type Blog {
   title: String!
+  slug: String!
   body: String!
   summary: String
   image: UploadFile
@@ -12,6 +13,7 @@ type Blog {
 
 input BlogInput {
   title: String!
+  slug: String!
   body: String!
   summary: String
   image: ID
@@ -93,6 +95,7 @@ type deleteUserPayload {
 
 input editBlogInput {
   title: String
+  slug: String
   body: String
   summary: String
   image: ID

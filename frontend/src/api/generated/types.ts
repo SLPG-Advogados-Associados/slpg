@@ -19,6 +19,7 @@ export type Scalars = {
 export type Blog = {
    __typename?: 'Blog',
   title: Scalars['String'],
+  slug: Scalars['String'],
   body: Scalars['String'],
   summary?: Maybe<Scalars['String']>,
   image?: Maybe<UploadFile>,
@@ -29,6 +30,7 @@ export type Blog = {
 
 export type BlogInput = {
   title: Scalars['String'],
+  slug: Scalars['String'],
   body: Scalars['String'],
   summary?: Maybe<Scalars['String']>,
   image?: Maybe<Scalars['ID']>,
@@ -114,6 +116,7 @@ export type DeleteUserPayload = {
 
 export type EditBlogInput = {
   title?: Maybe<Scalars['String']>,
+  slug?: Maybe<Scalars['String']>,
   body?: Maybe<Scalars['String']>,
   summary?: Maybe<Scalars['String']>,
   image?: Maybe<Scalars['ID']>,
@@ -552,23 +555,6 @@ export type PostListItemFragment = (
   )> }
 );
 
-export type BLOG_POST_QUERY_VARIABLES = {
-  post: Scalars['ID']
-};
-
-
-export type BLOG_POST_QUERY = (
-  { __typename?: 'Query' }
-  & { post: Maybe<(
-    { __typename?: 'Blog' }
-    & Pick<Blog, 'id' | 'title' | 'created_at' | 'body'>
-    & { image: Maybe<(
-      { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'url' | 'size'>
-    )> }
-  )> }
-);
-
 export type BLOG_QUERY_VARIABLES = {
   limit: Scalars['Int'],
   start: Scalars['Int']
@@ -593,5 +579,22 @@ export type BLOG_LATEST_QUERY = (
     { __typename?: 'Blog' }
     & Pick<Blog, 'id'>
     & PostListItemFragment
+  )>>> }
+);
+
+export type BLOG_POST_QUERY_VARIABLES = {
+  post: Scalars['String']
+};
+
+
+export type BLOG_POST_QUERY = (
+  { __typename?: 'Query' }
+  & { blogs: Maybe<Array<Maybe<(
+    { __typename?: 'Blog' }
+    & Pick<Blog, 'id' | 'title' | 'created_at' | 'body'>
+    & { image: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'url' | 'size'>
+    )> }
   )>>> }
 );
