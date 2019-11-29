@@ -45,6 +45,7 @@ const Footer = () => (
               small
               as="a"
               target="_blank"
+              rel="noopener noreferrer"
               href="https://www.facebook.com/SLPG.Advogados.Associados/"
             >
               <Icons.Facebook />
@@ -56,6 +57,7 @@ const Footer = () => (
               small
               as="a"
               target="_blank"
+              rel="noopener noreferrer"
               href="https://www.youtube.com/channel/UCjbphG4OMGO9n7DhJ4ckS3g"
             >
               <Icons.YouTube />

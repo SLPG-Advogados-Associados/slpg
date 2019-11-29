@@ -80,7 +80,9 @@ const HomePage = () => {
               alt="Logotipo do CNASP"
             />
             <ItemTitle>Atuação em outros estados da federação</ItemTitle>
-            <Button>Saiba Mais</Button>
+            <Button as="a" href="/atuacao-em-outros-estados-da-federacao">
+              Saiba Mais
+            </Button>
           </MoreCard>
 
           <MoreCard>
@@ -89,7 +91,9 @@ const HomePage = () => {
               alt="Logotipo do CNASP"
             />
             <ItemTitle>Atuação nos Tribunais Superiores</ItemTitle>
-            <Button>Saiba Mais</Button>
+            <Button as="a" href="">
+              Saiba Mais
+            </Button>
           </MoreCard>
 
           <MoreCard>
@@ -100,7 +104,9 @@ const HomePage = () => {
             <ItemTitle>
               O Coletivo Nacional de Advogados de Servidores Públicos
             </ItemTitle>
-            <Button>Saiba Mais</Button>
+            <Button as="a" href="">
+              Saiba Mais
+            </Button>
           </MoreCard>
         </div>
       </Section>
