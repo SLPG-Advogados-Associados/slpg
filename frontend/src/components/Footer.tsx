@@ -37,14 +37,27 @@ const Footer = () => (
         </a>
         <p>OAB/SC 270/97</p>
         <Button small>Receba nossos informativos</Button>
+
         <FooterSocial>
           <li>
-            <Button circle small>
+            <Button
+              circle
+              small
+              as="a"
+              target="_blank"
+              href="https://www.facebook.com/SLPG.Advogados.Associados/"
+            >
               <Icons.Facebook />
             </Button>
           </li>
           <li>
-            <Button circle small>
+            <Button
+              circle
+              small
+              as="a"
+              target="_blank"
+              href="https://www.youtube.com/channel/UCjbphG4OMGO9n7DhJ4ckS3g"
+            >
               <Icons.YouTube />
             </Button>
           </li>
