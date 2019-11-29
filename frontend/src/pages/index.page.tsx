@@ -104,7 +104,10 @@ const HomePage = () => {
             <ItemTitle>
               O Coletivo Nacional de Advogados de Servidores Públicos
             </ItemTitle>
-            <Button as="a" href="">
+            <Button
+              as="a"
+              href="o-coletivo-nacional-de-advogados-de-servidores-publicos"
+            >
               Saiba Mais
             </Button>
           </MoreCard>
