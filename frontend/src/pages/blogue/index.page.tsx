@@ -13,8 +13,8 @@ const PageButton = styled(Button).attrs({ small: true, outline: true })`
   margin: 0 0.5em;
 `
 
-const HomePage = () => {
-  const limit = 6
+const BloguePage = () => {
+  const limit = 6 // same as on next.export.js
   const router = useRouter<{ page: string }>()
 
   const page = Number(router.query.page || 0)
@@ -23,11 +23,7 @@ const HomePage = () => {
   const blog = useQuery<GT.BLOG_LATEST_QUERY>(BLOG, { variables })
   const hasNext = blog.data && blog.data.blogs.length > 6
 
-  const goToPage = (to: number) =>
-    router.push({
-      pathname: router.pathname,
-      query: { ...router.query, page: `${to}` },
-    })
+  const goToPage = (to: number) => router.push(`/blogue${to ? `/${to}` : ''}`)
 
   return (
     <Page>
@@ -70,4 +66,4 @@ const HomePage = () => {
   )
 }
 
-export default withGraphQL(HomePage)
+export default withGraphQL(BloguePage)

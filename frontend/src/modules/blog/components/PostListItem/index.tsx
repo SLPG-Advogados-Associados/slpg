@@ -18,7 +18,7 @@ const PostListItem: React.FC<{
   const date = dayjs(post.created_at)
 
   return (
-    <Anchor href={`/blogue/${post.id}`} className="block">
+    <Anchor href={`/noticia/${post.id}`} className="block">
       <article className="flex">
         <aside className="w-32 mr-12 pt-4 text-aside-title text-center text-primary uppercase flex-shrink-0">
           <div>{date.format('MMM')}</div>
