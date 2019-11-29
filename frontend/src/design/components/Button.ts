@@ -31,6 +31,7 @@ const variants = {
   circle: css`
     display: inline-flex;
     justify-content: center;
+    align-items: center;
     height: 3.653em;
     width: 3.653em;
     padding: 0;
