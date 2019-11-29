@@ -14,6 +14,7 @@ const initial = {
       300: '#E8E6E3',
       500: '#bcbcbd',
       700: '#6b6c6d',
+      800: '#606060',
     },
 
     blue: {
@@ -55,6 +56,7 @@ const semantic = {
 const functional = {
   colors: {
     body: t('colors.gray.500'),
+    text: t('colors.gray.800'),
     link: t('colors.primary'),
     'link--active': t('colors.black'),
     button: t('colors.white'),

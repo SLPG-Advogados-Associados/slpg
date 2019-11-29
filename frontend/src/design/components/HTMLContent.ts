@@ -1,8 +1,9 @@
 import { styled, t } from '../lib/styled'
 
 const HTMLContent = styled.div`
-  font-size: 1rem;
   line-height: 1.8;
+  font-size: ${t.theme('fontSize.text')};
+  color: ${t.theme('colors.text')};
 
   h3,
   h4,
