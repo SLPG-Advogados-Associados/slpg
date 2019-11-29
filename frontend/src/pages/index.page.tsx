@@ -91,7 +91,7 @@ const HomePage = () => {
               alt="Logotipo do CNASP"
             />
             <ItemTitle>Atuação nos Tribunais Superiores</ItemTitle>
-            <Button as="a" href="">
+            <Button as="a" href="/atuacao-nos-tribunais-superiores">
               Saiba Mais
             </Button>
           </MoreCard>
