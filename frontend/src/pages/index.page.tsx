@@ -56,7 +56,7 @@ const HomePage = () => {
           <ul>
             {blog.data.blogs.map(post => (
               <li key={post.id} className="py-lg border-b-2">
-                <PostListItem post={post} />
+                <PostListItem post={post} noImage />
               </li>
             ))}
           </ul>
