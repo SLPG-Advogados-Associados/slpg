@@ -1,6 +1,7 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import styled from 'styled-components'
+import { GT } from '~api'
 import { ItemTitle } from '~design'
 
 const Anchor = styled.a`
@@ -10,7 +11,10 @@ const Anchor = styled.a`
   }
 `
 
-const PostListItem = ({ post }) => {
+const PostListItem: React.FC<{
+  post: GT.PostListItemFragment
+  noImage?: boolean
+}> = ({ post, noImage }) => {
   const date = dayjs(post.created_at)
 
   return (
@@ -20,6 +24,12 @@ const PostListItem = ({ post }) => {
           <div>{date.format('MMM')}</div>
           <div>{date.format('DD')}</div>
         </aside>
+
+        {post.image && !noImage ? (
+          <aside className="w-48 mr-8 flex-shrink-0">
+            <img src={`http://localhost:1337${post.image.url}`} />
+          </aside>
+        ) : null}
 
         <div>
           <ItemTitle>{post.title}</ItemTitle>
