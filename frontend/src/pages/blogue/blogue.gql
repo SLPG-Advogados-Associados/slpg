@@ -1,0 +1,8 @@
+#import "../../modules/blog/components/PostListItem/fragment.gql"
+
+query BLOG($limit: Int!, $start: Int!) {
+  blogs(limit: $limit, start: $start) {
+    id
+    ...PostListItem
+  }
+}
