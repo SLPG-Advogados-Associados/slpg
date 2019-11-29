@@ -33,20 +33,17 @@ const BlogueAnchor = styled.a`
 `
 
 const PostPage = () => {
-  const { query: where } = useRouter<{ slug: string }>()
+  const { query: variables } = useRouter<{ slug: string }>()
 
-  const { data } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, {
-    variables: { where },
-    skip: !where.slug,
-  })
+  const { data } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, { variables })
 
   let body: React.ReactNode | null = null
 
   if (data) {
-    const post = data.blogs.shift()
+    const post = data.post
 
     if (!post) {
-      throw new Error(`Could not find post with slug ${where.slug}`)
+      throw new Error(`Could not find post with slug ${variables.slug}`)
     }
 
     const date = dayjs(post.created_at)

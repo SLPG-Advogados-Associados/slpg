@@ -1,5 +1,5 @@
-query BLOG_POST($where: JSON!) {
-  blogs(where: $where) {
+query BLOG_POST($slug: String!) {
+  post: blogBySlug(slug: $slug) {
     id
     slug
     body

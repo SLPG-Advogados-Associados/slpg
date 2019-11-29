@@ -7,6 +7,7 @@ const postsQuery = `
   query BLOG($limit: Int!, $start: Int!) {
     posts: blogs(limit: $limit, start: $start) {
       id
+      slug
     }
   }
 `
@@ -42,10 +43,10 @@ module.exports.exportPathMap = async (pages, { dev }) => {
     pager++
     hasMore = posts.length > limit
 
-    for (const { id } of posts) {
-      pages[`/noticias/${id}`] = {
+    for (const { slug } of posts) {
+      pages[`/noticias/${slug}`] = {
         page: '/noticias/[slug]',
-        query: { post: id },
+        query: { slug },
       }
     }
   } while (hasMore)
