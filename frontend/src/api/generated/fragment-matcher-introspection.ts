@@ -1,87 +1,89 @@
-export interface IntrospectionResultData {
-  __schema: {
-    types: {
-      kind: string
-      name: string
-      possibleTypes: {
-        name: string
-      }[]
-    }[]
-  }
-}
-const result: IntrospectionResultData = {
-  __schema: {
-    types: [
+
+      export interface IntrospectionResultData {
+        __schema: {
+          types: {
+            kind: string;
+            name: string;
+            possibleTypes: {
+              name: string;
+            }[];
+          }[];
+        };
+      }
+      const result: IntrospectionResultData = {
+  "__schema": {
+    "types": [
       {
-        kind: 'UNION',
-        name: 'Morph',
-        possibleTypes: [
+        "kind": "UNION",
+        "name": "Morph",
+        "possibleTypes": [
           {
-            name: 'UsersPermissionsMe',
+            "name": "UsersPermissionsMe"
           },
           {
-            name: 'UsersPermissionsMeRole',
+            "name": "UsersPermissionsMeRole"
           },
           {
-            name: 'UsersPermissionsLoginPayload',
+            "name": "UsersPermissionsLoginPayload"
           },
           {
-            name: 'Blog',
+            "name": "Blog"
           },
           {
-            name: 'createBlogPayload',
+            "name": "createBlogPayload"
           },
           {
-            name: 'updateBlogPayload',
+            "name": "updateBlogPayload"
           },
           {
-            name: 'deleteBlogPayload',
+            "name": "deleteBlogPayload"
           },
           {
-            name: 'Page',
+            "name": "Page"
           },
           {
-            name: 'createPagePayload',
+            "name": "createPagePayload"
           },
           {
-            name: 'updatePagePayload',
+            "name": "updatePagePayload"
           },
           {
-            name: 'deletePagePayload',
+            "name": "deletePagePayload"
           },
           {
-            name: 'UploadFile',
+            "name": "UploadFile"
           },
           {
-            name: 'UsersPermissionsPermission',
+            "name": "UsersPermissionsPermission"
           },
           {
-            name: 'UsersPermissionsRole',
+            "name": "UsersPermissionsRole"
           },
           {
-            name: 'createRolePayload',
+            "name": "createRolePayload"
           },
           {
-            name: 'updateRolePayload',
+            "name": "updateRolePayload"
           },
           {
-            name: 'deleteRolePayload',
+            "name": "deleteRolePayload"
           },
           {
-            name: 'UsersPermissionsUser',
+            "name": "UsersPermissionsUser"
           },
           {
-            name: 'createUserPayload',
+            "name": "createUserPayload"
           },
           {
-            name: 'updateUserPayload',
+            "name": "updateUserPayload"
           },
           {
-            name: 'deleteUserPayload',
-          },
-        ],
-      },
-    ],
-  },
-}
-export default result
+            "name": "deleteUserPayload"
+          }
+        ]
+      }
+    ]
+  }
+};
+      export default result;
+    
