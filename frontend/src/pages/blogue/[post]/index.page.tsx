@@ -32,29 +32,27 @@ const PostPage = () => {
     const date = dayjs(post.created_at)
 
     body = (
-      <Container className="py-12">
-        <Section>
-          <main>
-            <header className="border-b pb-2">
-              <StyledTitle className="mb-0">{post.title}</StyledTitle>
-              <time
-                dateTime={date.toISOString()}
-                className="italic text-silent text-meta"
-              >
-                {date.format('DD/MM/YYYY')}
-              </time>
-            </header>
+      <Section>
+        <Container as="main">
+          <header className="border-b pb-2">
+            <StyledTitle className="mb-0">{post.title}</StyledTitle>
+            <time
+              dateTime={date.toISOString()}
+              className="italic text-silent text-meta"
+            >
+              {date.format('DD/MM/YYYY')}
+            </time>
+          </header>
 
-            {post.image ? (
-              <div className="text-center">
-                <Image src={'http://localhost:1337' + post.image.url} />
-              </div>
-            ) : null}
+          {post.image ? (
+            <div className="text-center">
+              <Image src={'http://localhost:1337' + post.image.url} />
+            </div>
+          ) : null}
 
-            <HTMLContent>{post.body}</HTMLContent>
-          </main>
-        </Section>
-      </Container>
+          <HTMLContent>{post.body}</HTMLContent>
+        </Container>
+      </Section>
     )
   }
 
