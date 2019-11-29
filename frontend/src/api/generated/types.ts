@@ -534,17 +534,11 @@ export type UsersPermissionsUser = {
 export type PostListItemFragment = { __typename?: 'Blog' } & Pick<
   Blog,
   'id' | 'title' | 'summary' | 'created_at'
->
-
-export type BLOG_LATEST_QUERY_VARIABLES = {}
-
-export type BLOG_LATEST_QUERY = { __typename?: 'Query' } & {
-  blogs: Maybe<
-    Array<
-      Maybe<{ __typename?: 'Blog' } & Pick<Blog, 'id'> & PostListItemFragment>
+> & {
+    image: Maybe<
+      { __typename?: 'UploadFile' } & Pick<UploadFile, 'url' | 'size'>
     >
-  >
-}
+  }
 
 export type BLOG_POST_QUERY_VARIABLES = {
   post: Scalars['ID']
@@ -560,5 +554,28 @@ export type BLOG_POST_QUERY = { __typename?: 'Query' } & {
           { __typename?: 'UploadFile' } & Pick<UploadFile, 'url' | 'size'>
         >
       }
+  >
+}
+
+export type BLOG_QUERY_VARIABLES = {
+  limit: Scalars['Int']
+  start: Scalars['Int']
+}
+
+export type BLOG_QUERY = { __typename?: 'Query' } & {
+  blogs: Maybe<
+    Array<
+      Maybe<{ __typename?: 'Blog' } & Pick<Blog, 'id'> & PostListItemFragment>
+    >
+  >
+}
+
+export type BLOG_LATEST_QUERY_VARIABLES = {}
+
+export type BLOG_LATEST_QUERY = { __typename?: 'Query' } & {
+  blogs: Maybe<
+    Array<
+      Maybe<{ __typename?: 'Blog' } & Pick<Blog, 'id'> & PostListItemFragment>
+    >
   >
 }
