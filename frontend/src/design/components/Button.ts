@@ -3,6 +3,7 @@ import { styled, css, t } from '../lib/styled'
 import { classed } from '../lib/classed'
 
 type Props = React.ButtonHTMLAttributes<'button'> & {
+  rel?: string
   alt?: string
   href?: string
   title?: string
