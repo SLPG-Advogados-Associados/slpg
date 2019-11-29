@@ -45,7 +45,7 @@ const variants = {
     &:hover,
     &:focus {
       color: ${t.theme('colors.primary')};
-      background-color: ${t.theme('colors.silent')} !important;
+      background-color: ${t.theme('colors.aside')} !important;
     }
   `,
 }

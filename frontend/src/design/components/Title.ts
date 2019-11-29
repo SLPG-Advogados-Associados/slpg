@@ -1,8 +1,9 @@
+import { HTMLAttributes } from 'react'
 import * as classed from '../lib/classed-tags'
 import { AnyStyledComponent, StyledComponent } from 'styled-components'
-import { styled, t, css } from '../lib/styled'
+import { styled, t } from '../lib/styled'
 
-interface Props {
+type Props = HTMLAttributes<any> & {
   noMargins?: boolean
 }
 

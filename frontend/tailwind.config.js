@@ -46,7 +46,7 @@ const initial = {
 
 const semantic = {
   colors: {
-    silent: t('colors.pampas'),
+    silent: t('colors.gray.500'),
     primary: t('colors.blue.700'),
     'primary--active': t('colors.blue.500'),
   },
@@ -61,13 +61,14 @@ const functional = {
     divisor: t('colors.gray.300'),
     border: t('colors.gray.300'),
     'reverse-border': t('colors.primary--active'),
+    aside: t('colors.pampas'),
   },
 
   backgroundColor: {
     reverse: t('colors.primary'),
     button: t('colors.primary'),
     'button--active': t('colors.primary--active'),
-    aside: t('colors.silent'),
+    aside: t('colors.pampas'),
   },
 
   fontSize: {
