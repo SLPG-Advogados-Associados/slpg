@@ -1,8 +1,12 @@
 const compose = require('next-compose-plugins')
 const withCSS = require('@zeit/next-css')
 const withImages = require('next-images')
+const nextEnv = require('next-env')
 
-const plugins = [[withImages], [withCSS]]
+require('dotenv-load')()
+const withNextEnv = nextEnv()
+
+const plugins = [[withNextEnv], [withImages], [withCSS]]
 
 const config = {
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'].map(ext => `page.${ext}`),
