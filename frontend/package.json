@@ -12,6 +12,7 @@
     "lint": "yarn eslint src",
     "qa": "run-p type-check test lint",
     "start": "next start",
+    "test": "echo 'no tests yet'",
     "type-check": "tsc"
   },
   "husky": {
