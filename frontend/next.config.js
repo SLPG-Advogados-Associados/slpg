@@ -31,6 +31,9 @@ const config = {
       options: { mode: ['react-component'] }
     })
 
+    // avoid trying to parse Flow files.
+    config.module.rules.push({ test: /\.flow$/u, loader: 'ignore-loader' })
+
     return config
   },
 }
