@@ -1,6 +1,7 @@
-import React, { ElementType, ComponentPropsWithRef, ReactElement } from 'react'
+import { ElementType } from 'react'
 import classnames from 'classnames'
 import * as classedTags from './classed-tags'
+import { styled } from './styled'
 
 type Classed = typeof classedTags & {
   <C extends ElementType<any>>(Component: C): (
@@ -9,10 +10,11 @@ type Classed = typeof classedTags & {
 }
 
 // @ts-ignore
-const classed: Classed = Component => classNames => props => (
+const classed: Classed = Component => classNames =>
   // @ts-ignore
-  <Component {...props} className={classnames(classNames, props.className)} />
-)
+  styled(Component).attrs(({ className }) => ({
+    className: classnames(className, classNames.join(' ')),
+  }))``
 
 for (const tag in classedTags) {
   classed[tag] = classedTags[tag]
