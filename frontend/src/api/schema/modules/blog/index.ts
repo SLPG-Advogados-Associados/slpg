@@ -26,7 +26,10 @@ const PostsResult: GT.PostsResultResolvers = {
 }
 
 const PostsResultItem: GT.PostsResultItemResolvers = {
-  item: ({ id }) => ({ ...blog(id).attributes, id }),
+  item: ({ id }) => {
+    const { attributes, body } = blog(id)
+    return { ...attributes, body, id }
+  },
 }
 
 const resolvers = { Query, PostsResult, PostsResultItem }
