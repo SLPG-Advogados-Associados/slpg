@@ -1,0 +1,9 @@
+scalar JSON
+
+type Query {
+  version: String!
+}
+
+type Mutation {
+  status: Boolean!
+}

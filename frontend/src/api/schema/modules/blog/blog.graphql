@@ -1,0 +1,19 @@
+type Image {
+  url: String!
+  size: String!
+}
+
+type Post {
+  id: String!
+  slug: String!
+  title: String!
+  summary: String!
+  body: String!
+  created_at: String!
+  image: Image
+}
+
+extend type Query {
+  posts(limit: Int, start: Int): [Post!]!
+  postBySlug(slug: String!): Post!
+}
