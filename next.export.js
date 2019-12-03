@@ -1,12 +1,8 @@
 
-const postsQuery = `
-  query BLOG($limit: Int!, $start: Int!) {
-    posts: blogs(limit: $limit, start: $start) {
-      id
-      slug
-    }
-  }
-`
+const path = require('path')
+const glob = require('glob')
+
+const admin = path.resolve(__dirname, 'src/admin')
 
 module.exports.exportPathMap = async (pages, { dev }) => {
   // during development, build any dynamic page.
@@ -15,40 +11,25 @@ module.exports.exportPathMap = async (pages, { dev }) => {
   delete pages['/blogue/[page]']
   delete pages['/noticias/[slug]']
 
-  return pages
+  const posts = glob.sync(`${admin}/content/blog/*.md`).map(post => path.basename(post, '.md'))
+
 
   /**
    * build blog post pages.
    */
 
-  let pager = 0
-  let hasMore
-  const limit = 6 // same as on src/pages/blogue/index.page.tsx
-
-  do {
-    // + 1 to always verify if a next page is available
-    const variables = {
-      start: pager * limit,
-      limit: limit + 1,
+  for (const slug of posts) {
+    pages[`/noticias/${slug}`] = {
+      page: '/noticias/[slug]',
+      query: { slug },
     }
-    const { posts } = await client.request(postsQuery, variables)
-
-    pager++
-    hasMore = posts.length > limit
-
-    for (const { slug } of posts) {
-      pages[`/noticias/${slug}`] = {
-        page: '/noticias/[slug]',
-        query: { slug },
-      }
-    }
-  } while (hasMore)
+  }
 
   /**
    * build blog listing pages.
    */
 
-  for (let page = 1; page < pager; page++) {
+  for (let page = 1; page < Math.ceil(posts.length / 6); page++) {
     pages[`/blogue/${page}`] = {
       page: '/blogue/[page]',
       query: { page },
