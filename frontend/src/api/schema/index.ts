@@ -1,9 +1,20 @@
 import { makeExecutableSchema } from 'graphql-tools'
+import { GT } from '~api'
 
 import * as core from './modules/core'
 import * as blog from './modules/blog'
 
-const modules = [core, blog]
+interface Module {
+  typeDefs: string
+  resolvers: {
+    [key: string]: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      [prop: string]: GT.Resolver<any, any, any, any>
+    }
+  }
+}
+
+const modules: Module[] = [core, blog]
 
 const typeDefs = modules.map(mod => mod.typeDefs)
 const resolvers = {}
