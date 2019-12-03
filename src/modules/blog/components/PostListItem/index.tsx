@@ -27,7 +27,7 @@ const PostListItem: React.FC<{
 
         {post.image && !noImage ? (
           <aside className="w-48 mr-8 flex-shrink-0">
-            <img src={`http://localhost:1337${post.image.url}`} />
+            <img src={post.image.url} />
           </aside>
         ) : null}
 

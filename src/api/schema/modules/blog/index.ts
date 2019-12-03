@@ -32,6 +32,10 @@ const Query: GT.QueryResolvers = {
   postById: (_root, { id }) => load(id),
 }
 
+const Image: GT.ImageResolvers = {
+  url: image => image,
+}
+
 const PostsResult: GT.PostsResultResolvers = {
   items: ({ items }: { items: string[] }) => items.map(id => ({ id })),
 }
@@ -40,6 +44,6 @@ const PostsResultItem: GT.PostsResultItemResolvers = {
   item: ({ id }) => load(id),
 }
 
-const resolvers = { Query, PostsResult, PostsResultItem }
+const resolvers = { Query, Image, PostsResult, PostsResultItem }
 
 export { typeDefs, resolvers }

@@ -6,6 +6,5 @@ fragment PostListItem on Post {
   date
   image {
     url
-    size
   }
 }

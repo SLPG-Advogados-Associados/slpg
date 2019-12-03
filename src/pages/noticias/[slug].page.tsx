@@ -35,7 +35,9 @@ const BlogueAnchor = styled.a`
 const PostPage = () => {
   const { query: variables } = useRouter<{ slug: string }>()
 
-  const { data } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, { variables })
+  const { data, ...rest } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, {
+    variables,
+  })
 
   let body: React.ReactNode | null = null
 
@@ -63,7 +65,7 @@ const PostPage = () => {
 
           {post.image ? (
             <div className="text-center">
-              <Image src={'http://localhost:1337' + post.image.url} />
+              <Image src={post.image.url} className="display-inline-block" />
             </div>
           ) : null}
 
