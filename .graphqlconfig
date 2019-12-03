@@ -1,7 +1,0 @@
-{
-  "projects": {
-    "slpg--next-strapi": {
-      "schemaPath": "frontend/src/api/generated/schema.graphql"
-    }
-  }
-}
