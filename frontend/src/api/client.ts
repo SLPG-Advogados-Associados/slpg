@@ -1,5 +1,6 @@
-import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost'
-import fetch from 'isomorphic-unfetch'
+import { ApolloClient, InMemoryCache } from 'apollo-boost'
+import { SchemaLink } from 'apollo-link-schema'
+import { schema } from './schema'
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 const NEXT_STATIC_BACKEND_API_HOST = process.env.NEXT_STATIC_BACKEND_API_HOST
@@ -8,10 +9,7 @@ if (NODE_ENV === 'production' && !NEXT_STATIC_BACKEND_API_HOST) {
   throw new Error('You must define NEXT_STATIC_BACKEND_API_HOST on production')
 }
 
-const link = new HttpLink({
-  uri: NEXT_STATIC_BACKEND_API_HOST || 'http://localhost:1337/graphql',
-  fetch: !process.browser ? fetch : null,
-})
+const link = new SchemaLink({ schema })
 
 /**
  * Creates and configures the ApolloClient
