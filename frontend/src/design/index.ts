@@ -3,6 +3,7 @@ export * from './lib/styled'
 export * from './lib/classed'
 
 // components
+export * from './components/Body'
 export * from './components/Logo'
 export * from './components/Icons'
 export * from './components/Title'
