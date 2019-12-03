@@ -32,14 +32,6 @@ type createBlogPayload {
   blog: Blog
 }
 
-input createPageInput {
-  data: PageInput
-}
-
-type createPagePayload {
-  page: Page
-}
-
 input createRoleInput {
   data: RoleInput
 }
@@ -67,14 +59,6 @@ input deleteBlogInput {
 
 type deleteBlogPayload {
   blog: Blog
-}
-
-input deletePageInput {
-  where: InputID
-}
-
-type deletePagePayload {
-  page: Page
 }
 
 input deleteRoleInput {
@@ -112,10 +96,6 @@ input editFileInput {
   provider: String
   provider_metadata: JSON
   related: [ID]
-}
-
-input editPageInput {
-  title: String
 }
 
 input editRoleInput {
@@ -159,15 +139,12 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | Blog | createBlogPayload | updateBlogPayload | deleteBlogPayload | Page | createPagePayload | updatePagePayload | deletePagePayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | Blog | createBlogPayload | updateBlogPayload | deleteBlogPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
 
 type Mutation {
   createBlog(input: createBlogInput): createBlogPayload
   updateBlog(input: updateBlogInput): updateBlogPayload
   deleteBlog(input: deleteBlogInput): deleteBlogPayload
-  createPage(input: createPageInput): createPagePayload
-  updatePage(input: updatePageInput): updatePagePayload
-  deletePage(input: deletePageInput): deletePagePayload
 
   """Create a new role"""
   createRole(input: createRoleInput): createRolePayload
@@ -192,22 +169,9 @@ type Mutation {
   register(input: UserInput!): UsersPermissionsLoginPayload!
 }
 
-type Page {
-  title: String
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
-}
-
-input PageInput {
-  title: String
-}
-
 type Query {
   blog(id: ID!): Blog
   blogs(sort: String, limit: Int, start: Int, where: JSON): [Blog]
-  page(id: ID!): Page
-  pages(sort: String, limit: Int, start: Int, where: JSON): [Page]
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   role(id: ID!): UsersPermissionsRole
 
@@ -217,6 +181,7 @@ type Query {
   roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
   user(id: ID!): UsersPermissionsUser
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  blogBySlug(slug: String!): Blog
   status: Boolean!
   me: UsersPermissionsMe
 }
@@ -236,15 +201,6 @@ input updateBlogInput {
 
 type updateBlogPayload {
   blog: Blog
-}
-
-input updatePageInput {
-  where: InputID
-  data: editPageInput
-}
-
-type updatePagePayload {
-  page: Page
 }
 
 input updateRoleInput {

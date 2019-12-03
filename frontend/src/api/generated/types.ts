@@ -50,15 +50,6 @@ export type CreateBlogPayload = {
   blog?: Maybe<Blog>,
 };
 
-export type CreatePageInput = {
-  data?: Maybe<PageInput>,
-};
-
-export type CreatePagePayload = {
-   __typename?: 'createPagePayload',
-  page?: Maybe<Page>,
-};
-
 export type CreateRoleInput = {
   data?: Maybe<RoleInput>,
 };
@@ -85,15 +76,6 @@ export type DeleteBlogInput = {
 export type DeleteBlogPayload = {
    __typename?: 'deleteBlogPayload',
   blog?: Maybe<Blog>,
-};
-
-export type DeletePageInput = {
-  where?: Maybe<InputId>,
-};
-
-export type DeletePagePayload = {
-   __typename?: 'deletePagePayload',
-  page?: Maybe<Page>,
 };
 
 export type DeleteRoleInput = {
@@ -135,10 +117,6 @@ export type EditFileInput = {
   related?: Maybe<Array<Maybe<Scalars['ID']>>>,
 };
 
-export type EditPageInput = {
-  title?: Maybe<Scalars['String']>,
-};
-
 export type EditRoleInput = {
   name?: Maybe<Scalars['String']>,
   description?: Maybe<Scalars['String']>,
@@ -177,16 +155,13 @@ export type InputId = {
 
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | Blog | CreateBlogPayload | UpdateBlogPayload | DeleteBlogPayload | Page | CreatePagePayload | UpdatePagePayload | DeletePagePayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | Blog | CreateBlogPayload | UpdateBlogPayload | DeleteBlogPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
 
 export type Mutation = {
    __typename?: 'Mutation',
   createBlog?: Maybe<CreateBlogPayload>,
   updateBlog?: Maybe<UpdateBlogPayload>,
   deleteBlog?: Maybe<DeleteBlogPayload>,
-  createPage?: Maybe<CreatePagePayload>,
-  updatePage?: Maybe<UpdatePagePayload>,
-  deletePage?: Maybe<DeletePagePayload>,
   /** Create a new role */
   createRole?: Maybe<CreateRolePayload>,
   /** Update an existing role */
@@ -218,21 +193,6 @@ export type MutationUpdateBlogArgs = {
 
 export type MutationDeleteBlogArgs = {
   input?: Maybe<DeleteBlogInput>
-};
-
-
-export type MutationCreatePageArgs = {
-  input?: Maybe<CreatePageInput>
-};
-
-
-export type MutationUpdatePageArgs = {
-  input?: Maybe<UpdatePageInput>
-};
-
-
-export type MutationDeletePageArgs = {
-  input?: Maybe<DeletePageInput>
 };
 
 
@@ -293,30 +253,17 @@ export type MutationRegisterArgs = {
   input: UserInput
 };
 
-export type Page = {
-   __typename?: 'Page',
-  title?: Maybe<Scalars['String']>,
-  id: Scalars['ID'],
-  created_at: Scalars['DateTime'],
-  updated_at: Scalars['DateTime'],
-};
-
-export type PageInput = {
-  title?: Maybe<Scalars['String']>,
-};
-
 export type Query = {
    __typename?: 'Query',
   blog?: Maybe<Blog>,
   blogs?: Maybe<Array<Maybe<Blog>>>,
-  page?: Maybe<Page>,
-  pages?: Maybe<Array<Maybe<Page>>>,
   files?: Maybe<Array<Maybe<UploadFile>>>,
   role?: Maybe<UsersPermissionsRole>,
   /** Retrieve all the existing roles. You can't apply filters on this query. */
   roles?: Maybe<Array<Maybe<UsersPermissionsRole>>>,
   user?: Maybe<UsersPermissionsUser>,
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>,
+  blogBySlug?: Maybe<Blog>,
   status: Scalars['Boolean'],
   me?: Maybe<UsersPermissionsMe>,
 };
@@ -328,19 +275,6 @@ export type QueryBlogArgs = {
 
 
 export type QueryBlogsArgs = {
-  sort?: Maybe<Scalars['String']>,
-  limit?: Maybe<Scalars['Int']>,
-  start?: Maybe<Scalars['Int']>,
-  where?: Maybe<Scalars['JSON']>
-};
-
-
-export type QueryPageArgs = {
-  id: Scalars['ID']
-};
-
-
-export type QueryPagesArgs = {
   sort?: Maybe<Scalars['String']>,
   limit?: Maybe<Scalars['Int']>,
   start?: Maybe<Scalars['Int']>,
@@ -381,6 +315,11 @@ export type QueryUsersArgs = {
   where?: Maybe<Scalars['JSON']>
 };
 
+
+export type QueryBlogBySlugArgs = {
+  slug: Scalars['String']
+};
+
 export type RoleInput = {
   name: Scalars['String'],
   description?: Maybe<Scalars['String']>,
@@ -397,16 +336,6 @@ export type UpdateBlogInput = {
 export type UpdateBlogPayload = {
    __typename?: 'updateBlogPayload',
   blog?: Maybe<Blog>,
-};
-
-export type UpdatePageInput = {
-  where?: Maybe<InputId>,
-  data?: Maybe<EditPageInput>,
-};
-
-export type UpdatePagePayload = {
-   __typename?: 'updatePagePayload',
-  page?: Maybe<Page>,
 };
 
 export type UpdateRoleInput = {
@@ -548,7 +477,7 @@ export type UsersPermissionsUser = {
 
 export type PostListItemFragment = (
   { __typename?: 'Blog' }
-  & Pick<Blog, 'id' | 'title' | 'summary' | 'created_at'>
+  & Pick<Blog, 'id' | 'slug' | 'title' | 'summary' | 'created_at'>
   & { image: Maybe<(
     { __typename?: 'UploadFile' }
     & Pick<UploadFile, 'url' | 'size'>
@@ -583,18 +512,18 @@ export type BLOG_LATEST_QUERY = (
 );
 
 export type BLOG_POST_QUERY_VARIABLES = {
-  post: Scalars['String']
+  slug: Scalars['String']
 };
 
 
 export type BLOG_POST_QUERY = (
   { __typename?: 'Query' }
-  & { blogs: Maybe<Array<Maybe<(
+  & { post: Maybe<(
     { __typename?: 'Blog' }
-    & Pick<Blog, 'id' | 'title' | 'created_at' | 'body'>
+    & Pick<Blog, 'id' | 'slug' | 'body' | 'title' | 'created_at'>
     & { image: Maybe<(
       { __typename?: 'UploadFile' }
       & Pick<UploadFile, 'url' | 'size'>
     )> }
-  )>>> }
+  )> }
 );

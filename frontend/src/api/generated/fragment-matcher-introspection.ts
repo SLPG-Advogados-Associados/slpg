@@ -39,18 +39,6 @@
             "name": "deleteBlogPayload"
           },
           {
-            "name": "Page"
-          },
-          {
-            "name": "createPagePayload"
-          },
-          {
-            "name": "updatePagePayload"
-          },
-          {
-            "name": "deletePagePayload"
-          },
-          {
             "name": "UploadFile"
           },
           {
