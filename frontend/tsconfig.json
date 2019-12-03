@@ -21,6 +21,7 @@
       "~modules/*": ["modules/*"],
       "~design": ["design/index.ts"],
       "~design/*": ["design/*"],
+      "~content": ["admin/content/index.ts"],
       "~content/*": ["admin/content/*"]
     }
   },
