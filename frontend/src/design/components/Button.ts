@@ -53,9 +53,9 @@ const variants = {
 }
 
 const Button = styled(
-  classed.button`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button` as React.FC<
+  classed.button<
     Props
-  >
+  >`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button`
 )`
   display: inline-flex;
   padding: 1.175em 1.875em 1.05em;
