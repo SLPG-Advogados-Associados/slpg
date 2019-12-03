@@ -28,7 +28,7 @@ const config = {
     config.module.rules.push({
       test: /\.md$/,
       loader: 'frontmatter-markdown-loader',
-      options: { mode: ['react-component'] }
+      options: { mode: ['body'] }
     })
 
     // avoid trying to parse Flow files.
