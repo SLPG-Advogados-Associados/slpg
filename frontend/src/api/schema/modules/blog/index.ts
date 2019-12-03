@@ -1,6 +1,6 @@
 import GraphQLJSON from 'graphql-type-json'
 import { GT } from '~api'
-import typeDefs from './core.graphql'
+import typeDefs from './blog.graphql'
 
 const version = '1.0'
 
