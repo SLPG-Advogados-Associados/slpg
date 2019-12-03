@@ -13,7 +13,19 @@ type Post {
   image: Image
 }
 
+type PostsResultItem {
+  id: String!
+  item: Post!
+}
+
+type PostsResult {
+  id: String!
+  count: Int!
+  total: Int!
+  items: [PostsResultItem!]!
+}
+
 extend type Query {
-  posts(limit: Int, start: Int): [Post!]!
+  posts(limit: Int, start: Int): PostsResult!
   postBySlug(slug: String!): Post!
 }
