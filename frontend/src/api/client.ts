@@ -1,8 +1,5 @@
 import { ApolloClient, InMemoryCache } from 'apollo-boost'
-import { SchemaLink } from 'apollo-link-schema'
-import { schema } from './schema'
-
-const link = new SchemaLink({ schema })
+import { link } from './link'
 
 /**
  * Creates and configures the ApolloClient
