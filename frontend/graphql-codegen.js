@@ -1,11 +1,12 @@
 module.exports = {
   overwrite: true,
-  schema: 'http://localhost:1337/graphql',
+  schema: './src/api/**/*.graphql',
   documents: './src/**/*.gql',
   pluginLoader,
   generates: {
     'src/api/generated/types.ts': {
-      plugins: ['typescript', 'typescript-operations'],
+      config: { defaultMapper: 'any',  contextType: '~api/schema/context#Context' },
+      plugins: ['typescript', 'typescript-operations', 'typescript-resolvers',],
     },
     'src/api/generated/schema.graphql': {
       plugins: ['schema-ast'],
