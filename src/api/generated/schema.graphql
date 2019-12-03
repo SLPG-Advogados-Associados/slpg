@@ -33,6 +33,6 @@ type PostsResultItem {
 
 type Query {
   posts(limit: Int, start: Int): PostsResult!
-  postBySlug(slug: String!): Post!
+  postById(id: String!): Post!
   version: String!
 }

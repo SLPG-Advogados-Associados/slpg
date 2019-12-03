@@ -52,7 +52,7 @@ export type PostsResultItem = {
 export type Query = {
    __typename?: 'Query',
   posts: PostsResult,
-  postBySlug: Post,
+  postById: Post,
   version: Scalars['String'],
 };
 
@@ -63,8 +63,8 @@ export type QueryPostsArgs = {
 };
 
 
-export type QueryPostBySlugArgs = {
-  slug: Scalars['String']
+export type QueryPostByIdArgs = {
+  id: Scalars['String']
 };
 
 export type PostListItemFragment = (
@@ -72,7 +72,7 @@ export type PostListItemFragment = (
   & Pick<Post, 'id' | 'slug' | 'title' | 'summary' | 'date'>
   & { image: Maybe<(
     { __typename?: 'Image' }
-    & Pick<Image, 'url' | 'size'>
+    & Pick<Image, 'url'>
   )> }
 );
 
@@ -131,7 +131,7 @@ export type BLOG_POST_QUERY = (
     & Pick<Post, 'id' | 'slug' | 'body' | 'title' | 'date'>
     & { image: Maybe<(
       { __typename?: 'Image' }
-      & Pick<Image, 'url' | 'size'>
+      & Pick<Image, 'url'>
     )> }
   ) }
 );
@@ -270,7 +270,7 @@ export type PostsResultItemResolvers<ContextType = Context, ParentType extends R
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   posts?: Resolver<ResolversTypes['PostsResult'], ParentType, ContextType, QueryPostsArgs>,
-  postBySlug?: Resolver<ResolversTypes['Post'], ParentType, ContextType, RequireFields<QueryPostBySlugArgs, 'slug'>>,
+  postById?: Resolver<ResolversTypes['Post'], ParentType, ContextType, RequireFields<QueryPostByIdArgs, 'id'>>,
   version?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
