@@ -31,7 +31,7 @@ export type Post = {
   title: Scalars['String'],
   summary: Scalars['String'],
   body: Scalars['String'],
-  created_at: Scalars['String'],
+  createdAt: Scalars['String'],
   image?: Maybe<Image>,
 };
 
@@ -55,7 +55,7 @@ export type QueryPostBySlugArgs = {
 
 export type PostListItemFragment = (
   { __typename?: 'Post' }
-  & Pick<Post, 'id' | 'slug' | 'title' | 'summary' | 'created_at'>
+  & Pick<Post, 'id' | 'slug' | 'title' | 'summary' | 'createdAt'>
   & { image: Maybe<(
     { __typename?: 'Image' }
     & Pick<Image, 'url' | 'size'>
@@ -98,7 +98,7 @@ export type BLOG_POST_QUERY = (
   { __typename?: 'Query' }
   & { post: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'slug' | 'body' | 'title' | 'created_at'>
+    & Pick<Post, 'id' | 'slug' | 'body' | 'title' | 'createdAt'>
     & { image: Maybe<(
       { __typename?: 'Image' }
       & Pick<Image, 'url' | 'size'>
@@ -218,7 +218,7 @@ export type PostResolvers<ContextType = Context, ParentType extends ResolversPar
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   summary?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   body?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   image?: Resolver<Maybe<ResolversTypes['Image']>, ParentType, ContextType>,
 };
 

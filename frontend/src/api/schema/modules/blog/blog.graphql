@@ -9,7 +9,7 @@ type Post {
   title: String!
   summary: String!
   body: String!
-  created_at: String!
+  createdAt: String!
   image: Image
 }
 
