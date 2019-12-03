@@ -3,7 +3,7 @@ fragment PostListItem on Post {
   slug
   title
   summary
-  created_at
+  createdAt
   image {
     url
     size
