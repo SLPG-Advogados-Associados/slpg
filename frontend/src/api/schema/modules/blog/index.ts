@@ -4,6 +4,11 @@ import typeDefs from './blog.graphql'
 
 const posts = blog.keys()
 
+const postById = (id: string) => {
+  const { attributes, body } = blog(id)
+  return { ...attributes, body, id }
+}
+
 const Query: GT.QueryResolvers = {
   posts: (_root, { limit = 10, start = 0 }) => {
     if (limit > 50) {
@@ -19,6 +24,8 @@ const Query: GT.QueryResolvers = {
       items,
     }
   },
+
+  postBySlug: (_root, { slug }) => postById(`./${slug}.md`),
 }
 
 const PostsResult: GT.PostsResultResolvers = {
@@ -26,10 +33,7 @@ const PostsResult: GT.PostsResultResolvers = {
 }
 
 const PostsResultItem: GT.PostsResultItemResolvers = {
-  item: ({ id }) => {
-    const { attributes, body } = blog(id)
-    return { ...attributes, body, id }
-  },
+  item: ({ id }) => postById(id),
 }
 
 const resolvers = { Query, PostsResult, PostsResultItem }
