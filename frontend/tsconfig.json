@@ -20,7 +20,8 @@
       "~api/*": ["api/*"],
       "~modules/*": ["modules/*"],
       "~design": ["design/index.ts"],
-      "~design/*": ["design/*"]
+      "~design/*": ["design/*"],
+      "~content/*": ["admin/content/*"]
     }
   },
   "exclude": ["node_modules"],

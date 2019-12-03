@@ -33,6 +33,7 @@ module.exports = {
           ['~api', `${__dirname}/src/api`],
           ['~modules', `${__dirname}/src/modules`],
           ['~design', `${__dirname}/src/design`],
+          ['~content', `${__dirname}/src/admin/content`],
         ],
         extensions,
       },
