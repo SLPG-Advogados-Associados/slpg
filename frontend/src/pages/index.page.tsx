@@ -54,7 +54,7 @@ const HomePage = () => {
       <Section title="Blogue">
         {blog.data ? (
           <ul>
-            {blog.data.blogs.map(post => (
+            {blog.data.posts.map(post => (
               <li key={post.id} className="py-lg border-b-2">
                 <PostListItem post={post} noImage />
               </li>
