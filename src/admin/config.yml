@@ -7,7 +7,7 @@ public_folder: img
 collections:
   - name: 'blog'
     label: 'Blogue'
-    folder: frontend/src/admin/content/blog
+    folder: src/admin/content/blog
     create: true
     fields:
       - { label: 'Título', name: 'title', widget: 'string' }
@@ -26,7 +26,7 @@ collections:
     files:
       - label: 'Home'
         name: 'home'
-        file: 'frontend/src/admin/content/sample.md'
+        file: 'src/admin/content/sample.md'
         fields:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'datetime' }
