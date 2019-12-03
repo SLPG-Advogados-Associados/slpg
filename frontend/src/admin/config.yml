@@ -1,5 +1,6 @@
 backend:
-  name: test-repo
+  name: github
+  repo: lucasconstantino/slpg
   branch: netlify
 media_folder: public/img
 public_folder: img
@@ -9,7 +10,7 @@ collections:
     files:
       - label: 'Home'
         name: 'home'
-        file: 'content/home.md'
+        file: 'frontend/src/admin/content/sample.md'
         fields:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'datetime' }
