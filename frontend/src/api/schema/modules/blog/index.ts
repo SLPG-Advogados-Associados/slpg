@@ -21,11 +21,11 @@ const Query: GT.QueryResolvers = {
   },
 }
 
-const PostsResult: GT.PostsResult = {
+const PostsResult: GT.PostsResultResolvers = {
   items: ({ items }: { items: string[] }) => items.map(id => ({ id })),
 }
 
-const PostsResultItem: GT.PostsResultItem = {
+const PostsResultItem: GT.PostsResultItemResolvers = {
   item: ({ id }) => ({ ...blog(id).attributes, id }),
 }
 
