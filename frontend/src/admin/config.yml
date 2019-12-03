@@ -5,6 +5,22 @@ backend:
 media_folder: public/img
 public_folder: img
 collections:
+  - name: 'blog'
+    label: 'Blogue'
+    folder: frontend/src/admin/content/blog
+    create: true
+    fields:
+      - { label: 'Título', name: 'title', widget: 'string' }
+      - { label: 'Data de Publicação', name: 'date', widget: 'datetime' }
+      - {
+          label: 'Imagem de Destaque',
+          name: 'image',
+          widget: 'image',
+          required: false,
+        }
+      - { label: 'Corpo', name: 'body', widget: 'markdown' }
+      - { label: 'Chamada', name: 'summary', widget: 'text' }
+
   - name: 'pages'
     label: 'Pages'
     files:
