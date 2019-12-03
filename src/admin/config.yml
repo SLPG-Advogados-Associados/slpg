@@ -2,8 +2,8 @@ backend:
   name: github
   repo: lucasconstantino/slpg
   branch: netlify
-media_folder: public/img
-public_folder: img
+media_folder: src/admin/content/media
+public_folder: /public/admin/content/media
 collections:
   - name: 'blog'
     label: 'Blogue'
