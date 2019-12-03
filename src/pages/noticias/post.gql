@@ -1,5 +1,5 @@
 query BLOG_POST($slug: String!) {
-  post: postBySlug(slug: $slug) {
+  post: postById(id: $slug) {
     id
     slug
     body
