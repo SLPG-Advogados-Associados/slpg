@@ -2,7 +2,7 @@
   "presets": ["next/babel"],
   "plugins": [
     ["macros"],
-    ["styled-components", { "ssr": true }],
+    ["styled-components", { "ssr": true, "fileName": false }],
     [
       "module-resolver",
       {
