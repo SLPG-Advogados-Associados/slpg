@@ -1,4 +1,4 @@
-fragment PostListItem on Blog {
+fragment PostListItem on Post {
   id
   slug
   title
