@@ -4,7 +4,7 @@ query BLOG_POST($slug: String!) {
     slug
     body
     title
-    createdAt
+    date
 
     image {
       url

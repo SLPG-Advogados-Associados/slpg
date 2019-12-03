@@ -15,7 +15,7 @@ const PostListItem: React.FC<{
   post: GT.PostListItemFragment
   noImage?: boolean
 }> = ({ post, noImage }) => {
-  const date = dayjs(post.createdAt)
+  const date = dayjs(post.date)
 
   return (
     <Anchor href={`/noticias/${post.slug}`} className="block">
