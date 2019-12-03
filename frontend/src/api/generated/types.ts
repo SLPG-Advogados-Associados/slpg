@@ -35,9 +35,23 @@ export type Post = {
   image?: Maybe<Image>,
 };
 
+export type PostsResult = {
+   __typename?: 'PostsResult',
+  id: Scalars['String'],
+  count: Scalars['Int'],
+  total: Scalars['Int'],
+  items: Array<PostsResultItem>,
+};
+
+export type PostsResultItem = {
+   __typename?: 'PostsResultItem',
+  id: Scalars['String'],
+  item: Post,
+};
+
 export type Query = {
    __typename?: 'Query',
-  posts: Array<Post>,
+  posts: PostsResult,
   postBySlug: Post,
   version: Scalars['String'],
 };
@@ -70,11 +84,19 @@ export type BLOG_QUERY_VARIABLES = {
 
 export type BLOG_QUERY = (
   { __typename?: 'Query' }
-  & { posts: Array<(
-    { __typename?: 'Post' }
-    & Pick<Post, 'id'>
-    & PostListItemFragment
-  )> }
+  & { posts: (
+    { __typename?: 'PostsResult' }
+    & Pick<PostsResult, 'id'>
+    & { items: Array<(
+      { __typename?: 'PostsResultItem' }
+      & Pick<PostsResultItem, 'id'>
+      & { item: (
+        { __typename?: 'Post' }
+        & Pick<Post, 'id'>
+        & PostListItemFragment
+      ) }
+    )> }
+  ) }
 );
 
 export type BLOG_LATEST_QUERY_VARIABLES = {};
@@ -82,11 +104,19 @@ export type BLOG_LATEST_QUERY_VARIABLES = {};
 
 export type BLOG_LATEST_QUERY = (
   { __typename?: 'Query' }
-  & { posts: Array<(
-    { __typename?: 'Post' }
-    & Pick<Post, 'id'>
-    & PostListItemFragment
-  )> }
+  & { posts: (
+    { __typename?: 'PostsResult' }
+    & Pick<PostsResult, 'id'>
+    & { items: Array<(
+      { __typename?: 'PostsResultItem' }
+      & Pick<PostsResultItem, 'id'>
+      & { item: (
+        { __typename?: 'Post' }
+        & Pick<Post, 'id'>
+        & PostListItemFragment
+      ) }
+    )> }
+  ) }
 );
 
 export type BLOG_POST_QUERY_VARIABLES = {
@@ -179,8 +209,10 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
   Int: ResolverTypeWrapper<any>,
-  Post: ResolverTypeWrapper<any>,
+  PostsResult: ResolverTypeWrapper<any>,
   String: ResolverTypeWrapper<any>,
+  PostsResultItem: ResolverTypeWrapper<any>,
+  Post: ResolverTypeWrapper<any>,
   Image: ResolverTypeWrapper<any>,
   Mutation: ResolverTypeWrapper<{}>,
   Boolean: ResolverTypeWrapper<any>,
@@ -191,8 +223,10 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Query: {},
   Int: any,
-  Post: any,
+  PostsResult: any,
   String: any,
+  PostsResultItem: any,
+  Post: any,
   Image: any,
   Mutation: {},
   Boolean: any,
@@ -222,8 +256,20 @@ export type PostResolvers<ContextType = Context, ParentType extends ResolversPar
   image?: Resolver<Maybe<ResolversTypes['Image']>, ParentType, ContextType>,
 };
 
+export type PostsResultResolvers<ContextType = Context, ParentType extends ResolversParentTypes['PostsResult'] = ResolversParentTypes['PostsResult']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  items?: Resolver<Array<ResolversTypes['PostsResultItem']>, ParentType, ContextType>,
+};
+
+export type PostsResultItemResolvers<ContextType = Context, ParentType extends ResolversParentTypes['PostsResultItem'] = ResolversParentTypes['PostsResultItem']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  item?: Resolver<ResolversTypes['Post'], ParentType, ContextType>,
+};
+
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType, QueryPostsArgs>,
+  posts?: Resolver<ResolversTypes['PostsResult'], ParentType, ContextType, QueryPostsArgs>,
   postBySlug?: Resolver<ResolversTypes['Post'], ParentType, ContextType, RequireFields<QueryPostBySlugArgs, 'slug'>>,
   version?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
@@ -233,6 +279,8 @@ export type Resolvers<ContextType = Context> = {
   JSON?: GraphQLScalarType,
   Mutation?: MutationResolvers<ContextType>,
   Post?: PostResolvers<ContextType>,
+  PostsResult?: PostsResultResolvers<ContextType>,
+  PostsResultItem?: PostsResultItemResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
 };
 

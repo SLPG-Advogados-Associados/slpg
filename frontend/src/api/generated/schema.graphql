@@ -19,8 +19,20 @@ type Post {
   image: Image
 }
 
+type PostsResult {
+  id: String!
+  count: Int!
+  total: Int!
+  items: [PostsResultItem!]!
+}
+
+type PostsResultItem {
+  id: String!
+  item: Post!
+}
+
 type Query {
-  posts(limit: Int, start: Int): [Post!]!
+  posts(limit: Int, start: Int): PostsResult!
   postBySlug(slug: String!): Post!
   version: String!
 }
