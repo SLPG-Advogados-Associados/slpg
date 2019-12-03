@@ -1,7 +1,3 @@
-const { GraphQLClient } = require('graphql-request')
-
-const NEXT_STATIC_BACKEND_API_HOST = process.env.NEXT_STATIC_BACKEND_API_HOST
-const client = new GraphQLClient(NEXT_STATIC_BACKEND_API_HOST)
 
 const postsQuery = `
   query BLOG($limit: Int!, $start: Int!) {
@@ -13,16 +9,13 @@ const postsQuery = `
 `
 
 module.exports.exportPathMap = async (pages, { dev }) => {
+  // during development, build any dynamic page.
   if (dev) return pages
-
-  if (!NEXT_STATIC_BACKEND_API_HOST) {
-    throw new Error(
-      'You must define NEXT_STATIC_BACKEND_API_HOST in orther to export static pages'
-    )
-  }
 
   delete pages['/blogue/[page]']
   delete pages['/noticias/[slug]']
+
+  return pages
 
   /**
    * build blog post pages.
