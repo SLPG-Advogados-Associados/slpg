@@ -46,7 +46,7 @@ const PostPage = () => {
       throw new Error(`Could not find post with slug ${variables.slug}`)
     }
 
-    const date = dayjs(post.created_at)
+    const date = dayjs(post.createdAt)
 
     body = (
       <Section>

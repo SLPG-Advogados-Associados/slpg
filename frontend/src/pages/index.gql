@@ -3,6 +3,12 @@
 query BLOG_LATEST {
   posts(limit: 3) {
     id
-    ...PostListItem
+    items {
+      id
+      item {
+        id
+        ...PostListItem
+      }
+    }
   }
 }

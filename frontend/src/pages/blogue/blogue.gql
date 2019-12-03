@@ -3,6 +3,12 @@
 query BLOG($limit: Int!, $start: Int!) {
   posts(limit: $limit, start: $start) {
     id
-    ...PostListItem
+    items {
+      id
+      item {
+        id
+        ...PostListItem
+      }
+    }
   }
 }
