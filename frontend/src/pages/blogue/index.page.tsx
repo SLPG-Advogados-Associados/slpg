@@ -21,7 +21,8 @@ const BloguePage = () => {
   const variables = { limit: limit + 1, start: limit * page }
 
   const blog = useQuery<GT.BLOG_LATEST_QUERY>(BLOG, { variables })
-  const hasNext = blog.data && blog.data.posts.length > 6
+  const posts = blog.data ? blog.data.posts.items.map(({ item }) => item) : []
+  const hasNext = posts.length > 6
 
   const goToPage = (to: number) => router.push(`/blogue${to ? `/${to}` : ''}`)
 
@@ -34,7 +35,7 @@ const BloguePage = () => {
       <Section>
         {blog.data ? (
           <ul>
-            {blog.data.posts.slice(0, 6).map(post => (
+            {posts.slice(0, 6).map(post => (
               <li key={post.id} className="py-lg border-b-2">
                 <PostListItem post={post} />
               </li>

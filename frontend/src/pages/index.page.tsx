@@ -31,6 +31,7 @@ const MoreCard = styled(classed.article`px-md pb-md text-center`)`
 
 const HomePage = () => {
   const blog = useQuery<GT.BLOG_LATEST_QUERY>(BLOG_LATEST)
+  const posts = blog.data ? blog.data.posts.items.map(({ item }) => item) : []
 
   return (
     <Page>
@@ -54,7 +55,7 @@ const HomePage = () => {
       <Section title="Blogue">
         {blog.data ? (
           <ul>
-            {blog.data.posts.map(post => (
+            {posts.map(post => (
               <li key={post.id} className="py-lg border-b-2">
                 <PostListItem post={post} noImage />
               </li>
