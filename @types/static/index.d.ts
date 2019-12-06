@@ -12,6 +12,10 @@ declare module '*.png' {
   export default url
 }
 
+declare module '*.jpg' {
+  export default url
+}
+
 declare module '*.md' {
   export const attributes: { [key: string]: any }
 
