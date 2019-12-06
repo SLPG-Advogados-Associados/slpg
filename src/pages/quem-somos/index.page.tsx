@@ -1,7 +1,8 @@
 import React from 'react'
 import { Page } from '~app/components/Page'
-import { Button, Container, Heading, Icons } from '~design'
+import { Button, Container, Heading, Icons, Image } from '~design'
 import { Section } from '~app/components/Section'
+import equipe from './equipe.jpg'
 
 const sections = {
   apresentacao: {
@@ -70,13 +71,11 @@ const PostPage = () => (
           primeiros sócios fundadores, e se mantém até os dias atuais.
         </p>
 
-        <figure>
-          <img src="https://picsum.photos/1000/400" alt="" />
-
-          <figcaption>
-            Palácio Cruz e Sousa. Museu Histórico de Santa Catarina.
-          </figcaption>
-        </figure>
+        <Image
+          src={equipe}
+          altAsCaption
+          alt="Palácio Cruz e Sousa. Museu Histórico de Santa Catarina."
+        />
       </Section>
 
       <Section
