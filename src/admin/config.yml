@@ -38,3 +38,24 @@ collections:
             fields:
               - { label: 'Name', name: 'name', widget: 'string' }
               - { label: 'Description', name: 'description', widget: 'text' }
+
+  - label: 'Equipe'
+    name: 'team'
+    files:
+      - label: 'Equipe'
+        name: 'team'
+        file: 'src/admin/content/team.yml'
+        fields:
+          - label: 'Membros'
+            name: 'members'
+            widget: 'list'
+            fields:
+              - { label: 'Nome', name: 'name', widget: 'string' }
+              - { label: 'Cargo', name: 'role', widget: 'string' }
+              - { label: 'OAB', name: 'oab', widget: 'string' }
+              - {
+                  label: 'Foto',
+                  name: 'photo',
+                  widget: 'image',
+                  required: false,
+                }
