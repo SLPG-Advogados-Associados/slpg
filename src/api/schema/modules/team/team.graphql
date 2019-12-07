@@ -1,0 +1,13 @@
+type Member {
+  id: String!
+  slug: String!
+  name: String!
+  oab: String!
+  photo: String!
+  role: String!
+}
+
+extend type Query {
+  team: [Member!]!
+  member(id: String!): Member
+}
