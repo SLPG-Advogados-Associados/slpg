@@ -50,6 +50,11 @@ const variants = {
       background-color: ${t.theme('colors.aside')} !important;
     }
   `,
+
+  disabled: css`
+    opacity: 0.5;
+    pointer-events: none;
+  `,
 }
 
 const Button = styled(
