@@ -31,7 +31,16 @@ export type Member = {
 
 export type Mutation = {
    __typename?: 'Mutation',
+  contact: Scalars['Boolean'],
   status: Scalars['Boolean'],
+};
+
+
+export type MutationContactArgs = {
+  name: Scalars['String'],
+  phone?: Maybe<Scalars['String']>,
+  email?: Maybe<Scalars['String']>,
+  message: Scalars['String']
 };
 
 export type Post = {
@@ -282,6 +291,7 @@ export type MemberResolvers<ContextType = Context, ParentType extends ResolversP
 };
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  contact?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationContactArgs, 'name' | 'message'>>,
   status?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
 };
 

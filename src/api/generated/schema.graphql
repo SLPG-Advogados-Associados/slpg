@@ -15,6 +15,7 @@ type Member {
 }
 
 type Mutation {
+  contact(name: String!, phone: String, email: String, message: String!): Boolean!
   status: Boolean!
 }
 
