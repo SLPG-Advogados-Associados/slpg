@@ -5,6 +5,15 @@ type Image {
 
 scalar JSON
 
+type Member {
+  id: String!
+  slug: String!
+  name: String!
+  oab: String!
+  photo: String!
+  role: String!
+}
+
 type Mutation {
   status: Boolean!
 }
@@ -35,4 +44,6 @@ type Query {
   posts(limit: Int, start: Int): PostsResult!
   postById(id: String!): Post!
   version: String!
+  team: [Member!]!
+  member(id: String!): Member
 }
