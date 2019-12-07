@@ -1,5 +1,6 @@
 next.export.js
 next.config.js
+webpack.functions.js
 postcss.config.js
 tailwind.config.js
 graphql-codegen.js
