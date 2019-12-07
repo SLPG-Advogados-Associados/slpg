@@ -125,6 +125,19 @@ export type BLOG_QUERY = (
   ) }
 );
 
+export type CONTACT_MUTATION_VARIABLES = {
+  name: Scalars['String'],
+  message: Scalars['String'],
+  phone?: Maybe<Scalars['String']>,
+  email?: Maybe<Scalars['String']>
+};
+
+
+export type CONTACT_MUTATION = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'contact'>
+);
+
 export type BLOG_LATEST_QUERY_VARIABLES = {};
 
 
