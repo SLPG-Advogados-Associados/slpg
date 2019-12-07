@@ -22,6 +22,18 @@ collections:
       - { label: 'Corpo', name: 'body', widget: 'markdown' }
       - { label: 'Chamada', name: 'summary', widget: 'text' }
 
+  - name: 'team'
+    label: 'Equipe'
+    folder: src/admin/content/team
+    create: true
+    identifier_field: name
+    format: json
+    fields:
+      - { label: 'Nome', name: 'name', widget: 'string' }
+      - { label: 'Cargo', name: 'role', widget: 'string' }
+      - { label: 'OAB', name: 'oab', widget: 'string' }
+      - { label: 'Foto', name: 'photo', widget: 'image' }
+
   - name: 'pages'
     label: 'Pages'
     files:
