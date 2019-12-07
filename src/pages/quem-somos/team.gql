@@ -1,0 +1,12 @@
+#import "../../modules/blog/components/PostListItem/fragment.gql"
+
+query TEAM {
+  team {
+    id
+    slug
+    name
+    role
+    oab
+    photo
+  }
+}
