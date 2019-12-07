@@ -55,7 +55,7 @@ const semantic = {
 
 const functional = {
   colors: {
-    body: t('colors.gray.500'),
+    body: t('colors.gray.800'),
     text: t('colors.gray.800'),
     link: t('colors.primary'),
     'link--active': t('colors.black'),
