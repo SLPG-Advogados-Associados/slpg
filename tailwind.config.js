@@ -21,6 +21,10 @@ const initial = {
       500: '#17365C',
       700: '#072242',
     },
+
+    red: {
+      700: '#8f2c1d'
+    }
   },
 
   fontSize: {
@@ -50,6 +54,7 @@ const semantic = {
     silent: t('colors.gray.500'),
     primary: t('colors.blue.700'),
     'primary--active': t('colors.blue.500'),
+    danger: t('colors.red.700'),
   },
 }
 

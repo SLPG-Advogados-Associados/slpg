@@ -1,9 +1,13 @@
 import React from 'react'
+import * as Yup from 'yup'
 import { Formik, FormikProps } from 'formik'
-import { withGraphQL } from '~api'
+import BounceLoader from 'react-spinners/BounceLoader'
+import { useMutation } from '@apollo/react-hooks'
+import { withGraphQL, GT } from '~api'
 import { Page } from '~app/components/Page'
-import { Button, Heading, styled, t } from '~design'
+import { Button, Heading, styled, t, theme } from '~design'
 import { Section } from '~app/components/Section'
+import { CONTACT } from './contact.gql'
 
 const Map = styled.iframe.attrs({
   src:
@@ -18,13 +22,17 @@ const Map = styled.iframe.attrs({
 const Input = styled.input`
   width: 100%;
   padding: 0.85em 1em;
-  margin-bottom: 1rem;
   color: inherit;
   border: 1px solid ${t.theme('colors.border')};
   font-size: ${t.theme('fontSize.200')};
 `
 
 const TextArea = Input.withComponent('textarea')
+
+const Error: React.FC<{ error?: string }> = ({ error }) =>
+  error ? (
+    <span className="text-meta text-danger block p-2">{error}</span>
+  ) : null
 
 const initialValues = { name: '', phone: '', email: '', message: '' }
 
@@ -37,10 +45,19 @@ const input = (name: keyof Inputs, form: FormikProps<Inputs>) => ({
   onBlur: form.handleBlur,
 })
 
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required('Campo obrigatório'),
+  message: Yup.string().required('Campo obrigatório'),
+  email: Yup.string().email('E-mail invalido'),
+})
+
 const ContatoPage = () => {
-  const onSubmit = async () => {
-    // console.log({ values })
-  }
+  const [contact] = useMutation<
+    GT.CONTACT_MUTATION,
+    GT.CONTACT_MUTATION_VARIABLES
+  >(CONTACT)
+
+  const onSubmit = (variables: Inputs) => contact({ variables })
 
   return (
     <Page>
@@ -67,28 +84,47 @@ const ContatoPage = () => {
             formulário abaixo, ou pelo telefone <strong>(48) 3024-4166</strong>.
           </p>
 
-          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
             {form => (
               <form onSubmit={form.handleSubmit}>
-                <Input {...input('name', form)} placeholder="Nome" required />
-                <Input {...input('phone', form)} placeholder="Telefone" />
-                <Input {...input('email', form)} placeholder="E-mail" />
+                <label className="mb-4 block">
+                  <Input {...input('name', form)} placeholder="Nome" />
+                  <Error error={form.touched.name && form.errors.name} />
+                </label>
 
-                <TextArea
-                  {...input('message', form)}
-                  placeholder="Mensagem"
-                  rows={5}
-                  required
-                />
+                <label className="mb-4 block">
+                  <Input {...input('phone', form)} placeholder="Telefone" />
+                  <Error error={form.touched.name && form.errors.phone} />
+                </label>
 
-                {form.isSubmitting ? 'submitting' : 'not'}
+                <label className="mb-4 block">
+                  <Input {...input('email', form)} placeholder="E-mail" />
+                  <Error error={form.touched.name && form.errors.email} />
+                </label>
+
+                <label className="mb-4 block">
+                  <TextArea
+                    {...input('message', form)}
+                    placeholder="Mensagem"
+                    rows={5}
+                  />
+                  <Error error={form.touched.name && form.errors.message} />
+                </label>
 
                 <Button
                   type="submit"
                   className="w-full justify-center"
                   disabled={form.isSubmitting}
                 >
-                  Enviar
+                  {form.isSubmitting ? (
+                    <BounceLoader color={theme.colors.white} size={24} />
+                  ) : (
+                    'Enviar'
+                  )}
                 </Button>
               </form>
             )}
