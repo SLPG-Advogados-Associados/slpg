@@ -1,4 +1,5 @@
 const url: string
+const Obj: { [key: string]: any }
 
 declare module '*.svg' {
   export default url
@@ -16,8 +17,12 @@ declare module '*.jpg' {
   export default url
 }
 
+declare module '*.yml' {
+  export default Obj
+}
+
 declare module '*.md' {
-  export const attributes: { [key: string]: any }
+  export const attributes: Obj
 
   export const body: string
 }
