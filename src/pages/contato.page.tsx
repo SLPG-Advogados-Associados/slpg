@@ -1,7 +1,8 @@
 import React from 'react'
+import { Formik, FormikProps } from 'formik'
 import { withGraphQL } from '~api'
 import { Page } from '~app/components/Page'
-import { Heading, styled } from '~design'
+import { Button, Heading, styled, t } from '~design'
 import { Section } from '~app/components/Section'
 
 const Map = styled.iframe.attrs({
@@ -14,7 +15,33 @@ const Map = styled.iframe.attrs({
   width: 100%;
 `
 
+const Input = styled.input`
+  width: 100%;
+  padding: 0.85em 1em;
+  margin-bottom: 1rem;
+  color: inherit;
+  border: 1px solid ${t.theme('colors.border')};
+  font-size: ${t.theme('fontSize.200')};
+`
+
+const TextArea = Input.withComponent('textarea')
+
+const initialValues = { name: '', phone: '', email: '', message: '' }
+
+type Inputs = typeof initialValues
+
+const input = (name: keyof Inputs, form: FormikProps<Inputs>) => ({
+  name,
+  value: form.values[name],
+  onChange: form.handleChange,
+  onBlur: form.handleBlur,
+})
+
 const ContatoPage = () => {
+  const onSubmit = async () => {
+    // console.log({ values })
+  }
+
   return (
     <Page>
       <div className="bg-reverse text-white py-8">
@@ -39,6 +66,33 @@ const ContatoPage = () => {
             prestamos, por favor, entre em contato agora mesmo através do
             formulário abaixo, ou pelo telefone <strong>(48) 3024-4166</strong>.
           </p>
+
+          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+            {form => (
+              <form onSubmit={form.handleSubmit}>
+                <Input {...input('name', form)} placeholder="Nome" required />
+                <Input {...input('phone', form)} placeholder="Telefone" />
+                <Input {...input('email', form)} placeholder="E-mail" />
+
+                <TextArea
+                  {...input('message', form)}
+                  placeholder="Mensagem"
+                  rows={5}
+                  required
+                />
+
+                {form.isSubmitting ? 'submitting' : 'not'}
+
+                <Button
+                  type="submit"
+                  className="w-full justify-center"
+                  disabled={form.isSubmitting}
+                >
+                  Enviar
+                </Button>
+              </form>
+            )}
+          </Formik>
         </Section>
 
         <Section className="text-center text-textual-title">
