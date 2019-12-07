@@ -4,6 +4,7 @@ import { GT } from '~api'
 import * as core from './modules/core'
 import * as blog from './modules/blog'
 import * as team from './modules/team'
+import * as contact from './modules/contact'
 
 interface Module {
   typeDefs: string
@@ -15,7 +16,7 @@ interface Module {
   }
 }
 
-const modules: Module[] = [core, blog, team]
+const modules: Module[] = [core, blog, team, contact]
 
 const typeDefs = modules.map(mod => mod.typeDefs)
 const resolvers = {}

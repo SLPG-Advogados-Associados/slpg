@@ -1,0 +1,8 @@
+extend type Mutation {
+  contact(
+    name: String!
+    phone: String
+    email: String
+    message: String!
+  ): Boolean!
+}
