@@ -55,6 +55,7 @@
     "react-markdown": "^4.2.2",
     "react-no-ssr": "^1.1.0",
     "react-redux": "^5.1.2",
+    "react-spinners": "^0.6.1",
     "styled-components": "4.3.2",
     "styled-tools": "^1.7.1",
     "tailwind.macro": "^1.0.0-alpha.10",
