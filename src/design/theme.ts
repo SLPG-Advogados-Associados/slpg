@@ -3,7 +3,9 @@ import tailwind from '../../tailwind.config'
 
 const { theme } = resolve(tailwind) as {
   theme: {
-    colors: {}
+    colors: {
+      white: string
+    }
   }
 }
 
