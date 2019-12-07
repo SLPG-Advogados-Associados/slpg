@@ -44,6 +44,7 @@ module.exports = {
     process: false,
     require: false,
     console: false,
+    Promise: false,
   },
   rules: {
     'no-console': 'error',
