@@ -1,130 +1,130 @@
 members:
   - name: Luis Fernando Silva
     oab: OAB/SC 9582
-    photo: /public/admin/content/media/luisfernandosilva.jpg
+    photo: /admin/content/media/luis-fernando-silva.jpg
     role: Advogado
 
   - name: Marcio Locks Filho
     role: Advogado
     oab: OAB/SC 11208
-    photo: /public/admin/content/media/marcio-locks-filho.jpg
+    photo: /admin/content/media/marcio-locks-filho.jpg
 
   - name: Kazia Fernandes Palanowski
     role: Advogada
     oab: OAB/SC 14271
-    photo: /public/admin/content/media/kazia-fernandes-palanowski.jpg
+    photo: /admin/content/media/kazia-fernandes-palanowski.jpg
 
   - name: Gustavo Antônio Goulart
     role: Advogado
     oab: OAB/SC 19171
-    photo: /public/admin/content/media/gustavo-antônio-goulart.jpg
+    photo: /admin/content/media/gustavo-antonio-goulart.jpg
 
   - name: José Augusto Pedroso Alvarenga
     role: Advogado
     oab: OAB/SC 17577-B
-    photo: /public/admin/content/media/josé-augusto-pedroso-alvarenga.jpg
+    photo: /admin/content/media/jose-augusto-pedroso-alvarenga.jpg
 
   - name: Emmanuel Martins
     role: Advogado
     oab: OAB/SC 23080
-    photo: /public/admin/content/media/emmanuel-martins.jpg
+    photo: /admin/content/media/emmanuel-martins.jpg
 
   - name: Rafael dos Santos
     role: Advogado
     oab: OAB/SC 21951
-    photo: /public/admin/content/media/rafael-dos-santos.jpg
+    photo: /admin/content/media/rafael-dos-santos.jpg
 
   - name: Ana Maria Rosa
     role: Advogada
     oab: OAB/SC 5984
-    photo: /public/admin/content/media/ana-maria-rosa.jpg
+    photo: /admin/content/media/ana-maria-rosa.jpg
 
   - name: Taís Helena de O. Galliani Silva
     role: Advogada
     oab: OAB/SC 26425
-    photo: /public/admin/content/media/taís-helena-de-o.-galliani-silva.jpg
+    photo: /admin/content/media/tais-helena-de-o-galliani-silva.jpg
 
   - name: Mateus de Jesus Silva
     role: Agente Administrativo
     oab: ''
-    photo: /public/admin/content/media/mateus-de-jesus-silva.jpg
+    photo: /admin/content/media/mateus-de-jesus-silva.jpg
 
   - name: Thiago Lemos Locks
     role: Advogado
     oab: OAB/SC 29380
-    photo: /public/admin/content/media/thiago-lemos-locks.jpg
+    photo: /admin/content/media/thiago-lemos-locks.jpg
 
   - name: Marcos Vinicios Gonçalves
     role: Advogado
     oab: OAB/SC 50239
-    photo: /public/admin/content/media/marcos-vinicios-gonçalves.jpg
+    photo: /admin/content/media/marcos-vinicios-goncalves.jpg
 
   - name: Fernanda Poeta Costa
     role: Administradora
     oab: ''
-    photo: /public/admin/content/media/fernanda-poeta-costa.jpg
+    photo: /admin/content/media/fernanda-poeta-costa.jpg
 
   - name: Paula Paz
     role: Advogada
     oab: OAB/SC 35979
-    photo: /public/admin/content/media/paula-paz.jpg
+    photo: /admin/content/media/paula-paz.jpg
 
   - name: Paula Ávila Poli
     role: Advogada
     oab: OAB/SC 25865
-    photo: /public/admin/content/media/paula-ávila-poli.jpg
+    photo: /admin/content/media/paula-avila-poli.jpg
 
   - name: Tainara Cristina Jordão
     role: Agente Administrativo
     oab: ''
-    photo: /public/admin/content/media/tainara-cristina-jordão.jpg
+    photo: /admin/content/media/tainara-cristina-jordao.jpg
 
   - name: Grasiela Mary dos Santos Texeira
     role: Secretária
     oab: ''
-    photo: /public/admin/content/media/grasiela-mary-dos-santos-texeira.jpg
+    photo: /admin/content/media/grasiela-mary-dos-santos-texeira.jpg
 
   - name: Rivera da Silva Rodriguez Vieira
     role: Advogado
     oab: OAB/SC 41213-A
-    photo: /public/admin/content/media/rivera-da-silva-rodriguez-vieira.jpg
+    photo: /admin/content/media/rivera-da-silva-rodriguez-vieira.jpg
 
   - name: Luís Mateus Colombo
     role: Agente Administrativo
     oab: ''
-    photo: /public/admin/content/media/luís-mateus-colombo.jpg
+    photo: /admin/content/media/luis-mateus-colombo.jpg
 
   - name: Evandro Herculano
     role: Advogado
     oab: OAB/SC 41105
-    photo: /public/admin/content/media/evandro-herculano.jpg
+    photo: /admin/content/media/evandro-herculano.jpg
 
   - name: Guilherme Constantino Silva
     role: Assessor de Comunicação
     oab: ''
-    photo: /public/admin/content/media/guilherme-constantino-silva.jpg
+    photo: /admin/content/media/guilherme-constantino-silva.jpg
 
   - name: Fainy Moreira Inácio
     role: Agente Administrativo
     oab: ''
-    photo: /public/admin/content/media/fainy-moreira-inácio.jpg
+    photo: /admin/content/media/fainy-moreira-inacio.jpg
 
   - name: Andreia Luiza Versa
     role: Advogada
     oab: OAB/SC 32735
-    photo: /public/admin/content/media/andreia-luiza-versa.jpg
+    photo: /admin/content/media/andreia-luiza-versa.jpg
 
   - name: Bernardo Fóes Bianchini
     role: Advogado
     oab: OAB/SC 47118
-    photo: /public/admin/content/media/bernardo-fóes-bianchini.jpg
+    photo: /admin/content/media/bernardo-foes-bianchini.jpg
 
   - name: Johann Schuck
     role: Advogado
     oab: OAB/PI 14977
-    photo: /public/admin/content/media/johann-schuck.jpg
+    photo: /admin/content/media/johann-schuck.jpg
 
   - name: Gabriela Freitas
     role: Agente Administrativo
     oab: ''
-    photo: /public/admin/content/media/gabriela-freitas.jpg
+    photo: /admin/content/media/gabriela-freita.jpg
