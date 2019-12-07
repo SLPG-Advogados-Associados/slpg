@@ -153,6 +153,17 @@ export type BLOG_POST_QUERY = (
   ) }
 );
 
+export type TEAM_QUERY_VARIABLES = {};
+
+
+export type TEAM_QUERY = (
+  { __typename?: 'Query' }
+  & { team: Array<(
+    { __typename?: 'Member' }
+    & Pick<Member, 'id' | 'slug' | 'name' | 'role' | 'oab' | 'photo'>
+  )> }
+);
+
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
