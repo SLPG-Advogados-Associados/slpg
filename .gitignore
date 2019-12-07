@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# lambda
+/lambda/
+
 # production
 /build
 
