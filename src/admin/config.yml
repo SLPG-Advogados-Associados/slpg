@@ -51,8 +51,8 @@ collections:
               - { label: 'Name', name: 'name', widget: 'string' }
               - { label: 'Description', name: 'description', widget: 'text' }
 
-  - label: 'Equipe'
-    name: 'team'
+  - label: 'Configurações'
+    name: 'misc'
     files:
       - label: 'Equipe'
         name: 'team'
@@ -62,12 +62,12 @@ collections:
             name: 'members'
             widget: 'list'
             fields:
-              - { label: 'Nome', name: 'name', widget: 'string' }
-              - { label: 'Cargo', name: 'role', widget: 'string' }
-              - { label: 'OAB', name: 'oab', widget: 'string' }
               - {
-                  label: 'Foto',
-                  name: 'photo',
-                  widget: 'image',
-                  required: false,
+                  label: 'Referência',
+                  name: 'reference',
+                  widget: 'relation',
+                  collection: 'team',
+                  searchFields: ['name'],
+                  valueField: 'name',
+                  displayFields: ['name'],
                 }
