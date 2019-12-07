@@ -31,6 +31,11 @@ const config = {
       options: { mode: ['body'] }
     })
 
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      use: 'js-yaml-loader',
+    })
+
     // avoid trying to parse Flow files.
     config.module.rules.push({ test: /\.flow$/u, loader: 'ignore-loader' })
 
