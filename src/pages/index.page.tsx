@@ -38,13 +38,20 @@ const LocalMenuItem = styled(Button.withComponent('a'))`
   }
 `
 
-const MoreCard = styled(classed.article`px-md pb-md text-center`)`
+const MoreCard = styled.article`
   flex-grow: 1;
   flex-basis: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding: 0 0 ${t.theme('spacing.16')};
+  text-align: center;
+
+  @media screen and (min-width: ${t.theme('screens.lg')}) {
+    padding: 0 ${t.theme('spacing.8')} ${t.theme('spacing.16')};
+  }
 
   > img {
     max-width: 80%;
@@ -102,7 +109,7 @@ const HomePage = () => {
         className="bg-aside pb-12 clear"
         title="Saiba mais sobre o Escritório"
       >
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row">
           <MoreCard>
             <img
               src="/jurisdiction.png"
