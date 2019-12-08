@@ -1,23 +1,32 @@
 import React from 'react'
-import styled from 'styled-components'
 import { theme } from 'styled-tools'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { withGraphQL, GT } from '~api'
-import { Container, ItemTitle, Button, classed } from '~design'
+import { Container, ItemTitle, Button, styled, classed, t } from '~design'
 import { PostListItem } from '~modules/blog'
 import { list as expertises } from '~modules/expertise'
 import { useQuery } from '@apollo/react-hooks'
 import { BLOG_LATEST } from './index.gql'
 
 const Welcome = styled.div`
-  height: 450px;
-  padding: 60px;
+  height: 28rem;
+  padding: 3.75rem 1.5rem;
   font-size: ${theme('fontSize.heading')};
   text-align: center;
   color: white;
   background: url('/background.jpg') center no-repeat;
   background-size: cover;
+
+  .phone {
+    display: block;
+    font-weight: bold;
+  }
+
+  @media screen and (min-width: ${t.theme('screens.lg')}) {
+    display: block;
+    padding: 3.75rem;
+  }
 `
 
 const MoreCard = styled(classed.article`px-md pb-md text-center`)`
@@ -47,7 +56,9 @@ const HomePage = () => {
         <p className="mb-4">
           Nosso trabalho é defender os direitos da classe trabalhadora.
         </p>
-        <p className="mb-4">Ligue: (48) 3024-4166</p>
+        <p className="mb-4">
+          Ligue: <span className="phone">(48) 3024-4166</span>
+        </p>
       </Welcome>
 
       <nav className="bg-button">
