@@ -3,7 +3,7 @@ backend:
   repo: lucasconstantino/slpg
   branch: netlify
 media_folder: src/admin/content/media
-public_folder: /public/admin/content/media
+public_folder: /admin/content/media
 publish_mode: editorial_workflow
 collections:
   - name: 'blog'
