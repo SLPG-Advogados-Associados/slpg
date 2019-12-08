@@ -156,7 +156,10 @@ const ContatoPage = () => {
             Catarina
           </p>
 
-          <p className="font-bold mb-0">Telefone/FAX: (48) 3024-4166</p>
+          <p className="font-bold mb-0">
+            Telefone/FAX:{' '}
+            <span className="block lg:inline">(48) 3024-4166</span>
+          </p>
         </Section>
 
         <Map />

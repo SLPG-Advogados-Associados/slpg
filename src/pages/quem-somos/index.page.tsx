@@ -1,9 +1,10 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Page } from '~app/components/Page'
 import { Button, Container, Heading, Icons, Image, styled, t } from '~design'
+import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
+import { ContactCTA } from '~app/components/ContactCTA'
 import equipe from './equipe.jpg'
 import { TEAM } from './team.gql'
 
@@ -198,12 +199,7 @@ const QuemSomosPage = () => {
         </Section>
       </main>
 
-      <div className="bg-reverse text-white text-center pt-10 pb-12">
-        <p className="text-800">Alguma dúvida sobre seus direitos?</p>
-        <Button as="a" href="/contato" big cta>
-          Entre em contato <Icons.ArrowRight className="ml-2" />
-        </Button>
-      </div>
+      <ContactCTA />
     </Page>
   )
 }

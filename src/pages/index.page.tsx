@@ -1,12 +1,13 @@
 import React from 'react'
 import { theme } from 'styled-tools'
-import { Page } from '~app/components/Page'
-import { Section } from '~app/components/Section'
+import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Container, ItemTitle, Button, styled, classed, t } from '~design'
+import { Container, ItemTitle, Button, styled, t } from '~design'
 import { PostListItem } from '~modules/blog'
 import { list as expertises } from '~modules/expertise'
-import { useQuery } from '@apollo/react-hooks'
+import { Page } from '~app/components/Page'
+import { Section } from '~app/components/Section'
+import { ContactCTA } from '~app/components/ContactCTA'
 import { BLOG_LATEST } from './index.gql'
 
 const Welcome = styled.div`
@@ -156,6 +157,8 @@ const HomePage = () => {
           </MoreCard>
         </div>
       </Section>
+
+      <ContactCTA />
     </Page>
   )
 }
