@@ -1,10 +1,11 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Button, Container, Heading, Icons, Image, styled, t } from '~design'
+import { Heading, Image, styled, t } from '~design'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { ContactCTA } from '~app/components/ContactCTA'
+import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
 import equipe from './equipe.jpg'
 import { TEAM } from './team.gql'
 
@@ -67,15 +68,19 @@ const QuemSomosPage = () => {
         <Heading noMargins>Quem Somos</Heading>
       </div>
 
-      <nav className="bg-button sticky top-0">
-        <Container className="text-center border-t-2 border-reverse-border">
-          {sectionsList.map(({ href, label }) => (
-            <Button as="a" key={href} href={href} title={label} alt={label}>
-              {label}
-            </Button>
-          ))}
-        </Container>
-      </nav>
+      <LocalNav className="top-0 lg:sticky">
+        {sectionsList.map(({ href, label }) => (
+          <LocalNavButton
+            as="a"
+            key={href}
+            href={href}
+            title={label}
+            alt={label}
+          >
+            {label}
+          </LocalNavButton>
+        ))}
+      </LocalNav>
 
       <main>
         <Section

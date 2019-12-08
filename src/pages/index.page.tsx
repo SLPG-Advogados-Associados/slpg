@@ -8,6 +8,7 @@ import { list as expertises } from '~modules/expertise'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { ContactCTA } from '~app/components/ContactCTA'
+import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
 import { BLOG_LATEST } from './index.gql'
 
 const Welcome = styled.div`
@@ -27,15 +28,6 @@ const Welcome = styled.div`
   @media screen and (min-width: ${t.theme('screens.lg')}) {
     display: block;
     padding: 3.75rem;
-  }
-`
-
-const LocalMenuItem = styled(Button.withComponent('a'))`
-  display: flex;
-  justify-content: center;
-
-  @media screen and (min-width: ${t.theme('screens.lg')}) {
-    display: inline-flex;
   }
 `
 
@@ -78,15 +70,13 @@ const HomePage = () => {
         </p>
       </Welcome>
 
-      <nav className="bg-button">
-        <Container className="text-center" fullOnMobile>
-          {expertises.map(({ id, href, label }) => (
-            <LocalMenuItem key={id} href={href} title={label} alt={label}>
-              {label}
-            </LocalMenuItem>
-          ))}
-        </Container>
-      </nav>
+      <LocalNav>
+        {expertises.map(({ id, href, label }) => (
+          <LocalNavButton key={id} href={href} title={label} alt={label}>
+            {label}
+          </LocalNavButton>
+        ))}
+      </LocalNav>
 
       <Section title="Blogue">
         {blog.data ? (
