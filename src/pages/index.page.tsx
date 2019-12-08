@@ -24,6 +24,14 @@ const MoreCard = styled(classed.article`px-md pb-md text-center`)`
   flex-grow: 1;
   flex-basis: 0;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > img {
+    max-width: 80%;
+  }
+
   ${ItemTitle} {
     padding: 1.5rem 0 2rem;
   }
@@ -77,35 +85,42 @@ const HomePage = () => {
         <div className="flex">
           <MoreCard>
             <img
-              src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
-              alt="Logotipo do CNASP"
+              src="/jurisdiction.png"
+              alt="Mapa do Brasil com estados onde atuamos em destaque"
             />
             <ItemTitle>Atuação em outros estados da federação</ItemTitle>
-            <Button as="a" href="/atuacao-em-outros-estados-da-federacao">
+            <Button
+              className="mt-auto"
+              as="a"
+              href="/atuacao-em-outros-estados-da-federacao"
+            >
               Saiba Mais
             </Button>
           </MoreCard>
 
           <MoreCard>
-            <img
-              src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
-              alt="Logotipo do CNASP"
-            />
+            <img src="/superior-courts.png" alt="Logotipo do CNASP" />
             <ItemTitle>Atuação nos Tribunais Superiores</ItemTitle>
-            <Button as="a" href="/atuacao-nos-tribunais-superiores">
+            <Button
+              className="mt-auto"
+              as="a"
+              href="/atuacao-nos-tribunais-superiores"
+            >
               Saiba Mais
             </Button>
           </MoreCard>
 
           <MoreCard>
             <img
-              src="https://www.slpgadvogados.adv.br/sites/default/files/cnasp.jpg"
+              src="/cnasp.jpg"
               alt="Logotipo do CNASP"
+              className="rounded-full"
             />
             <ItemTitle>
               O Coletivo Nacional de Advogados de Servidores Públicos
             </ItemTitle>
             <Button
+              className="mt-auto"
               as="a"
               href="o-coletivo-nacional-de-advogados-de-servidores-publicos"
             >

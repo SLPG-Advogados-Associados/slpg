@@ -33,6 +33,10 @@ a:focus {
   @apply text-link--active;
 }
 
+img {
+  display: inline-block;
+}
+
 .clear::before,
 .clear::after,
 .clear-top::before,
