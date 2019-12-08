@@ -7,6 +7,7 @@ import { list as expertises } from '~modules/expertise'
 const FooterColumn = styled(classed.div`px-md`)`
   flex-grow: 1;
   flex-basis: 0;
+  margin-bottom: 2rem;
 `
 
 const FooterSocial = styled.ul`
@@ -24,17 +25,17 @@ const FooterMenu = styled.ul`
   }
 `
 
-const FooterLogo = styled(Logo)`
+const FooterLogoAnchor = styled.a`
   max-width: 320px;
 `
 
 const Footer = () => (
   <footer>
-    <Container className="flex py-12 text-200">
+    <Container className="flex pt-12 text-200 flex-col lg:flex-row">
       <FooterColumn className="text-center">
-        <a href="/" title="Início" className="inline-block">
-          <FooterLogo />
-        </a>
+        <FooterLogoAnchor href="/" title="Início" className="inline-block">
+          <Logo />
+        </FooterLogoAnchor>
         <p>OAB/SC 270/97</p>
         <Button small>Receba nossos informativos</Button>
 
@@ -66,7 +67,7 @@ const Footer = () => (
         </FooterSocial>
       </FooterColumn>
 
-      <FooterColumn>
+      <FooterColumn className="text-center lg:text-left">
         <AsideTitle>Áreas de atuação</AsideTitle>
 
         <FooterMenu>
@@ -80,7 +81,7 @@ const Footer = () => (
         </FooterMenu>
       </FooterColumn>
 
-      <FooterColumn>
+      <FooterColumn className="text-center lg:text-left">
         <AsideTitle>Menu</AsideTitle>
 
         <FooterMenu>
