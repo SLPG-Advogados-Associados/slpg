@@ -3,7 +3,7 @@ title: >-
   Reforma sindical - PEC 196/2019 pode trazer novas dificuldades para o
   funcionamento de sindicatos
 date: 2019-12-03T19:24:47.626Z
-image: /admin/content/media/first.jpg
+image: /public/admin/content/media/luis-fernando-silva.jpg
 summary: >-
   Nos últimos meses os meios de comunicação têm anunciado que o Governo Federal
   estaria para enviar ao Congresso Nacional uma proposta de modificação no art.
