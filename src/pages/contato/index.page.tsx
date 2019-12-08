@@ -150,7 +150,7 @@ const ContatoPage = () => {
           </Formik>
         </Section>
 
-        <Section className="text-center text-textual-title">
+        <Section className="text-center lg:text-textual-title">
           <p>
             Rua Nunes Machado, 94 - 9º andar Centro, Florianópolis - Santa
             Catarina
