@@ -39,7 +39,7 @@ const AlertProvider: React.FC = ({ children }) => (
     position={positions.TOP_RIGHT}
     timeout={5000}
     offset={'2rem'}
-    transition={transitions.FADE}
+    transition={transitions.SCALE}
   >
     {children}
   </Provider>

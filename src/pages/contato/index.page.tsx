@@ -2,10 +2,11 @@ import React from 'react'
 import * as Yup from 'yup'
 import { Formik, FormikProps } from 'formik'
 import BounceLoader from 'react-spinners/BounceLoader'
+import { useAlert } from 'react-alert'
 import { useMutation } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
 import { Page } from '~app/components/Page'
-import { Button, Heading, styled, t, theme } from '~design'
+import { Button, Heading, AlertContent, styled, t, theme } from '~design'
 import { Section } from '~app/components/Section'
 import { CONTACT } from './contact.gql'
 
@@ -52,12 +53,30 @@ const validationSchema = Yup.object().shape({
 })
 
 const ContatoPage = () => {
+  const alert = useAlert()
+
   const [contact] = useMutation<
     GT.CONTACT_MUTATION,
     GT.CONTACT_MUTATION_VARIABLES
   >(CONTACT)
 
-  const onSubmit = (variables: Inputs) => contact({ variables })
+  const onSubmit = async (variables: Inputs) => {
+    try {
+      await contact({ variables })
+
+      alert.success(
+        <AlertContent title="Sucesso!">
+          Formulário de contato enviado com sucesso
+        </AlertContent>
+      )
+    } catch {
+      alert.error(
+        <AlertContent title="Não foi possível enviar o formulário">
+          Tente novamente mais tarde
+        </AlertContent>
+      )
+    }
+  }
 
   return (
     <Page>
