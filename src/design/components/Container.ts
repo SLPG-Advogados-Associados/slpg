@@ -5,12 +5,14 @@ const fullOnMobile = css`
   padding: 0;
 
   @media screen and (min-width: ${t.theme('screens.lg')}) {
-    padding: 0 ${t.theme('spacing.4')};
+    padding: 0 ${t.theme('spacing.8')};
   }
 `
 
-const Container = styled(classed.div`container mx-auto`)`
-  padding: 0 ${t.theme('spacing.4')};
+const Container = styled(classed.div`container mx-auto`)<{
+  fullOnMobile?: boolean
+}>`
+  padding: 0 ${t.theme('spacing.8')};
   ${t.ifProp('fullOnMobile', fullOnMobile)}
 `
 
