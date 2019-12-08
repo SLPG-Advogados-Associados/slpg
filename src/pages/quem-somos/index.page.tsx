@@ -39,7 +39,7 @@ const SectionTitle: React.FC<{ href: string; label: string }> = ({
 const TeamList = styled.ul`
   display: grid;
   margin: 0 -1.5rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   text-align: center;
 
   li {
@@ -56,6 +56,22 @@ const TeamList = styled.ul`
     display: block;
     margin-top: 0.5rem;
     font-size: ${t.theme('fontSize.meta')};
+  }
+
+  @media screen and (min-width: ${t.theme('screens.sm')}) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media screen and (min-width: ${t.theme('screens.md')}) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media screen and (min-width: ${t.theme('screens.lg')}) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  @media screen and (min-width: ${t.theme('screens.xl')}) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 `
 
