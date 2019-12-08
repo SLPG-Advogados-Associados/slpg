@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm-run-all --parallel build:app build:lambda",
     "build:app": "next build",
-    "build:lambda": "netlify-lambda build src/lambda",
+    "build:lambda": "netlify-lambda build --config ./webpack.functions.js src/lambda",
     "dev": "npm-run-all --parallel dev:app dev:lambda",
     "dev:app": "node server.js",
     "dev:lambda": "netlify-lambda serve --config ./webpack.functions.js src/lambda",
