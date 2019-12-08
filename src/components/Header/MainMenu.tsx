@@ -29,7 +29,7 @@ const main: Array<MenuItem> = [
   },
   {
     id: 'o-que-fazemos',
-    href: '',
+    href: '#',
     label: 'O que fazemos',
     items: expertise,
   },
