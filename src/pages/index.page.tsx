@@ -29,6 +29,15 @@ const Welcome = styled.div`
   }
 `
 
+const LocalMenuItem = styled(Button.withComponent('a'))`
+  display: flex;
+  justify-content: center;
+
+  @media screen and (min-width: ${t.theme('screens.lg')}) {
+    display: inline-flex;
+  }
+`
+
 const MoreCard = styled(classed.article`px-md pb-md text-center`)`
   flex-grow: 1;
   flex-basis: 0;
@@ -62,11 +71,11 @@ const HomePage = () => {
       </Welcome>
 
       <nav className="bg-button">
-        <Container className="text-center">
+        <Container className="text-center" fullOnMobile>
           {expertises.map(({ id, href, label }) => (
-            <Button as="a" key={id} href={href} title={label} alt={label}>
+            <LocalMenuItem key={id} href={href} title={label} alt={label}>
               {label}
-            </Button>
+            </LocalMenuItem>
           ))}
         </Container>
       </nav>
