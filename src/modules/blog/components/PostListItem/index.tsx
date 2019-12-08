@@ -1,14 +1,19 @@
 import React from 'react'
 import dayjs from 'dayjs'
-import styled from 'styled-components'
 import { GT } from '~api'
-import { ItemTitle } from '~design'
+import { ItemTitle, styled } from '~design'
 
 const Anchor = styled.a`
   &:hover,
   &:focus {
     opacity: 0.7;
   }
+`
+
+const Photo = styled.img`
+  max-height: 50vw;
+  width: 100%;
+  object-fit: cover;
 `
 
 const dateClass = `
@@ -39,8 +44,8 @@ const PostListItem: React.FC<{
         </aside>
 
         {post.image && !noImage ? (
-          <aside className="w-48 mr-8 flex-shrink-0">
-            <img src={post.image.url} />
+          <aside className="flex-shrink-0 my-4 lg:my-0 lg:mr-8 lg:w-48">
+            <Photo src={post.image.url} />
           </aside>
         ) : null}
 
