@@ -1,48 +1,13 @@
 import React from 'react'
 import { propEq } from 'ramda'
 import { styled, css, t, classnames } from '~design'
-import { list as expertise } from '~modules/expertise'
 
-interface MenuItem {
+export interface MenuItem {
   id: string
   href: string
   label: string
   items?: MenuItem[]
 }
-
-const main: Array<MenuItem> = [
-  {
-    id: 'quem-somos',
-    href: '/quem-somos',
-    label: 'Quem Somos',
-    items: [
-      {
-        id: 'quem-somos#apresentacao',
-        href: '/quem-somos#apresentacao',
-        label: 'Apresentação',
-      },
-      {
-        id: 'quem-somos#compromissos-e-principios',
-        href: '/quem-somos#compromissos-e-principios',
-        label: 'Compromissos e princípios',
-      },
-      {
-        id: 'quem-somos#historia',
-        href: '/quem-somos#historia',
-        label: 'História',
-      },
-      { id: 'quem-somos#equipe', href: '/quem-somos#equipe', label: 'Equipe' },
-    ],
-  },
-  {
-    id: 'o-que-fazemos',
-    href: '',
-    label: 'O que fazemos',
-    items: expertise,
-  },
-  { id: 'blogue', href: '/blogue', label: 'Blogue' },
-  { id: 'contato', href: '/contato', label: 'Contato' },
-]
 
 const MenuRaw: React.FC<{
   depth?: number
@@ -143,6 +108,4 @@ const Menu = styled(MenuRaw)`
   ${t.if(depth(1), subFirst)}
 `
 
-const MainMenu = () => <Menu depth={0} items={main} />
-
-export { MainMenu }
+export { Menu }

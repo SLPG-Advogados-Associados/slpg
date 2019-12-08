@@ -6,6 +6,7 @@ export * from './hooks/useModal'
 // components
 export * from './components/Body'
 export * from './components/Logo'
+export * from './components/Menu'
 export * from './components/Icons'
 export * from './components/Image'
 export * from './components/Modal'
