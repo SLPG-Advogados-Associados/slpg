@@ -60,24 +60,6 @@ const ContatoPage = () => {
     GT.CONTACT_MUTATION_VARIABLES
   >(CONTACT)
 
-  const onSubmit = async (variables: Inputs) => {
-    try {
-      await contact({ variables })
-
-      alert.success(
-        <AlertContent title="Sucesso!">
-          Formulário de contato enviado com sucesso
-        </AlertContent>
-      )
-    } catch {
-      alert.error(
-        <AlertContent title="Não foi possível enviar o formulário">
-          Tente novamente mais tarde
-        </AlertContent>
-      )
-    }
-  }
-
   return (
     <Page>
       <div className="bg-reverse text-white py-8">
@@ -106,7 +88,25 @@ const ContatoPage = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={async (variables, form) => {
+              try {
+                await contact({ variables })
+
+                form.resetForm({})
+
+                alert.success(
+                  <AlertContent title="Sucesso!">
+                    Formulário de contato enviado com sucesso
+                  </AlertContent>
+                )
+              } catch {
+                alert.error(
+                  <AlertContent title="Não foi possível enviar o formulário">
+                    Tente novamente mais tarde
+                  </AlertContent>
+                )
+              }
+            }}
           >
             {form => (
               <form onSubmit={form.handleSubmit}>
