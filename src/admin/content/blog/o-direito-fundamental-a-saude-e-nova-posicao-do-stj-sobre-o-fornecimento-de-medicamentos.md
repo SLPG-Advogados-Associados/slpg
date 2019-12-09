@@ -2,7 +2,7 @@
 title: 'O direito fundamental à saúde e a nova posição do STJ sobre o fornecimento de medicamentos não contemplados na lista do SUS'
 date: '2018-05-08T16:16:49-03:00'
 summary: 'O Superior Tribunal de Justiça concluiu, no último dia 25 de abril, o julgamento do recurso repetitivo REsp nº 1.657.156 – RJ, que determina quais são os requisitos para que o Poder Judiciário determine o fornecimento de medicamentos fora da lista do Sistema Único de Saúde.'
-image: '/admin/content/media/Superior-Tribunal-de-Justi%C3%A7a1.jpg'
+image: '/admin/content/media/Superior-Tribunal-de-Justiça1.jpg'
 ---
 
 **_Por Marcos Vinicios Gonçalves (OAB/SC 50239), advogado membro do SLPG._**

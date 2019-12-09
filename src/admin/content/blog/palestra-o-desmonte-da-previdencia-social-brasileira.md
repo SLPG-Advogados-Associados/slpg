@@ -2,7 +2,7 @@
 title: 'Palestra: O desmonte da previdência social brasileira'
 date: '2019-03-18T10:50:08-03:00'
 summary: 'Assista a palestra proferida por Luis Fernando Silva na Comissão Permanente de Direitos Humanos, do Senado Federal.'
-image: '/admin/content/media/fernando%202.png'
+image: '/admin/content/media/luis-fernando-silva.jpg'
 ---
 
 Hoje, dia 18 de março, ocorreu na Comissão Permanente de Direitos Humanos (CDH) do Senado Federal uma mesa de debates sobre a reforma da previdência.

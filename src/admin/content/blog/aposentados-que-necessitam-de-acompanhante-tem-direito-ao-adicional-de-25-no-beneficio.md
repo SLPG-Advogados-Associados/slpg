@@ -2,7 +2,7 @@
 title: 'Aposentados que necessitam de acompanhante têm direito ao adicional de 25% no benefício'
 date: '2019-02-11T15:00:47-02:00'
 summary: 'O segurado do Regime Geral de Previdência que vier a depender de acompanhamento constante, estando já aposentado por tempo de contribuição ou por idade, para garantir o seu direito necessitará ajuizar ação para impor ao INSS a prestação que já se confirmou devida.'
-image: '/admin/content/media/adult_elderly_face_man_old_person_side_view-1174740.jpg%21d.jpg'
+image: '/admin/content/media/adult_elderly_face_man_old_person_side_view-1174740.jpg!d.jpg'
 ---
 
 _**Por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG**_
