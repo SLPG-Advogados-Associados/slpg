@@ -5,6 +5,7 @@ import * as core from './modules/core'
 import * as blog from './modules/blog'
 import * as team from './modules/team'
 import * as contact from './modules/contact'
+import * as newsletter from './modules/newsletter'
 
 interface Module {
   typeDefs: string
@@ -16,7 +17,7 @@ interface Module {
   }
 }
 
-const modules: Module[] = [core, blog, team, contact]
+const modules: Module[] = [core, blog, team, contact, newsletter]
 
 const typeDefs = modules.map(mod => mod.typeDefs)
 const resolvers = {}
