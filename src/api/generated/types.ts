@@ -110,6 +110,18 @@ export type PostListItemFragment = (
   )> }
 );
 
+export type SUBSCRIBE_MUTATION_VARIABLES = {
+  name: Scalars['String'],
+  email: Scalars['String'],
+  interests: Array<Scalars['String']>
+};
+
+
+export type SUBSCRIBE_MUTATION = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'subscribe'>
+);
+
 export type BLOG_QUERY_VARIABLES = {
   limit: Scalars['Int'],
   start: Scalars['Int']
