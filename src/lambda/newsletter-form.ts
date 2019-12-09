@@ -14,9 +14,7 @@ interface ParsedBody {
 }
 
 const audience = 'bee915ad21'
-const mailchimp = new Mailchimp(
-  process.env.MAILCHIMP_API_KEY || '8845a706e03473ea51ecb42b51aad5eb-us4'
-)
+const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY)
 
 const failure = { statusCode: 400, body: 'failed' }
 
