@@ -9,7 +9,7 @@ import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { BLOG } from './blogue.gql'
 
-const PageButton = styled(Button.withComponent('as')).attrs({
+const PageButton = styled(Button.withComponent('a')).attrs({
   small: true,
   outline: true,
 })`

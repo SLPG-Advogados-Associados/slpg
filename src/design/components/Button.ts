@@ -64,6 +64,7 @@ const Button = styled(
 )`
   display: inline-flex;
   padding: 1.175em 1.875em 1.05em;
+  align-items: center;
 
   ${t.variants(variants)}
 `
