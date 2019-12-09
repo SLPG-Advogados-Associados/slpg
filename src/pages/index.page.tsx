@@ -2,7 +2,7 @@ import React from 'react'
 import { theme } from 'styled-tools'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Container, ItemTitle, Button, styled, t } from '~design'
+import { ItemTitle, Button, styled, t } from '~design'
 import { PostListItem } from '~modules/blog'
 import { list as expertises } from '~modules/expertise'
 import { Page } from '~app/components/Page'
@@ -100,7 +100,7 @@ const HomePage = () => {
         className="bg-aside pb-12 clear"
         title="Saiba mais sobre o Escritório"
       >
-        <div className="flex flex-col lg:flex-row">
+        <div className="md:flex md:flex-col lg:flex-row">
           <MoreCard>
             <img
               src="/jurisdiction.png"
