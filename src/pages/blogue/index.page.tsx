@@ -9,7 +9,10 @@ import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { BLOG } from './blogue.gql'
 
-const PageButton = styled(Button).attrs({ small: true, outline: true })`
+const PageButton = styled(Button.withComponent('as')).attrs({
+  small: true,
+  outline: true,
+})`
   margin: 0 0.5em;
 `
 
@@ -24,7 +27,7 @@ const BloguePage = () => {
   const posts = blog.data ? blog.data.posts.items.map(({ item }) => item) : []
   const hasNext = posts.length > 6
 
-  const goToPage = (to: number) => router.push(`/blogue${to ? `/${to}` : ''}`)
+  const pagePath = (to: number) => `/blogue${to ? `/${to}` : ''}`
 
   return (
     <Page>
@@ -45,18 +48,16 @@ const BloguePage = () => {
 
         <footer className="my-20 flex justify-center">
           {page > 0 ? (
-            <PageButton onClick={() => goToPage(page - 1)}>
+            <PageButton href={pagePath(page - 1)}>
               <Icons.ArrowLeft className="mr-2" />
               Anterior
             </PageButton>
           ) : null}
 
-          {page > 0 ? (
-            <PageButton onClick={() => goToPage(0)}>Início</PageButton>
-          ) : null}
+          {page > 0 ? <PageButton href={pagePath(0)}>Início</PageButton> : null}
 
           {hasNext ? (
-            <PageButton onClick={() => goToPage(page + 1)}>
+            <PageButton href={pagePath(page + 1)}>
               Próximo
               <Icons.ArrowRight className="ml-2" />
             </PageButton>
