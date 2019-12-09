@@ -2,7 +2,7 @@
 title: 'Portaria do Governo Temer retrocede ao dificultar identificação do trabalho escravo'
 date: '2017-10-19T17:48:13-02:00'
 summary: 'Foi publicada no Diário Oficial da União nesta segunda (16 de outubro) a Portaria nº 1.129/2017. Tal ato normativo, que dispõe sobre os conceitos de trabalho forçado, jornada exaustiva e condições análogas à de escravo para fins de concessão de seguro-desemprego ao trabalhador que vier a ser resgatado em fiscalização do Ministério do Trabalho, dificulta, em muito, a atuação do Ministério Público do Trabalho no combate ao trabalho escravo contemporâneo.'
-image: 'http://localhost/sites/default/files/793097358_8f0f9f2e2c_b.jpg'
+image: '/admin/content/media/793097358_8f0f9f2e2c_b.jpg'
 ---
 
 _Por **Johann Schuck**, advogado (OAB/PI 14.977) e membro do SLPG_

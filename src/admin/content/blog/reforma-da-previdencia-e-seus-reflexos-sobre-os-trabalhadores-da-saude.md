@@ -2,7 +2,7 @@
 title: 'A Reforma da Previdência e seus reflexos sobre os trabalhadores da saúde'
 date: '2017-12-19T13:53:19-02:00'
 summary: 'Conforme temos acompanhado todos os dias pela mídia, o Governo Federal tenta a todo custo aprovar, ainda este ano ou nos primeiros meses do próximo, sua proposta de Reforma da Previdência, na versão denominada de “Emenda aglutinativa global”, que entra-se na Câmara dos Deputados. Para tanto vem fazendo uso de uma forte campanha publicitária através da qual objetiva colocar os servidores públicos na condição de “privilegiados”, ao tempo em que afirma que as mudanças em debate não afetarão os trabalhadores do setor privado.'
-image: 'http://localhost/sites/default/files/palestra.jpg'
+image: '/admin/content/media/palestra.jpg'
 ---
 
 _Por Luis Fernando Silva - OAB/SC 9582 - Advogado/Socio do SLPG_

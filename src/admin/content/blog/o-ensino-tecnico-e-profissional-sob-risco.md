@@ -2,7 +2,7 @@
 title: 'O ensino técnico e profissional sob risco'
 date: '2018-10-24T13:41:47-02:00'
 summary: 'Ocorrido nos dias 25 e 26 de setembro, o Seminário "Desafios e perspectivas no itinerário de formação técnica e profissional no ensino médio", promovido pela Secretaria de Educação Profissional e Tecnológica (SETEC) do Ministério da Educação (MEC), teve o objetivo de, dentre outras pautas, debater temas como a Base Nacional Comum Curricular (BNCC), a implementação do quinto itinerário de formação técnica e profissional, e as novas diretrizes curriculares para a educação profissional. A intenção manifestada pelo governo no referido evento é de fato muito preocupante, na medida em que aponta para a mercantilização do ensino médio e promove sério desvirtuamento de conceitos elementares para a compreensão do ensino e, por consequência, para a adoção de políticas voltadas a sua promoção e ao seu aprimoramento.'
-image: 'http://localhost/sites/default/files/seminario_setec_2509.jpeg'
+image: '/admin/content/media/seminario_setec_2509.jpeg'
 ---
 
 _**Por Emmanuel Martins (OAB/SC 23080), advogado/sócio do SLPG**_

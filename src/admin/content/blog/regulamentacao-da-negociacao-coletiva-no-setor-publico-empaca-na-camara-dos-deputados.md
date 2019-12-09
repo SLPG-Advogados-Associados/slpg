@@ -2,7 +2,7 @@
 title: 'Regulamentação da negociação coletiva no setor público “empaca” na Câmara dos Deputados'
 date: '2017-10-23T15:43:48-02:00'
 summary: 'Em 26 de setembro passado a Comissão de Constituição e Justiça e de Cidadania, da Câmara dos Deputados, aprovou o Projeto de Lei (PL) nº 3.831/2015 que regulamenta a negociação coletiva no setor público, considerado por muitos como importante passo no sentido da democratização das relações de trabalho no serviço público.'
-image: 'http://localhost/sites/default/files/greve.jpg'
+image: '/admin/content/media/greve.jpg'
 ---
 
 _Por **Luís Fernando Silva**, advogado (OAB/SC 9582) e membro do SLPG_

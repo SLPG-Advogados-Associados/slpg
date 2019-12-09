@@ -2,7 +2,7 @@
 title: 'Súmula 608 do STJ: Código de Defesa do Consumidor não se aplica mais aos contratos firmados com planos de saúde geridos na modalidade de autogestão'
 date: '2018-05-30T14:20:14-03:00'
 summary: 'Os usuários dos planos de saúde da GEAP, da CAPESESP, da ASSEFAZ não podem mais fazer valer os seus direitos a partir do que definem as normas de defesa do consumidor.'
-image: 'http://localhost/sites/default/files/pleno-stj2.jpg'
+image: '/admin/content/media/pleno-stj2.jpg'
 ---
 
 **_Por Paula Ávila Poli (OAB/SC 25685), advogada e membro do SLPG._**

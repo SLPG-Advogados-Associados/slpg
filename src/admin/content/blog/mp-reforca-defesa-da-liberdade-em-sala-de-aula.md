@@ -2,7 +2,7 @@
 title: 'MP reforça a defesa da liberdade em sala de aula'
 date: '2018-11-22T16:32:41-02:00'
 summary: 'Na reunião com as entidades, o MPE e o MPF reafirmaram a defesa dos princípios constitucionais da liberdade de cátedra e deixaram aberto um permanente canal de diálogo para receber denúncias de eventuais casos de assédio contra os docentes das instituições públicas de ensino.'
-image: 'http://localhost/sites/default/files/ministerio-publico-reforca-a-defesa-da-liberdade-em-sala-de-aula1542221670141.png'
+image: '/admin/content/media/ministerio-publico-reforca-a-defesa-da-liberdade-em-sala-de-aula1542221670141.png'
 ---
 
 Representantes de diversas entidades de trabalhadores da educação de Santa Catarina, entre elas a Seção Sindical IFSC do Sinasefe, voltaram ao Ministério Público Federal na última segunda-feira, dia 12/11, para dar continuidade às ações que visam proteger os direitos constitucionais e as liberdades dos professores em sala de aula. Além da Procuradoria Federal dos Direitos do Cidadão, o encontro contou também com a participação do Ministério Público Estadual de SC.

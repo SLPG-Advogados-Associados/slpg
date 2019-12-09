@@ -2,7 +2,7 @@
 title: 'O contrato de trabalho intermitente à luz da Constituição Federal de 1988: uma análise de possíveis inconstitucionalidades'
 date: '2018-03-20T09:48:34-03:00'
 summary: 'A Reforma Trabalhista promoveu por meio da Lei 13.467/2017 inúmeras mudanças na Consolidação das Leis do Trabalho – CLT. Dentre as várias mudanças, houve a introdução de um novo modelo contratual: o contrato de trabalho intermitente.'
-image: 'http://localhost/sites/default/files/800px-Carteiradetrabalho.jpg'
+image: '/admin/content/media/800px-Carteiradetrabalho.jpg'
 ---
 
 **_Por Johann Schuck_ _(OAB/PI 14.977)\_\_, advogado membro do SLPG._**

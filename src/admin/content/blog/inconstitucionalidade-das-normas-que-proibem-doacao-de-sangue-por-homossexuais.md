@@ -2,7 +2,7 @@
 title: 'A inconstitucionalidade das normas que proíbem a doação de sangue por homossexuais'
 date: '2017-11-23T13:29:38-02:00'
 summary: 'O Relator do caso, Ministro Edson Fachin, considerou a restrição como discriminatória, levantando posições ao questionar se tal regra fere o princípio da dignidade humana, da cidadania e se é razoável e proporcional ao seu objetivo (diminuir e erradicar o vírus do HVI). Segundo o Fachin “Orientação sexual não contamina ninguém, o preconceito sim”.'
-image: 'http://localhost/sites/default/files/6282870313_96d1a6fa03_b.jpg'
+image: '/admin/content/media/6282870313_96d1a6fa03_b.jpg'
 ---
 
 _Por Anderson Valdir Gomes, integrante do SLPG._

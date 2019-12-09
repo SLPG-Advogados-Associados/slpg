@@ -2,7 +2,7 @@
 title: 'Caso da deputada eleita Ana Caroline Campagnolo'
 date: '2019-01-30T11:28:19-02:00'
 summary: 'TJ-SC autoriza deputada a criar canal de denúncia no Facebook contra suposta “doutrinação ideológica” nas escolas em detrimento da proteção efetiva de crianças e adolescentes contra a exploração política.'
-image: 'http://localhost/sites/default/files/concurso-tj-sc-735x400.jpg'
+image: '/admin/content/media/concurso-tj-sc-735x400.jpg'
 ---
 
 **_Por Emmanuel Martins (OAB/SC 23080), advogado/sócio do SLPG_**

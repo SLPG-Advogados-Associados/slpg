@@ -2,7 +2,7 @@
 title: 'Advogados(as) do SLPG integrarão comissões da OAB-SC'
 date: '2019-05-07T16:59:53-03:00'
 summary: 'O Escritório SLPG Advogados Associados tem a satisfação de informar que 4 dos(as) seus(suas) integrantes foram nomeados(as) pela Ordem dos Advogados do Brasil (OAB) – Seção Santa Catarina, para compor algumas das suas Comissões Permanentes.'
-image: 'http://localhost/sites/default/files/article.jpg'
+image: '/admin/content/media/article.jpg'
 ---
 
 O Escritório SLPG Advogados Associados tem a satisfação de informar que 4 dos(as) seus(suas) integrantes foram nomeados(as) pela Ordem dos Advogados do Brasil (OAB) – Seção Santa Catarina, para compor algumas das suas Comissões Permanentes.

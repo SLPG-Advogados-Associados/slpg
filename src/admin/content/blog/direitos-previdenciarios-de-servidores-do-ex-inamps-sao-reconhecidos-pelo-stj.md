@@ -2,7 +2,7 @@
 title: 'Direitos previdenciários de servidores do ex INAMPS são reconhecidos pelo STJ'
 date: '2019-04-18T13:01:39-03:00'
 summary: 'Foi provido em 28/03/19 o Recurso Especial nº 1.546.818 que reconheceu o enquadramento de servidores do ex INAMPS (celetistas) no Regime Jurídico Único de que trata a Lei nº 8.112/90, vinculando-os ao Regime Próprio de Previdência dos Servidores da União. Referido processo foi ajuizado pelo Sindicato dos Trabalhadores em Saúde e Previdência do Serviço Público Federal no Estado de Santa Catarina (SINDPREVS-SC), para qual o SLPG Advogados presta assessoria.'
-image: 'http://localhost/sites/default/files/inamps-foto-octavio-cardoso-19-07-2018-08-29-28_1.jpg'
+image: '/admin/content/media/inamps-foto-octavio-cardoso-19-07-2018-08-29-28_1.jpg'
 ---
 
 Foi provido em 28/03/19 o Recurso Especial nº 1.546.818 que reconheceu o enquadramento de servidores do ex INAMPS (celetistas) no Regime Jurídico Único de que trata a Lei nº 8.112/90, vinculando-os ao Regime Próprio de Previdência dos Servidores da União. Referido processo foi ajuizado pelo Sindicato dos Trabalhadores em Saúde e Previdência do Serviço Público Federal no Estado de Santa Catarina (SINDPREVS-SC), para qual o SLPG Advogados presta assessoria.

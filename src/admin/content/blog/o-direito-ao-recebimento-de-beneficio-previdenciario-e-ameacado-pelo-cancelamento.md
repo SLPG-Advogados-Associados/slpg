@@ -2,7 +2,7 @@
 title: 'O direito ao recebimento de benefício previdenciário é ameaçado pelo cancelamento automático'
 date: '2018-04-17T11:01:02-03:00'
 summary: 'O governo federal, por meio da Secretaria de Previdência Social, órgão vinculado ao Ministério da Fazenda, toma medida que pressupõe a existência de fraudes ou má-fé dos segurados e pode determinar o cancelamento automático de benefícios caso os segurados não se apresentem para reavaliação pericial e comprovação de que se mantêm incapazes para o trabalho.'
-image: 'http://localhost/sites/default/files/previdencia.jpg'
+image: '/admin/content/media/previdencia.jpg'
 ---
 
 _**Por Rivera Vieira (OAB/SC 41.213), advogado membro do SLPG.**_

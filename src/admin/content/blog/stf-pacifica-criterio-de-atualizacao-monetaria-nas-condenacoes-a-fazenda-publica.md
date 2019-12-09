@@ -2,7 +2,7 @@
 title: 'STF pacifica critério de atualização monetária nas condenações à Fazenda Pública'
 date: '2017-11-09T13:34:05-02:00'
 summary: 'No dia 20/09/2017, o Supremo Tribunal Federal concluiu o julgamento da controvérsia acerca do índice de atualização monetária a ser aplicado às condenações impostas à Fazenda Pública, autuada naquela Corte sob o Tema 810 (Recurso Extraordinário 870.947/SE).'
-image: 'http://localhost/sites/default/files/calculator-1680905_960_720.jpg'
+image: '/admin/content/media/calculator-1680905_960_720.jpg'
 ---
 
 _Por Evandro Herculano, advogado (OAB/SC 41105) e membro do SLPG_

@@ -2,7 +2,7 @@
 title: 'STJ reconhece a devolução ao erário por desconto em folha dos servidores'
 date: '2018-09-26T14:17:35-03:00'
 summary: 'Para evitar maiores prejuízos aos servidores públicos que tenham de devolver ao erário valores recebidos indevidamente STJ reconhece "possibilidade do desconto na remuneração, provento ou pensão, mediante prévia comunicação, admitido o parcelamento no interesse do devedor" como preferível a inscrição em dívida ativa.'
-image: 'http://localhost/sites/default/files/22132352112_4d7c12724c_b.jpg'
+image: '/admin/content/media/22132352112_4d7c12724c_b.jpg'
 ---
 
 _**Por Rafael dos Santos (OAB/SC 21951), advogado/sócio do SLPG**_

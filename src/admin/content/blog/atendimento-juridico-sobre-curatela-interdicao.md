@@ -2,7 +2,7 @@
 title: 'Atendimento jurídico sobre curatela ("interdição")'
 date: '2019-03-27T14:06:09-03:00'
 summary: 'A curatela, termo atualmente adequado para se referir à antiga “interdição”, é um assunto do Direito de Família que leva com frequência os clientes a buscarem orientação jurídica nos escritórios de advocacia, a fim de esclarecimento de suas dúvidas sobre o melhor encaminhamento para a proteção da pessoa a ser curatelada, visando assim resguardar os direitos desta.'
-image: 'http://localhost/sites/default/files/people-2991882_960_720.jpg'
+image: '/admin/content/media/people-2991882_960_720.jpg'
 ---
 
 _**Por Ana Maria Rosa (OAB/SC 5984), advogada/sócia do SLPG.**_

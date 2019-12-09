@@ -2,7 +2,7 @@
 title: 'Homenagem aos 100 anos da primeira Greve Geral do Brasil'
 date: '2017-08-02T14:04:56-03:00'
 summary: 'O ano de 2017 marca o aniversário de 100 anos da primeira Greve Geral ocorrida no Brasil, em 1917, e que se constituiu num dos mais importantes momentos de conscientização da classe trabalhadora brasileira.'
-image: 'http://localhost/sites/default/files/image_large_0.jpeg'
+image: '/admin/content/media/image_large_0.jpeg'
 ---
 
 O ano de 2017 marca o aniversário de 100 anos da primeira Greve Geral ocorrida no Brasil, em 1917, e que se constituiu num dos mais importantes momentos de conscientização da classe trabalhadora brasileira.

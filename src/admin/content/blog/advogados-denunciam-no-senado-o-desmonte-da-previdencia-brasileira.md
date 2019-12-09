@@ -2,7 +2,7 @@
 title: 'Advogados denunciam no Senado o desmonte da previdência brasileira'
 date: '2019-03-15T14:48:32-03:00'
 summary: 'Luis Fernando Silva, advogado fundador do SLPG, juntamente com outros advogados integrantes do CNASP - Coletivo Nacional de Advogados de Servidores Públicos, estiveram ontem (quinta-feira, 14 de março) reunidos com o senador pelo Rio Grande do Sul, Paulo Paim, a quem expuseram as suas críticas à reforma da previdência proposta pelo governo Bolsonaro (PEC nº 6/2019), em especial no que diz respeito a tentativa de acabar com a previdência pública brasileira, substituindo-a por um modelo de capitalização junto aos bancos, a exemplo do que foi feito no Chile em 1982.'
-image: 'http://localhost/sites/default/files/Paulo%20Paim.png'
+image: '/admin/content/media/Paulo%20Paim.png'
 ---
 
 Luis Fernando Silva, advogado fundador do SLPG, juntamente com outros advogados integrantes do CNASP - Coletivo Nacional de Advogados de Servidores Públicos, estiveram ontem (quinta-feira, 14 de março) reunidos com o senador pelo Rio Grande do Sul, Paulo Paim, a quem expuseram as suas críticas à reforma da previdência proposta pelo governo Bolsonaro (PEC nº 6/2019), em especial no que diz respeito a tentativa de acabar com a previdência pública brasileira, substituindo-a por um modelo de capitalização junto aos bancos, a exemplo do que foi feito no Chile em 1982.
