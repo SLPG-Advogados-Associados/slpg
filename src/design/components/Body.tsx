@@ -9,7 +9,7 @@ const origin =
 
 // Use `_blank` for external links.
 const linkTarget = (url: string) =>
-  parse(url).origin === origin ? '_self' : '_blank'
+  parse(url, origin).origin === origin ? '_self' : '_blank'
 
 const Body: React.FC<{ content: string }> = ({ content, ...props }) => (
   <HTMLContent {...props}>
