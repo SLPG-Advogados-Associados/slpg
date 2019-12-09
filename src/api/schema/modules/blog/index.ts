@@ -1,15 +1,19 @@
 import { GT } from '~api'
 import { blog } from '~content'
 import typeDefs from './blog.graphql'
+import { a, b } from '~app/design/lib/classed-tags'
 
 // `./slug-of-post.md` becomes `slug-of-post`
 const pathToSlug = (id: string) => id.slice(2).slice(0, -3)
 
-const posts = blog.keys().map(path => {
-  const slug = pathToSlug(path)
-  const { attributes, body } = blog(path)
-  return { ...attributes, body, slug, id: slug }
-})
+const posts = blog
+  .keys()
+  .map(path => {
+    const slug = pathToSlug(path)
+    const { attributes, body } = blog(path)
+    return { ...attributes, body, slug, id: slug }
+  })
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
 
 const load = (id: string) => posts.find(post => post.id === id)
 
