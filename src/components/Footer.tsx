@@ -8,6 +8,7 @@ import {
   Logo,
   Icons,
   Modal,
+  ModalClose,
   classed,
   useModal,
 } from '~design'
@@ -55,7 +56,8 @@ const Footer = () => {
           </Button>
 
           <Modal isOpen={newsletter.isOpen} onRequestClose={newsletter.close}>
-            <div className="bg-white text-left border">
+            <div className="bg-white text-left border py-6 relative">
+              <ModalClose onRequestClose={newsletter.close} />
               <NewsletterForm onSuccess={newsletter.close} />
             </div>
           </Modal>

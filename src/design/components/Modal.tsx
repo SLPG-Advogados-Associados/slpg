@@ -2,6 +2,7 @@ import React, { useEffect, useState, StyleHTMLAttributes } from 'react'
 import { animated, config, useSpring } from 'react-spring'
 import classnames from 'classnames'
 import keycode from 'keycode'
+import { Icons } from './Icons'
 import { styled } from '../lib/styled'
 
 type Props = StyleHTMLAttributes<HTMLDivElement> & {
@@ -103,4 +104,12 @@ const Modal: React.FC<Props> = ({
   )
 }
 
-export { Modal }
+const ModalClose: React.FC<{ onRequestClose?: () => void }> = ({
+  onRequestClose,
+}) => (
+  <button className="absolute top-0 right-0 p-4" onClick={onRequestClose}>
+    <Icons.X />
+  </button>
+)
+
+export { Modal, ModalClose }
