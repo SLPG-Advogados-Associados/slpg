@@ -1,7 +1,6 @@
 import { GT } from '~api'
 import { blog } from '~content'
 import typeDefs from './blog.graphql'
-import { a, b } from '~app/design/lib/classed-tags'
 
 // `./slug-of-post.md` becomes `slug-of-post`
 const pathToSlug = (id: string) => id.slice(2).slice(0, -3)
