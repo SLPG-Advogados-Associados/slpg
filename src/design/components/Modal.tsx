@@ -20,7 +20,7 @@ const Content = styled(animated.div)`
   & > * {
     pointer-events: auto;
     max-height: 100vh;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 `
 
@@ -88,7 +88,7 @@ const Modal: React.FC<Props> = ({
       style={{ ...style, backgroundColor }}
     >
       <button
-        className={classnames('absolute w-full h-full', {
+        className={classnames('absolute left-0 w-full h-full', {
           'pointer-events-none': isBlocking,
         })}
         onClick={onRequestClose}
