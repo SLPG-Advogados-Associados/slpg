@@ -4,14 +4,14 @@ import typeDefs from './blog.graphql'
 
 // `./slug-of-post.md` becomes `slug-of-post`
 const pathToSlug = (id: string) => id.slice(2).slice(0, -3)
-const slugToPath = (slug: string) => `./${slug}.md`
 
-const posts = blog.keys().map(pathToSlug)
-
-const load = (slug: string) => {
-  const { attributes, body } = blog(slugToPath(slug))
+const posts = blog.keys().map(path => {
+  const slug = pathToSlug(path)
+  const { attributes, body } = blog(path)
   return { ...attributes, body, slug, id: slug }
-}
+})
+
+const load = (id: string) => posts.find(post => post.id === id)
 
 const Query: GT.QueryResolvers = {
   posts: (_root, { limit = 10, start = 0 }) => {
@@ -36,14 +36,10 @@ const Image: GT.ImageResolvers = {
   url: image => image,
 }
 
-const PostsResult: GT.PostsResultResolvers = {
-  items: ({ items }: { items: string[] }) => items.map(id => ({ id })),
-}
-
 const PostsResultItem: GT.PostsResultItemResolvers = {
-  item: ({ id }) => load(id),
+  item: post => post,
 }
 
-const resolvers = { Query, Image, PostsResult, PostsResultItem }
+const resolvers = { Query, Image, PostsResultItem }
 
 export { typeDefs, resolvers }
