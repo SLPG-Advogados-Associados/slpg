@@ -1,0 +1,13 @@
+---
+title: 'Nota pública de adesão e apoio à Greve Geral de 14 de junho'
+date: '2019-06-12T13:50:40-03:00'
+summary: 'O Escritório SLPG vem a público informar que decidiu aderir à Greve Geral marcada para o próximo dia 14 de junho, convocada pelo movimento sindical, estudantes e outras organizações da sociedade civil contra o desmonte da previdência pública brasileira, proposto pela PEC nº 6, de 2019.'
+---
+
+O Escritório SLPG vem a público informar que decidiu aderir à Greve Geral marcada para o próximo dia 14 de junho, convocada pelo movimento sindical, estudantes e outras organizações da sociedade civil contra o desmonte da previdência pública brasileira, proposto pela PEC nº 6, de 2019.
+
+Tal decisão procura não só guardar coerência com nossa atuação profissional e compromisso com a luta pelos direitos dos trabalhadores de maneira geral, mas também objetiva colocar o Escritório mais claramente ao lado daqueles que resistem contra as diversas medidas governamentais adotadas desde a posse do atual Presidente da República, marcadas pela clara intenção de privilegiar o capital financeiro nacional e internacional em detrimento dos direitos e do bem estar do nosso povo.
+
+Neste contexto, as recentes denúncias jornalísticas envolvendo alguns integrantes do Ministério Público Federal e um ex-Juiz Federal, a nosso ver vieram tornar clara a existência de um verdadeiro complô, que tem sua embrionária origem num movimento orquestrado desde cedo pelos setores mais conservadores da nossa sociedade - com forte apoio das poucas famílias que controlam a grande mídia nacional -, e que objetivava permitir a ascensão de um governo de extrema direita no Brasil, capaz de dar curso à entrega do patrimônio público do País aos interesses espúrios do capital, como fazem prova a entrega da exploração do petróleo do pré-sal a preços vis; os graves cortes financeiros operados na educação e na pesquisa; as propostas de destruição do SUS; a drástica redução de despesas na área social, dentre tantas outras, e que culminam com a escandalosa e criminosa proposta de destruição do sistema de Seguridade Social duramente conquistado na Constituição de 1988, substituindo o sistema público de previdência e assistência social por um sistema de capitalização no qual só os banqueiros lucram, enquanto os trabalhadores têm cada vez mais reduzida qualquer possibilidade de obtenção futura de uma proteção social justa, indispensável á sobrevivência por ocasião da velhice ou da perda da capacidade laborativa.
+
+É por tudo isso que lutamos, e é por isso que nos juntamos a milhões de outros trabalhadores brasileiros para bradar alto: **NÃO AO DESMONTE DA PREVIDÊNCIA PÚBLICA. NÃO À APROVAÇÃO DA PEC Nº 6/2019!**

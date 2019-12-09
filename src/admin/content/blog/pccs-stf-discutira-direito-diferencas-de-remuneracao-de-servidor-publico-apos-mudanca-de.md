@@ -1,0 +1,13 @@
+---
+title: 'PCCS: STF discutirá direito a diferenças de remuneração de servidor público após a mudança de celetista para estatutário'
+date: '2017-07-05T14:53:44-03:00'
+summary: 'O STF - Supremo Tribunal Federal reconheceu que há “repercussão geral” (ou seja, de que trata-se de matéria de possível repercussão em todo o País), a discussão jurídica travada nos autos do Recurso Extraordinário nº 1023750, cujo objeto é a manutenção, a partir da aprovação do RJU (Regime Jurídico Único, de dezembro de 1990), do valor correspondente ao reajuste de 47,11% sobre a parcela “PCCS”, direito que fora reconhecido em favor dos servidores do Ministério da Saúde em Santa Catarina (ex-INAMPS), em Ação Trabalhista coletiva, à época movida pelo SINDPREVS/SC junto à Justiça do Trabalho.'
+---
+
+O STF - Supremo Tribunal Federal **[reconheceu](http://www.stf.jus.br/portal/cms/verNoticiaDetalhe.asp?idConteudo=348734)** que há “repercussão geral” (ou seja, de que trata-se de matéria de possível repercussão em todo o País), a discussão jurídica travada nos autos do **[Recurso Extraordinário nº 1023750](http://www.stf.jus.br/portal/processo/verProcessoAndamento.asp?numero=1023750&classe=RE&origem=AP&recurso=0&tipoJulgamento=M)**, cujo objeto é a manutenção, a partir da aprovação do RJU (Regime Jurídico Único, de dezembro de 1990), do valor correspondente ao reajuste de 47,11% sobre a parcela “PCCS”, direito que fora reconhecido em favor dos servidores do Ministério da Saúde em Santa Catarina (ex-INAMPS), em Ação Trabalhista coletiva, à época movida pelo SINDPREVS/SC junto à Justiça do Trabalho.
+
+No Recurso que chegou ao STF a União Federal alega que o servidor não tem direito de permanecer recebendo o percentual de 47,11% a partir de janeiro de 1991, enquanto os advogados do servidor interessado alegam que se isto não ocorresse haveria redução remuneratória, vedada pela Constituição, sendo esta a base do pedido.
+
+Há centenas de processos idênticos organizados pelo SINDPREVS/SC desde março de 2015, e que agora aguardam o desfecho do Recurso Extraordinário nº 1023750 para saber como o STF passará a tratar do assunto.
+
+O Ministro-Relator deste processo era Luís Roberto Barroso, que sustentava a inexistência de repercussão geral sobre a matéria e defendia que o Supremo não admitisse o Recurso protocolizado pela União, o que implicaria na manutenção da anterior decisão prolatada pelo STJ - Superior Tribunal de Justiça, que era favorável aos servidores. Como sua tese não alcançou o número mínimo no Plenário VIrtual, o tema vai ao PLenário do STF, devendo ser designado novo Relator(a, sorteado(a) só entre aqueles que votaram na tese contrária ou se abstiveram, a quem caberá providenciar a pauta para o julgamento final.

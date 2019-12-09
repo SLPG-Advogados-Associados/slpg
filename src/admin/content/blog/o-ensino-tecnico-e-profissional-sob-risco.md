@@ -1,0 +1,44 @@
+---
+title: 'O ensino técnico e profissional sob risco'
+date: '2018-10-24T13:41:47-02:00'
+summary: 'Ocorrido nos dias 25 e 26 de setembro, o Seminário "Desafios e perspectivas no itinerário de formação técnica e profissional no ensino médio", promovido pela Secretaria de Educação Profissional e Tecnológica (SETEC) do Ministério da Educação (MEC), teve o objetivo de, dentre outras pautas, debater temas como a Base Nacional Comum Curricular (BNCC), a implementação do quinto itinerário de formação técnica e profissional, e as novas diretrizes curriculares para a educação profissional. A intenção manifestada pelo governo no referido evento é de fato muito preocupante, na medida em que aponta para a mercantilização do ensino médio e promove sério desvirtuamento de conceitos elementares para a compreensão do ensino e, por consequência, para a adoção de políticas voltadas a sua promoção e ao seu aprimoramento.'
+image: 'http://localhost/sites/default/files/seminario_setec_2509.jpeg'
+---
+
+_**Por Emmanuel Martins (OAB/SC 23080), advogado/sócio do SLPG**_
+
+Quem milita junto com os profissionais da educação – e o SLPG Advogados está nesta toada desde 1997 – sabe que a partir dos governos de Lula e Dilma o ensino técnico e profissional experimentou crescimento vertiginoso, com a criação de novos estabelecimentos e ampliação daqueles já existentes, acompanhada de novas contratações e aumento da remuneração dos profissionais.
+
+A criação dos institutos federais, em 2008, através da Lei nº 11.892/2008, e a estruturação do Plano de Carreira e Cargos de Magistério do Ensino Básico, Técnico e Tecnológico, promovida pela Lei nº 11.784/2008, são as medidas a se destacar nesta área.
+
+É bem verdade que o modelo inaugurado em 2008 também merece críticas, sobretudo, em relação à forma pouco planejada com que se deu a expansão da rede, não sendo difícil encontrar, ainda, estabelecimentos que funcionam em instalações inadequadas e incompatíveis com a qualidade que se espera à luz do princípio da eficiência.
+
+O fato é que todo o avanço observado até aqui pode estar em perigo diante das propostas defendidas pelo governo de Temer em seminário recentemente realizado em Brasília-DF, a partir do qual ficou clara intenção de reduzir o ensino técnico e profissional aos tempos de Fernando Henrique Cardoso, em que a política governamental relativa ao ensino profissionalizante se voltava ao fortalecimento (inclusive com injeção de recursos públicos) do Sistema S, em detrimento das então Escolas Técnicas e Agrotécnicas Federais.
+
+Ocorrido nos dias 25 e 26 de setembro, o Seminário "Desafios e perspectivas no itinerário de formação técnica e profissional no ensino médio", promovido pela Secretaria de Educação Profissional e Tecnológica (SETEC) do Ministério da Educação (MEC), teve o objetivo de, dentre outras pautas, debater temas como a Base Nacional Comum Curricular (BNCC), a implementação do quinto itinerário de formação técnica e profissional, e as novas diretrizes curriculares para a educação profissional.
+
+A intenção manifestada pelo governo no referido evento é de fato muito preocupante, na medida em que aponta para a mercantilização do ensino médio e promove sério desvirtuamento de conceitos elementares para a compreensão do ensino e, por consequência, para a adoção de políticas voltadas a sua promoção e ao seu aprimoramento.
+
+Expediente do Fórum dos Dirigentes de Ensino (FDE), órgão de assessoramento do Conselho Nacional das Instituições da Rede Federal de Educação Profissional, Científica e Tecnológica (CONIF), em **[documento datado de 04/10/2018](http://www.ifpb.edu.br/noticias/2018/10/pre-divulga-comunicado-ao-ifpb/oficio-no-12_carta-conif_eventoept.pdf)**, dirigido ao Conselho, retrata bem as intenções do MEC e a forma açodada com que o governo pretende tratar o futuro do ensino fundamental e da educação profissional, científica e tecnológica do país.
+
+Para ilustrar a arbitrariedade e o descompromisso do governo em relação aos processos democráticos e participativos, em seu documento o Fórum lembra que o processo que redundou nas _“\_\_Diretrizes Curriculares Nacionais para Educação Profissional Técnica de Nível Médio (Resolução CNE/CEB nº06 de 2012) levou mais de três anos para ser concluída, exigindo um amplo e profundo debate com os diferentes atores da educação profissional”._
+
+Agora o que pretende o governo é encaminhar as novas Diretrizes Nacionais Curriculares do Ensino Médio (em substituição à **[Resolução CNE/CEB 2/2012](http://portal.mec.gov.br/index.php?option=com_docman&view=download&alias=9864-rceb002-12&Itemid=30192)**) e, em breve, encaminhar, também, as novas Diretrizes Nacionais Curriculares da Educação Profissional Técnica de Nível Médio (em substituição à **[Resolução CNE/CEB 6/2012](http://portal.mec.gov.br/index.php?option=com_docman&view=download&alias=11663-rceb006-12-pdf&category_slug=setembro-2012-pdf&Itemid=30192)**). Tudo isso em meio à implantação da Reforma do Ensino Médio, sem sequer ter a Base Nacional Comum Curricular aprovada.
+
+E para dar a impressão de que a proposta contou com a participação popular, o MEC lançou uma consulta, que ficou aberta entre os dias 9 e 23/10, o que, convenhamos, está muito longe de constituir um processo democrático e sério, no qual seja valorizado e viabilizado o amplo debate com a participação dos principais atores da educação.
+
+Chama a atenção, nesse sentido, o fato do Seminário ter contato com a presença ativa de representantes do Sistema Nacional de Aprendizagem ou simplesmente Sistema S (Senai, Sesi, Senac, Sesc, Senat e Senar), e não contar com a representação dos trabalhadores da educação, como, por exemplo, o Sindicato Nacional dos Servidores Federais da Educação Básica, Profissional e Tecnológica (SINASEFE), e o Sindicato Nacional dos Docentes das Instituições de Ensino Superior (ANDES), este último por também representar, em algumas instituições federais de ensino, os docentes da educação básica, profissional e tecnologia.
+
+A exclusão dos trabalhadores deste processo os têm colocado à margem das discussões sobre o futuro da educação profissional, gerando naturais incertezas e inseguranças. Entre os servidores das carreiras da educação federal, por exemplo, já se manifesta uma preocupação generalizada com fechamentos de campi com baixo número de alunos, com cortes de salário que envolveriam, inclusive, a extinção da Retribuição por Titulação - RT ou do Reconhecimento de Saberes e Competências - RSC, dentre outros prejuízos que de fato merecem atenção na medida em que ameaças concretas se apresentarem no cenário. Especificamente entre os professores, há, ainda, a preocupação de que sejam cedidos para atuação em escolas dos municípios.
+
+Seja como for, o fato é que embora neste momento estejam sendo apresentados sem qualquer outro elemento concreto, todos esses assuntos merecem atenção. Desde já, porém, é possível anteciparmos algumas conclusões, como, por exemplo:
+
+1. que de acordo com a jurisprudência os servidores públicos não têm direito adquirido a regime jurídico, logo, mediante lei de iniciativa do Presidente da República aprovada pelo Congresso Nacional, poderá haver a extinção de parcelas, inclusive da RT e da RSC;
+
+2. que a Constituição Federal garante em seu art. 37, inciso XV, a irredutibilidade remuneratória, de modo em caso de eventual extinção de parcela salarial, o valor nominal correspondente à parcela extinta deverá ser mantido no contracheque, ainda que sob forma de Vantagem Pessoal Nominalmente Identificada; e
+
+3. que embora seja garantida a manutenção do valor nominal, a transformação de parcelas salariais de natureza específica em VPNI, em regra, implica em desvincular a rubrica de sua natureza original, ficando seu valor sujeito não mais aos critérios de reajustes originais, mas tão somente ao reajuste geral da remuneração.
+
+No mais, é preciso não perder de vista a Emenda Constitucional nº 95/2016, que deverá impactar os investimentos em saúde e educação até 2036. Isso porque o regime fiscal inaugurado pela referida EC estabelece que o teto anual de gastos nessas duas áreas sociais, a partir de 2018 e até 2036, devem ficar limitados ao orçamento disponível em 2017, acrescido da inflação de cada ano. Gastos com pessoal e que envolvem não só os aumentos reais de salário (que estão proibidos), mas também a contratação de novos servidores, também são implicações da mencionada emenda.
+
+Diante de tal quadro é preciso unir forças pela revogação da EC 95/2016, mas também para impedir a implementação do projeto defendido pela equipe de Temer no seminário em questão. E em relação a este último, é fundamental não só a pressão dos movimentos estudantis e sindicais, mas também a cobrança por posturas mais ativas e combativas dos dirigentes de ensino, os quais devem satisfação de seus mandatos, uma vez que foram eleitos, queremos crer, sob o compromisso de defender a educação pública, gratuita e de qualidade.
