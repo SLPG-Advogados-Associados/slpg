@@ -1,9 +1,10 @@
 import React from 'react'
+import { withGraphQL } from '~api'
 import { Page } from '~app/components/Page'
 import { Heading, HTMLContent } from '~design'
 import { Section } from '~app/components/Section'
 
-const PostPage = () => (
+const StaticPage = () => (
   <Page>
     <div className="bg-reverse text-white py-8">
       <Heading noMargins>Atuação em outros estados da federação</Heading>
@@ -101,4 +102,4 @@ const PostPage = () => (
   </Page>
 )
 
-export default PostPage
+export default withGraphQL(StaticPage)

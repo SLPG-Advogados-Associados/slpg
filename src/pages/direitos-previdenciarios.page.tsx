@@ -1,4 +1,5 @@
 import React from 'react'
+import { withGraphQL } from '~api'
 import { Page } from '~app/components/Page'
 import { map as expertises, Expertise } from '~modules/expertise'
 import { Heading, HTMLContent } from '~design'
@@ -6,7 +7,7 @@ import { Section } from '~app/components/Section'
 
 const expertise = expertises[Expertise.SocialSecurity]
 
-const PostPage = () => (
+const StaticPage = () => (
   <Page>
     <div className="bg-reverse text-white py-8">
       <Heading noMargins>{expertise.label}</Heading>
@@ -159,4 +160,4 @@ const PostPage = () => (
   </Page>
 )
 
-export default PostPage
+export default withGraphQL(StaticPage)
