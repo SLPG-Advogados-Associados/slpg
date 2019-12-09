@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import Mailchimp from 'mailchimp-api-v3'
+import md5 from 'md5'
 
 interface LambdaEvent {
   body: string
@@ -20,19 +21,21 @@ const mailchimp = new Mailchimp(
 const failure = { statusCode: 400, body: 'failed' }
 
 export async function handler({ body, httpMethod }: LambdaEvent) {
+  const { email, name, interests: interestsList }: ParsedBody = JSON.parse(body)
+
+  const interests = interestsList.reduce(
+    (carry, interest) => ({ ...carry, [interest]: true }),
+    {}
+  )
+
   try {
     if (httpMethod !== 'POST') {
       throw new Error('/newsletter-form accepts only POST requests')
     }
 
-    const { email, name, interests }: ParsedBody = JSON.parse(body)
-
     await mailchimp.post(`/lists/${audience}/members/`, {
       email_address: email,
-      interests: interests.reduce(
-        (carry, interest) => ({ ...carry, [interest]: true }),
-        {}
-      ),
+      interests,
       status: 'subscribed',
       merge_fields: {
         NAME: name,
@@ -41,6 +44,22 @@ export async function handler({ body, httpMethod }: LambdaEvent) {
 
     return { statusCode: 200, body: 'ok' }
   } catch (error) {
+    if (error.title === 'Member Exists') {
+      await mailchimp.put(
+        `/lists/${audience}/members/${md5(email.toLowerCase())}`,
+        {
+          email_address: email,
+          interests,
+          status: 'subscribed',
+          merge_fields: {
+            NAME: name,
+          },
+        }
+      )
+
+      return { statusCode: 200, body: 'ok' }
+    }
+
     // eslint-disable-next-line no-console
     console.error(error)
 
