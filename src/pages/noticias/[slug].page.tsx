@@ -2,7 +2,7 @@ import React from 'react'
 import dayjs from 'dayjs'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Container, Title, Heading, HTMLContent, styled } from '~design'
+import { Container, Title, Heading, Body, styled } from '~design'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { useRouter } from '~app/lib/router'
@@ -35,7 +35,7 @@ const BlogueAnchor = styled.a`
 const PostPage = () => {
   const { query: variables } = useRouter<{ slug: string }>()
 
-  const { data, ...rest } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, {
+  const { data } = useQuery<GT.BLOG_POST_QUERY>(BLOG_POST, {
     variables,
   })
 
@@ -69,7 +69,7 @@ const PostPage = () => {
             </div>
           ) : null}
 
-          <HTMLContent>{post.body}</HTMLContent>
+          <Body content={post.body} />
         </Container>
       </Section>
     )
