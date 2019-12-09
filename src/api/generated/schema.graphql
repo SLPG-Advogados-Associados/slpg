@@ -17,6 +17,7 @@ type Member {
 type Mutation {
   contact(name: String!, phone: String, email: String, message: String!): Boolean!
   status: Boolean!
+  subscribe(email: String!, name: String!, interests: [String!]!): Boolean!
 }
 
 type Post {
