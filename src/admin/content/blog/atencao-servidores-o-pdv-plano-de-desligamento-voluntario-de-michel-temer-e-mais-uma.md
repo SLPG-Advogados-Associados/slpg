@@ -22,6 +22,6 @@ Correndo contra o tempo para pagar sua dívida com os patrocinadores do “golpe
 
 Com um discurso voltado em defesa de um “necessário equilíbrio fiscal” e de retomada da estabilidade econômica pautado na venda do País, o “saldão” do Temer está disposto a tudo, inclusive a liquidar com um dos setores mais importantes e organizados da classe trabalhadora, que são os servidores públicos, responsáveis por prover os serviços essenciais que a população necessita.
 
-Para uma análise mais completa da MP 792/2017, o escritório **[SLPG Advogados Associados](http://www.slpgadvogados.adv.br/)** coloca à disposição de todos um estudo elaborado por esta assessoria jurídica.
+Para uma análise mais completa da MP 792/2017, o escritório **[SLPG Advogados Associados](/)** coloca à disposição de todos um estudo elaborado por esta assessoria jurídica.
 
 Bom proveito!

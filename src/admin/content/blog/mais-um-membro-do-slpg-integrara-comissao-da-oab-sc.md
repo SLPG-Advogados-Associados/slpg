@@ -12,6 +12,6 @@ Nossos parabéns ao Marcos e outros advogados(as)¹ ² que estão fazendo a sua 
 
 Veja também:
 
-¹ [Advogados(as) do SLPG integrarão comissões da OAB-SC](https://www.slpgadvogados.adv.br/noticias/advogadosas-do-slpg-integrarao-comissoes-da-oab-sc)
+¹ [Advogados(as) do SLPG integrarão comissões da OAB-SC](/noticias/advogadosas-do-slpg-integrarao-comissoes-da-oab-sc)
 
-² [Luis Fernando Silva é nomeado integrante da Comissão de Direito Previdenciário do Conselho Federal da OAB](https://www.slpgadvogados.adv.br/noticias/luis-fernando-silva-e-nomeado-integrante-da-comissao-de-direito-previdenciario-do-conselho)
+² [Luis Fernando Silva é nomeado integrante da Comissão de Direito Previdenciário do Conselho Federal da OAB](/noticias/luis-fernando-silva-e-nomeado-integrante-da-comissao-de-direito-previdenciario-do-conselho)

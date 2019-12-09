@@ -7,7 +7,7 @@ image: 'http://localhost/sites/default/files/people-2991882_960_720.jpg'
 
 _**Por Ana Maria Rosa (OAB/SC 5984), advogada/sócia do SLPG.**_
 
-A curatela, termo atualmente adequado para se referir à antiga “interdição”, é um assunto do [Direito de Família](http://www.slpgadvogados.adv.br/direitos-civis) que leva com frequência os clientes a buscarem orientação jurídica nos escritórios de advocacia, a fim de esclarecimento de suas dúvidas sobre o melhor encaminhamento para a proteção da pessoa a ser curatelada, visando assim resguardar os direitos desta.
+A curatela, termo atualmente adequado para se referir à antiga “interdição”, é um assunto do [Direito de Família](/direitos-civis) que leva com frequência os clientes a buscarem orientação jurídica nos escritórios de advocacia, a fim de esclarecimento de suas dúvidas sobre o melhor encaminhamento para a proteção da pessoa a ser curatelada, visando assim resguardar os direitos desta.
 
 Num breve resumo, a curatela é um instituto jurídico no qual o interessado, via de regra o familiar mais próximo, ingressa com um pedido judicial, objetivando sua nomeação como curador para cuidar dos interesses da pessoa enferma (normalmente em decorrência de doenças ou de suas sequelas, tais como o Alzheimer, o Acidente Vascular Cerebral – AVC, a Demência Senil, dentre outras), que, no momento, ou de forma permanente, esteja impossibilitada de exercer os atos da vida civil, tais como receber rendas e pensões, efetuar pagamentos, cuidar da saúde e ainda administrar adequadamente os seus bens. Nesse processo, é prerrogativa do Ministério Público zelar pelo bem-estar da pessoa curatelada, fiscalizando o exercício da curatela.
 
