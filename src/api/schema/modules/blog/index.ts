@@ -22,7 +22,7 @@ const Query: GT.QueryResolvers = {
       throw new Error('Cannot require more than 50 posts at once')
     }
 
-    const items = posts.slice(start, limit)
+    const items = posts.slice(start, limit + start)
 
     return {
       id: `${limit}-${start}`,
