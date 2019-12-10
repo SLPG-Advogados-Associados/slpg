@@ -5,7 +5,7 @@ import { Body } from '~design'
 import { body } from '~content/sample.md'
 
 const SampleContentPage = () => (
-  <Page>
+  <Page meta={{}}>
     <Section>Hello!</Section>
     <Body content={body} />
   </Page>
