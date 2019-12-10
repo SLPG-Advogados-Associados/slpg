@@ -1,6 +1,6 @@
 ---
 title: >-
-  Reforma sindical - PEC 196/2019 pode trazer novas dificuldades para o
+  Teste Reforma sindical - PEC 196/2019 pode trazer novas dificuldades para o
   funcionamento de sindicatos
 date: 2019-12-03T19:24:47.626Z
 image: ''
