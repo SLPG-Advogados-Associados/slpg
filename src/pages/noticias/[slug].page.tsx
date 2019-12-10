@@ -39,6 +39,7 @@ const PostPage = () => {
     variables,
   })
 
+  let meta = {}
   let body: React.ReactNode | null = null
 
   if (data) {
@@ -49,6 +50,18 @@ const PostPage = () => {
     }
 
     const date = dayjs(post.date)
+
+    meta = {
+      title: post.title,
+      description: post.summary,
+      others: (
+        <>
+          <meta property="og:updated_time" content={post.date} />,
+          <meta property="article:published_time" content={post.date} />,
+          <meta property="article:modified_time" content={post.date} />,
+        </>
+      ),
+    }
 
     body = (
       <Section>
@@ -76,7 +89,7 @@ const PostPage = () => {
   }
 
   return (
-    <Page>
+    <Page meta={meta}>
       <div className="bg-reverse text-white py-8">
         <BlogueAnchor href="/blogue">
           <Heading noMargins>Blogue</Heading>

@@ -3,6 +3,7 @@ query BLOG_POST($slug: String!) {
     id
     slug
     body
+    summary
     title
     date
 
