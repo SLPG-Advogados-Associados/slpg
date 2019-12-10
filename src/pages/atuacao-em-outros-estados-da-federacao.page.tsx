@@ -4,10 +4,14 @@ import { Page } from '~app/components/Page'
 import { Heading, HTMLContent } from '~design'
 import { Section } from '~app/components/Section'
 
+const title = 'Atuação em outros estados da federação'
+const description =
+  'Além de clientes sediados no Estado de Santa Catarina, onde temos nossa sede, e da nossa atuação articulada com outros escritórios, através do CNASP ou da SCP/DF, nosso escritório atua também em outros Estados, representando judicialmente entidades sindicais de servidores públicos lá sediadas, o que fazemos sempre em sociedade com um ou mais escritórios de advocacia.'
+
 const StaticPage = () => (
-  <Page>
+  <Page meta={{ title, description }}>
     <div className="bg-reverse text-white py-8">
-      <Heading noMargins>Atuação em outros estados da federação</Heading>
+      <Heading noMargins>{title}</Heading>
     </div>
 
     <main>

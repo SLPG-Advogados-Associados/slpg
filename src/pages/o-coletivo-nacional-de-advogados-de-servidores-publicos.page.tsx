@@ -4,12 +4,14 @@ import { Page } from '~app/components/Page'
 import { Heading, HTMLContent } from '~design'
 import { Section } from '~app/components/Section'
 
+const title = 'O Coletivo Nacional de Advogados de Servidores Públicos'
+const description =
+  'Quando um escritório de advocacia atua preponderantemente na defesa dos direitos dos servidores públicos e dos trabalhadores do setor privado, de maneira geral, as teses por ele sustentadas normalmente repercutem em outras Unidades da Federação, onde também existem trabalhadores lutando judicialmente por seus direitos, situação que assume ainda maior relevância quando tratamos de servidores públicos federais, sujeitos à uma única legislação no plano nacional.'
+
 const StaticPage = () => (
-  <Page>
+  <Page meta={{ title, description }}>
     <div className="bg-reverse text-white py-8">
-      <Heading noMargins>
-        O Coletivo Nacional de Advogados de Servidores Públicos
-      </Heading>
+      <Heading noMargins>{title}</Heading>
     </div>
 
     <main>

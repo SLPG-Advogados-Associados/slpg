@@ -4,10 +4,14 @@ import { Page } from '~app/components/Page'
 import { Heading, HTMLContent } from '~design'
 import { Section } from '~app/components/Section'
 
+const title = 'Atuação nos Tribunais Superiores'
+const description =
+  'Todos os processos judiciais movidos contra órgãos públicos, sejam eles federais, estaduais ou municipais, implica na tramitação dos respectivos processos por pelo menos dois graus de jurisdição, ou seja, por pelo menos duas instâncias.'
+
 const StaticPage = () => (
-  <Page>
+  <Page meta={{ title, description }}>
     <div className="bg-reverse text-white py-8">
-      <Heading noMargins>Atuação nos Tribunais Superiores</Heading>
+      <Heading noMargins>{title}</Heading>
     </div>
 
     <main>
