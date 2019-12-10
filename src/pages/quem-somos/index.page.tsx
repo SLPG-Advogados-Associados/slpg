@@ -79,7 +79,14 @@ const QuemSomosPage = () => {
   const team = useQuery<GT.TEAM_QUERY>(TEAM)
 
   return (
-    <Page>
+    <Page
+      meta={{
+        title: 'Quem Somos',
+        image: equipe,
+        description:
+          'O SLPG é um escritório de advocacia de Florianópolis, fundado em 1997.',
+      }}
+    >
       <div className="bg-reverse text-white py-8">
         <Heading noMargins>Quem Somos</Heading>
       </div>
