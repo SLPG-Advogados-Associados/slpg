@@ -17,23 +17,22 @@ interface Meta {
   description?: string
   url?: string
   image?: string
+  type?: string
+  other?: React.ReactNode
 }
 
 const defaults: Meta = {
   siteName: 'SLPG Advogados Associados',
   description: 'Nosso trabalho é defender os direitos da classe trabalhadora.',
   image: domain + '/logo-og.png',
+  type: 'article',
+  other: null,
 }
 
 const getTitle = (title?: string) =>
-  title ? `SLPG - ${title}` : defaults.siteName
+  title ? `${defaults.siteName} - ${title}` : defaults.siteName
 
-type Props = {
-  title?: string
-  meta?: Meta
-}
-
-const Page: React.FC<Props> = ({ children, meta: override = {} }) => {
+const Page: React.FC<{ meta: Meta }> = ({ children, meta: override = {} }) => {
   const router = useRouter()
   const pathname = router.asPath.replace(/\?.*/gu, '').replace(/#.*/gu, '')
   const computed = { title: getTitle(override.title), url: domain + pathname }
@@ -56,9 +55,11 @@ const Page: React.FC<Props> = ({ children, meta: override = {} }) => {
         <meta name="description" content={meta.description} />
         <meta itemProp="description" content={meta.description} />
 
+        <meta itemProp="image" content={meta.image} />
+
         {/* Open Graph / Facebook */}
         <meta property="og:site_name" content={meta.siteName} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={meta.type} />
         <meta property="og:url" content={meta.url} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
@@ -72,6 +73,8 @@ const Page: React.FC<Props> = ({ children, meta: override = {} }) => {
         <meta property="twitter:description" content={meta.description} />
         <meta property="twitter:image" content={meta.image} />
         <meta property="twitter:card" content="summary_large_image" />
+
+        {meta.other}
       </Head>
 
       <Header />
