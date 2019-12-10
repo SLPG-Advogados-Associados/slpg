@@ -187,7 +187,7 @@ export type BLOG_POST_QUERY = (
   { __typename?: 'Query' }
   & { post: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'slug' | 'body' | 'title' | 'date'>
+    & Pick<Post, 'id' | 'slug' | 'body' | 'summary' | 'title' | 'date'>
     & { image: Maybe<(
       { __typename?: 'Image' }
       & Pick<Image, 'url'>
