@@ -60,7 +60,7 @@ const HomePage = () => {
   const posts = blog.data ? blog.data.posts.items.map(({ item }) => item) : []
 
   return (
-    <Page>
+    <Page meta={{ type: 'website' }}>
       <Welcome>
         <p className="mb-4">
           Nosso trabalho é defender os direitos da classe trabalhadora.
