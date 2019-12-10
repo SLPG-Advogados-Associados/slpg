@@ -8,7 +8,7 @@ import { Section } from '~app/components/Section'
 const expertise = expertises[Expertise.Unions]
 
 const StaticPage = () => (
-  <Page>
+  <Page meta={{ title: expertise.label, description: expertise.description }}>
     <div className="bg-reverse text-white py-8">
       <Heading noMargins>{expertise.label}</Heading>
     </div>
