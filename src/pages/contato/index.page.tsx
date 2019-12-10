@@ -61,7 +61,12 @@ const ContatoPage = () => {
   >(CONTACT)
 
   return (
-    <Page>
+    <Page
+      meta={{
+        title: 'Contato',
+        description: 'Entre em contato e agende uma consulta',
+      }}
+    >
       <div className="bg-reverse text-white py-8">
         <Heading noMargins>Contato</Heading>
       </div>
