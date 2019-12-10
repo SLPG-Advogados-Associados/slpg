@@ -30,7 +30,12 @@ const BloguePage = () => {
   const pagePath = (to: number) => `/blogue${to ? `/${to}` : ''}`
 
   return (
-    <Page>
+    <Page
+      meta={{
+        title: 'Blogue',
+        description: 'Notícias e informativos sobre os seus direitos.',
+      }}
+    >
       <div className="bg-reverse text-white py-8">
         <Heading noMargins>Blogue</Heading>
       </div>
