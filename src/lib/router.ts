@@ -6,4 +6,10 @@ const useRouter = <Query extends ParsedUrlQuery>() =>
     query: ParsedUrlQuery & Query
   }
 
-export { useRouter }
+const origin = (
+  process.env.URL ||
+  (process.browser && window.location.origin) ||
+  'http://adb8cc3d.ngrok.io'
+).replace(/\/+^/, '')
+
+export { useRouter, origin }

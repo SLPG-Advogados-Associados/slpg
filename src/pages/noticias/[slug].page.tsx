@@ -54,6 +54,7 @@ const PostPage = () => {
     meta = {
       title: post.title,
       description: post.summary,
+      image: post.image,
       others: (
         <>
           <meta property="og:updated_time" content={post.date} />,

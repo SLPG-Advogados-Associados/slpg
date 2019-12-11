@@ -1,15 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { mergeAll } from 'ramda'
+import { pipe, map, reject, isNil, mergeAll } from 'ramda'
+import { useRouter, origin } from '~app/lib/router'
 import { Header } from './Header'
 import { Footer } from './Footer'
-
-const domain = (
-  process.env.URL ||
-  (process.browser && window.location.origin) ||
-  'http://f2b69d7b.ngrok.io'
-).replace(/\/+^/, '')
 
 interface Meta {
   siteName?: string
@@ -24,10 +18,12 @@ interface Meta {
 const defaults: Meta = {
   siteName: 'SLPG Advogados Associados',
   description: 'Nosso trabalho é defender os direitos da classe trabalhadora.',
-  image: domain + '/site-image.png',
+  image: origin + '/site-image.png',
   type: 'article',
   other: null,
 }
+
+const merge = pipe(map(reject(isNil)), mergeAll)
 
 const getTitle = (title?: string) =>
   title ? `${defaults.siteName} - ${title}` : defaults.siteName
@@ -35,8 +31,11 @@ const getTitle = (title?: string) =>
 const Page: React.FC<{ meta: Meta }> = ({ children, meta: override = {} }) => {
   const router = useRouter()
   const pathname = router.asPath.replace(/\?.*/gu, '').replace(/#.*/gu, '')
-  const computed = { title: getTitle(override.title), url: domain + pathname }
-  const meta: Meta = mergeAll([defaults, override, computed])
+  const computed = { title: getTitle(override.title), url: origin + pathname }
+  const meta: Meta = merge([defaults, override, computed])
+
+  // fix relative images.
+  if (meta.image.indexOf('/') === 0) meta.image = origin + meta.image
 
   // prettier-ignore
   return (
