@@ -21,7 +21,6 @@ const Welcome = styled.div`
   background-size: cover;
 
   .phone {
-    display: block;
     font-weight: bold;
   }
 
