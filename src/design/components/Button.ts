@@ -17,6 +17,19 @@ type Props = React.ButtonHTMLAttributes<'button'> & {
 }
 
 const variants = {
+  secondary: css`
+    color: ${t.theme('colors.text')};
+    background-color: ${t.theme('backgroundColor.button-secondary')};
+
+    &:hover,
+    &:focus {
+      color: ${t.theme('colors.primary')};
+      background-color: ${t.theme(
+        'backgroundColor.button-secondary--active'
+      )} !important;
+    }
+  `,
+
   small: css`
     font-size: 0.95em;
   `,

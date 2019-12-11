@@ -69,9 +69,15 @@ const HomePage = () => {
         </p>
       </Welcome>
 
-      <LocalNav>
+      <LocalNav primary>
         {expertises.map(({ id, href, label }) => (
-          <LocalNavButton key={id} href={href} title={label} alt={label}>
+          <LocalNavButton
+            key={id}
+            href={href}
+            title={label}
+            alt={label}
+            primary
+          >
             {label}
           </LocalNavButton>
         ))}

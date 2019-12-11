@@ -1,7 +1,13 @@
 const R = require('ramda')
 const defaultTheme = require('tailwindcss/defaultTheme')
+const tinycolor = require('tinycolor2')
 
-const t = path => theme => R.path(path.split('.'), theme)
+const darken = (amount = 100) => color => tinycolor(color).darken(amount).toString()
+
+const t = (path, transform = R.identity) => R.pipe(
+  R.path(path.split('.')),
+  transform
+)
 
 const initial = {
   colors: {
@@ -75,6 +81,8 @@ const functional = {
     reverse: t('colors.primary'),
     button: t('colors.primary'),
     'button--active': t('colors.primary--active'),
+    'button-secondary': t('colors.pampas'),
+    'button-secondary--active': t('colors.pampas', darken(5)),
     aside: t('colors.pampas'),
   },
 

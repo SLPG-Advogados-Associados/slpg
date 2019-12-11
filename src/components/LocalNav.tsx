@@ -1,21 +1,39 @@
 import React from 'react'
-import { Container, Button, t, styled, classnames } from '~design'
+import { Container, Button, t, styled, css } from '~design'
 
-const LocalNav: React.FC<{ className?: string }> = ({
+const primary = css`
+  background-color: ${t.theme('backgroundColor.button')};
+
+  ${Container} {
+    border-top-color: ${t.theme('colors.reverse-border')};
+  }
+`
+
+const StyledNav = styled.nav<{ primary?: boolean }>`
+  background-color: ${t.theme('backgroundColor.button-secondary')};
+
+  ${Container} {
+    text-align: center;
+    border-top: 2px solid ${t.theme('colors.border')};
+    border-bottom: 1px solid ${t.theme('colors.border')};
+  }
+
+  ${t.ifProp('primary', primary)}
+`
+
+const LocalNav: React.FC<{ primary?: boolean; className?: string }> = ({
+  primary,
   children,
   className,
 }) => (
-  <nav className={classnames('bg-button', className)}>
-    <Container
-      className="text-center border-t-2 border-reverse-border"
-      fullOnMobile
-    >
-      {children}
-    </Container>
-  </nav>
+  <StyledNav className={className} primary={primary}>
+    <Container fullOnMobile>{children}</Container>
+  </StyledNav>
 )
 
-const LocalNavButton = styled(Button.withComponent('a'))`
+const LocalNavButton = styled(({ primary, ...props }) => (
+  <Button secondary={!primary} {...props} as="a" />
+))`
   display: flex;
   justify-content: center;
 
