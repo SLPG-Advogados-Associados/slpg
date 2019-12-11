@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Heading, Image, styled, t } from '~design'
+import { HTMLContent, Heading, Image, styled, t } from '~design'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { ContactCTA } from '~app/components/ContactCTA'
@@ -105,29 +105,32 @@ const QuemSomosPage = () => {
           title={<SectionTitle {...sections.apresentacao} />}
           textual
         >
-          <p>
-            O SLPG é um escritório de advocacia (OAB/SC 270/97) com sede em
-            Florianópolis, especializado na defesa dos direitos da classe
-            trabalhadora, em especial dos servidores públicos.
-          </p>
+          <HTMLContent>
+            <p>
+              O SLPG é um escritório de advocacia (OAB/SC 270/97) com sede em
+              Florianópolis, especializado na defesa dos direitos da classe
+              trabalhadora, em especial dos servidores públicos.
+            </p>
 
-          <p>
-            Em Santa Catarina somos um dos maiores escritórios de advocacia do
-            ramo, com mais de 10 mil processos em andamento, sobretudo na
-            Justiça Federal.
-          </p>
+            <p>
+              Em Santa Catarina somos um dos maiores escritórios de advocacia do
+              ramo, com mais de 10 mil processos em andamento, sobretudo na
+              Justiça Federal.
+            </p>
 
-          <p>
-            A sigla SLPG - Silva, Locks Filho, Palanowski & Goulart Advogados
-            Associados foi constituida pelas iniciais dos sobrenomes dos quatros
-            primeiros sócios fundadores, e se mantém até os dias atuais.
-          </p>
+            <p>
+              A sigla SLPG - Silva, Locks Filho, Palanowski & Goulart Advogados
+              Associados foi constituida pelas iniciais dos sobrenomes dos
+              quatros primeiros sócios fundadores, e se mantém até os dias
+              atuais.
+            </p>
 
-          <Image
-            src={equipe}
-            altAsCaption
-            alt="Palácio Cruz e Sousa. Museu Histórico de Santa Catarina."
-          />
+            <Image
+              src={equipe}
+              altAsCaption
+              alt="Palácio Cruz e Sousa. Museu Histórico de Santa Catarina."
+            />
+          </HTMLContent>
         </Section>
 
         <Section
@@ -136,24 +139,26 @@ const QuemSomosPage = () => {
           title={<SectionTitle {...sections.compromissos} />}
           textual
         >
-          <p>
-            Nosso Escritório foi constituído com a finalidade principal de
-            prestar assessoria jurídica às entidades representativas de
-            servidores públicos e às categorias por elas representadas, sempre
-            pautando sua atuação profissional por uma conduta ética, responsável
-            e comprometida com a classe trabalhadora.
-          </p>
+          <HTMLContent>
+            <p>
+              Nosso Escritório foi constituído com a finalidade principal de
+              prestar assessoria jurídica às entidades representativas de
+              servidores públicos e às categorias por elas representadas, sempre
+              pautando sua atuação profissional por uma conduta ética,
+              responsável e comprometida com a classe trabalhadora.
+            </p>
 
-          <p>
-            Nesta condição, e conscientes do papel social que desempenhamos, não
-            nos omitimos em manifestar nossas posições com relação aos grandes
-            temas de interesse da sociedade brasileira, procurando fazê-lo
-            sempre com o propósito de auxiliar as entidades sindicais e
-            organizações da classe trabalhadora na luta por melhorias de suas
-            condições salariais e de trabalho, bem como pela manutenção,
-            eficácia e ampliação dos direitos sociais previstos na Constituição
-            Federal de 1988.
-          </p>
+            <p>
+              Nesta condição, e conscientes do papel social que desempenhamos,
+              não nos omitimos em manifestar nossas posições com relação aos
+              grandes temas de interesse da sociedade brasileira, procurando
+              fazê-lo sempre com o propósito de auxiliar as entidades sindicais
+              e organizações da classe trabalhadora na luta por melhorias de
+              suas condições salariais e de trabalho, bem como pela manutenção,
+              eficácia e ampliação dos direitos sociais previstos na
+              Constituição Federal de 1988.
+            </p>
+          </HTMLContent>
         </Section>
 
         <Section
@@ -161,41 +166,43 @@ const QuemSomosPage = () => {
           title={<SectionTitle {...sections.historia} />}
           textual
         >
-          <p>
-            Nosso Escritório foi fundado em 1997, a partir do interesse de
-            algumas entidades sindicais que já à época viam a necessidade de
-            contar com um escritório de advocacia comprometido com as lutas dos
-            trabalhadores, sugerindo então que alguns advogados egressos do
-            movimento sindical o constituíssem.
-          </p>
+          <HTMLContent>
+            <p>
+              Nosso Escritório foi fundado em 1997, a partir do interesse de
+              algumas entidades sindicais que já à época viam a necessidade de
+              contar com um escritório de advocacia comprometido com as lutas
+              dos trabalhadores, sugerindo então que alguns advogados egressos
+              do movimento sindical o constituíssem.
+            </p>
 
-          <p>
-            Com o passar do tempo, o Escritório foi crescendo e a ele foram se
-            ligando outras entidades sindicais e associativas representativas de
-            servidores públicos e se incorporando outros advogados e advogadas,
-            o que permitiu que o Escritório ultrapassasse as fronteiras de Santa
-            Catarina. E, através de parcerias estabelecidas com escritórios de
-            outros estados, que comungam dos mesmos princípios e ideais,
-            contribuímos para a fundação do CNASP - Coletivo Nacional de
-            Advogados de Servidores Públicos.
-          </p>
+            <p>
+              Com o passar do tempo, o Escritório foi crescendo e a ele foram se
+              ligando outras entidades sindicais e associativas representativas
+              de servidores públicos e se incorporando outros advogados e
+              advogadas, o que permitiu que o Escritório ultrapassasse as
+              fronteiras de Santa Catarina. E, através de parcerias
+              estabelecidas com escritórios de outros estados, que comungam dos
+              mesmos princípios e ideais, contribuímos para a fundação do CNASP
+              - Coletivo Nacional de Advogados de Servidores Públicos.
+            </p>
 
-          <p>
-            Nestes mais de 20 anos de história, participamos ativamente de
-            diversas lutas contra as reformas da previdência, trabalhista e
-            outras que visavam a atacar os direitos sociais, assim como de
-            campanhas pela conquista de novos direitos, apoiando juridicamente
-            greves e outras ações empreendidas pelo movimento sindical.
-          </p>
+            <p>
+              Nestes mais de 20 anos de história, participamos ativamente de
+              diversas lutas contra as reformas da previdência, trabalhista e
+              outras que visavam a atacar os direitos sociais, assim como de
+              campanhas pela conquista de novos direitos, apoiando juridicamente
+              greves e outras ações empreendidas pelo movimento sindical.
+            </p>
 
-          <p>
-            Para enfrentar estes desafios, passados e futuros, temos investido
-            fortemente na qualificação técnica e política dos componentes do
-            Escritório, bem como na ampliação das nossas relações com outras
-            organizações e movimentos sociais de maneira geral, visando sempre
-            ao apoio mais qualificado possível às necessidades da classe
-            trabalhadora.
-          </p>
+            <p>
+              Para enfrentar estes desafios, passados e futuros, temos investido
+              fortemente na qualificação técnica e política dos componentes do
+              Escritório, bem como na ampliação das nossas relações com outras
+              organizações e movimentos sociais de maneira geral, visando sempre
+              ao apoio mais qualificado possível às necessidades da classe
+              trabalhadora.
+            </p>
+          </HTMLContent>
         </Section>
 
         <Section
@@ -204,7 +211,9 @@ const QuemSomosPage = () => {
           title={<SectionTitle {...sections.equipe} />}
           textual
         >
-          <p>Conheça os trabalhadores e trabalhadoras do SLPG</p>
+          <HTMLContent>
+            <p>Conheça os trabalhadores e trabalhadoras do SLPG</p>
+          </HTMLContent>
 
           {team.data ? (
             <TeamList>

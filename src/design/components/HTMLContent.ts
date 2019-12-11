@@ -1,4 +1,5 @@
 import { styled, t } from '../lib/styled'
+import { Image } from './Image'
 
 const HTMLContent = styled.div`
   line-height: 1.8;
@@ -23,6 +24,11 @@ const HTMLContent = styled.div`
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 1.4em;
+  }
+
+  ${Image} {
+    max-width: 48em;
+    margin: 2em auto;
   }
 `
 

@@ -94,7 +94,7 @@ const functional = {
     // 400
     base: t('fontSize.400'),
     menu: t('fontSize.400'),
-    text: t('fontSize.400'),
+    text: t('fontSize.500'),
     // 500
     'aside-title': t('fontSize.500'),
     'secondary-title': t('fontSize.500'),
