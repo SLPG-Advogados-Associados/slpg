@@ -90,7 +90,7 @@ const PostPage = () => {
   }
 
   return (
-    <Page meta={meta}>
+    <Page meta={meta} prefixTitle={false}>
       <div className="bg-reverse text-white py-8">
         <BlogueAnchor href="/blogue">
           <Heading noMargins>Blogue</Heading>

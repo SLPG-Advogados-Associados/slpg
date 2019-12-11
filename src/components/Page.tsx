@@ -25,14 +25,22 @@ const defaults: Meta = {
 
 const merge = pipe(map(reject(isNil)), mergeAll)
 
-const getTitle = (title?: string) =>
-  title ? `${defaults.siteName} - ${title}` : defaults.siteName
-
-const Page: React.FC<{ meta: Meta }> = ({ children, meta: override = {} }) => {
+const Page: React.FC<{ meta: Meta; prefixTitle?: boolean }> = ({
+  children,
+  prefixTitle = true,
+  meta: override = {},
+}) => {
   const router = useRouter()
   const pathname = router.asPath.replace(/\?.*/gu, '').replace(/#.*/gu, '')
-  const computed = { title: getTitle(override.title), url: origin + pathname }
-  const meta: Meta = merge([defaults, override, computed])
+
+  const url = origin + pathname
+  const title = override.title
+    ? prefixTitle
+      ? `${defaults.siteName} - ${override.title}`
+      : override.title
+    : defaults.siteName
+
+  const meta: Meta = merge([defaults, override, { url, title }])
 
   // fix relative images.
   if (meta.image.indexOf('/') === 0) meta.image = origin + meta.image
