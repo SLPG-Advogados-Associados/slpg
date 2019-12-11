@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react'
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/react-hooks'
+import { RequestError } from '~app/lib/errors'
 import { initApolloClient } from './client'
 
 const SSR_GRAPHQL_OFF = Boolean(process.env.SSR_GRAPHQL_OFF)
@@ -66,6 +67,10 @@ const withGraphQL = (PageComponent, { ssr = true } = {}) => {
             />
           )
         } catch (error) {
+          if (error instanceof RequestError) {
+            throw error
+          }
+
           // Prevent Apollo Client GraphQL errors from crashing SSR.
           // Handle them in components via the data.error prop:
           // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error

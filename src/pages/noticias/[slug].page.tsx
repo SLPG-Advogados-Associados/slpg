@@ -6,6 +6,7 @@ import { Container, Title, Heading, Body, styled, t, css } from '~design'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { useRouter } from '~app/lib/router'
+import { RequestError } from '~app/lib/errors'
 import { BLOG_POST } from './post.gql'
 
 const StyledTitle = styled(Title)`
@@ -62,7 +63,10 @@ const PostPage = () => {
     const post = data.post
 
     if (!post) {
-      throw new Error(`Could not find post with slug ${variables.slug}`)
+      throw new RequestError(
+        `Could not find post with slug ${variables.slug}`,
+        404
+      )
     }
 
     const date = dayjs(post.date)
