@@ -229,8 +229,6 @@ const QuemSomosPage = () => {
           ) : null}
         </Section>
       </main>
-
-      <ContactCTA />
     </Page>
   )
 }

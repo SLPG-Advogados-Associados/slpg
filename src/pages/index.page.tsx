@@ -152,8 +152,6 @@ const HomePage = () => {
           </MoreCard>
         </div>
       </Section>
-
-      <ContactCTA />
     </Page>
   )
 }

@@ -4,6 +4,7 @@ import { pipe, map, reject, isNil, mergeAll } from 'ramda'
 import { useRouter, origin } from '~app/lib/router'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import { ContactCTA } from './ContactCTA'
 
 interface Meta {
   siteName?: string
@@ -25,10 +26,19 @@ const defaults: Meta = {
 
 const merge = pipe(map(reject(isNil)), mergeAll)
 
-const Page: React.FC<{ meta: Meta; prefixTitle?: boolean }> = ({
+interface Props {
+  meta: Meta
+  prefixTitle?: boolean
+  off?: {
+    contactCTA?: boolean
+  }
+}
+
+const Page: React.FC<Props> = ({
   children,
   prefixTitle = true,
   meta: override = {},
+  off = {},
 }) => {
   const router = useRouter()
   const pathname = router.asPath.replace(/\?.*/gu, '').replace(/#.*/gu, '')
@@ -52,7 +62,10 @@ const Page: React.FC<{ meta: Meta; prefixTitle?: boolean }> = ({
         <link rel="shortcut icon" href="/favicon.ico" />
 
         <meta name="robots" content="follow, index" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
 
         {/* Primary Meta Tags */}
         <title>{meta.title}</title>
@@ -87,6 +100,8 @@ const Page: React.FC<{ meta: Meta; prefixTitle?: boolean }> = ({
       <Header />
 
       {children}
+
+      {!off.contactCTA ? <ContactCTA /> : null}
 
       <Footer />
     </>

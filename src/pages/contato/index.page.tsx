@@ -62,6 +62,7 @@ const ContatoPage = () => {
 
   return (
     <Page
+      off={{ contactCTA: true }}
       meta={{
         title: 'Contato',
         description: 'Entre em contato e agende uma consulta',
