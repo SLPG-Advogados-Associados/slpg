@@ -12,9 +12,11 @@ const map = teamLoader.keys().reduce((carry, file) => {
 
 const members = Object.values(map)
 
-const team = teamConfig.members.map(({ reference: name }) =>
-  members.find((member: { name: string }) => member.name === name)
-)
+const team = teamConfig.members
+  .map(({ reference: name }) =>
+    members.find((member: { name: string }) => member.name === name)
+  )
+  .filter(Boolean)
 
 const Query: GT.QueryResolvers = {
   team: () => team,
