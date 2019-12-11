@@ -33,7 +33,7 @@ const StyledSection = styled(Section)`
   }
 `
 
-const Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
+const ErrorPage: NextPage<{ statusCode: number }> = ({ statusCode }) => {
   const meta = metas[statusCode] || metas.default
 
   return (
@@ -52,8 +52,13 @@ const Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
   )
 }
 
-Error.getInitialProps = async ({ res, err }) => ({
-  statusCode: res ? res.statusCode : err ? err.statusCode : 404,
-})
+ErrorPage.getInitialProps = async ({ res, err }) => {
+  const statusCode = err ? err.statusCode : res ? res.statusCode : 404
 
-export default Error
+  // ensure correct status is sent from SSR.
+  if (res) res.statusCode = statusCode
+
+  return { statusCode }
+}
+
+export default ErrorPage
