@@ -1,6 +1,7 @@
 ---
 title: 'CNASP se manifesta contra capitalização em audiência no Senado (vídeo)'
 date: '2019-05-22T13:13:42-03:00'
+image: '/admin/content/media/cnasp-se-manifesta-contra-capitalizacao-em-audiencia-no-senado-video.png'
 summary: 'O Coletivo Nacional de Advogados de Servidores Públicos – CNASP participou nesta segunda-feira, dia 20 de maio de 2019, de audiência pública realizada pela Comissão de Direitos Humanos do Senado, para tratar da proposta de capitalização prevista pela Reforma da Previdência. O CNASP foi representado pelo advogado Guilherme Zagallo. Assísta.'
 ---
 

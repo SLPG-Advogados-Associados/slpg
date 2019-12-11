@@ -1,6 +1,7 @@
 ---
 title: 'Trabalhando contra o desmonte da previdência brasileira'
 date: '2019-07-23T13:28:31-03:00'
+image: '/admin/content/media/trabalhando-contra-o-desmonte-da-previdencia-brasileira.jpeg'
 summary: 'Visando contribuir com a luta contra o desmonte da previdência, o SLPG Advogados Associados, por meio de seus integrantes, tem buscado disponibilizar aos seus clientes e à sociedade em geral esclarecimentos sobre os impactos gerais e específicos desta dita “reforma”. Além das inúmeras reuniões e plantões com nossos clientes, das publicações feitas em nosso blogue, e de entrevistase participações em programas de TV; participamos de audiências públicas, proferimos palestras em encontros e seminários; nos somamos a mobilização pela greve geral do dia 14 de junho e participamos de “arrastões” em instituições públicas...'
 ---
 

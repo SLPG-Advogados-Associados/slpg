@@ -1,6 +1,7 @@
 ---
 title: 'Nota pública de adesão e apoio à Greve Geral de 14 de junho'
 date: '2019-06-12T13:50:40-03:00'
+image: '/admin/content/media/nota-publica-de-adesao-e-apoio-a-greve-geral-de-14-de-junho.jpg'
 summary: 'O Escritório SLPG vem a público informar que decidiu aderir à Greve Geral marcada para o próximo dia 14 de junho, convocada pelo movimento sindical, estudantes e outras organizações da sociedade civil contra o desmonte da previdência pública brasileira, proposto pela PEC nº 6, de 2019.'
 ---
 

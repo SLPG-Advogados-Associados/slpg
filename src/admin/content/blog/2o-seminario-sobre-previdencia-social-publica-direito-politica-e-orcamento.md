@@ -1,6 +1,7 @@
 ---
 title: '2º seminário sobre Previdência Social Pública: Direito, Política e Orçamento'
 date: '2019-07-18T15:53:26-03:00'
+image: '/admin/content/media/2o-seminario-sobre-previdencia-social-publica-direito-politica-e-orcamento.png'
 summary: 'Evento do CNASP - Coletivo Nacional de Advogados de Servidores Públicos ocorrerá dia 16 de agosto, em Brasília.'
 ---
 

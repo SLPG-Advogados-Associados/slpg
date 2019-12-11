@@ -1,6 +1,7 @@
 ---
 title: 'Entrevista sobre a "reforma da previdência"'
 date: '2019-07-16T14:47:32-03:00'
+image: '/admin/content/media/entrevista-sobre-reforma-da-previdencia.png'
 summary: 'Assista a entrevista concedida pelo advogado e membro do SLPG Bernardo Foes Bianchini (OAB/SC 47118) ao Jornal Balanço Geral, da RICTV (Record/SC), sobre a "reforma da previdência".'
 ---
 

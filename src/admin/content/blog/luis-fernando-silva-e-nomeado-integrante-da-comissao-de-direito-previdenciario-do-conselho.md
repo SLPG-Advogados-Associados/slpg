@@ -1,6 +1,7 @@
 ---
 title: 'Luis Fernando Silva é nomeado integrante da Comissão de Direito Previdenciário do Conselho Federal da OAB'
 date: '2019-05-24T14:53:49-03:00'
+image: '/admin/content/media/luis-fernando-silva.jpg'
 summary: 'Além de participar da elaboração de pareceres em matérias que envolvem.o direito previdenciário, os integrantes da.comissão nacional.também participarão dos debates em torno da posição a ser.adotada pela OAB acerca da chamada "Reforma da Previdência", em.andamento no Congresso Nacional.'
 ---
 

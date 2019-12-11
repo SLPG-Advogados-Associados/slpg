@@ -1,6 +1,7 @@
 ---
 title: 'Mais um membro do SLPG integrará comissão da OAB-SC'
 date: '2019-08-08T15:24:44-03:00'
+image: '/admin/content/media/mais-um-membro-do-slpg-integrara-comissao-da-oab-sc.jpg'
 summary: 'Nossos parabéns ao Marcos e outros advogados(as) que estão fazendo a sua parte para desenvolver a advocacia do Brasil.'
 ---
 
