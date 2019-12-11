@@ -94,7 +94,7 @@ const QuemSomosPage = () => {
       <LocalNav className="top-0 lg:sticky">
         {sectionsList.map(({ href, label }) => (
           <Link key={href} href={href}>
-            <LocalNavButton title={label} alt={label}>
+            <LocalNavButton href={href} title={label} alt={label}>
               {label}
             </LocalNavButton>
           </Link>
