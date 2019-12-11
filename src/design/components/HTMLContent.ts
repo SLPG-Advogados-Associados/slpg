@@ -26,6 +26,32 @@ const HTMLContent = styled.div`
     padding-inline-start: 1.4em;
   }
 
+  a {
+    position: relative;
+    border-bottom: 1px dashed;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: transparent;
+      transition: 250ms all;
+    }
+
+    &:hover::after,
+    &:focus::after {
+      top: -0.2em;
+      right: -0.2em;
+      bottom: -0.2em;
+      left: -0.2em;
+      background-color: rgba(0, 0, 0, 0.065);
+    }
+  }
+
   ${Image} {
     max-width: 48em;
     margin: 2em auto;
