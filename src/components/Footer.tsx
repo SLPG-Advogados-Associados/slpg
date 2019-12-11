@@ -45,7 +45,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <Container className="flex pt-12 text-200 flex-col lg:flex-row">
+      <Container className="flex pt-12 text-200 flex-col lg:flex-row lg:items-baseline">
         <FooterColumn className="text-center">
           <FooterLogoAnchor href="/" title="Início" className="inline-block">
             <Logo />
@@ -90,40 +90,44 @@ const Footer = () => {
           </FooterSocial>
         </FooterColumn>
 
-        <FooterColumn className="text-center lg:text-left">
-          <AsideTitle>Áreas de atuação</AsideTitle>
+        <FooterColumn className="text-center lg:text-left lg:flex lg:justify-center">
+          <div>
+            <AsideTitle>Áreas de atuação</AsideTitle>
 
-          <FooterMenu>
-            {expertises.map(({ id, label, href }) => (
-              <li key={id}>
-                <a href={href} title={label}>
-                  {label}
-                </a>
-              </li>
-            ))}
-          </FooterMenu>
+            <FooterMenu>
+              {expertises.map(({ id, label, href }) => (
+                <li key={id}>
+                  <a href={href} title={label}>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </FooterMenu>
+          </div>
         </FooterColumn>
 
-        <FooterColumn className="text-center lg:text-left">
-          <AsideTitle>Menu</AsideTitle>
+        <FooterColumn className="text-center lg:text-left lg:flex lg:justify-center">
+          <div>
+            <AsideTitle>Menu</AsideTitle>
 
-          <FooterMenu>
-            <li>
-              <a href="/blogue" title="Blogue">
-                Blogue
-              </a>
-            </li>
-            <li>
-              <a href="/contato" title="Contato">
-                Contato
-              </a>
-            </li>
-            <li>
-              <a href="/quem-somos" title="Quem somos">
-                Quem somos
-              </a>
-            </li>
-          </FooterMenu>
+            <FooterMenu>
+              <li>
+                <a href="/blogue" title="Blogue">
+                  Blogue
+                </a>
+              </li>
+              <li>
+                <a href="/contato" title="Contato">
+                  Contato
+                </a>
+              </li>
+              <li>
+                <a href="/quem-somos" title="Quem somos">
+                  Quem somos
+                </a>
+              </li>
+            </FooterMenu>
+          </div>
         </FooterColumn>
       </Container>
 
