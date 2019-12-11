@@ -2,7 +2,7 @@ import React from 'react'
 import dayjs from 'dayjs'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Container, Title, Heading, Body, styled, t, css } from '~design'
+import { Container, Title, Heading, Body, styled, t } from '~design'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { useRouter } from '~app/lib/router'
@@ -15,27 +15,14 @@ const StyledTitle = styled(Title)`
   text-transform: none;
 `
 
-const before = css`
-  display: none;
-  float: right;
-  margin: 0 0 2rem 2rem;
-  max-width: 50%;
-
-  @media screen and (min-width: ${t.theme('screens.lg')}) {
-    display: block;
-  }
-`
-
-const after = css`
+const ImageWrapper = styled.div`
   margin: 1rem 0 2rem;
 
   @media screen and (min-width: ${t.theme('screens.lg')}) {
-    display: none;
+    float: left;
+    margin: 0 2rem 2rem 0;
+    max-width: 50%;
   }
-`
-
-const ImageWrapper = styled.div<{ before?: boolean; after?: boolean }>`
-  ${t.variants({ before, after })};
 `
 
 const BlogueAnchor = styled.a`
@@ -86,13 +73,7 @@ const PostPage = () => {
 
     body = (
       <Section>
-        <Container as="main">
-          {post.image ? (
-            <ImageWrapper before>
-              <img src={post.image.url} />
-            </ImageWrapper>
-          ) : null}
-
+        <Container as="main" className="clear">
           <header className="border-b pb-2 mb-2 lg:mb-8">
             <StyledTitle className="mb-0">{post.title}</StyledTitle>
             <time
@@ -104,7 +85,7 @@ const PostPage = () => {
           </header>
 
           {post.image ? (
-            <ImageWrapper after>
+            <ImageWrapper>
               <img src={post.image.url} />
             </ImageWrapper>
           ) : null}
