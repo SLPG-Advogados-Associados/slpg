@@ -42,7 +42,11 @@ const StaticPage = () => (
         </HTMLContent>
       </Section>
 
-      <Section title="Direitos das relações celetistas de trabalho" textual>
+      <Section
+        title="Direitos das relações celetistas de trabalho"
+        textual
+        className="bg-aside"
+      >
         <HTMLContent>
           <p>
             O primeiro problema que geralmente surge das relações de trabalho no
