@@ -9,7 +9,7 @@ const useRouter = <Query extends ParsedUrlQuery>() =>
 const origin = (
   process.env.URL ||
   (process.browser && window.location.origin) ||
-  'http://adb8cc3d.ngrok.io'
+  'https://slpgadvogados.adv.br'
 ).replace(/\/+^/, '')
 
 export { useRouter, origin }
