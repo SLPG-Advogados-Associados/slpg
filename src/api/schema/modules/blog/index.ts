@@ -28,21 +28,20 @@ const Query: GT.QueryResolvers = {
       id: `${limit}-${start}`,
       count: items.length,
       total: posts.length,
-      items,
     }
   },
 
   postById: (_root, { id }) => load(id),
 }
 
-const Image: GT.ImageResolvers = {
-  url: image => image,
-}
-
 const PostsResultItem: GT.PostsResultItemResolvers = {
   item: post => post,
 }
 
-const resolvers = { Query, Image, PostsResultItem }
+const Post: GT.PostResolvers = {
+  image: ({ image: url }) => (url ? { url } : null),
+}
+
+const resolvers = { Query, PostsResultItem, Post }
 
 export { typeDefs, resolvers }
