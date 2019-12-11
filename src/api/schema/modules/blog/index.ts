@@ -28,6 +28,7 @@ const Query: GT.QueryResolvers = {
       id: `${limit}-${start}`,
       count: items.length,
       total: posts.length,
+      items,
     }
   },
 
