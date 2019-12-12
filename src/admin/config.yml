@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: lucasconstantino/slpg
-  branch: netlify
+  branch: master
 media_folder: src/admin/content/media
 public_folder: /admin/content/media
 publish_mode: editorial_workflow
