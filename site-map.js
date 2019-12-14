@@ -1,23 +1,39 @@
+const fs = require('fs')
 const path = require('path')
-const sitemap = require('nextjs-sitemap-generator')
+const { createSitemap } = require('sitemap')
+const glob = require('glob')
+const { getDynamicPages } = require('./next.export')
 
-sitemap({
-  // alternateUrls: {
-  //   en: 'https://example.en',
-  //   es: 'https://example.es',
-  //   ja: 'https://example.jp',
-  //   fr: 'https://example.fr',
-  // },
-  baseUrl: 'https://www.slpgadvogados.adv.br',
-  ignoredPaths: ['admin'],
-  pagesDirectory: path.resolve(__dirname, './src/pages'),
-  targetDirectory: 'out/',
-  nextConfigPath: path.resolve(__dirname, './next.config.js'),
-  // ignoredExtensions: ['png', 'jpg'],
-  // pagesConfig: {
-  //   '/login': {
-  //     priority: '0.5',
-  //     changefreq: 'daily',
-  //   },
-  // },
-})
+const paths = {
+  admin: path.resolve(__dirname, 'src/admin'),
+  pages: path.resolve(__dirname, 'src/pages'),
+  dest: path.resolve(__dirname, 'out/sitemap.xml')
+}
+
+;(async () => {
+  const sitemap = createSitemap({ hostname: 'https://www.slpgadvogados.adv.br' })
+
+  for (const [url, page] of Object.entries(getDynamicPages())) {
+    const lastmodfile = path.resolve(paths.pages, path.join(paths.pages, page.page + '.page.tsx'))
+    sitemap.add({ url, lastmodfile })
+  }
+
+  for (const absolute of glob.sync(`${paths.pages}/**/*.page.*`)) {
+    const relative = path.relative(paths.pages, absolute)
+    
+    // exclude special pages.
+    if (relative.indexOf('_') === 0) continue
+
+    // exclude dynamic pages.
+    if (relative.includes('[')) continue
+
+    const url = relative
+      .replace(/index\.page\.tsx$/, '')
+      .replace(/\.page\.tsx$/, '')
+      .replace(/\/$/, '')
+
+    sitemap.add({ url, lastmodfile: absolute })
+  }
+
+  fs.writeFileSync(paths.dest, sitemap.toXML(), 'utf8')
+})()

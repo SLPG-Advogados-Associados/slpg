@@ -4,13 +4,8 @@ const glob = require('glob')
 
 const admin = path.resolve(__dirname, 'src/admin')
 
-module.exports.exportPathMap = async (pages, { dev }) => {
-  // during development, build any dynamic page.
-  if (dev) return pages
-
-  delete pages['/blogue/[page]']
-  delete pages['/noticias/[slug]']
-
+const getDynamicPages = () => {
+  const pages = {}
   const posts = glob.sync(`${admin}/content/blog/*.md`).map(post => path.basename(post, '.md'))
 
 
@@ -34,6 +29,22 @@ module.exports.exportPathMap = async (pages, { dev }) => {
       page: '/blogue/[page]',
       query: { page },
     }
+  }
+
+  return pages
+}
+
+module.exports.getDynamicPages = getDynamicPages
+
+module.exports.exportPathMap = async (pages, { dev }) => {
+  // during development, build any dynamic page.
+  if (dev) return pages
+
+  delete pages['/blogue/[page]']
+  delete pages['/noticias/[slug]']
+
+  for (const [path, page] in Object.entries(getDynamicPages())) {
+    pages[path] = page
   }
 
   return pages
