@@ -43,7 +43,7 @@ module.exports.exportPathMap = async (pages, { dev }) => {
   delete pages['/blogue/[page]']
   delete pages['/noticias/[slug]']
 
-  for (const [path, page] in Object.entries(getDynamicPages())) {
+  for (const [path, page] of Object.entries(getDynamicPages())) {
     pages[path] = page
   }
 
