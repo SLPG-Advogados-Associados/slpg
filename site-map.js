@@ -8,7 +8,7 @@ sitemap({
   //   ja: 'https://example.jp',
   //   fr: 'https://example.fr',
   // },
-  baseUrl: 'https://www.alpgadvogados.adv.br',
+  baseUrl: 'https://www.slpgadvogados.adv.br',
   ignoredPaths: ['admin'],
   pagesDirectory: path.resolve(__dirname, './src/pages'),
   targetDirectory: 'out/',
