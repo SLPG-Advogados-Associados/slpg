@@ -3,6 +3,7 @@ next.config.js
 webpack.functions.js
 postcss.config.js
 tailwind.config.js
+site-map.js
 graphql-codegen.js
 babel-plugin-macros.config.js
 src/**/generated/**/*

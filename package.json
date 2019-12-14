@@ -14,7 +14,9 @@
     "gen": "yarn graphql:codegen",
     "graphql:codegen": "graphql-codegen --config graphql-codegen.js",
     "lint": "yarn eslint src",
+    "netlify-build": "yarn build && yarn export && yarn site-map",
     "qa": "run-p type-check test lint",
+    "site-map": "node site-map.js",
     "start": "next start",
     "test": "echo 'no tests yet'",
     "type-check": "tsc"
@@ -106,6 +108,7 @@
     "next-compose-plugins": "^2.2.0",
     "next-env": "^1.1.0",
     "next-images": "^1.2.0",
+    "nextjs-sitemap-generator": "^0.4.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "shell-quote": "^1.7.2",
