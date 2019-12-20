@@ -123,12 +123,12 @@ const ContatoPage = () => {
 
                 <label className="mb-4 block">
                   <Input {...input('phone', form)} placeholder="Telefone" />
-                  <Error error={form.touched.name && form.errors.phone} />
+                  <Error error={form.touched.phone && form.errors.phone} />
                 </label>
 
                 <label className="mb-4 block">
                   <Input {...input('email', form)} placeholder="E-mail" />
-                  <Error error={form.touched.name && form.errors.email} />
+                  <Error error={form.touched.email && form.errors.email} />
                 </label>
 
                 <label className="mb-4 block">
@@ -137,7 +137,7 @@ const ContatoPage = () => {
                     placeholder="Mensagem"
                     rows={5}
                   />
-                  <Error error={form.touched.name && form.errors.message} />
+                  <Error error={form.touched.message && form.errors.message} />
                 </label>
 
                 <Button
