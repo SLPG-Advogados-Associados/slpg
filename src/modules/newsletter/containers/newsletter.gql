@@ -1,3 +1,10 @@
+query NEWSLETTER_INTERESTS {
+  interests {
+    id
+    name
+  }
+}
+
 mutation SUBSCRIBE($name: String!, $email: String!, $interests: [String!]!) {
   subscribe(name: $name, email: $email, interests: $interests)
 }

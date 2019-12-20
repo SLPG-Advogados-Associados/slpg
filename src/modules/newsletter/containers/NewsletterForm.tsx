@@ -2,12 +2,12 @@ import React from 'react'
 import * as Yup from 'yup'
 import { Formik, FormikProps } from 'formik'
 import BounceLoader from 'react-spinners/BounceLoader'
+import BeatLoader from 'react-spinners/BeatLoader'
 import { useAlert } from 'react-alert'
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { GT } from '~api'
-import { Button, Heading, AlertContent, styled, t, theme } from '~design'
-import { Interests } from '../mailchimp'
-import { SUBSCRIBE } from './newsletter.gql'
+import { Button, AlertContent, styled, t, theme } from '~design'
+import { NEWSLETTER_INTERESTS, SUBSCRIBE } from './newsletter.gql'
 
 const Input = styled.input`
   width: 100%;
@@ -39,7 +39,7 @@ const input = (name: keyof Inputs, form: FormikProps<Inputs>) => ({
 
 const checkboxes = (
   name: keyof Inputs,
-  value: Interests,
+  value: string,
   form: FormikProps<Inputs>
 ) => {
   const selected = form.values[name] as string[]
@@ -72,6 +72,19 @@ const NewsletterForm: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
     GT.SUBSCRIBE_MUTATION,
     GT.SUBSCRIBE_MUTATION_VARIABLES
   >(SUBSCRIBE)
+
+  const { data, loading, error } = useQuery<GT.NEWSLETTER_INTERESTS_QUERY>(
+    NEWSLETTER_INTERESTS
+  )
+
+  if (error) throw error
+
+  if (loading)
+    return (
+      <div className="py-10 px-16">
+        <BeatLoader color={theme.colors.primary} size={12} />
+      </div>
+    )
 
   return (
     <Formik
@@ -120,13 +133,10 @@ const NewsletterForm: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
           <div className="mb-10">
             <h3 className="font-bold mb-2">Áreas de seu interesse:</h3>
 
-            {Object.keys(Interests).map(description => (
-              <label className="mb-4 block" key={description}>
-                <input
-                  type="checkbox"
-                  {...checkboxes('interests', Interests[description], form)}
-                />{' '}
-                {description}
+            {data.interests.map(({ id, name }) => (
+              <label key={id} className="mb-4 block">
+                <input type="checkbox" {...checkboxes('interests', id, form)} />{' '}
+                {name}
               </label>
             ))}
           </div>
