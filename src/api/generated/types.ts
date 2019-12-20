@@ -117,6 +117,17 @@ export type PostListItemFragment = (
   )> }
 );
 
+export type NEWSLETTER_INTERESTS_QUERY_VARIABLES = {};
+
+
+export type NEWSLETTER_INTERESTS_QUERY = (
+  { __typename?: 'Query' }
+  & { interests: Array<(
+    { __typename?: 'Interest' }
+    & Pick<Interest, 'id' | 'name'>
+  )> }
+);
+
 export type SUBSCRIBE_MUTATION_VARIABLES = {
   name: Scalars['String'],
   email: Scalars['String'],
