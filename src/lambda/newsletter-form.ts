@@ -26,33 +26,28 @@ export async function handler({ body, httpMethod }: LambdaEvent) {
     {}
   )
 
+  const payload = {
+    email_address: email,
+    interests,
+    status: 'subscribed',
+    merge_fields: {
+      NAME: name,
+    },
+  }
+
   try {
     if (httpMethod !== 'POST') {
       throw new Error('/newsletter-form accepts only POST requests')
     }
 
-    await mailchimp.post(`/lists/${audience}/members/`, {
-      email_address: email,
-      interests,
-      status: 'subscribed',
-      merge_fields: {
-        NAME: name,
-      },
-    })
+    await mailchimp.post(`/lists/${audience}/members/`, payload)
 
     return { statusCode: 200, body: 'ok' }
   } catch (error) {
     if (error.title === 'Member Exists') {
       await mailchimp.put(
         `/lists/${audience}/members/${md5(email.toLowerCase())}`,
-        {
-          email_address: email,
-          interests,
-          status: 'subscribed',
-          merge_fields: {
-            NAME: name,
-          },
-        }
+        payload
       )
 
       return { statusCode: 200, body: 'ok' }
