@@ -3,6 +3,11 @@ type Image {
   size: String!
 }
 
+type Interest {
+  id: String!
+  name: String!
+}
+
 scalar JSON
 
 type Member {
@@ -44,8 +49,9 @@ type PostsResultItem {
 
 type Query {
   posts(limit: Int, start: Int): PostsResult!
-  postById(id: String!): Post!
+  postById(id: String!): Post
   version: String!
+  interests: [Interest!]!
   team: [Member!]!
   member(id: String!): Member
 }

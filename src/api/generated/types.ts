@@ -18,6 +18,12 @@ export type Image = {
   size: Scalars['String'],
 };
 
+export type Interest = {
+   __typename?: 'Interest',
+  id: Scalars['String'],
+  name: Scalars['String'],
+};
+
 
 export type Member = {
    __typename?: 'Member',
@@ -79,8 +85,9 @@ export type PostsResultItem = {
 export type Query = {
    __typename?: 'Query',
   posts: PostsResult,
-  postById: Post,
+  postById?: Maybe<Post>,
   version: Scalars['String'],
+  interests: Array<Interest>,
   team: Array<Member>,
   member?: Maybe<Member>,
 };
@@ -185,14 +192,14 @@ export type BLOG_POST_QUERY_VARIABLES = {
 
 export type BLOG_POST_QUERY = (
   { __typename?: 'Query' }
-  & { post: (
+  & { post: Maybe<(
     { __typename?: 'Post' }
     & Pick<Post, 'id' | 'slug' | 'body' | 'summary' | 'title' | 'date'>
     & { image: Maybe<(
       { __typename?: 'Image' }
       & Pick<Image, 'url'>
     )> }
-  ) }
+  )> }
 );
 
 export type TEAM_QUERY_VARIABLES = {};
@@ -284,6 +291,7 @@ export type ResolversTypes = {
   PostsResultItem: ResolverTypeWrapper<any>,
   Post: ResolverTypeWrapper<any>,
   Image: ResolverTypeWrapper<any>,
+  Interest: ResolverTypeWrapper<any>,
   Member: ResolverTypeWrapper<any>,
   Mutation: ResolverTypeWrapper<{}>,
   Boolean: ResolverTypeWrapper<any>,
@@ -299,6 +307,7 @@ export type ResolversParentTypes = {
   PostsResultItem: any,
   Post: any,
   Image: any,
+  Interest: any,
   Member: any,
   Mutation: {},
   Boolean: any,
@@ -308,6 +317,11 @@ export type ResolversParentTypes = {
 export type ImageResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Image'] = ResolversParentTypes['Image']> = {
   url?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   size?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+};
+
+export type InterestResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Interest'] = ResolversParentTypes['Interest']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
@@ -353,14 +367,16 @@ export type PostsResultItemResolvers<ContextType = Context, ParentType extends R
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   posts?: Resolver<ResolversTypes['PostsResult'], ParentType, ContextType, QueryPostsArgs>,
-  postById?: Resolver<ResolversTypes['Post'], ParentType, ContextType, RequireFields<QueryPostByIdArgs, 'id'>>,
+  postById?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<QueryPostByIdArgs, 'id'>>,
   version?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  interests?: Resolver<Array<ResolversTypes['Interest']>, ParentType, ContextType>,
   team?: Resolver<Array<ResolversTypes['Member']>, ParentType, ContextType>,
   member?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<QueryMemberArgs, 'id'>>,
 };
 
 export type Resolvers<ContextType = Context> = {
   Image?: ImageResolvers<ContextType>,
+  Interest?: InterestResolvers<ContextType>,
   JSON?: GraphQLScalarType,
   Member?: MemberResolvers<ContextType>,
   Mutation?: MutationResolvers<ContextType>,
