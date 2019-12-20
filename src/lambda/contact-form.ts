@@ -24,6 +24,13 @@ const config = {
   GOOGLE_REDIRECT_URL: 'https://developers.google.com/oauthplayground',
 }
 
+/* prettier-ignore */
+if (process.env.NODE_ENV === 'production') {
+  if (!process.env.GOOGLE_CLIENT_ID) throw new Error('GOOGLE_CLIENT_ID is required in production')
+  if (!process.env.GOOGLE_CLIENT_SECRET) throw new Error('GOOGLE_CLIENT_SECRET is required in production')
+  if (!process.env.GOOGLE_REFRESH_TOKEN) throw new Error('GOOGLE_REFRESH_TOKEN is required in production')
+}
+
 const failure = { statusCode: 400, body: 'failed' }
 
 export async function handler({ body, httpMethod }: LambdaEvent) {
