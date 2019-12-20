@@ -10,6 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 const config = {
   // @see: https://mailchimp.com/pt/help/find-audience-id/
   audience: process.env.MAILCHIMP_AUDIENCE,
+  // the category can be figured out by hitting Mailchimp API at the following:
+  // `/lists/{audience}/interest-categories/`
   interestsCategory: process.env.MAILCHIMP_INTERESTS_CATEGORY,
 }
 
