@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import Mailchimp from 'mailchimp-api-v3'
+import { mailchimp, config } from '~app/modules/newsletter/lib/mailchimp'
 import md5 from 'md5'
 
 interface LambdaEvent {
@@ -12,9 +12,6 @@ interface ParsedBody {
   name: string
   interests: string[]
 }
-
-const audience = 'bee915ad21'
-const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY)
 
 const failure = { statusCode: 400, body: 'failed' }
 
@@ -40,13 +37,13 @@ export async function handler({ body, httpMethod }: LambdaEvent) {
       throw new Error('/newsletter-form accepts only POST requests')
     }
 
-    await mailchimp.post(`/lists/${audience}/members/`, payload)
+    await mailchimp.post(`/lists/${config.audience}/members/`, payload)
 
     return { statusCode: 200, body: 'ok' }
   } catch (error) {
     if (error.title === 'Member Exists') {
       await mailchimp.put(
-        `/lists/${audience}/members/${md5(email.toLowerCase())}`,
+        `/lists/${config.audience}/members/${md5(email.toLowerCase())}`,
         payload
       )
 
