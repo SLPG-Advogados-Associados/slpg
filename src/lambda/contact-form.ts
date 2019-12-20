@@ -14,10 +14,12 @@ interface ParsedBody {
   email?: string
 }
 
-// how to replace this vars: https://codeburst.io/sending-an-email-using-nodemailer-gmail-7cfa0712a799
+// how to replace this vars: https://levelup.gitconnected.com/create-a-free-serverless-email-bot-using-gmail-nodejs-and-aws-lambda-8e56dbfde7a7
 
 // prettier-ignore
 const config = {
+  GOOGLE_USER: process.env.GOOGLE_USER,
+  GOOGLE_TO_EMAIL: process.env.GOOGLE_TO_EMAIL,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   GOOGLE_REFRESH_TOKEN: process.env.GOOGLE_REFRESH_TOKEN,
@@ -26,6 +28,8 @@ const config = {
 
 /* prettier-ignore */
 if (process.env.NODE_ENV === 'production') {
+  if (!process.env.GOOGLE_USER) throw new Error('GOOGLE_USER is required in production')
+  if (!process.env.GOOGLE_TO_EMAIL) throw new Error('GOOGLE_TO_EMAIL is required in production')
   if (!process.env.GOOGLE_CLIENT_ID) throw new Error('GOOGLE_CLIENT_ID is required in production')
   if (!process.env.GOOGLE_CLIENT_SECRET) throw new Error('GOOGLE_CLIENT_SECRET is required in production')
   if (!process.env.GOOGLE_REFRESH_TOKEN) throw new Error('GOOGLE_REFRESH_TOKEN is required in production')
@@ -56,7 +60,7 @@ export async function handler({ body, httpMethod }: LambdaEvent) {
       service: 'gmail',
       auth: {
         type: 'OAuth2',
-        user: 'lucascsilva1990@gmail.com',
+        user: config.GOOGLE_USER,
         clientId: config.GOOGLE_CLIENT_ID,
         clientSecret: config.GOOGLE_CLIENT_SECRET,
         refreshToken: config.GOOGLE_REFRESH_TOKEN,
@@ -68,9 +72,9 @@ export async function handler({ body, httpMethod }: LambdaEvent) {
 
     // prettier-ignore
     const mail = {
-      from: 'lucascsilva1990@gmail.com',
+      from: 'site@slpgadvogados.adv.br',
       replyTo: email,
-      to: 'lucascsilva1990@gmail.com',
+      to: config.GOOGLE_TO_EMAIL,
       subject: `[slpgadvogados.adv.br] Contato: ${name}`,
       generateTextFromHTML: true,
       html: `
