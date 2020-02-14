@@ -1,5 +1,7 @@
 ---
-title: 'CUIDADO: ESTELIONATÁRIOS ESTÃO SE PASSANDO POR ADVOGADOS DO SLPG'
+title: >-
+  CUIDADO: ESTELIONATÁRIOS ESTÃO SE PASSANDO POR MEMBROS DE ESCRITÓRIOS DE
+  ADVOCACIA E PODER JUDICIÁRIO
 date: 2020-02-14T17:54:14.803Z
 image: /admin/content/media/sign-2218337_960_720.jpg
 summary: >-
@@ -7,7 +9,7 @@ summary: >-
   SLPG Advogados e pedindo depósitos de valores para pagamento de custas
   judiciais.
 ---
-Informamos que pessoas mal intencionadas estão se passando por integrantes do SLPG Advogados e pedindo depósitos de valores para pagamento de custas judiciais. 
+Informamos que pessoas mal intencionadas estão se passando por membros de escritórios de advocacia (incluindo oo SLPG) e [Poder Judiciário](https://bit.ly/2OUfE0l) pedindo depósitos de valores para pagamento de custas judiciais. 
 
 Alertamos que se trata de um golpe de estelionatários. Não deposite valor algum.
 
