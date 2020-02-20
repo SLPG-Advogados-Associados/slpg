@@ -1,7 +1,7 @@
 ---
 title: >-
-  CUIDADO: ESTELIONATÁRIOS ESTÃO SE PASSANDO POR MEMBROS DE ESCRITÓRIOS DE
-  ADVOCACIA E PODER JUDICIÁRIO
+  Cuidado: estelionatários estão se passando por membros de escrtirórios de
+  advocacia e poder judiciário
 date: 2020-02-14T17:54:14.803Z
 image: /admin/content/media/sign-2218337_960_720.jpg
 summary: >-
