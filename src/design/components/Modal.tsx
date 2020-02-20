@@ -3,6 +3,7 @@ import { animated, config, useSpring } from 'react-spring'
 import classnames from 'classnames'
 import keycode from 'keycode'
 import { Icons } from './Icons'
+import { useLockBody } from '../hooks/useLockBody'
 import { styled } from '../lib/styled'
 
 type Props = StyleHTMLAttributes<HTMLDivElement> & {
@@ -20,7 +21,7 @@ const Content = styled(animated.div)`
 
   & > * {
     pointer-events: auto;
-    max-height: 100vh;
+    max-height: 90vh;
     overflow-y: auto;
   }
 `
@@ -48,6 +49,8 @@ const Modal: React.FC<Props> = ({
     onStart: () => (isOpen ? setCompletelyClosed(false) : null),
     onRest: () => (isOpen ? null : setCompletelyClosed(true)),
   })
+
+  useLockBody(isOpen)
 
   useEffect(() => {
     if (!isOpen) {
