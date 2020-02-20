@@ -6,21 +6,9 @@ import BeatLoader from 'react-spinners/BeatLoader'
 import { useAlert } from 'react-alert'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { GT } from '~api'
-import { Button, AlertContent, styled, t, theme } from '~design'
+import { Button, AlertContent, theme } from '~design'
+import { TextField } from '~app/modules/form'
 import { NEWSLETTER_INTERESTS, SUBSCRIBE } from './newsletter.gql'
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.85em 1em;
-  color: inherit;
-  border: 1px solid ${t.theme('colors.border')};
-  font-size: ${t.theme('fontSize.200')};
-`
-
-const Error: React.FC<{ error?: string }> = ({ error }) =>
-  error ? (
-    <span className="text-meta text-danger block p-2">{error}</span>
-  ) : null
 
 type Inputs = { email: string; name: string; interests: string[] }
 
@@ -29,13 +17,6 @@ const initialValues: Inputs = {
   name: '',
   interests: [],
 }
-
-const input = (name: keyof Inputs, form: FormikProps<Inputs>) => ({
-  name,
-  value: form.values[name],
-  onChange: form.handleChange,
-  onBlur: form.handleBlur,
-})
 
 const checkboxes = (
   name: keyof Inputs,
@@ -79,12 +60,13 @@ const NewsletterForm: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
 
   if (error) throw error
 
-  if (loading)
+  if (loading) {
     return (
       <div className="py-10 px-16">
         <BeatLoader color={theme.colors.primary} size={12} />
       </div>
     )
+  }
 
   return (
     <Formik
@@ -120,14 +102,12 @@ const NewsletterForm: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
 
           <label className="mb-4 block">
             <div className="font-bold mb-2">E-mail</div>
-            <Input {...input('email', form)} />
-            <Error error={form.touched.name && form.errors.email} />
+            <TextField name="email" />
           </label>
 
           <label className="mb-4 block">
             <div className="font-bold mb-2">Nome</div>
-            <Input {...input('name', form)} />
-            <Error error={form.touched.name && form.errors.name} />
+            <TextField name="name" />
           </label>
 
           <div className="mb-10">
