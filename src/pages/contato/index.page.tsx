@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Yup from 'yup'
-import { Formik, FormikProps } from 'formik'
+import { Formik } from 'formik'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { useAlert } from 'react-alert'
 import { useMutation } from '@apollo/react-hooks'
@@ -9,6 +9,7 @@ import { Page } from '~app/components/Page'
 import { Button, Heading, AlertContent, styled, t, theme } from '~design'
 import { Section } from '~app/components/Section'
 import { CONTACT } from './contact.gql'
+import { TextField, TextAreaField } from '~app/modules/form'
 
 const Map = styled.iframe.attrs({
   src:
@@ -20,31 +21,9 @@ const Map = styled.iframe.attrs({
   width: 100%;
 `
 
-const Input = styled.input`
-  width: 100%;
-  padding: 0.85em 1em;
-  color: inherit;
-  border: 1px solid ${t.theme('colors.border')};
-  font-size: ${t.theme('fontSize.200')};
-`
-
-const TextArea = Input.withComponent('textarea')
-
-const Error: React.FC<{ error?: string }> = ({ error }) =>
-  error ? (
-    <span className="text-meta text-danger block p-2">{error}</span>
-  ) : null
-
 const initialValues = { name: '', phone: '', email: '', message: '' }
 
 type Inputs = typeof initialValues
-
-const input = (name: keyof Inputs, form: FormikProps<Inputs>) => ({
-  name,
-  value: form.values[name],
-  onChange: form.handleChange,
-  onBlur: form.handleBlur,
-})
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Campo obrigatório'),
@@ -116,29 +95,10 @@ const ContatoPage = () => {
           >
             {form => (
               <form onSubmit={form.handleSubmit}>
-                <label className="mb-4 block">
-                  <Input {...input('name', form)} placeholder="Nome" />
-                  <Error error={form.touched.name && form.errors.name} />
-                </label>
-
-                <label className="mb-4 block">
-                  <Input {...input('phone', form)} placeholder="Telefone" />
-                  <Error error={form.touched.phone && form.errors.phone} />
-                </label>
-
-                <label className="mb-4 block">
-                  <Input {...input('email', form)} placeholder="E-mail" />
-                  <Error error={form.touched.email && form.errors.email} />
-                </label>
-
-                <label className="mb-4 block">
-                  <TextArea
-                    {...input('message', form)}
-                    placeholder="Mensagem"
-                    rows={5}
-                  />
-                  <Error error={form.touched.message && form.errors.message} />
-                </label>
+                <TextField name="name" placeholder="Nome" />
+                <TextField name="phone" placeholder="Telefone" />
+                <TextField name="email" placeholder="E-mail" />
+                <TextAreaField name="message" placeholder="Mensagem" rows={5} />
 
                 <Button
                   type="submit"
