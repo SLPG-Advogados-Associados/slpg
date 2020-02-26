@@ -12,7 +12,7 @@ summary: >-
   tratará do tema Prerrogativas da Mulher Advogada e o Assédio no Ambiente
   Jurídico.
 ---
-Para contribuir com o Dia Internacional das Mulheres informamos que no dia 9 de maio a advogada Paula Poli (OAB/SC 25685; integrante do SLPG) estará proferindo palestra durante a Semana de Gestão de Carreira na Advocacia, evento organizado pela Comissão da Mulher Advogada da OAB de São José, no qual tratará do tema Prerrogativas da Mulher Advogada e o Assédio no Ambiente Jurídico. 
+Para contribuir com o Dia Internacional das Mulheres informamos que no dia 9 de março a advogada Paula Poli (OAB/SC 25685; integrante do SLPG) estará proferindo palestra durante a Semana de Gestão de Carreira na Advocacia, evento organizado pela Comissão da Mulher Advogada da OAB de São José, no qual tratará do tema Prerrogativas da Mulher Advogada e o Assédio no Ambiente Jurídico. 
 
 O público-alvo do evento são advogados(as), bacharéis(las) em direito e acadêmicos(as) de direito. A entrada é gratuita e os(as) interessados(as0 devem se inscrever nas palestras de seus interesses clicando [AQUI](https://www.google.com/url?q=https://www.sympla.com.br/prerrogativas-da-mulher-advogada-e-o-assedio-no-ambiente-juridico__797873&sa=D&ust=1582744433337000&usg=AFQjCNGUhDNo0IHdW3HW5KaQlWtlbqK-7Q). As vagas são limitadas.
 
