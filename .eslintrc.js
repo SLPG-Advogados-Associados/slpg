@@ -50,6 +50,7 @@ module.exports = {
   rules: {
     'no-console': 'error',
     'react/prop-types': 'off',
+    'react/no-children-prop': 'off',
     'react/self-closing-comp': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
