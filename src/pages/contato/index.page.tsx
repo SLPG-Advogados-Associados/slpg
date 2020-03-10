@@ -1,12 +1,11 @@
 import React from 'react'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
-import BounceLoader from 'react-spinners/BounceLoader'
 import { useAlert } from 'react-alert'
 import { useMutation } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
 import { Page } from '~app/components/Page'
-import { Button, Heading, AlertContent, styled, t, theme } from '~design'
+import { Button, Heading, AlertContent, styled } from '~design'
 import { Section } from '~app/components/Section'
 import { CONTACT } from './contact.gql'
 import { TextField, TextAreaField } from '~app/modules/form'
@@ -104,13 +103,9 @@ const ContatoPage = () => {
                   type="submit"
                   className="w-full justify-center"
                   disabled={form.isSubmitting}
-                >
-                  {form.isSubmitting ? (
-                    <BounceLoader color={theme.colors.white} size={24} />
-                  ) : (
-                    'Enviar'
-                  )}
-                </Button>
+                  loading={form.isSubmitting}
+                  children="Enviar"
+                />
               </form>
             )}
           </Formik>
