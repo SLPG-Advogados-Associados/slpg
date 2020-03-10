@@ -1,8 +1,9 @@
 import React from 'react'
+import BounceLoader from 'react-spinners/BounceLoader'
 import { styled, css, t } from '../lib/styled'
-import { classed } from '../lib/classed'
+import { theme } from '../theme'
 
-type Props = React.ButtonHTMLAttributes<'button'> & {
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   rel?: string
   alt?: string
   href?: string
@@ -14,6 +15,8 @@ type Props = React.ButtonHTMLAttributes<'button'> & {
   cta?: boolean
   circle?: boolean
   outline?: boolean
+  // states
+  loading?: boolean
 }
 
 const variants = {
@@ -70,16 +73,28 @@ const variants = {
   `,
 }
 
-const Button = styled(
-  classed.button<
-    Props
-  >`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button`
-)`
+const Styled = styled.button<Props>`
   display: inline-flex;
   padding: 1.175em 1.875em 1.05em;
   align-items: center;
 
   ${t.variants(variants)}
 `
+
+const classes =
+  'text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button'
+
+const Base: React.FC<Props> = ({
+  children,
+  loading,
+  className = '',
+  ...props
+}) => (
+  <Styled {...props} className={`${className} ${classes}`}>
+    {loading ? <BounceLoader color={theme.colors.white} size={24} /> : children}
+  </Styled>
+)
+
+const Button = styled(Base)``
 
 export { Button }
