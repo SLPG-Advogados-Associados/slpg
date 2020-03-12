@@ -58,7 +58,16 @@ const conditions: Condition<Input, ConditionContext>[] = [
    * c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher,
    * com proventos proporcionais a esse tempo;
    */
-  // () => {},
+  input => {
+    const integrality = false
+
+    const reached =
+      input.gender === Gender.MALE
+        ? add(input.contribution.start, { years: 30 })
+        : add(input.contribution.start, { years: 25 })
+
+    return [reached < due, { integrality, reached }]
+  },
 
   /**
    * d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher,
