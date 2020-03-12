@@ -21,21 +21,3 @@ export type ConditionResult<ConditionContext = object> = [
 export type Condition<Input = object, ConditionContext = object> = (
   input: Input
 ) => ConditionResult<ConditionContext>
-
-export interface Rule<Input extends object> {
-  name: string
-  date: Date
-  description: string
-
-  /**
-   * The conditions for a given person data input to qualify for this rule,
-   * regardless of earning and rights calculation.
-   */
-  conditions: Condition[]
-
-  /**
-   * Whether or not a given person data input satisfies this
-   * rule's conditions.
-   */
-  satisfiedBy: (input: Input) => boolean
-}
