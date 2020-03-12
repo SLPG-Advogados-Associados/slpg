@@ -143,5 +143,42 @@ describe('retirement/calculator/rules/cf-1998', () => {
         expect(getInput(F, '1940', '1974', false)).not.toSatisfy(hasIntegrality)
       })
     })
+
+    /**
+     * d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher,
+     * com proventos proporcionais ao tempo de serviço.
+     */
+    describe('d)', () => {
+      const condition = conditions[3]
+      const reachedAt = reachedAtFactory(condition)
+      const hasIntegrality = input => condition(input)[1].integrality === true
+
+      it('should check qualification', () => {
+        // male
+        expect(condition(getInput(M, '1932', '1990', false))[0]).toEqual(true)
+        expect(condition(getInput(M, '1934', '1990', false))[0]).toEqual(false)
+        // female
+        expect(condition(getInput(F, '1937', '1990', false))[0]).toEqual(true)
+        expect(condition(getInput(F, '1939', '1990', false))[0]).toEqual(false)
+      })
+
+      it('should return correct reached date in context', () => {
+        // male, born in 1932, reached in 65 years
+        expect(getInput(M, '1932', '1990', false)).toSatisfy(reachedAt(1997))
+        // male, born in 1934, reached in 65 years
+        expect(getInput(M, '1934', '1990', false)).toSatisfy(reachedAt(1999))
+        // female, born in 1937, reached in 60 years
+        expect(getInput(F, '1937', '1990', false)).toSatisfy(reachedAt(1997))
+        // female, born in 1939, reached in 60 years
+        expect(getInput(F, '1939', '1990', false)).toSatisfy(reachedAt(1999))
+      })
+
+      it('should represent integrality', () => {
+        expect(getInput(M, '1932', '1990', false)).not.toSatisfy(hasIntegrality)
+        expect(getInput(M, '1934', '1990', false)).not.toSatisfy(hasIntegrality)
+        expect(getInput(F, '1937', '1990', false)).not.toSatisfy(hasIntegrality)
+        expect(getInput(F, '1939', '1990', false)).not.toSatisfy(hasIntegrality)
+      })
+    })
   })
 })
