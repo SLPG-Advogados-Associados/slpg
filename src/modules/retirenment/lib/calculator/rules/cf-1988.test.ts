@@ -35,6 +35,7 @@ describe('retirement/calculator/rules/cf-1998', () => {
     describe('a)', () => {
       const condition = conditions[0]
       const reachedAt = reachedAtFactory(condition)
+      const hasIntegrality = input => condition(input)[1].integrality === true
 
       it('should check qualification', () => {
         // male
@@ -55,6 +56,13 @@ describe('retirement/calculator/rules/cf-1998', () => {
         // female, contributed since 1970, reached in 30 years
         expect(getInput(F, '1940', '1969', false)).toSatisfy(reachedAt(1999))
       })
+
+      it('should represent integrality', () => {
+        expect(getInput(M, '1940', '1962', false)).toSatisfy(hasIntegrality)
+        expect(getInput(M, '1940', '1964', false)).toSatisfy(hasIntegrality)
+        expect(getInput(F, '1940', '1967', false)).toSatisfy(hasIntegrality)
+        expect(getInput(F, '1940', '1969', false)).toSatisfy(hasIntegrality)
+      })
     })
 
     /**
@@ -64,6 +72,7 @@ describe('retirement/calculator/rules/cf-1998', () => {
     describe('b)', () => {
       const condition = conditions[1]
       const reachedAt = reachedAtFactory(condition)
+      const hasIntegrality = input => condition(input)[1].integrality === true
 
       it('should check qualification', () => {
         // male teacher
@@ -86,6 +95,15 @@ describe('retirement/calculator/rules/cf-1998', () => {
         expect(getInput(F, '1940', '1972', true)).toSatisfy(reachedAt(1997))
         // female teacher, contributed since 1970, reached in 25 years
         expect(getInput(F, '1940', '1974', true)).toSatisfy(reachedAt(1999))
+      })
+
+      it('should represent integrality', () => {
+        expect(getInput(M, '1940', '1967', true)).toSatisfy(hasIntegrality)
+        expect(getInput(M, '1940', '1969', true)).toSatisfy(hasIntegrality)
+        expect(getInput(F, '1940', '1972', true)).toSatisfy(hasIntegrality)
+        expect(getInput(F, '1940', '1974', true)).toSatisfy(hasIntegrality)
+        expect(getInput(M, '1940', '1960', false)).toSatisfy(hasIntegrality)
+        expect(getInput(F, '1940', '1960', false)).toSatisfy(hasIntegrality)
       })
     })
   })
