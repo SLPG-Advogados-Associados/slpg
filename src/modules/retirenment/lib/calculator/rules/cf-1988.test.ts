@@ -21,6 +21,16 @@ const getInput = (
 })
 
 /**
+ * Generate a cf-1988 rule instance.
+ */
+const getRule = (
+  gender: Gender,
+  birth: string,
+  start: string,
+  teacher: boolean
+) => new CF1988Rule(getInput(gender, birth, start, teacher))
+
+/**
  * Factory for reached date matcher.
  */
 const reachedAtFactory = condition => year => input =>
@@ -39,11 +49,11 @@ describe('retirement/calculator/rules/cf-1998', () => {
 
       it('should check qualification', () => {
         // male
-        expect(condition(getInput(M, '1940', '1962', false))[0]).toEqual(true)
-        expect(condition(getInput(M, '1940', '1964', false))[0]).toEqual(false)
+        expect(condition(getInput(M, '1940', '1962', false))[0]).toBe(true)
+        expect(condition(getInput(M, '1940', '1964', false))[0]).toBe(false)
         // female
-        expect(condition(getInput(F, '1940', '1967', false))[0]).toEqual(true)
-        expect(condition(getInput(F, '1940', '1969', false))[0]).toEqual(false)
+        expect(condition(getInput(F, '1940', '1967', false))[0]).toBe(true)
+        expect(condition(getInput(F, '1940', '1969', false))[0]).toBe(false)
       })
 
       it('should return correct reached date in context', () => {
@@ -76,14 +86,14 @@ describe('retirement/calculator/rules/cf-1998', () => {
 
       it('should check qualification', () => {
         // male teacher
-        expect(condition(getInput(M, '1940', '1967', true))[0]).toEqual(true)
-        expect(condition(getInput(M, '1940', '1969', true))[0]).toEqual(false)
+        expect(condition(getInput(M, '1940', '1967', true))[0]).toBe(true)
+        expect(condition(getInput(M, '1940', '1969', true))[0]).toBe(false)
         // female teacher
-        expect(condition(getInput(F, '1940', '1972', true))[0]).toEqual(true)
-        expect(condition(getInput(F, '1940', '1974', true))[0]).toEqual(false)
+        expect(condition(getInput(F, '1940', '1972', true))[0]).toBe(true)
+        expect(condition(getInput(F, '1940', '1974', true))[0]).toBe(false)
         // non-teacher
-        expect(condition(getInput(M, '1940', '1960', false))[0]).toEqual(false)
-        expect(condition(getInput(F, '1940', '1960', false))[0]).toEqual(false)
+        expect(condition(getInput(M, '1940', '1960', false))[0]).toBe(false)
+        expect(condition(getInput(F, '1940', '1960', false))[0]).toBe(false)
       })
 
       it('should return correct reached date in context', () => {
@@ -118,11 +128,11 @@ describe('retirement/calculator/rules/cf-1998', () => {
 
       it('should check qualification', () => {
         // male
-        expect(condition(getInput(M, '1940', '1967', false))[0]).toEqual(true)
-        expect(condition(getInput(M, '1940', '1969', false))[0]).toEqual(false)
+        expect(condition(getInput(M, '1940', '1967', false))[0]).toBe(true)
+        expect(condition(getInput(M, '1940', '1969', false))[0]).toBe(false)
         // female
-        expect(condition(getInput(F, '1940', '1972', false))[0]).toEqual(true)
-        expect(condition(getInput(F, '1940', '1974', false))[0]).toEqual(false)
+        expect(condition(getInput(F, '1940', '1972', false))[0]).toBe(true)
+        expect(condition(getInput(F, '1940', '1974', false))[0]).toBe(false)
       })
 
       it('should return correct reached date in context', () => {
@@ -155,11 +165,11 @@ describe('retirement/calculator/rules/cf-1998', () => {
 
       it('should check qualification', () => {
         // male
-        expect(condition(getInput(M, '1932', '1990', false))[0]).toEqual(true)
-        expect(condition(getInput(M, '1934', '1990', false))[0]).toEqual(false)
+        expect(condition(getInput(M, '1932', '1990', false))[0]).toBe(true)
+        expect(condition(getInput(M, '1934', '1990', false))[0]).toBe(false)
         // female
-        expect(condition(getInput(F, '1937', '1990', false))[0]).toEqual(true)
-        expect(condition(getInput(F, '1939', '1990', false))[0]).toEqual(false)
+        expect(condition(getInput(F, '1937', '1990', false))[0]).toBe(true)
+        expect(condition(getInput(F, '1939', '1990', false))[0]).toBe(false)
       })
 
       it('should return correct reached date in context', () => {
@@ -188,10 +198,31 @@ describe('retirement/calculator/rules/cf-1998', () => {
       expect(CF1988Rule).toHaveProperty('description')
     })
 
-    it('should be possible to instantiate', () => {
-      const input = getInput(M, '1950', '1990', false)
-      const rule = new CF1988Rule(input)
+    it('should be possible to instantiate rule', () => {
+      const rule = getRule(M, '1950', '1990', false)
       expect(rule).toBeInstanceOf(CF1988Rule)
+    })
+
+    it('should be possible to check rule satisfaction result', () => {
+      // satisfies a)
+      expect(getRule(M, '1940', '1962', false).satisfied).toBe(true)
+      expect(getRule(F, '1940', '1967', false).satisfied).toBe(true)
+      // satisfies b)
+      expect(getRule(M, '1940', '1967', true).satisfied).toBe(true)
+      expect(getRule(F, '1940', '1972', true).satisfied).toBe(true)
+      // satisfies c)
+      expect(getRule(M, '1940', '1967', false).satisfied).toBe(true)
+      expect(getRule(F, '1940', '1972', false).satisfied).toBe(true)
+      // satisfies d)
+      expect(getRule(M, '1932', '1990', false).satisfied).toBe(true)
+      expect(getRule(F, '1937', '1990', false).satisfied).toBe(true)
+      // satisfies none
+      expect(getRule(M, '1934', '1980', false).satisfied).toBe(false)
+      expect(getRule(F, '1939', '1980', false).satisfied).toBe(false)
+      expect(getRule(M, '1940', '1969', false).satisfied).toBe(false)
+      expect(getRule(M, '1940', '1969', true).satisfied).toBe(false)
+      expect(getRule(F, '1940', '1974', false).satisfied).toBe(false)
+      expect(getRule(F, '1940', '1974', true).satisfied).toBe(false)
     })
   })
 })
