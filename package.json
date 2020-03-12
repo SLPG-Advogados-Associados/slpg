@@ -45,6 +45,7 @@
     "babel-plugin-macros": "^2.6.2",
     "classnames": "^2.2.6",
     "console-suppress": "^0.1.1",
+    "date-fns": "^2.10.0",
     "dayjs": "^1.8.17",
     "formik": "^2.0.6",
     "googleapis": "^45.0.0",
