@@ -1,5 +1,6 @@
 /* cspell: disable */
 import { add } from 'date-fns'
+import { BaseRule } from './base'
 import { Condition, Gender } from '../types'
 
 export interface Input {
@@ -85,4 +86,15 @@ const conditions: Condition<Input, ConditionContext>[] = [
   },
 ]
 
-export { conditions }
+const description = 'Regra do art. 40 da Constituição Federal, texto original'
+
+class CF1988Rule extends BaseRule<Input, ConditionContext> {
+  public static title = 'CF 1988'
+  public static description = description
+
+  constructor(input) {
+    super(input, conditions)
+  }
+}
+
+export { conditions, CF1988Rule }

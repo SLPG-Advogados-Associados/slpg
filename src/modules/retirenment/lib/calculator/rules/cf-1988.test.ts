@@ -1,6 +1,6 @@
 /* cspell: disable */
 import { Gender } from '../types'
-import { conditions } from './cf-1988'
+import { conditions, CF1988Rule } from './cf-1988'
 import { isEqual } from 'date-fns'
 
 const { MALE: M, FEMALE: F } = Gender
@@ -179,6 +179,19 @@ describe('retirement/calculator/rules/cf-1998', () => {
         expect(getInput(F, '1937', '1990', false)).not.toSatisfy(hasIntegrality)
         expect(getInput(F, '1939', '1990', false)).not.toSatisfy(hasIntegrality)
       })
+    })
+  })
+
+  describe('rule', () => {
+    it('should have statics', () => {
+      expect(CF1988Rule).toHaveProperty('title')
+      expect(CF1988Rule).toHaveProperty('description')
+    })
+
+    it('should be possible to instantiate', () => {
+      const input = getInput(M, '1950', '1990', false)
+      const rule = new CF1988Rule(input)
+      expect(rule).toBeInstanceOf(CF1988Rule)
     })
   })
 })
