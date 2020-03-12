@@ -18,7 +18,7 @@
     "qa": "run-p type-check test lint",
     "site-map": "node site-map.js",
     "start": "next start",
-    "test": "echo 'no tests yet'",
+    "test": "jest",
     "type-check": "tsc"
   },
   "husky": {
@@ -31,6 +31,11 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[jt]sx?$": "babel-jest"
+    }
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
@@ -81,6 +86,7 @@
     "@graphql-codegen/typescript": "^1.8.3",
     "@graphql-codegen/typescript-operations": "^1.8.3",
     "@graphql-codegen/typescript-resolvers": "^1.9.1",
+    "@types/jest": "^25.1.4",
     "@types/node": "^12.12.7",
     "@types/nodemailer": "^6.2.2",
     "@types/react": "^16.9.11",
@@ -96,6 +102,7 @@
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-config-react": "^1.1.7",
+    "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "express": "^4.17.1",
@@ -105,6 +112,7 @@
     "graphql-tag": "^2.10.1",
     "http-proxy-middleware": "^0.20.0",
     "husky": "^3.0.9",
+    "jest": "^25.1.0",
     "lint-staged": "^9.4.3",
     "next-compose-plugins": "^2.2.0",
     "next-env": "^1.1.0",

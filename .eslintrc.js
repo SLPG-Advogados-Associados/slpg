@@ -56,4 +56,13 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
   },
+
+  overrides: [
+    {
+      files: ['*.test.*'],
+      plugins: ['jest'],
+      env: { 'jest/globals': true },
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+    },
+  ],
 }
