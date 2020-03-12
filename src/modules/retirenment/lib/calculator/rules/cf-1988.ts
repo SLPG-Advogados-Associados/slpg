@@ -5,6 +5,7 @@ import { Condition, Gender } from '../types'
 export interface Input {
   gender: Gender
   birthDate: Date
+  teacher: boolean
   contribution: {
     start: Date
   }
@@ -26,19 +27,32 @@ const conditions: Condition<Input, ConditionContext>[] = [
    * com proventos integrais;
    */
   input => {
+    const integrality = true
+
     const reached =
       input.gender === Gender.MALE
         ? add(input.contribution.start, { years: 35 })
         : add(input.contribution.start, { years: 30 })
 
-    return [reached < due, { integrality: true, reached }]
+    return [reached < due, { integrality, reached }]
   },
 
   /**
    * b) aos trinta anos de efetivo exercício em funções de magistério, se
    * professor, e vinte e cinco, se professora, com proventos integrais;
    */
-  // () => {},
+  input => {
+    const integrality = true
+
+    const reached =
+      input.gender === Gender.MALE
+        ? add(input.contribution.start, { years: 30 })
+        : add(input.contribution.start, { years: 25 })
+
+    if (!input.teacher) return [false, { integrality, reached }]
+
+    return [reached < due, { integrality, reached }]
+  },
 
   /**
    * c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher,
