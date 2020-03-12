@@ -7,12 +7,20 @@ export enum Gender {
 }
 
 /**
+ * A condition check result, with varying context.
+ */
+export type ConditionResult<ConditionContext = object> = [
+  boolean,
+  ConditionContext
+]
+
+/**
  * An adapted logic predicate function the returns the result
  * with possible result context.
  */
 export type Condition<Input = object, ConditionContext = object> = (
   input: Input
-) => [boolean, ConditionContext?]
+) => ConditionResult<ConditionContext>
 
 export interface Rule<Input extends object> {
   name: string
