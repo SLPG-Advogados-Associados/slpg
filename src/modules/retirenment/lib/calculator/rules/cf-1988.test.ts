@@ -38,22 +38,22 @@ describe('retirement/calculator/rules/cf-1998', () => {
 
       it('should check qualification', () => {
         // male
-        expect(condition(getInput(M, '1940', '1963', false))[0]).toEqual(true)
+        expect(condition(getInput(M, '1940', '1962', false))[0]).toEqual(true)
         expect(condition(getInput(M, '1940', '1964', false))[0]).toEqual(false)
         // female
-        expect(condition(getInput(F, '1940', '1968', false))[0]).toEqual(true)
+        expect(condition(getInput(F, '1940', '1967', false))[0]).toEqual(true)
         expect(condition(getInput(F, '1940', '1969', false))[0]).toEqual(false)
       })
 
       it('should return correct reached date in context', () => {
         // male, contributed since 1960, reached in 35 years
-        expect(getInput(M, '1940', '1960', false)).toSatisfy(reachedAt(1995))
+        expect(getInput(M, '1940', '1962', false)).toSatisfy(reachedAt(1997))
         // male, contributed since 1970, reached in 35 years
-        expect(getInput(M, '1940', '1970', false)).toSatisfy(reachedAt(2005))
+        expect(getInput(M, '1940', '1964', false)).toSatisfy(reachedAt(1999))
         // female, contributed since 1965, reached in 30 years
-        expect(getInput(F, '1940', '1965', false)).toSatisfy(reachedAt(1995))
+        expect(getInput(F, '1940', '1967', false)).toSatisfy(reachedAt(1997))
         // female, contributed since 1970, reached in 30 years
-        expect(getInput(F, '1940', '1975', false)).toSatisfy(reachedAt(2005))
+        expect(getInput(F, '1940', '1969', false)).toSatisfy(reachedAt(1999))
       })
     })
 
@@ -67,10 +67,10 @@ describe('retirement/calculator/rules/cf-1998', () => {
 
       it('should check qualification', () => {
         // male teacher
-        expect(condition(getInput(M, '1940', '1968', true))[0]).toEqual(true)
+        expect(condition(getInput(M, '1940', '1967', true))[0]).toEqual(true)
         expect(condition(getInput(M, '1940', '1969', true))[0]).toEqual(false)
         // female teacher
-        expect(condition(getInput(F, '1940', '1973', true))[0]).toEqual(true)
+        expect(condition(getInput(F, '1940', '1972', true))[0]).toEqual(true)
         expect(condition(getInput(F, '1940', '1974', true))[0]).toEqual(false)
         // non-teacher
         expect(condition(getInput(M, '1940', '1960', false))[0]).toEqual(false)
@@ -79,13 +79,13 @@ describe('retirement/calculator/rules/cf-1998', () => {
 
       it('should return correct reached date in context', () => {
         // male teacher, contributed since 1960, reached in 30 years
-        expect(getInput(M, '1940', '1960', true)).toSatisfy(reachedAt(1990))
-        // female teacher, contributed since 1965, reached in 30 years
-        expect(getInput(F, '1940', '1965', true)).toSatisfy(reachedAt(1990))
-        // male teacher, contributed since 1970, reached in 35 years
-        expect(getInput(M, '1940', '1970', true)).toSatisfy(reachedAt(2000))
-        // female teacher, contributed since 1970, reached in 30 years
-        expect(getInput(F, '1940', '1970', true)).toSatisfy(reachedAt(1995))
+        expect(getInput(M, '1940', '1967', true)).toSatisfy(reachedAt(1997))
+        // male teacher, contributed since 1970, reached in 30 years
+        expect(getInput(M, '1940', '1969', true)).toSatisfy(reachedAt(1999))
+        // female teacher, contributed since 1965, reached in 25 years
+        expect(getInput(F, '1940', '1972', true)).toSatisfy(reachedAt(1997))
+        // female teacher, contributed since 1970, reached in 25 years
+        expect(getInput(F, '1940', '1974', true)).toSatisfy(reachedAt(1999))
       })
     })
   })
