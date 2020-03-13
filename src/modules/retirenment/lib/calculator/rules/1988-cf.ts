@@ -88,7 +88,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
 
 const description = 'Regra do art. 40 da Constituição Federal, texto original'
 
-class CF1988Rule extends BaseRule<Input, ConditionContext> {
+class Rule1988CF extends BaseRule<Input, ConditionContext> {
   public static title = 'CF 1988'
   public static description = description
 
@@ -97,4 +97,4 @@ class CF1988Rule extends BaseRule<Input, ConditionContext> {
   }
 }
 
-export { conditions, CF1988Rule }
+export { conditions, Rule1988CF }
