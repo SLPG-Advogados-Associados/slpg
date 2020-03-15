@@ -80,25 +80,32 @@ describe('retirement/calculator/lib/conditions', () => {
     })
 
     it('should correctly qualify', () => {
-      // 10, from start to due
-      expect(cond(d('2000'), 10, c(['1980', '1990']))[0]).toBe(true)
-      // expect(cond(d('2000'), 20, c(['1980']))[0]).toBe(true)
-      // expect(cond(d('2000'), 20, c([], ['1980']))[0]).toBe(true)
+      // expects 20 years, until 2000
+      const check = input => cond(d('2000'), 20, input)
 
-      // // 20, from start to end
-      // expect(cond(d('2000'), 10, c(['1970', '1990']))[0]).toBe(true)
-      // expect(cond(d('2000'), 10, c([], ['1970', '1990']))[0]).toBe(true)
+      // success
 
-      // // 20 precisely, from start to en
-      // expect(cond(d('2000'), 20, c([], ['1970', '1990']))[0]).toBe(true)
+      // 20 years, single, before due
+      expect(check(c(['1970', '1990']))[0]).toBe(true)
+      // 20 years, double, before due
+      expect(check(c(['1960', '1965'], ['1970', '1985']))[0]).toBe(true)
+      // 20+ years, single, before due
+      expect(check(c(['1970']))[0]).toBe(true)
 
-      // // only 19, from start to due
-      // expect(cond(d('2000'), 20, c(['1981']))[0]).toBe(false)
-      // expect(cond(d('2000'), 20, c([], ['1981']))[0]).toBe(false)
+      // fail
 
-      // // only 10, from start to end
-      // expect(cond(d('2000'), 20, c(['1980', '1990']))[0]).toBe(false)
-      // expect(cond(d('2000'), 20, c([], ['1980', '1990']))[0]).toBe(false)
+      // only 10 years, single, before due
+      expect(check(c(['1980', '1990']))[0]).toBe(false)
+      // only 10 years, double, before due
+      expect(check(c(['1960', '1965'], ['1970', '1975']))[0]).toBe(false)
+      // 20+ years, single, but after due
+      expect(check(c(['1990']))[0]).toBe(false)
+      // 20+ years, double, but after due
+      expect(check(c(['1990', '1995'], ['2000']))[0]).toBe(false)
+
+      // no due, will always evaluate satisfied wheneve reached
+      expect(cond(null, 20, c(['1990']))[0]).toBe(true)
+      expect(cond(null, 20, c(['2010']))[0]).toBe(false) // not yet
     })
 
     // it('should return "reached" context', () => {
