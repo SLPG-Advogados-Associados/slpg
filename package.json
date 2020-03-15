@@ -50,6 +50,7 @@
     "console-suppress": "^0.1.1",
     "date-fns": "^2.10.0",
     "dayjs": "^1.8.17",
+    "duration-fns": "^2.0.1",
     "formik": "^2.0.6",
     "googleapis": "^45.0.0",
     "graphql": "^14.5.8",

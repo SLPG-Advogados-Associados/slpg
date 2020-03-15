@@ -68,4 +68,42 @@ describe('retirement/calculator/lib/conditions', () => {
       expect(cond(d('2000'), 30, c(['1980']))).toSatisfy(reachedAt(2010))
     })
   })
+
+  describe('contributionDuration', () => {
+    const cond = __get__('contributionDuration')
+
+    const c = (...spans) => ({
+      contributions: spans.map(([start, end]) => ({
+        start: d(start),
+        end: end ? d(end) : undefined,
+      })),
+    })
+
+    it('should correctly qualify', () => {
+      // 10, from start to due
+      expect(cond(d('2000'), 10, c(['1980', '1990']))[0]).toBe(true)
+      // expect(cond(d('2000'), 20, c(['1980']))[0]).toBe(true)
+      // expect(cond(d('2000'), 20, c([], ['1980']))[0]).toBe(true)
+
+      // // 20, from start to end
+      // expect(cond(d('2000'), 10, c(['1970', '1990']))[0]).toBe(true)
+      // expect(cond(d('2000'), 10, c([], ['1970', '1990']))[0]).toBe(true)
+
+      // // 20 precisely, from start to en
+      // expect(cond(d('2000'), 20, c([], ['1970', '1990']))[0]).toBe(true)
+
+      // // only 19, from start to due
+      // expect(cond(d('2000'), 20, c(['1981']))[0]).toBe(false)
+      // expect(cond(d('2000'), 20, c([], ['1981']))[0]).toBe(false)
+
+      // // only 10, from start to end
+      // expect(cond(d('2000'), 20, c(['1980', '1990']))[0]).toBe(false)
+      // expect(cond(d('2000'), 20, c([], ['1980', '1990']))[0]).toBe(false)
+    })
+
+    // it('should return "reached" context', () => {
+    //   expect(cond(d('2000'), 10, c(['1980']))).toSatisfy(reachedAt(1990))
+    //   expect(cond(d('2000'), 30, c(['1980']))).toSatisfy(reachedAt(2010))
+    // })
+  })
 })
