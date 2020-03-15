@@ -24,6 +24,10 @@ const age = curry(
 
 /**
  * Last contribution min years condition.
+ *
+ * @todo consider the possibility another post but the last
+ * be one that the retirement time was reached.
+ *
  * @param due The due date.
  * @param years The years the last contribution must have by due date.
  */
