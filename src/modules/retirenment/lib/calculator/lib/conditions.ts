@@ -1,8 +1,8 @@
 /* cspell: disable */
 import { last, curry } from 'ramda'
-import { add } from 'date-fns'
+import { add, max } from 'date-fns'
 import { between, sum, Duration } from 'duration-fns'
-import { ConditionResult, Contribution } from '../types'
+import { Condition, ConditionResult, Contribution } from '../types'
 
 const today = new Date()
 
@@ -71,4 +71,33 @@ const totalContributionDuration = curry(
   }
 )
 
-export { age, lastContributionDuration, totalContributionDuration }
+/**
+ * Helper functions to combine conditions into one.
+ */
+const merge = {
+  /**
+   * Require all to be satisfied.
+   */
+  all: curry(
+    (
+      conditions: Condition[],
+      input
+    ): ConditionResult<{ reached: Date; results: ConditionResult[] }> => {
+      const results = conditions.map(condition => condition(input))
+
+      const satisfied = results.every(([satisfied]) => satisfied)
+      const reached = max(results.map(([, { reached }]) => reached))
+
+      return [satisfied, { reached, results }]
+    }
+  ),
+}
+
+export {
+  // condition & condition factories
+  age,
+  lastContributionDuration,
+  totalContributionDuration,
+  // helpers
+  merge,
+}

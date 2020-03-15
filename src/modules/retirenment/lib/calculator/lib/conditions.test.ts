@@ -1,10 +1,14 @@
 /* cspell: disable */
+import { isValid } from 'date-fns'
 // @ts-ignore
 import {
   age,
   lastContributionDuration,
   totalContributionDuration,
+  merge,
 } from './conditions'
+
+import { Condition } from '../types'
 
 // @ts-ignore
 // Shorter Date factory.
@@ -121,6 +125,37 @@ describe('retirement/calculator/lib/conditions', () => {
 
       expect(check(c(['1970', '1995']))).toSatisfy(reachedAt(1990))
       expect(check(c(['1970', '1995']))).toHaveProperty('1.duration.years', 25)
+    })
+  })
+
+  describe('merge', () => {
+    type Conds = { [key: string]: { [key: string]: Condition } }
+    const { all } = merge
+
+    const conds: Conds = {
+      pass: {
+        on1990: () => [true, { reached: new Date('1990') }],
+        on2000: () => [true, { reached: new Date('2000') }],
+      },
+      fail: {
+        on1995: () => [false, { reached: new Date('1995') }],
+        on2005: () => [false, { reached: new Date('2005') }],
+      },
+    }
+
+    describe('all', () => {
+      it('should merge multiple conditions', () => {
+        expect(all([])).toBeFunction()
+        expect(all([conds.pass.on1990])).toBeFunction()
+        expect(all([conds.pass.on1990, conds.pass.on2000])).toBeFunction()
+      })
+
+      it('should handle empty merges', () => {
+        const [satisfied, { reached }] = all([], {})
+        expect(satisfied).toBe(true)
+        expect(reached).toBeInstanceOf(Date)
+        expect(reached).not.toSatisfy(isValid)
+      })
     })
   })
 })
