@@ -79,10 +79,10 @@ describe('retirement/calculator/lib/conditions', () => {
       })),
     })
 
-    it('should correctly qualify', () => {
-      // expects 20 years, until 2000
-      const check = input => cond(d('2000'), 20, input)
+    // expects 20 years, until 2000
+    const check = input => cond(d('2000'), 20, input)
 
+    it('should correctly qualify', () => {
       // success
 
       // 20 years, single, before due
@@ -108,9 +108,15 @@ describe('retirement/calculator/lib/conditions', () => {
       expect(cond(null, 20, c(['2010']))[0]).toBe(false) // not yet
     })
 
-    // it('should return "reached" context', () => {
-    //   expect(cond(d('2000'), 10, c(['1980']))).toSatisfy(reachedAt(1990))
-    //   expect(cond(d('2000'), 30, c(['1980']))).toSatisfy(reachedAt(2010))
-    // })
+    it('should return context', () => {
+      expect(check(c(['1980']))).toSatisfy(reachedAt(2000))
+      expect(check(c(['1980']))).toHaveProperty('1.duration.years', 40)
+
+      expect(check(c(['1990']))).toSatisfy(reachedAt(2010))
+      expect(check(c(['1990']))).toHaveProperty('1.duration.years', 30)
+
+      expect(check(c(['1970', '1995']))).toSatisfy(reachedAt(1990))
+      expect(check(c(['1970', '1995']))).toHaveProperty('1.duration.years', 25)
+    })
   })
 })
