@@ -18,7 +18,7 @@ export interface ConditionContext {
 }
 
 /**
- * Date when EC 1998 is approved, deprecating the below rules.
+ * Date when EC 20/1998 is approved, deprecating the below rules.
  */
 const due = new Date('1998-12-16')
 
