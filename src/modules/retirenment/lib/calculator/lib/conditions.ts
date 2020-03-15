@@ -41,15 +41,29 @@ const lastContributionDuration = curry(
  * @param years The combined duration years contributions must have by due date.
  */
 const contributionDuration = curry(
-  (due: Date, years: number, input: { contributions: Contribution[] }) => {
+  (
+    due: Date | null,
+    years: number,
+    input: { contributions: Contribution[] }
+  ) => {
+    let reached: Date
     let duration = {} as Duration
 
     for (const { start, end = today } of input.contributions) {
       // sum up for the whole duration
       duration = sum(duration, between(start, end))
+
+      // calculate reaching date, when it happens.
+      if (!reached && duration.years >= years) {
+        reached = add(end, { years: years - duration.years })
+      }
     }
 
-    return [duration.years >= years, { duration }]
+    return [
+      // when no due, simply count current duration
+      due ? reached <= due : duration.years >= years,
+      { reached, duration },
+    ]
   }
 )
 
