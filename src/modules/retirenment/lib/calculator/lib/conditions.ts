@@ -1,7 +1,10 @@
 /* cspell: disable */
 import { last, curry } from 'ramda'
 import { add } from 'date-fns'
+import { between, sum, Duration } from 'duration-fns'
 import { ConditionResult, Contribution } from '../types'
+
+const today = new Date()
 
 /**
  * Age condition factory.
@@ -33,12 +36,31 @@ const lastContributionDuration = curry(
 )
 
 /**
+ * Full contribution min years condition.
+ * @param due The due date.
+ * @param years The combined duration years contributions must have by due date.
+ */
+const contributionDuration = curry(
+  (due: Date, years: number, input: { contributions: Contribution[] }) => {
+    let duration = {} as Duration
+
+    for (const { start, end = today } of input.contributions) {
+      // sum up for the whole duration
+      duration = sum(duration, between(start, end))
+    }
+
+    return [duration.years >= years, { duration }]
+  }
+)
+
+/**
  * Condition lib factory.
  * @param due Date to consider as due.
  */
 const buildConditions = (due: Date) => ({
   age: age(due),
   lastContributionDuration: lastContributionDuration(due),
+  contributionDuration: contributionDuration(due),
 })
 
 export { buildConditions }
