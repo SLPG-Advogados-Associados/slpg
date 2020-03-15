@@ -18,7 +18,7 @@ export type ConditionResult<ConditionContext = object> = [
  * An adapted logic predicate function the returns the result
  * with possible result context.
  */
-export type Condition<Input = object, ConditionContext = object> = (
+export type Condition<Input = object, ConditionContext = { reached: Date }> = (
   input: Input
 ) => ConditionResult<ConditionContext>
 
