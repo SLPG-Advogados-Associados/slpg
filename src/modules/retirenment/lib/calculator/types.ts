@@ -21,3 +21,38 @@ export type ConditionResult<ConditionContext = object> = [
 export type Condition<Input = object, ConditionContext = object> = (
   input: Input
 ) => ConditionResult<ConditionContext>
+
+/**
+ * Kinds of services.
+ */
+export enum ServiceKind {
+  PUBLIC,
+  PRIVATE,
+}
+
+/**
+ * Kinds of post.
+ */
+export enum Post {
+  TEACHER,
+  OTHER,
+}
+
+/**
+ * A service definition.
+ */
+export type Service = {
+  title?: string
+  kind: ServiceKind
+  post: Post
+}
+
+/**
+ * A contribution period.
+ */
+export type Contribution = {
+  start: Date
+  end?: Date
+  salary: number
+  service: Service
+}
