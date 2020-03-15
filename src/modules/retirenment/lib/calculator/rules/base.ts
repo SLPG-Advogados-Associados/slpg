@@ -1,6 +1,7 @@
 import { Condition, ConditionResult } from '../types'
 
 class BaseRule<Input extends object, ConditionContext = object> {
+  public static date: Date
   public static title: string
   public static description: string
 
