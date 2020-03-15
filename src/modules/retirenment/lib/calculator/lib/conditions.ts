@@ -40,7 +40,7 @@ const lastContributionDuration = curry(
  * @param due The due date.
  * @param years The combined duration years contributions must have by due date.
  */
-const contributionDuration = curry(
+const totalContributionDuration = curry(
   (
     due: Date | null,
     years: number,
@@ -67,14 +67,4 @@ const contributionDuration = curry(
   }
 )
 
-/**
- * Condition lib factory.
- * @param due Date to consider as due.
- */
-const buildConditions = (due: Date) => ({
-  age: age(due),
-  lastContributionDuration: lastContributionDuration(due),
-  contributionDuration: contributionDuration(due),
-})
-
-export { buildConditions }
+export { age, lastContributionDuration, totalContributionDuration }

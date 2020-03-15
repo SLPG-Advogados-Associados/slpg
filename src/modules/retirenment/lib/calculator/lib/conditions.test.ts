@@ -1,6 +1,10 @@
 /* cspell: disable */
 // @ts-ignore
-import { __get__, buildConditions } from './conditions'
+import {
+  age,
+  lastContributionDuration,
+  totalContributionDuration,
+} from './conditions'
 
 // @ts-ignore
 // Shorter Date factory.
@@ -14,7 +18,7 @@ const reachedAt = year => ([, { reached }]) => reached.getFullYear() === year
 
 describe('retirement/calculator/lib/conditions', () => {
   describe('age', () => {
-    const cond = __get__('age')
+    const cond = age
 
     it('should correctly qualify', () => {
       expect(cond(d('2000'), 50, { birthDate: d('1940') })[0]).toBe(true)
@@ -32,7 +36,7 @@ describe('retirement/calculator/lib/conditions', () => {
   })
 
   describe('lastContributionDuration', () => {
-    const cond = __get__('lastContributionDuration')
+    const cond = lastContributionDuration
 
     const c = (...spans) => ({
       contributions: spans.map(([start, end]) => ({
@@ -69,8 +73,8 @@ describe('retirement/calculator/lib/conditions', () => {
     })
   })
 
-  describe('contributionDuration', () => {
-    const cond = __get__('contributionDuration')
+  describe('totalContributionDuration', () => {
+    const cond = totalContributionDuration
 
     const c = (...spans) => ({
       contributions: spans.map(([start, end]) => ({
@@ -117,21 +121,6 @@ describe('retirement/calculator/lib/conditions', () => {
 
       expect(check(c(['1970', '1995']))).toSatisfy(reachedAt(1990))
       expect(check(c(['1970', '1995']))).toHaveProperty('1.duration.years', 25)
-    })
-  })
-
-  describe('buildConditions', () => {
-    it('should be create a condition library', () => {
-      const result = buildConditions(new Date('2000'))
-      expect(result).toHaveProperty('age')
-      expect(result).toHaveProperty('lastContributionDuration')
-      expect(result).toHaveProperty('contributionDuration')
-    })
-
-    it('should create age condition', () => {
-      const { age } = buildConditions(new Date('2000'))
-      expect(age(20, { birthDate: new Date('1950') })[0]).toBe(true)
-      expect(age(20, { birthDate: new Date('1990') })[0]).toBe(false)
     })
   })
 })
