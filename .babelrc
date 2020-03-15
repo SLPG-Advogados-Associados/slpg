@@ -16,5 +16,10 @@
         }
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["rewire-ts"]
+    }
+  }
 }
