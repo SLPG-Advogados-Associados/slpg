@@ -86,7 +86,8 @@ const conditions: Condition<Input, ConditionContext>[] = [
   },
 ]
 
-const description = 'Regra do art. 40 da Constituição Federal, texto original'
+const description =
+  'Regra do art. 40 da Constituição Federal de 1988, texto original'
 
 class Rule1988CF extends BaseRule<Input, ConditionContext> {
   public static date = new Date('1988-10-05')
