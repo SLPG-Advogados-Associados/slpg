@@ -129,10 +129,10 @@ describe('retirement/calculator/lib/conditions', () => {
   })
 
   describe('merge', () => {
-    type Conds = { [key: string]: { [key: string]: Condition } }
+    type CondsDictiorary = { [key: string]: { [key: string]: Condition } }
     const { all } = merge
 
-    const conds: Conds = {
+    const conds: CondsDictiorary = {
       pass: {
         on1990: () => [true, { reached: new Date('1990') }],
         on2000: () => [true, { reached: new Date('2000') }],
@@ -150,11 +150,38 @@ describe('retirement/calculator/lib/conditions', () => {
         expect(all([conds.pass.on1990, conds.pass.on2000])).toBeFunction()
       })
 
-      it('should handle empty merges', () => {
+      it('should handle empty condition set', () => {
         const [satisfied, { reached }] = all([], {})
         expect(satisfied).toBe(true)
         expect(reached).toBeInstanceOf(Date)
         expect(reached).not.toSatisfy(isValid)
+      })
+
+      it('should have same result for single condition', () => {
+        const left = all([conds.pass.on1990], {})
+        const right = conds.pass.on1990({})
+        expect(left).toMatchObject(right)
+      })
+
+      it.each([
+        [all([conds.pass.on1990]), true],
+        [all([conds.pass.on1990, conds.pass.on2000]), true],
+        [all([conds.pass.on1990, conds.fail.on2005]), false],
+        [all([conds.fail.on1995, conds.fail.on2005]), false],
+      ])('should only satisfy if all satisfy', (cond, satisfied) => {
+        expect(cond({})[0]).toBe(satisfied)
+      })
+
+      it.each([
+        [all([conds.pass.on1990]), 1990],
+        [all([conds.pass.on2000]), 2000],
+        [all([conds.pass.on1990, conds.pass.on2000]), 2000],
+        [all([conds.pass.on1990, conds.pass.on2000]), 2000],
+        [all([conds.pass.on1990, conds.pass.on2000]), 2000],
+        [all([conds.pass.on1990, conds.fail.on2005]), 2005],
+        [all([conds.fail.on1995, conds.fail.on2005]), 2005],
+      ])('should reach on latest reach, even failed ones', (cond, year) => {
+        expect(cond({})).toSatisfy(reachedAt(year))
       })
     })
   })
