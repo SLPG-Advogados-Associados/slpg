@@ -1,11 +1,10 @@
 /* cspell: disable */
 import { isValid } from 'date-fns'
-// @ts-ignore
 import {
   age,
-  lastContributionDuration,
-  totalContributionDuration,
+  contribution,
   merge,
+  // @ts-ignore
   __set__,
 } from './conditions'
 
@@ -46,75 +45,77 @@ describe('retirement/calculator/lib/conditions', () => {
     })
   })
 
-  describe('lastContributionDuration', () => {
-    const getInput = (...spans: [string, string?][]) => ({
-      contributions: spans.map(
-        ([start, end]) =>
-          ({
-            start: d(start),
-            end: end ? d(end) : undefined,
-          } as Contribution)
-      ),
+  describe('contribution', () => {
+    describe('last', () => {
+      const getInput = (...spans: [string, string?][]) => ({
+        contributions: spans.map(
+          ([start, end]) =>
+            ({
+              start: d(start),
+              end: end ? d(end) : undefined,
+            } as Contribution)
+        ),
+      })
+
+      it.each([
+        [[d('2000'), 10, getInput(['1980'])], true], //                             ✅ 20 of 10, from start to due
+        [[d('2000'), 20, getInput(['1980'])], true], //                             ✅ 20 of 20, from start to due (single)
+        [[d('2000'), 20, getInput(['1950', '1975'], ['1980'])], true], //           ✅ 20 of 20, from start to due (multi)
+        [[d('2000'), 10, getInput(['1970', '1990'])], true], //                     ✅ 20 of 10, from start to end (single)
+        [[d('2000'), 10, getInput(['1950', '1975'], ['1970', '1990'])], true], //   ✅ 20 of 10, from start to end (multi)
+        [[d('2000'), 20, getInput(['1950', '1975'], ['1970', '1990'])], true], //   ✅ 20 of 20, from start to end (multi)
+        [[d('2000'), 20, getInput(['1981'])], false], //                            ❌ 19 of 20, from start to due (single)
+        [[d('2000'), 20, getInput(['1950', '1975'], ['1981'])], false], //          ❌ 19 of 20, from start to due (multi)
+        [[d('2000'), 20, getInput(['1980', '1990'])], false], //                    ❌ 10 of 20, from start to end (single)
+        [[d('2000'), 20, getInput(['1950', '1975'], ['1980', '1990'])], false], //  ❌ 10 of 20, from start to end (multi)
+      ])('should correctly qualify', (args, expected) => {
+        expect(contribution.last(...args)[0]).toBe(expected)
+      })
+
+      it.each([
+        [[d('2000'), 10, getInput(['1980'])], 1990], // reached 10 from 1980
+        [[d('2000'), 30, getInput(['1980'])], 2010], // reached 30 from 1980
+        [[d('2000'), 10, getInput(['1960', '1970'], ['1980'])], 1990], // reached 10 from 1980
+        [[d('2000'), 30, getInput(['1960', '1970'], ['1980'])], 2010], // reached 30 from 1980
+      ])('should return "reached" context', (input, expected) => {
+        expect(contribution.last(...input)).toSatisfy(reachedAt(expected))
+      })
     })
 
-    it.each([
-      [[d('2000'), 10, getInput(['1980'])], true], //                             ✅ 20 of 10, from start to due
-      [[d('2000'), 20, getInput(['1980'])], true], //                             ✅ 20 of 20, from start to due (single)
-      [[d('2000'), 20, getInput(['1950', '1975'], ['1980'])], true], //           ✅ 20 of 20, from start to due (multi)
-      [[d('2000'), 10, getInput(['1970', '1990'])], true], //                     ✅ 20 of 10, from start to end (single)
-      [[d('2000'), 10, getInput(['1950', '1975'], ['1970', '1990'])], true], //   ✅ 20 of 10, from start to end (multi)
-      [[d('2000'), 20, getInput(['1950', '1975'], ['1970', '1990'])], true], //   ✅ 20 of 20, from start to end (multi)
-      [[d('2000'), 20, getInput(['1981'])], false], //                            ❌ 19 of 20, from start to due (single)
-      [[d('2000'), 20, getInput(['1950', '1975'], ['1981'])], false], //          ❌ 19 of 20, from start to due (multi)
-      [[d('2000'), 20, getInput(['1980', '1990'])], false], //                    ❌ 10 of 20, from start to end (single)
-      [[d('2000'), 20, getInput(['1950', '1975'], ['1980', '1990'])], false], //  ❌ 10 of 20, from start to end (multi)
-    ])('should correctly qualify', (args, expected) => {
-      expect(lastContributionDuration(...args)[0]).toBe(expected)
-    })
+    describe('total', () => {
+      const getInput = (...spans) => ({
+        contributions: spans.map(([start, end]) => ({
+          start: d(start),
+          end: end ? d(end) : undefined,
+        })),
+      })
 
-    it.each([
-      [[d('2000'), 10, getInput(['1980'])], 1990], // reached 10 from 1980
-      [[d('2000'), 30, getInput(['1980'])], 2010], // reached 30 from 1980
-      [[d('2000'), 10, getInput(['1960', '1970'], ['1980'])], 1990], // reached 10 from 1980
-      [[d('2000'), 30, getInput(['1960', '1970'], ['1980'])], 2010], // reached 30 from 1980
-    ])('should return "reached" context', (input, expected) => {
-      expect(lastContributionDuration(...input)).toSatisfy(reachedAt(expected))
-    })
-  })
+      it.each([
+        [[d('2000'), 20, getInput(['1970', '1990'])], true], //                     ✅ 20 years, single, before due
+        [[d('2000'), 20, getInput(['1960', '1965'], ['1970', '1985'])], true], //   ✅ 20 years, double, before due
+        [[d('2000'), 20, getInput(['1970'])], true], //                             ✅ 20+ years, single, before due
+        [[d('2000'), 20, getInput(['1980', '1990'])], false], //                    ❌ only 10 years, single, before due
+        [[d('2000'), 20, getInput(['1960', '1965'], ['1970', '1975'])], false], //  ❌ only 10 years, double, before due
+        [[d('2000'), 20, getInput(['1990'])], false], //                            ❌ 20+ years, single, but after due
+        [[d('2000'), 20, getInput(['1990', '1995'], ['2000'])], false], //          ❌ 20+ years, double, but after due
 
-  describe('totalContributionDuration', () => {
-    const getInput = (...spans) => ({
-      contributions: spans.map(([start, end]) => ({
-        start: d(start),
-        end: end ? d(end) : undefined,
-      })),
-    })
+        // no due date, today is due date.
+        [[null, 20, getInput(['1990'])], true], //  20+ years by today
+        [[null, 20, getInput(['2010'])], false], // -20 years by today
+      ])('should correctly qualify', (args, expected) => {
+        expect(contribution.total(...args)[0]).toBe(expected)
+      })
 
-    it.each([
-      [[d('2000'), 20, getInput(['1970', '1990'])], true], //                     ✅ 20 years, single, before due
-      [[d('2000'), 20, getInput(['1960', '1965'], ['1970', '1985'])], true], //   ✅ 20 years, double, before due
-      [[d('2000'), 20, getInput(['1970'])], true], //                             ✅ 20+ years, single, before due
-      [[d('2000'), 20, getInput(['1980', '1990'])], false], //                    ❌ only 10 years, single, before due
-      [[d('2000'), 20, getInput(['1960', '1965'], ['1970', '1975'])], false], //  ❌ only 10 years, double, before due
-      [[d('2000'), 20, getInput(['1990'])], false], //                            ❌ 20+ years, single, but after due
-      [[d('2000'), 20, getInput(['1990', '1995'], ['2000'])], false], //          ❌ 20+ years, double, but after due
-
-      // no due date, today is due date.
-      [[null, 20, getInput(['1990'])], true], //  20+ years by today
-      [[null, 20, getInput(['2010'])], false], // -20 years by today
-    ])('should correctly qualify', (args, expected) => {
-      expect(totalContributionDuration(...args)[0]).toBe(expected)
-    })
-
-    it.each([
-      [[d('2000'), 20, getInput(['1980'])], 2000, 40], // reached 20 at 2000, has currently 40
-      [[d('2000'), 20, getInput(['1990'])], 2010, 30], // reached 20 at 2010, has currently 30
-      [[d('2000'), 20, getInput(['1970', '1995'])], 1990, 25], // reached 20 at 1990, has currently 25 (stopped)
-      [[d('2000'), 20, getInput(['1970', '1980'], ['1985'])], 1995, 45], // reached 20 at 1995, has currently 45
-    ])('should return context', (args, expected, durationInYears) => {
-      const result = totalContributionDuration(...args)
-      expect(result).toSatisfy(reachedAt(expected))
-      expect(result).toHaveProperty('1.duration.years', durationInYears)
+      it.each([
+        [[d('2000'), 20, getInput(['1980'])], 2000, 40], // reached 20 at 2000, has currently 40
+        [[d('2000'), 20, getInput(['1990'])], 2010, 30], // reached 20 at 2010, has currently 30
+        [[d('2000'), 20, getInput(['1970', '1995'])], 1990, 25], // reached 20 at 1990, has currently 25 (stopped)
+        [[d('2000'), 20, getInput(['1970', '1980'], ['1985'])], 1995, 45], // reached 20 at 1995, has currently 45
+      ])('should return context', (args, expected, durationInYears) => {
+        const result = contribution.total(...args)
+        expect(result).toSatisfy(reachedAt(expected))
+        expect(result).toHaveProperty('1.duration.years', durationInYears)
+      })
     })
   })
 
