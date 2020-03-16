@@ -2,7 +2,13 @@
 import { last, curry } from 'ramda'
 import { add, max, sub } from 'date-fns'
 import { between, sum, Duration } from 'duration-fns'
-import { Condition, ConditionResult, Contribution } from '../types'
+
+import {
+  Condition,
+  ConditionContextBase,
+  ConditionResult,
+  Contribution,
+} from '../types'
 
 const today = new Date()
 
@@ -16,7 +22,7 @@ const age = curry(
     due: Date,
     years: number,
     input: { birthDate: Date }
-  ): ConditionResult<{ reached: Date }> => {
+  ): ConditionResult<ConditionContextBase> => {
     const reached = add(input.birthDate, { years })
     return [reached <= due, { reached }]
   }
@@ -36,7 +42,11 @@ const contribution = {
    * @param years The years the last contribution must have by due date.
    */
   last: curry(
-    (due: Date, years: number, input: { contributions: Contribution[] }) => {
+    (
+      due: Date,
+      years: number,
+      input: { contributions: Contribution[] }
+    ): ConditionResult<ConditionContextBase> => {
       const { start, end } = last(input.contributions)
       const reached = add(start, { years })
       return [reached <= due && (!end || reached <= end), { reached }]
@@ -53,7 +63,7 @@ const contribution = {
       due: Date | null,
       years: number,
       input: { contributions: Contribution[] }
-    ) => {
+    ): ConditionResult<ConditionContextBase & { duration: Duration }> => {
       let reached: Date
       let duration = {} as Duration
 
