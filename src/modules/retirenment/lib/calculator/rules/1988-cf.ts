@@ -1,7 +1,7 @@
 /* cspell: disable */
 import { add } from 'date-fns'
 import { BaseRule } from './base'
-import { Condition, Gender } from '../types'
+import { Condition, ConditionContextBase, Gender } from '../types'
 
 export interface Input {
   gender: Gender
@@ -12,8 +12,7 @@ export interface Input {
   }
 }
 
-export interface ConditionContext {
-  reached: Date
+export interface ConditionContext extends ConditionContextBase {
   integrality: boolean
 }
 

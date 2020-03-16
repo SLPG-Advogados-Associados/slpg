@@ -7,9 +7,14 @@ export enum Gender {
 }
 
 /**
+ * Minimum condition context shape.
+ */
+export type ConditionContextBase = { reached: Date }
+
+/**
  * A condition check result, with varying context.
  */
-export type ConditionResult<ConditionContext = object> = [
+export type ConditionResult<ConditionContext = ConditionContextBase> = [
   boolean,
   ConditionContext
 ]
@@ -18,9 +23,10 @@ export type ConditionResult<ConditionContext = object> = [
  * An adapted logic predicate function the returns the result
  * with possible result context.
  */
-export type Condition<Input = object, ConditionContext = { reached: Date }> = (
-  input: Input
-) => ConditionResult<ConditionContext>
+export type Condition<
+  Input = object,
+  ConditionContext = ConditionContextBase
+> = (input: Input) => ConditionResult<ConditionContext>
 
 /**
  * Kinds of services.
