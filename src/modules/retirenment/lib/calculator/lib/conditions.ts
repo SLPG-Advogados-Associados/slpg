@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { last, curry } from 'ramda'
+import { last } from 'ramda'
 import { add, max, sub } from 'date-fns'
 import { between, sum, Duration } from 'duration-fns'
 
@@ -17,16 +17,12 @@ const today = new Date()
  * @param due The due date.
  * @param years The age to reach by due date.
  */
-const age = curry(
-  (
-    due: Date,
-    years: number,
-    input: { birthDate: Date }
-  ): ConditionResult<ConditionContextBase> => {
-    const reached = add(input.birthDate, { years })
-    return [reached <= due, { reached }]
-  }
-)
+const age = (due: Date) => (years: number) => (input: {
+  birthDate: Date
+}): ConditionResult<ConditionContextBase> => {
+  const reached = add(input.birthDate, { years })
+  return [reached <= due, { reached }]
+}
 
 /**
  * Condition group for contribution related conditions.
@@ -41,50 +37,41 @@ const contribution = {
    * @param due The due date.
    * @param years The years the last contribution must have by due date.
    */
-  last: curry(
-    (
-      due: Date,
-      years: number,
-      input: { contributions: Contribution[] }
-    ): ConditionResult<ConditionContextBase> => {
-      const { start, end } = last(input.contributions)
-      const reached = add(start, { years })
-      return [reached <= due && (!end || reached <= end), { reached }]
-    }
-  ),
-
+  last: (due: Date) => (years: number) => (input: {
+    contributions: Contribution[]
+  }): ConditionResult<ConditionContextBase> => {
+    const { start, end } = last(input.contributions)
+    const reached = add(start, { years })
+    return [reached <= due && (!end || reached <= end), { reached }]
+  },
   /**
    * Full contribution min years condition.
    * @param due The due date.
    * @param years The combined duration years contributions must have by due date.
    */
-  total: curry(
-    (
-      due: Date | null,
-      years: number,
-      input: { contributions: Contribution[] }
-    ): ConditionResult<ConditionContextBase & { duration: Duration }> => {
-      let reached: Date
-      let duration = {} as Duration
+  total: (due: Date | null) => (years: number) => (input: {
+    contributions: Contribution[]
+  }): ConditionResult<ConditionContextBase & { duration: Duration }> => {
+    let reached: Date
+    let duration = {} as Duration
 
-      for (const { start, end = today } of input.contributions) {
-        // sum up for the whole duration
-        duration = sum(duration, between(start, end))
+    for (const { start, end = today } of input.contributions) {
+      // sum up for the whole duration
+      duration = sum(duration, between(start, end))
 
-        // calculate reaching date, when it happens.
-        if (!reached && duration.years >= years) {
-          // remove duration from end date, add necessary years.
-          reached = add(sub(end, duration), { years })
-        }
+      // calculate reaching date, when it happens.
+      if (!reached && duration.years >= years) {
+        // remove duration from end date, add necessary years.
+        reached = add(sub(end, duration), { years })
       }
-
-      return [
-        // when no due, simply count current duration
-        due ? reached <= due : duration.years >= years,
-        { reached, duration },
-      ]
     }
-  ),
+
+    return [
+      // when no due, simply count current duration
+      due ? reached <= due : duration.years >= years,
+      { reached, duration },
+    ]
+  },
 }
 
 /**
@@ -94,19 +81,16 @@ const merge = {
   /**
    * Require all to be satisfied.
    */
-  all: curry(
-    (
-      conditions: Condition[],
-      input
-    ): ConditionResult<{ reached: Date; results: ConditionResult[] }> => {
-      const results = conditions.map(condition => condition(input))
+  all: (conditions: Condition[]) => (
+    input
+  ): ConditionResult<{ reached: Date; results: ConditionResult[] }> => {
+    const results = conditions.map(condition => condition(input))
 
-      const satisfied = results.every(([satisfied]) => satisfied)
-      const reached = max(results.map(([, { reached }]) => reached))
+    const satisfied = results.every(([satisfied]) => satisfied)
+    const reached = max(results.map(([, { reached }]) => reached))
 
-      return [satisfied, { reached, results }]
-    }
-  ),
+    return [satisfied, { reached, results }]
+  },
 }
 
 export {

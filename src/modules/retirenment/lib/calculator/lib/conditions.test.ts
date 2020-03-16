@@ -33,15 +33,15 @@ describe('retirement/calculator/lib/conditions', () => {
       [[d('2000'), 30, getInput('1960')], true], //   ✅ 40 by 2000
       [[d('2000'), 30, getInput('1970')], true], //   ✅ 30 by 2000
       [[d('2000'), 30, getInput('1980')], false], //  ❌ 20 by 2000
-    ])('should correctly qualify', (args, expected) => {
-      expect(age(...args)[0]).toBe(expected)
+    ])('should correctly qualify', ([due, years, input], expected) => {
+      expect(age(due)(years)(input)[0]).toBe(expected)
     })
 
     it.each([
       [[d('2000'), 50, getInput('1940')], 1990], // reached 50 yo from 1940
       [[d('2000'), 20, getInput('1940')], 1960], // reached 20 yo from 1940
-    ])('should return "reached" context', (args, expected) => {
-      expect(age(...args)).toSatisfy(reachedAt(expected))
+    ])('should return "reached" context', ([due, years, input], expected) => {
+      expect(age(due)(years)(input)).toSatisfy(reachedAt(expected))
     })
   })
 
@@ -68,8 +68,8 @@ describe('retirement/calculator/lib/conditions', () => {
         [[d('2000'), 20, getInput(['1950', '1975'], ['1981'])], false], //          ❌ 19 of 20, from start to due (multi)
         [[d('2000'), 20, getInput(['1980', '1990'])], false], //                    ❌ 10 of 20, from start to end (single)
         [[d('2000'), 20, getInput(['1950', '1975'], ['1980', '1990'])], false], //  ❌ 10 of 20, from start to end (multi)
-      ])('should correctly qualify', (args, expected) => {
-        expect(contribution.last(...args)[0]).toBe(expected)
+      ])('should correctly qualify', ([due, years, input], expected) => {
+        expect(contribution.last(due)(years)(input)[0]).toBe(expected)
       })
 
       it.each([
@@ -77,8 +77,10 @@ describe('retirement/calculator/lib/conditions', () => {
         [[d('2000'), 30, getInput(['1980'])], 2010], // reached 30 from 1980
         [[d('2000'), 10, getInput(['1960', '1970'], ['1980'])], 1990], // reached 10 from 1980
         [[d('2000'), 30, getInput(['1960', '1970'], ['1980'])], 2010], // reached 30 from 1980
-      ])('should return "reached" context', (input, expected) => {
-        expect(contribution.last(...input)).toSatisfy(reachedAt(expected))
+      ])('should return "reached" context', ([due, years, input], expected) => {
+        expect(contribution.last(due)(years)(input)).toSatisfy(
+          reachedAt(expected)
+        )
       })
     })
 
@@ -102,8 +104,8 @@ describe('retirement/calculator/lib/conditions', () => {
         // no due date, today is due date.
         [[null, 20, getInput(['1990'])], true], //  20+ years by today
         [[null, 20, getInput(['2010'])], false], // -20 years by today
-      ])('should correctly qualify', (args, expected) => {
-        expect(contribution.total(...args)[0]).toBe(expected)
+      ])('should correctly qualify', ([due, years, input], expected) => {
+        expect(contribution.total(due)(years)(input)[0]).toBe(expected)
       })
 
       it.each([
@@ -111,8 +113,9 @@ describe('retirement/calculator/lib/conditions', () => {
         [[d('2000'), 20, getInput(['1990'])], 2010, 30], // reached 20 at 2010, has currently 30
         [[d('2000'), 20, getInput(['1970', '1995'])], 1990, 25], // reached 20 at 1990, has currently 25 (stopped)
         [[d('2000'), 20, getInput(['1970', '1980'], ['1985'])], 1995, 45], // reached 20 at 1995, has currently 45
-      ])('should return context', (args, expected, durationInYears) => {
-        const result = contribution.total(...args)
+      ])('should return context', (item, expected, durationInYears) => {
+        const [due, years, input] = item
+        const result = contribution.total(due)(years)(input)
         expect(result).toSatisfy(reachedAt(expected))
         expect(result).toHaveProperty('1.duration.years', durationInYears)
       })
@@ -142,14 +145,14 @@ describe('retirement/calculator/lib/conditions', () => {
       })
 
       it('should handle empty condition set', () => {
-        const [satisfied, { reached }] = all([], {})
+        const [satisfied, { reached }] = all([])({})
         expect(satisfied).toBe(true)
         expect(reached).toBeInstanceOf(Date)
         expect(reached).not.toSatisfy(isValid)
       })
 
       it('should have same result for single condition', () => {
-        const left = all([conds.pass.on1990], {})
+        const left = all([conds.pass.on1990])({})
         const right = conds.pass.on1990({})
         expect(left).toMatchObject(right)
       })
