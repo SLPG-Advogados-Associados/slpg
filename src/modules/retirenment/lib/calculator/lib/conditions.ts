@@ -1,6 +1,6 @@
 /* cspell: disable */
 import { last, curry } from 'ramda'
-import { add, max } from 'date-fns'
+import { add, max, sub } from 'date-fns'
 import { between, sum, Duration } from 'duration-fns'
 import { Condition, ConditionResult, Contribution } from '../types'
 
@@ -59,7 +59,8 @@ const totalContributionDuration = curry(
 
       // calculate reaching date, when it happens.
       if (!reached && duration.years >= years) {
-        reached = add(end, { years: years - duration.years })
+        // remove duration from end date, add necessary years.
+        reached = add(sub(end, duration), { years })
       }
     }
 
