@@ -1,6 +1,6 @@
 /* cspell: disable */
 import { BaseRule } from './base'
-import { Condition, Gender, Contribution } from '../types'
+import { Condition, Gender, Contribution, ConditionContextBase } from '../types'
 import { age, contribution, merge } from '../lib/conditions'
 
 const { MALE, FEMALE } = Gender
@@ -11,8 +11,7 @@ export interface Input {
   contributions: Contribution[]
 }
 
-export interface ConditionContext {
-  reached: Date
+export interface ConditionContext extends ConditionContextBase {
   integrality: boolean
 }
 
@@ -38,6 +37,8 @@ const conditions: Condition<Input, ConditionContext>[] = [
    * limite de tempo constante da alínea anterior.
    */
   input => {
+    const integrality = true
+
     const subConditions = [
       /**
        * (...)
@@ -71,7 +72,9 @@ const conditions: Condition<Input, ConditionContext>[] = [
       contribution.total(due, { [MALE]: 35, [FEMALE]: 30 }[input.gender]),
     ]
 
-    return merge.all(subConditions, input)
+    const [satisfied, { reached }] = merge.all(subConditions, input)
+
+    return [satisfied, { reached, integrality }]
   },
 ]
 
