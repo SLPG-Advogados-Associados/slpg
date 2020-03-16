@@ -154,10 +154,10 @@ describe('retirement/calculator/lib/conditions', () => {
       })
 
       it.each([
-        [all([conds.pass.on1990]), true],
-        [all([conds.pass.on1990, conds.pass.on2000]), true],
-        [all([conds.pass.on1990, conds.fail.on2005]), false],
-        [all([conds.fail.on1995, conds.fail.on2005]), false],
+        [all([conds.pass.on1990]), true], //                      ✅ single one (pass.on1990) succeded
+        [all([conds.pass.on1990, conds.pass.on2000]), true], //   ✅ both (pass.on1990, pass.on2000) succeded
+        [all([conds.pass.on1990, conds.fail.on2005]), false], //  ❌ one (fail.on2005) fails
+        [all([conds.fail.on1995, conds.fail.on2005]), false], //  ❌ both (fail.on1995, fail.on2005) fails
       ])('should only satisfy if all satisfy', (cond, satisfied) => {
         expect(cond({})[0]).toBe(satisfied)
       })
@@ -170,6 +170,7 @@ describe('retirement/calculator/lib/conditions', () => {
         [all([conds.pass.on1990, conds.pass.on2000]), 2000],
         [all([conds.pass.on1990, conds.fail.on2005]), 2005],
         [all([conds.fail.on1995, conds.fail.on2005]), 2005],
+        [all([conds.fail.on2005, conds.fail.on1995]), 2005],
       ])('should reach on latest reach, even failed ones', (cond, year) => {
         expect(cond({})).toSatisfy(reachedAt(year))
       })
