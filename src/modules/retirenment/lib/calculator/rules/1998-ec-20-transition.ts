@@ -1,12 +1,7 @@
 /* cspell: disable */
 import { BaseRule } from './base'
 import { Condition, Gender, Contribution } from '../types'
-import {
-  age,
-  totalContributionDuration,
-  lastContributionDuration,
-  merge,
-} from '../lib/conditions'
+import { age, contribution, merge } from '../lib/conditions'
 
 const { MALE, FEMALE } = Gender
 
@@ -58,7 +53,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * aposentadoria;
        * (...)
        */
-      lastContributionDuration(due, 5),
+      contribution.last(due, 5),
 
       /**
        * (...)
@@ -73,10 +68,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        *
        * @todo: a) and b) not currently considered!
        */
-      totalContributionDuration(
-        due,
-        { [MALE]: 35, [FEMALE]: 30 }[input.gender]
-      ),
+      contribution.total(due, { [MALE]: 35, [FEMALE]: 30 }[input.gender]),
     ]
 
     return merge.all(subConditions, input)
