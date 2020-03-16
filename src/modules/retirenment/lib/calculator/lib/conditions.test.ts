@@ -119,6 +119,23 @@ describe('retirement/calculator/lib/conditions', () => {
         expect(result).toSatisfy(reachedAt(expected))
         expect(result).toHaveProperty('1.duration.years', durationInYears)
       })
+
+      describe('process', () => {
+        it.each([
+          [[{ start: d('1991') }], true, 2000], //  ✅ 9 of real duration, +1, reached on 2000
+          [[{ start: d('1992') }], false, 2001], // ❌ 8 of real duration, +1, reached on 1990
+        ] as [Contribution[], boolean, number][])(
+          'should be possible to increment duration on processor',
+          (contributions, satisfied, reached) => {
+            const result = contribution.total(d('2000'))(10, ({ years }) => ({
+              years: years + 1,
+            }))({ contributions })
+
+            expect(result[0]).toBe(satisfied)
+            expect(result).toSatisfy(reachedAt(reached))
+          }
+        )
+      })
     })
   })
 

@@ -1,7 +1,7 @@
 /* cspell: disable */
 import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
-import { between, sum, Duration } from 'duration-fns'
+import { between, sum, normalize, Duration, DurationInput } from 'duration-fns'
 
 import {
   Condition,
@@ -27,7 +27,7 @@ const age = (due: Date) => (years: number) => (input: {
 type DurationProcessor<Context = {}> = (
   duration: Duration,
   context: Context & { due: Date | null; start: Date; end?: Date; input: {} }
-) => Duration
+) => DurationInput
 
 type ContributionsInput = {
   contributions: Contribution[]
@@ -74,8 +74,8 @@ const contribution = {
       // sum up for the whole duration
       duration = sum(duration, between(start, end))
 
-      // allow processing duration, for proportional manipulation.
-      duration = process(duration, { due, years, input, start, end })
+      // allow processing duration, for exception based manipulation.
+      duration = normalize(process(duration, { due, years, input, start, end }))
 
       // calculate reaching date, when it happens.
       if (!reached && duration.years >= years) {
