@@ -6,6 +6,7 @@ import {
   lastContributionDuration,
   totalContributionDuration,
   merge,
+  __set__,
 } from './conditions'
 
 import { Condition, Contribution } from '../types'
@@ -21,6 +22,8 @@ const d = (...args) => new Date(...args)
 const reachedAt = year => ([, { reached }]) => reached.getFullYear() === year
 
 describe('retirement/calculator/lib/conditions', () => {
+  beforeEach(() => __set__('today', new Date('2020')))
+
   describe('age', () => {
     const getInput = (birthDate: string) => ({ birthDate: d(birthDate) })
 
