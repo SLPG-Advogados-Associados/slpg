@@ -46,7 +46,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * de idade, se mulher;
        * (...)
        */
-      age(due, { [MALE]: 53, [FEMALE]: 48 }[input.gender]),
+      age(due)({ [MALE]: 53, [FEMALE]: 48 }[input.gender]),
 
       /**
        * (...)
@@ -54,7 +54,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * aposentadoria;
        * (...)
        */
-      contribution.last(due, 5),
+      contribution.last(due)(5),
 
       /**
        * (...)
@@ -69,10 +69,10 @@ const conditions: Condition<Input, ConditionContext>[] = [
        *
        * @todo: a) and b) not currently considered!
        */
-      contribution.total(due, { [MALE]: 35, [FEMALE]: 30 }[input.gender]),
+      contribution.total(due)({ [MALE]: 35, [FEMALE]: 30 }[input.gender]),
     ]
 
-    const [satisfied, { reached }] = merge.all(subConditions, input)
+    const [satisfied, { reached }] = merge.all(subConditions)(input)
 
     return [satisfied, { reached, integrality }]
   },
