@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { last } from 'ramda'
+import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
 import { between, sum, Duration } from 'duration-fns'
 
@@ -24,6 +24,15 @@ const age = (due: Date) => (years: number) => (input: {
   return [reached <= due, { reached }]
 }
 
+type DurationProcessor<Context = {}> = (
+  duration: Duration,
+  context: Context & { due: Date | null; start: Date; end?: Date; input: {} }
+) => Duration
+
+type ContributionsInput = {
+  contributions: Contribution[]
+}
+
 /**
  * Condition group for contribution related conditions.
  */
@@ -37,9 +46,9 @@ const contribution = {
    * @param due The due date.
    * @param years The years the last contribution must have by due date.
    */
-  last: (due: Date) => (years: number) => (input: {
-    contributions: Contribution[]
-  }): ConditionResult<ConditionContextBase> => {
+  last: (due: Date) => (years: number) => (
+    input: ContributionsInput
+  ): ConditionResult<ConditionContextBase> => {
     const { start, end } = last(input.contributions)
     const reached = add(start, { years })
     return [reached <= due && (!end || reached <= end), { reached }]
@@ -49,15 +58,24 @@ const contribution = {
    * @param due The due date.
    * @param years The combined duration years contributions must have by due date.
    */
-  total: (due: Date | null) => (years: number) => (input: {
-    contributions: Contribution[]
-  }): ConditionResult<ConditionContextBase & { duration: Duration }> => {
+  total: (due: Date | null) => (
+    years: number,
+    process: DurationProcessor<{
+      years: number
+      input: ContributionsInput
+    }> = identity
+  ) => (
+    input: ContributionsInput
+  ): ConditionResult<ConditionContextBase & { duration: Duration }> => {
     let reached: Date
     let duration = {} as Duration
 
     for (const { start, end = today } of input.contributions) {
       // sum up for the whole duration
       duration = sum(duration, between(start, end))
+
+      // allow processing duration, for proportional manipulation.
+      duration = process(duration, { due, years, input, start, end })
 
       // calculate reaching date, when it happens.
       if (!reached && duration.years >= years) {
