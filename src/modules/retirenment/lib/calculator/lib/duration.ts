@@ -24,7 +24,10 @@ const apply = (
 const multiply = (by: number, duration: DurationInput, ref: Date) =>
   apply(
     input =>
-      normalize({ milliseconds: toMilliseconds(normalize(input)) * by }, ref),
+      normalize(
+        { milliseconds: Math.floor(toMilliseconds(normalize(input)) * by) },
+        ref
+      ),
     duration,
     ref
   )
