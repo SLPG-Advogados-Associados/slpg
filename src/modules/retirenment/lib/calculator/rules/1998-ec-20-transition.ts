@@ -1,9 +1,18 @@
 /* cspell: disable */
 import { BaseRule } from './base'
-import { Condition, Gender, Contribution, ConditionContextBase } from '../types'
-import { age, contribution, merge } from '../lib/conditions'
+import { age, contribution, merge, DurationProcessor } from '../lib/conditions'
+import { multiply } from '../lib/duration'
+
+import {
+  Condition,
+  Gender,
+  Contribution,
+  ConditionContextBase,
+  Post,
+} from '../types'
 
 const { MALE, FEMALE } = Gender
+const { TEACHER } = Post
 
 export interface Input {
   gender: Gender
@@ -41,6 +50,28 @@ const reusable = {
      */
     last: contribution.last(due)(5),
   },
+}
+
+/**
+ * Custom contribution duration processor to add exception indexes.
+ */
+const processDuration = (
+  input: Input
+): DurationProcessor<{ contribution: Contribution }> => (
+  duration,
+  { contribution }
+) => {
+  if (contribution.service.post !== TEACHER) {
+    return duration
+  }
+
+  // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
+  const by = { [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender]
+
+  // @todo: only apply above logic to the time until the validity of this rule,
+  // as per the following:
+  // (...) tempo de serviço exercido até a publicação desta Emenda contado com o acréscimo (...)
+  return multiply(by, duration, contribution.start)
 }
 
 const conditions: Condition<Input, ConditionContext>[] = [
@@ -81,8 +112,27 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * (...)
        *
        * @todo: a) and b) not currently considered!
+       *
+       * (...)
+       *
+       * § 3º - Na aplicação do disposto no parágrafo anterior, o magistrado ou o
+       * membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
+       * tempo de serviço exercido até a publicação desta Emenda contado com o
+       * acréscimo de dezessete por cento.
+       *
+       * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+       * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+       * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+       * de magistério e que opte por aposentar-se na forma do disposto no
+       * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+       * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+       * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+       * efetivo exercício das funções de magistério.
        */
-      contribution.total(due)({ [MALE]: 35, [FEMALE]: 30 }[input.gender]),
+      contribution.total(due)(
+        { [MALE]: 35, [FEMALE]: 30 }[input.gender],
+        processDuration(input)
+      ),
     ]
 
     const [satisfied, { reached }] = merge.all(subConditions)(input)
