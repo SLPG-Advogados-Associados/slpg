@@ -127,9 +127,11 @@ describe('retirement/calculator/lib/conditions', () => {
         ] as [Contribution[], boolean, number][])(
           'should be possible to increment duration on processor',
           (contributions, satisfied, reached) => {
-            const result = contribution.total(d('2000'))(10, ({ years }) => ({
-              years: years + 1,
-            }))({ contributions })
+            const processor = ({ years }) => ({ years: years + 1 })
+
+            const result = contribution.total(d('2000'))(10, processor)({
+              contributions,
+            })
 
             expect(result[0]).toBe(satisfied)
             expect(result).toSatisfy(reachedAt(reached))
