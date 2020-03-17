@@ -1,32 +1,33 @@
 /* cspell: disable */
-import { Gender, Post, ServiceKind } from '../types'
+import { Gender, Post, ServiceKind, Contribution } from '../types'
 import { conditions } from './1998-ec-20-transition'
 
 const { MALE: M, FEMALE: F } = Gender
 
 /**
- * Generates a valid cf-1988 rule input.
+ *
+ * @param year Year in "YYYY" or "YY" format.
  */
-const getInput = (
-  gender: Gender,
-  birth: string,
-  contributions: [string, string?, number?, boolean?][]
-  // teacher: boolean
-) => ({
+const yearToDate = (year: string) =>
+  new Date(year.length < 4 ? `${year[0] === '0' ? '20' : '19'}${year}` : year)
+
+/**
+ * Generates a valid 1998-ec-20-transition rule input.
+ */
+const i = (gender: Gender, birth: string, contributions: Contribution[]) => ({
   gender,
-  // teacher,
-  birthDate: new Date(birth),
-  contributions: contributions.map(
-    ([start, end, salary = 1000, teacher = false]) => ({
-      salary,
-      service: {
-        kind: ServiceKind.PUBLIC,
-        post: teacher ? Post.TEACHER : Post.OTHER,
-      },
-      start: new Date(start),
-      end: end ? new Date(end) : undefined,
-    })
-  ),
+  birthDate: yearToDate(birth),
+  contributions,
+})
+
+/**
+ * Generates a valid contribution time.
+ */
+const c = ([start, end]: [string, string?]) => ({
+  start: yearToDate(start),
+  end: end ? yearToDate(end) : undefined,
+  salary: 1000,
+  service: { kind: ServiceKind.PUBLIC, post: Post.OTHER },
 })
 
 describe('retirement/calculator/rules/1998-ec-20-transition', () => {
@@ -51,23 +52,23 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
       it.each([
         // male
-        [getInput(M, '1949', [['1967', '1977'], ['1977']]), true], //   male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-        [getInput(M, '1951', [['1967', '1977'], ['1977']]), false], //  male, 52 ❌, contributing 36 ✅, last more than 5 ✅
-        [getInput(M, '1949', [['1967', '1977'], ['1979']]), false], //  male, 54 ✅, contributing 34 ❌, last more than 5 ✅
-        [getInput(M, '1949', [['1967', '2000'], ['2000']]), false], //  male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+        [i(M, '49', [c(['67', '77']), c(['77'])]), true], //   male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+        [i(M, '51', [c(['67', '77']), c(['77'])]), false], //  male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+        [i(M, '49', [c(['67', '77']), c(['79'])]), false], //  male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+        [i(M, '49', [c(['67', '00']), c(['00'])]), false], //  male, 54 ✅, contributing 36 ✅, last less than 5 ❌
         // female
-        [getInput(F, '1954', [['1972', '1977'], ['1977']]), true], //   female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-        [getInput(F, '1956', [['1972', '1977'], ['1977']]), false], //  female, 47 ❌, contributing 31 ✅, last more than 5 ✅
-        [getInput(F, '1954', [['1972', '1977'], ['1979']]), false], //  female, 49 ✅, contributing 29 ❌, last more than 5 ✅
-        [getInput(F, '1954', [['1972', '2000'], ['2000']]), false], //  female, 49 ✅, contributing 31 ✅, last less than 5 ❌
+        [i(F, '54', [c(['72', '77']), c(['77'])]), true], //   female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+        [i(F, '56', [c(['72', '77']), c(['77'])]), false], //  female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+        [i(F, '54', [c(['72', '77']), c(['79'])]), false], //  female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+        [i(F, '54', [c(['72', '00']), c(['00'])]), false], //  female, 49 ✅, contributing 31 ✅, last less than 5 ❌
       ])('should check qualification', (input, satisfied) => {
         expect(condition(input)[0]).toBe(satisfied)
       })
 
       // prettier-ignore
       it('should be always integral', () => {
-        expect(condition(getInput(M, '1950', [['1965']]))[1].integrality).toBe(true)
-        expect(condition(getInput(M, '1950', [['1980']]))[1].integrality).toBe(true)
+        expect(condition(i(M, '50', [c(['65'])]))[1].integrality).toBe(true)
+        expect(condition(i(M, '50', [c(['80'])]))[1].integrality).toBe(true)
       })
     })
 
@@ -90,23 +91,23 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
       it.each([
         // male
-        [getInput(M, '1949', [['1967', '1977'], ['1982']]), true], //   male, 54 ✅, contributing 31 ✅, last more than 5 ✅
-        [getInput(M, '1951', [['1967', '1977'], ['1982']]), false], //  male, 52 ❌, contributing 31 ✅, last more than 5 ✅
-        [getInput(M, '1949', [['1967', '1977'], ['1984']]), false], //  male, 54 ✅, contributing 29 ❌, last more than 5 ✅
-        [getInput(M, '1949', [['1967', '1995'], ['2000']]), false], //  male, 54 ✅, contributing 31 ✅, last less than 5 ❌
+        [i(M, '49', [c(['67', '77']), c(['82'])]), true], //   male, 54 ✅, contributing 31 ✅, last more than 5 ✅
+        [i(M, '51', [c(['67', '77']), c(['82'])]), false], //  male, 52 ❌, contributing 31 ✅, last more than 5 ✅
+        [i(M, '49', [c(['67', '77']), c(['84'])]), false], //  male, 54 ✅, contributing 29 ❌, last more than 5 ✅
+        [i(M, '49', [c(['67', '95']), c(['00'])]), false], //  male, 54 ✅, contributing 31 ✅, last less than 5 ❌
         // female
-        [getInput(F, '1954', [['1972', '1977'], ['1982']]), true], //   female, 49 ✅, contributing 26 ✅, last more than 5 ✅
-        [getInput(F, '1956', [['1972', '1977'], ['1982']]), false], //  female, 47 ❌, contributing 26 ✅, last more than 5 ✅
-        [getInput(F, '1954', [['1972', '1977'], ['1984']]), false], //  female, 49 ✅, contributing 24 ❌, last more than 5 ✅
-        [getInput(F, '1954', [['1972', '1995'], ['2000']]), false], //  female, 49 ✅, contributing 26 ✅, last less than 5 ❌
+        [i(F, '54', [c(['72', '77']), c(['82'])]), true], //   female, 49 ✅, contributing 26 ✅, last more than 5 ✅
+        [i(F, '56', [c(['72', '77']), c(['82'])]), false], //  female, 47 ❌, contributing 26 ✅, last more than 5 ✅
+        [i(F, '54', [c(['72', '77']), c(['84'])]), false], //  female, 49 ✅, contributing 24 ❌, last more than 5 ✅
+        [i(F, '54', [c(['72', '95']), c(['00'])]), false], //  female, 49 ✅, contributing 26 ✅, last less than 5 ❌
       ])('should check qualification', (input, satisfied) => {
         expect(condition(input)[0]).toBe(satisfied)
       })
 
       // prettier-ignore
       it('should be always NOT integral', () => {
-        expect(condition(getInput(M, '1950', [['1965']]))[1].integrality).toBe(false)
-        expect(condition(getInput(M, '1950', [['1990']]))[1].integrality).toBe(false)
+        expect(condition(i(M, '50', [c(['65'])]))[1].integrality).toBe(false)
+        expect(condition(i(M, '50', [c(['90'])]))[1].integrality).toBe(false)
       })
     })
   })
