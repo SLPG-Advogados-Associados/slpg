@@ -2,6 +2,7 @@
 import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
 import { between, sum, normalize, Duration, DurationInput } from 'duration-fns'
+import { TODAY } from './const'
 
 import {
   Condition,
@@ -9,8 +10,6 @@ import {
   ConditionResult,
   Contribution,
 } from '../types'
-
-const today = new Date()
 
 /**
  * Age condition factory.
@@ -24,9 +23,9 @@ const age = (due: Date) => (years: number) => (input: {
   return [reached <= due, { reached }]
 }
 
-type DurationProcessor<Context = {}> = (
+export type DurationProcessor<Context = {}> = (
   duration: Duration,
-  context: Context & { due: Date | null; start: Date; end?: Date; input: {} }
+  context: Context
 ) => DurationInput
 
 type ContributionsInput = {
@@ -61,8 +60,9 @@ const contribution = {
   total: (due: Date | null) => (
     years: number,
     process: DurationProcessor<{
+      due: Date
       years: number
-      input: ContributionsInput
+      contribution: Contribution
     }> = identity
   ) => (
     input: ContributionsInput
@@ -70,12 +70,14 @@ const contribution = {
     let reached: Date
     let duration = {} as Duration
 
-    for (const { start, end = today } of input.contributions) {
+    for (const contribution of input.contributions) {
+      const { start, end = TODAY } = contribution
+
       // sum up for the whole duration
       duration = sum(duration, between(start, end))
 
       // allow processing duration, for exception based manipulation.
-      duration = normalize(process(duration, { due, years, input, start, end }))
+      duration = normalize(process(duration, { due, years, contribution }))
 
       // calculate reaching date, when it happens.
       if (!reached && duration.years >= years) {
