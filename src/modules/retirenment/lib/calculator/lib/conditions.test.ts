@@ -21,7 +21,7 @@ const d = (...args) => new Date(...args)
 const reachedAt = year => ([, { reached }]) => reached.getFullYear() === year
 
 describe('retirement/calculator/lib/conditions', () => {
-  beforeEach(() => __set__('today', new Date('2020')))
+  beforeEach(() => __set__('TODAY', new Date('2020')))
 
   describe('age', () => {
     const getInput = (birthDate: string) => ({ birthDate: d(birthDate) })
