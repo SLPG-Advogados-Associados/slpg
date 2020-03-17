@@ -3,6 +3,7 @@ import { Gender, Post, ServiceKind, Contribution } from '../types'
 import { conditions } from './1998-ec-20-transition'
 
 const { MALE: M, FEMALE: F } = Gender
+const { TEACHER } = Post
 
 /**
  *
@@ -23,11 +24,11 @@ const i = (gender: Gender, birth: string, contributions: Contribution[]) => ({
 /**
  * Generates a valid contribution time.
  */
-const c = ([start, end]: [string, string?]) => ({
+const c = ([start, end]: [string, string?], post = Post.OTHER) => ({
   start: yearToDate(start),
   end: end ? yearToDate(end) : undefined,
   salary: 1000,
-  service: { kind: ServiceKind.PUBLIC, post: Post.OTHER },
+  service: { kind: ServiceKind.PUBLIC, post },
 })
 
 describe('retirement/calculator/rules/1998-ec-20-transition', () => {
@@ -108,6 +109,53 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
       it('should be always NOT integral', () => {
         expect(condition(i(M, '50', [c(['65'])]))[1].integrality).toBe(false)
         expect(condition(i(M, '50', [c(['90'])]))[1].integrality).toBe(false)
+      })
+    })
+
+    /*
+     * § 2º - Aplica-se ao magistrado e ao membro do Ministério Público e de
+     * Tribunal de Contas o disposto neste artigo.
+     *
+     * § 3º - Na aplicação do disposto no parágrafo anterior, o magistrado ou o
+     * membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
+     * tempo de serviço exercido até a publicação desta Emenda contado com o
+     * acréscimo de dezessete por cento.
+     *
+     * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+     * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+     * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+     * de magistério e que opte por aposentar-se na forma do disposto no
+     * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+     * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+     * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+     * efetivo exercício das funções de magistério.
+     */
+    describe('teacher', () => {
+      describe('integral', () => {
+        const T = TEACHER
+        const condition = conditions[0]
+
+        it.each([
+          // male
+          [i(M, '49', [c(['67', '77'], T), c(['77'], T)]), true], //   male, teacher, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '49', [c(['67', '77'], T), c(['80'], T)]), true], //   male, teacher, 54 ✅, contributing 33 ✅, last more than 5 ✅
+          // [i(M, '51', [c(['67', '77'], T), c(['77'], T)]), false], //  male, teacher, 52 ❌, contributing 36 ✅, last more than 5 ✅
+          // [i(M, '49', [c(['67', '77'], T), c(['79'], T)]), false], //  male, teacher, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          // [i(M, '49', [c(['67', '00'], T), c(['00'], T)]), false], //  male, teacher, 54 ✅, contributing 36 ✅, last less than 5 ❌
+          // // female
+          // [i(F, '54', [c(['72', '77'], T), c(['77'], T)]), true], //   female, teacher, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          // [i(F, '56', [c(['72', '77'], T), c(['77'], T)]), false], //  female, teacher, 47 ❌, contributing 31 ✅, last more than 5 ✅
+          // [i(F, '54', [c(['72', '77'], T), c(['79'], T)]), false], //  female, teacher, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          // [i(F, '54', [c(['72', '00'], T), c(['00'], T)]), false], //  female, teacher, 49 ✅, contributing 31 ✅, last less than 5 ❌
+        ])('should check qualification', (input, satisfied) => {
+          expect(condition(input)[0]).toBe(satisfied)
+        })
+
+        // // prettier-ignore
+        // it('should be always integral', () => {
+        //   expect(condition(i(M, '50', [c(['65'], T)]))[1].integrality).toBe(true)
+        //   expect(condition(i(M, '50', [c(['80'], T)]))[1].integrality).toBe(true)
+        // })
       })
     })
   })
