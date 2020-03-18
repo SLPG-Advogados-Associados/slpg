@@ -1,5 +1,9 @@
-import { apply, multiply, max, min } from './duration'
-import { DurationInput } from 'duration-fns'
+import { Duration, DurationInput } from 'duration-fns'
+import { apply, multiply, max, min, filters } from './duration'
+import { NO_DURATION } from './const'
+import { ServiceKind, Contribution } from '../types'
+
+const { PUBLIC, PRIVATE } = ServiceKind
 
 const ref = new Date('2000')
 
@@ -64,6 +68,26 @@ describe('retirement/calculator/lib/duration', () => {
       [{ years: -1 }, { years: 0 }, 'left'],
     ])('should find the max between durations', (left, right, expected) => {
       expect(min(left, right)).toEqual(expected === 'left' ? left : right)
+    })
+  })
+
+  describe('filters', () => {
+    describe('serviceKind', () => {
+      const factory = filters.serviceKind
+
+      it.each([
+        [factory(PUBLIC), PUBLIC, true],
+        [factory(PUBLIC), PRIVATE, false],
+        [factory(PRIVATE), PUBLIC, false],
+        [factory(PRIVATE), PRIVATE, true],
+      ])('serviceKind: should filter correctly', (filter, kind, result) => {
+        const duration = { years: 1 } as Duration
+        const contribution = { service: { kind } } as Contribution
+        const context = { contribution }
+        const expected = result ? duration : NO_DURATION
+
+        expect(filter(duration, context)).toBe(expected)
+      })
     })
   })
 })

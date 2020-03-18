@@ -1,6 +1,5 @@
 /* cspell: disable */
 import { isValid } from 'date-fns'
-import { Duration } from 'duration-fns'
 import {
   age,
   contribution,
@@ -9,10 +8,7 @@ import {
   __set__,
 } from './conditions'
 
-import { NO_DURATION } from './const'
-import { Condition, Contribution, ServiceKind } from '../types'
-
-const { PUBLIC, PRIVATE } = ServiceKind
+import { Condition, Contribution } from '../types'
 
 // @ts-ignore
 // Shorter Date factory.
@@ -141,24 +137,6 @@ describe('retirement/calculator/lib/conditions', () => {
             expect(result).toSatisfy(reachedAt(reached))
           }
         )
-      })
-    })
-
-    describe('filters', () => {
-      const { serviceKind } = contribution.filters
-
-      it.each([
-        [serviceKind(PUBLIC), PUBLIC, true],
-        [serviceKind(PUBLIC), PRIVATE, false],
-        [serviceKind(PRIVATE), PUBLIC, false],
-        [serviceKind(PRIVATE), PRIVATE, true],
-      ])('serviceKind: should filter correctly', (filter, kind, result) => {
-        const duration = { years: 1 } as Duration
-        const contribution = { service: { kind } } as Contribution
-        const context = { contribution }
-        const expected = result ? duration : NO_DURATION
-
-        expect(filter(duration, context)).toBe(expected)
       })
     })
   })
