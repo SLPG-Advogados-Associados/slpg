@@ -78,6 +78,8 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         expect(condition(i(M, '50', [c(['65'])]))[1].integrality).toBe(true)
         expect(condition(i(M, '50', [c(['80'])]))[1].integrality).toBe(true)
       })
+
+      it.todo('should return correct reached date')
     })
 
     /**
@@ -113,10 +115,12 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
       })
 
       // prettier-ignore
-      it('should be always NOT integral', () => {
+      it('should be never integral', () => {
         expect(condition(i(M, '50', [c(['65'])]))[1].integrality).toBe(false)
         expect(condition(i(M, '50', [c(['90'])]))[1].integrality).toBe(false)
       })
+
+      it.todo('should return correct reached date')
     })
 
     /*
@@ -143,26 +147,34 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
         it.each([
           // male
-          [i(M, '49', [c(['67', '77'], T), c(['77'], T)]), true], //   male, teacher, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          // [i(M, '49', [c(['67', '77'], T), c(['88'], T)]), true], //   male, teacher, 54 ✅, contributing 33 ✅, last more than 5 ✅
-          // [i(M, '49', [c(['67', '77'], T), c(['89'], T)]), false], //  male, teacher, 54 ✅, contributing 33 ✅, last more than 5 ✅
-          // [i(M, '51', [c(['67', '77'], T), c(['77'], T)]), false], //  male, teacher, 52 ❌, contributing 36 ✅, last more than 5 ✅
-          // [i(M, '49', [c(['67', '77'], T), c(['79'], T)]), false], //  male, teacher, 54 ✅, contributing 34 ❌, last more than 5 ✅
-          // [i(M, '49', [c(['67', '00'], T), c(['00'], T)]), false], //  male, teacher, 54 ✅, contributing 36 ✅, last less than 5 ❌
-          // // female
-          // [i(F, '54', [c(['72', '77'], T), c(['77'], T)]), true], //   female, teacher, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          // [i(F, '56', [c(['72', '77'], T), c(['77'], T)]), false], //  female, teacher, 47 ❌, contributing 31 ✅, last more than 5 ✅
-          // [i(F, '54', [c(['72', '77'], T), c(['79'], T)]), false], //  female, teacher, 49 ✅, contributing 29 ❌, last more than 5 ✅
-          // [i(F, '54', [c(['72', '00'], T), c(['00'], T)]), false], //  female, teacher, 49 ✅, contributing 31 ✅, last less than 5 ❌
+          [i(M, '49', [c(['67', '77'], T), c(['77'], T)]), true], //   male, teacher, 54 ✅, contributing ~43 (~36 + 17%) ✅, last more than 5 ✅
+          [i(M, '49', [c(['67', '77'], T), c(['84'], T)]), true], //   male, teacher, 54 ✅, contributing ~35 (~30 + 17%) ✅, last more than 5 ✅
+          [i(M, '51', [c(['67', '77'], T), c(['84'], T)]), false], //  male, teacher, 52 ❌, contributing ~35 (~30 + 17%) ✅, last more than 5 ✅
+          [i(M, '49', [c(['67', '77'], T), c(['85'], T)]), false], //  male, teacher, 54 ✅, contributing ~34 (~29 + 17%) ❌, last more than 5 ✅
+          [i(M, '49', [c(['74', '00'], T), c(['00'], T)]), false], //  male, teacher, 54 ✅, contributing ~35 (~30 + 17%) ✅, last less than 5 ❌
+          // female
+          [i(F, '54', [c(['72', '77'], T), c(['77'], T)]), true], //   female, teacher, 49 ✅, contributing ~36 (~31 + 17%) ✅, last more than 5 ✅
+          [i(F, '54', [c(['72', '77'], T), c(['84'], T)]), true], //   female, teacher, 49 ✅, contributing ~30 (~25 + 17%) ✅, last more than 5 ✅
+          [i(F, '56', [c(['72', '77'], T), c(['84'], T)]), false], //  female, teacher, 47 ❌, contributing ~30 (~25 + 17%) ✅, last more than 5 ✅
+          [i(F, '54', [c(['72', '77'], T), c(['85'], T)]), false], //  female, teacher, 49 ✅, contributing ~29 (~24 + 17%) ❌, last more than 5 ✅
+          [i(F, '54', [c(['79', '00'], T), c(['00'], T)]), false], //  female, teacher, 49 ✅, contributing ~30 (~25 + 17%) ✅, last less than 5 ❌
         ])('should check qualification', (input, satisfied) => {
           expect(condition(input)[0]).toBe(satisfied)
         })
 
-        // // prettier-ignore
-        // it('should be always integral', () => {
-        //   expect(condition(i(M, '50', [c(['65'], T)]))[1].integrality).toBe(true)
-        //   expect(condition(i(M, '50', [c(['80'], T)]))[1].integrality).toBe(true)
-        // })
+        // prettier-ignore
+        it('should be always integral', () => {
+          expect(condition(i(M, '50', [c(['65'], T)]))[1].integrality).toBe(true) // success
+          expect(condition(i(M, '50', [c(['80'], T)]))[1].integrality).toBe(true) // failure
+        })
+
+        it.todo('should return correct reached date')
+      })
+
+      describe('proportional', () => {
+        it.todo('should check qualification')
+        it.todo('should be never integral')
+        it.todo('should return correct reached date')
       })
     })
   })
