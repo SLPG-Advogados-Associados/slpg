@@ -1,5 +1,12 @@
-import { normalize, DurationInput, toMilliseconds } from 'duration-fns'
-import { TODAY } from './const'
+import {
+  normalize,
+  toMilliseconds,
+  Duration,
+  DurationInput,
+} from 'duration-fns'
+
+import { ServiceKind, Contribution } from '../types'
+import { TODAY, NO_DURATION } from './const'
 
 /**
  * Apply a given function to the provided duration.
@@ -50,4 +57,31 @@ const max = (left: DurationInput, right: DurationInput) =>
 const min = (left: DurationInput, right: DurationInput) =>
   toMilliseconds(left) < toMilliseconds(right) ? left : right
 
-export { apply, multiply, max, min }
+/**
+ * A function that processes Duration -> Duration for altering purposes.
+ */
+export type DurationProcessor<Context = {}> = (
+  duration: Duration,
+  context: Context
+) => DurationInput
+
+/**
+ * Reusable filters to be used as processors.
+ *
+ * Duration -> Duration functions/factories that retrieve NO_DURATION on failure.
+ */
+const filters = {
+  /**
+   * Filter out any contribution time related to different service kinds.
+   *
+   * @param kind The required service kind.
+   */
+  serviceKind: (
+    kind: ServiceKind
+  ): DurationProcessor<{ contribution: Contribution }> => (
+    duration,
+    { contribution: { service } }
+  ) => (service.kind === kind ? duration : NO_DURATION),
+}
+
+export { apply, multiply, max, min, filters }

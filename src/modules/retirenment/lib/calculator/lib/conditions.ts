@@ -1,15 +1,15 @@
 /* cspell: disable */
 import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
-import { between, sum, normalize, Duration, DurationInput } from 'duration-fns'
-import { TODAY, NO_DURATION } from './const'
+import { between, sum, normalize, Duration } from 'duration-fns'
+import { TODAY } from './const'
+import { DurationProcessor } from './duration'
 
 import {
   Condition,
   ConditionContextBase,
   ConditionResult,
   Contribution,
-  ServiceKind,
 } from '../types'
 
 /**
@@ -23,11 +23,6 @@ const age = (due: Date) => (years: number) => (input: {
   const reached = add(input.birthDate, { years })
   return [reached <= due, { reached }]
 }
-
-export type DurationProcessor<Context = {}> = (
-  duration: Duration,
-  context: Context
-) => DurationInput
 
 type ContributionsInput = {
   contributions: Contribution[]
@@ -97,23 +92,6 @@ const contribution = {
       due ? reached <= due : duration.years >= years,
       { reached, duration },
     ]
-  },
-
-  /**
-   * Reusable filters to be used as processors.
-   */
-  filters: {
-    /**
-     * Filter out any contribution time related to different service kinds.
-     *
-     * @param kind The required service kind.
-     */
-    serviceKind: (
-      kind: ServiceKind
-    ): DurationProcessor<{ contribution: Contribution }> => (
-      duration,
-      { contribution: { service } }
-    ) => (service.kind === kind ? duration : NO_DURATION),
   },
 }
 
