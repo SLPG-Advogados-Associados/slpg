@@ -80,11 +80,12 @@ const contribution = {
       const processed = process(between(start, end), context)
 
       // sum up for the whole duration
-      duration = normalize(sum(duration, processed))
+      duration = normalize(sum(duration, processed), start)
 
       // calculate reaching date, when it happens.
       if (!reached && duration.years >= years) {
         // remove duration from end date, add necessary years.
+        // @todo: is this correct?
         reached = add(sub(end, duration), { years })
       }
     }
