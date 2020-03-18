@@ -1,7 +1,10 @@
 /* cspell: disable */
+import { sum, between, isNegative } from 'duration-fns'
+import { min, max } from 'date-fns'
 import { BaseRule } from './base'
 import { age, contribution, merge, DurationProcessor } from '../lib/conditions'
 import { multiply } from '../lib/duration'
+import { TODAY, NO_DURATION } from '../lib/const'
 
 import {
   Condition,
@@ -52,26 +55,32 @@ const reusable = {
   },
 }
 
-/**
- * Custom contribution duration processor to add exception indexes.
- */
-const processDuration = (
-  input: Input
-): DurationProcessor<{ contribution: Contribution }> => (
-  duration,
-  { contribution }
-) => {
-  if (contribution.service.post !== TEACHER) {
-    return duration
-  }
+const processors = {
+  /**
+   * Custom contribution duration processor to add exception indexes.
+   */
+  duration: (
+    input: Input
+  ): DurationProcessor<{ contribution: Contribution }> => (
+    duration,
+    { contribution: { start, end = TODAY, service } }
+  ) => {
+    if (service.post !== TEACHER) {
+      return duration
+    }
 
-  // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
-  const by = { [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender]
+    // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
+    const by = { [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender]
 
-  // @todo: only apply above logic to the time until the validity of this rule,
-  // as per the following:
-  // (...) tempo de serviço exercido até a publicação desta Emenda contado com o acréscimo (...)
-  return multiply(by, duration, contribution.start)
+    // (...) tempo de serviço exercido até a publicação desta Emenda contado com o acréscimo (...)
+    const before = between(start, min([due, end]))
+    const after = between(max([start, due]), end)
+
+    return sum(
+      isNegative(before) ? NO_DURATION : multiply(by, before, start),
+      isNegative(after) ? NO_DURATION : after
+    )
+  },
 }
 
 const conditions: Condition<Input, ConditionContext>[] = [
@@ -131,7 +140,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        */
       contribution.total(due)(
         { [MALE]: 35, [FEMALE]: 30 }[input.gender],
-        processDuration(input)
+        processors.duration(input)
       ),
     ]
 

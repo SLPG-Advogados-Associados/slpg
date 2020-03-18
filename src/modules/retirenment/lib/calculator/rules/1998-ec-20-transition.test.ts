@@ -1,9 +1,14 @@
 /* cspell: disable */
+import * as d from 'duration-fns'
 import { Gender, Post, ServiceKind, Contribution } from '../types'
-import { conditions } from './1998-ec-20-transition'
+// @ts-ignore
+import { __set__ } from '../lib/conditions'
+// @ts-ignore
+import { conditions, __get__ } from './1998-ec-20-transition'
 
 const { MALE: M, FEMALE: F } = Gender
-const { TEACHER } = Post
+const { TEACHER: T } = Post
+const TODAY = new Date('2020')
 
 /**
  *
@@ -32,6 +37,8 @@ const c = ([start, end]: [string, string?], post = Post.OTHER) => ({
 })
 
 describe('retirement/calculator/rules/1998-ec-20-transition', () => {
+  beforeEach(() => __set__('TODAY', TODAY))
+
   describe('conditions', () => {
     /**
      * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
@@ -132,13 +139,13 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
      */
     describe('teacher', () => {
       describe('integral', () => {
-        const T = TEACHER
         const condition = conditions[0]
 
         it.each([
           // male
           [i(M, '49', [c(['67', '77'], T), c(['77'], T)]), true], //   male, teacher, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '49', [c(['67', '77'], T), c(['80'], T)]), true], //   male, teacher, 54 ✅, contributing 33 ✅, last more than 5 ✅
+          // [i(M, '49', [c(['67', '77'], T), c(['88'], T)]), true], //   male, teacher, 54 ✅, contributing 33 ✅, last more than 5 ✅
+          // [i(M, '49', [c(['67', '77'], T), c(['89'], T)]), false], //  male, teacher, 54 ✅, contributing 33 ✅, last more than 5 ✅
           // [i(M, '51', [c(['67', '77'], T), c(['77'], T)]), false], //  male, teacher, 52 ❌, contributing 36 ✅, last more than 5 ✅
           // [i(M, '49', [c(['67', '77'], T), c(['79'], T)]), false], //  male, teacher, 54 ✅, contributing 34 ❌, last more than 5 ✅
           // [i(M, '49', [c(['67', '00'], T), c(['00'], T)]), false], //  male, teacher, 54 ✅, contributing 36 ✅, last less than 5 ❌
@@ -156,6 +163,38 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         //   expect(condition(i(M, '50', [c(['65'], T)]))[1].integrality).toBe(true)
         //   expect(condition(i(M, '50', [c(['80'], T)]))[1].integrality).toBe(true)
         // })
+      })
+    })
+  })
+
+  describe('processors', () => {
+    const processors = __get__('processors')
+
+    describe('duration', () => {
+      it.each([
+        // not teacher (non-changing)
+        [{ gender: M }, c(['1990', '2000']), 'P10Y'],
+        [{ gender: F }, c(['1990', '2000']), 'P10Y'],
+
+        // teacher (changing)
+        [{ gender: M }, c(['1990', '2000'], T), 'P11Y8M9DT12H'], // +17%
+        [{ gender: F }, c(['1990', '2000'], T), 'P11Y11M28D'], //   +20%
+
+        // teacher, after 2003 (non-changing)
+        [{ gender: M }, c(['2005', '2015'], T), 'P10Y'],
+        [{ gender: F }, c(['2005', '2015'], T), 'P10Y'],
+
+        // teacher, partial (changing)
+        // (2000/2003-12-31 = P4Y8M2DT17H6M) + (2003-12-31/2005-12-31 = P2Y)
+        [{ gender: M }, c(['2000', '2005-12-31'], T), 'P6Y8M2DT17H6M'],
+        // (2000/2003-12-31 = P4Y9M16DT12H) + (2003-12-31/2005-12-31 = P2Y)
+        [{ gender: F }, c(['2000', '2005-12-31'], T), 'P6Y9M16DT12H'],
+      ])('should calculate duration', (input, contribution, expected) => {
+        const { start, end = TODAY } = contribution
+        const duration = d.between(start, end)
+        const result = processors.duration(input)(duration, { contribution })
+
+        expect(d.toString(result)).toBe(expected)
       })
     })
   })
