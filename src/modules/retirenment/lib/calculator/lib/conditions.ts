@@ -2,13 +2,14 @@
 import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
 import { between, sum, normalize, Duration, DurationInput } from 'duration-fns'
-import { TODAY } from './const'
+import { TODAY, NO_DURATION } from './const'
 
 import {
   Condition,
   ConditionContextBase,
   ConditionResult,
   Contribution,
+  ServiceKind,
 } from '../types'
 
 /**
@@ -52,6 +53,7 @@ const contribution = {
     const reached = add(start, { years })
     return [reached <= due && (!end || reached <= end), { reached }]
   },
+
   /**
    * Full contribution min years condition.
    * @param due The due date.
@@ -95,6 +97,23 @@ const contribution = {
       due ? reached <= due : duration.years >= years,
       { reached, duration },
     ]
+  },
+
+  /**
+   * Reusable filters to be used as processors.
+   */
+  filters: {
+    /**
+     * Filter out any contribution time related to different service kinds.
+     *
+     * @param kind The required service kind.
+     */
+    serviceKind: (
+      kind: ServiceKind
+    ): DurationProcessor<{ contribution: Contribution }> => (
+      duration,
+      { contribution: { service } }
+    ) => (service.kind === kind ? duration : NO_DURATION),
   },
 }
 
