@@ -22,6 +22,6 @@ Através destes meios nós receberemos a consulta ou a documentação e retornar
 
 No mais, queremos agradecer a confiança em nós depositada, e lhe dizer que tudo faremos para que a crise de saúde pública pela qual o País está passando não prejudique o seu direito, cuja proteção constitui nosso objetivo maior.
 
-Tão logo a situação esteja normalizada retornaremos nosso atendimento normal, mantendo os meios de contato acima, que continuarão válidas e operantes para quaisquer contato conosco.
+Tão logo a situação esteja normalizada retornaremos nosso atendimento normal, mantendo os meios de contato acima, que continuarão válidos e operantes para quaisquer contato conosco.
 
 SLPG ADVOGADOS ASSOCIADOS
