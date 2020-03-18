@@ -32,4 +32,22 @@ const multiply = (by: number, duration: DurationInput, ref: Date) =>
     ref
   )
 
-export { apply, multiply }
+/**
+ * Retrieve the max between two durations.
+ *
+ * @param left Duration
+ * @param right Duration
+ */
+const max = (left: DurationInput, right: DurationInput) =>
+  toMilliseconds(left) > toMilliseconds(right) ? left : right
+
+/**
+ * Retrieve the min between two durations.
+ *
+ * @param left Duration
+ * @param right Duration
+ */
+const min = (left: DurationInput, right: DurationInput) =>
+  toMilliseconds(left) < toMilliseconds(right) ? left : right
+
+export { apply, multiply, max, min }

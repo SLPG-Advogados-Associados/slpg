@@ -1,4 +1,4 @@
-import { apply, multiply } from './duration'
+import { apply, multiply, max, min } from './duration'
 import { DurationInput } from 'duration-fns'
 
 const ref = new Date('2000')
@@ -43,5 +43,27 @@ describe('retirement/calculator/lib/duration', () => {
         expect(multiply(by, duration, ref)).toMatchObject(expected)
       }
     )
+  })
+
+  describe('max', () => {
+    it.each([
+      [{ years: 1 }, { years: 0 }, 'left'],
+      [{ years: 1 }, { years: 2 }, 'right'],
+      [{ years: -1 }, { years: -2 }, 'left'],
+      [{ years: -1 }, { years: 0 }, 'right'],
+    ])('should find the max between durations', (left, right, expected) => {
+      expect(max(left, right)).toEqual(expected === 'left' ? left : right)
+    })
+  })
+
+  describe('min', () => {
+    it.each([
+      [{ years: 1 }, { years: 0 }, 'right'],
+      [{ years: 1 }, { years: 2 }, 'left'],
+      [{ years: -1 }, { years: -2 }, 'right'],
+      [{ years: -1 }, { years: 0 }, 'left'],
+    ])('should find the max between durations', (left, right, expected) => {
+      expect(min(left, right)).toEqual(expected === 'left' ? left : right)
+    })
   })
 })
