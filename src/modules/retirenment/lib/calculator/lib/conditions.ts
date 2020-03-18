@@ -73,11 +73,13 @@ const contribution = {
     for (const contribution of input.contributions) {
       const { start, end = TODAY } = contribution
 
-      // sum up for the whole duration
-      duration = sum(duration, between(start, end))
+      let toSum = between(start, end)
 
       // allow processing duration, for exception based manipulation.
-      duration = normalize(process(duration, { due, years, contribution }))
+      toSum = normalize(process(toSum, { due, years, contribution }))
+
+      // sum up for the whole duration
+      duration = sum(duration, toSum)
 
       // calculate reaching date, when it happens.
       if (!reached && duration.years >= years) {
