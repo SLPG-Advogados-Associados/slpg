@@ -3,6 +3,8 @@ import { add } from 'date-fns'
 import { BaseRule } from './base'
 import { Condition, ConditionContextBase, Gender } from '../types'
 
+const { MALE, FEMALE } = Gender
+
 export interface Input {
   gender: Gender
   birthDate: Date
@@ -28,11 +30,9 @@ const conditions: Condition<Input, ConditionContext>[] = [
    */
   input => {
     const integrality = true
+    const years = { [MALE]: 35, [FEMALE]: 30 }[input.gender]
 
-    const reached =
-      input.gender === Gender.MALE
-        ? add(input.contribution.start, { years: 35 })
-        : add(input.contribution.start, { years: 30 })
+    const reached = add(input.contribution.start, { years })
 
     return [reached < due, { integrality, reached }]
   },
@@ -43,15 +43,11 @@ const conditions: Condition<Input, ConditionContext>[] = [
    */
   input => {
     const integrality = true
+    const years = { [MALE]: 30, [FEMALE]: 25 }[input.gender]
 
-    const reached =
-      input.gender === Gender.MALE
-        ? add(input.contribution.start, { years: 30 })
-        : add(input.contribution.start, { years: 25 })
+    const reached = add(input.contribution.start, { years })
 
-    if (!input.teacher) return [false, { integrality, reached }]
-
-    return [reached < due, { integrality, reached }]
+    return [input.teacher && reached < due, { integrality, reached }]
   },
 
   /**
@@ -60,11 +56,9 @@ const conditions: Condition<Input, ConditionContext>[] = [
    */
   input => {
     const integrality = false
+    const years = { [MALE]: 30, [FEMALE]: 25 }[input.gender]
 
-    const reached =
-      input.gender === Gender.MALE
-        ? add(input.contribution.start, { years: 30 })
-        : add(input.contribution.start, { years: 25 })
+    const reached = add(input.contribution.start, { years })
 
     return [reached < due, { integrality, reached }]
   },
@@ -75,11 +69,9 @@ const conditions: Condition<Input, ConditionContext>[] = [
    */
   input => {
     const integrality = false
+    const years = { [MALE]: 65, [FEMALE]: 60 }[input.gender]
 
-    const reached =
-      input.gender === Gender.MALE
-        ? add(input.birthDate, { years: 65 })
-        : add(input.birthDate, { years: 60 })
+    const reached = add(input.birthDate, { years })
 
     return [reached < due, { integrality, reached }]
   },
