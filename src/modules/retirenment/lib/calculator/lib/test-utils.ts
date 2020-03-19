@@ -5,6 +5,11 @@ const { PUBLIC } = ServiceKind
 
 export type DateParams = ConstructorParameters<typeof Date>
 
+/*
+ * Input/output generators.
+ * ------------------------
+ */
+
 /**
  * Syntax sugar for `new Date` constructor. Good for shorter tests.
  */
@@ -59,8 +64,11 @@ const contribution = (
   return { start, end, salary: 1000, service: service(kind, post) }
 }
 const c = contribution
+/*
+ * Aliases and short vars.
+ * -----------------------
+ */
 
-// short alias for undefined.
 const und = undefined
 
 export { und, date, d, birth, b, contribution, c, period, p }
