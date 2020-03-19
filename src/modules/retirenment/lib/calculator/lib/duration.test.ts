@@ -1,5 +1,5 @@
 import { Duration, DurationInput } from 'duration-fns'
-import { apply, multiply, max, min, filters } from './duration'
+import { apply, multiply, max, min, precision, filters } from './duration'
 import { NO_DURATION } from './const'
 import { ServiceKind, Contribution } from '../types'
 
@@ -68,6 +68,35 @@ describe('retirement/calculator/lib/duration', () => {
       [{ years: -1 }, { years: 0 }, 'left'],
     ])('should find the max between durations', (left, right, expected) => {
       expect(min(left, right)).toEqual(expected === 'left' ? left : right)
+    })
+  })
+
+  describe('precision', () => {
+    // prettier-ignore
+    const durations = {
+      original: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 2, milliseconds: 2 },
+      // results
+      years: { years: 2, months: 0, weeks: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
+      months: { years: 2, months: 2, weeks: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
+      weeks: { years: 2, months: 2, weeks: 2, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
+      days: { years: 2, months: 2, weeks: 2, days: 2, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
+      hours: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 0, seconds: 0, milliseconds: 0 },
+      minutes: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 0, milliseconds: 0 },
+      seconds: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 2, milliseconds: 0 },
+      milliseconds: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 2, milliseconds: 2 },
+    }
+
+    it.each([
+      ['years', durations.years],
+      ['months', durations.months],
+      ['weeks', durations.weeks],
+      ['days', durations.days],
+      ['hours', durations.hours],
+      ['minutes', durations.minutes],
+      ['seconds', durations.seconds],
+      ['milliseconds', durations.milliseconds],
+    ] as const)('should find the max between durations', (prop, result) => {
+      expect(precision(prop, durations.original)).toEqual(result)
     })
   })
 
