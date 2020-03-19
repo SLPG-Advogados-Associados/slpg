@@ -1,4 +1,4 @@
-import { DateParams, date, birth } from './generators'
+import { DateParams, date, birth, period } from './generators'
 
 describe('retirement/calculator/lib/generators', () => {
   describe('date', () => {
@@ -23,7 +23,7 @@ describe('retirement/calculator/lib/generators', () => {
   })
 
   describe('birth', () => {
-    type Items = ConstructorParameters<typeof Date>[][]
+    type Items = DateParams[][]
 
     it.each([
       [['2020']],
@@ -34,6 +34,16 @@ describe('retirement/calculator/lib/generators', () => {
       [[1995, 11, 17, 3, 24, 0]],
     ] as Items)('should generate valid dates', input => {
       expect(birth(...input)).toEqual({ birthDate: new Date(...input) })
+    })
+  })
+
+  describe('period', () => {
+    it.each([
+      ['2000^2002', [date('2000'), date('2002')]],
+      ['1995^2010', [date('1995'), date('2010')]],
+      ['1995', [date('1995')]],
+    ] as const)('should generate valid dates', (input, expected) => {
+      expect(period(input)).toMatchObject(expected)
     })
   })
 })
