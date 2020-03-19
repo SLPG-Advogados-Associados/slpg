@@ -4,6 +4,7 @@ import { add, max, sub } from 'date-fns'
 import { between, sum, normalize, Duration } from 'duration-fns'
 import { TODAY } from './const'
 import { DurationProcessor } from './duration'
+import { floor } from './date'
 
 import {
   Condition,
@@ -63,33 +64,42 @@ const contribution = {
     }> = identity
   ) => (
     input: ContributionsInput
-  ): ConditionResult<ConditionContextBase & { duration: Duration }> => {
+  ): ConditionResult<
+    ConditionContextBase & { duration: { real: Duration; processed: Duration } }
+  > => {
     let reached: Date
-    let duration = {} as Duration
+    const duration = { real: {}, processed: {} } as {
+      real: Duration
+      processed: Duration
+    }
 
     for (const contribution of input.contributions) {
-      const { start, end = TODAY } = contribution
-
       // processing context.
       const context = { due, years, contribution }
 
-      // allow processing duration, for exception based manipulation.
-      const processed = process(between(start, end), context)
+      const { start, end = TODAY } = contribution
 
-      // sum up for the whole duration
-      duration = normalize(sum(duration, processed), start)
+      // plain isolated duration addition.
+      const real = between(start, end)
+      // processed duration, with possible manipulation.
+      const processed = process(real, context)
+
+      // sum-up durations.
+      duration.real = normalize(sum(duration.real, real), start)
+      duration.processed = normalize(sum(duration.processed, processed), start)
+
+      // console.log({ processed, duration, reached, years })
 
       // calculate reaching date, when it happens.
-      if (!reached && duration.years >= years) {
+      if (!reached && duration.processed.years >= years) {
         // remove duration from end date, add necessary years.
-        // @todo: is this correct?
-        reached = add(sub(end, duration), { years })
+        reached = floor('day', add(sub(end, duration.processed), { years }))
       }
     }
 
     return [
       // when no due, simply count current duration
-      due ? reached <= due : duration.years >= years,
+      due ? reached <= due : duration.processed.years >= years,
       { reached, duration },
     ]
   },
