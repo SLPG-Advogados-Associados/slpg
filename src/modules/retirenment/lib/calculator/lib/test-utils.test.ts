@@ -1,4 +1,4 @@
-import { Post, ServiceKind } from '../types'
+import { Post, ServiceKind, ConditionResult } from '../types'
 import {
   DateParams,
   und,
@@ -6,6 +6,7 @@ import {
   birth,
   period,
   contribution,
+  reachedAt,
 } from './test-utils'
 
 const { OTHER, TEACHER } = Post
@@ -77,6 +78,29 @@ describe('retirement/calculator/lib/test-utils', () => {
       ])('should generate valid contributions', (input, expected) => {
         const [span, service] = input as Input
         expect(contribution(span, service)).toMatchObject(expected)
+      })
+    })
+  })
+
+  describe('predicates', () => {
+    describe('reachedAt', () => {
+      it.each([
+        // correct
+        [2000, new Date('2000'), true],
+        ['2000', new Date('2000'), true],
+        ['2000-01-01', new Date('2000'), true],
+        // wrong
+        [2001, new Date('2000'), false],
+        ['2001', new Date('2000'), false],
+        ['2001-01-01', new Date('2000'), false],
+      ])('should correctly check reached date', (input, reached, expected) => {
+        const conditionResult = [und, { reached }] as ConditionResult
+
+        expect(reachedAt(input)(conditionResult)).toBe(expected)
+
+        expected
+          ? expect(conditionResult).toSatisfy(reachedAt(input))
+          : expect(conditionResult).not.toSatisfy(reachedAt(input))
       })
     })
   })

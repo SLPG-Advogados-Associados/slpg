@@ -1,4 +1,4 @@
-import { Post, ServiceKind } from '../types'
+import { Post, ServiceKind, ConditionResult } from '../types'
 
 const { OTHER } = Post
 const { PUBLIC } = ServiceKind
@@ -64,6 +64,22 @@ const contribution = (
   return { start, end, salary: 1000, service: service(kind, post) }
 }
 const c = contribution
+
+/*
+ * Jest satisfaction predicates.
+ * -----------------------------
+ */
+
+/**
+ * Compares the given date with context.reached.
+ *
+ * @param input Date in (possibly partial) ISO format.
+ */
+const reachedAt = (input: string | number) => ([
+  ,
+  { reached },
+]: ConditionResult) => reached.toISOString().indexOf(input + '') === 0
+
 /*
  * Aliases and short vars.
  * -----------------------
@@ -71,4 +87,4 @@ const c = contribution
 
 const und = undefined
 
-export { und, date, d, birth, b, contribution, c, period, p }
+export { und, date, d, birth, b, contribution, c, period, p, reachedAt }
