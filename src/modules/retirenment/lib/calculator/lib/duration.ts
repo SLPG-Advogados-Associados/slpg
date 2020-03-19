@@ -79,15 +79,15 @@ export type DurationProcessor<Context = {}> = (
 /**
  * Floors a duration to a given property precision.
  *
- * @param prop The maximum Duration precision.
+ * @param precision The maximum Duration precision.
  * @param duration The duration object.
  *
  * i.e.: precision('years', { years: 1, months: 1, ... }) => { years: 1, months: 0, ... }
  * i.e.: precision('months', { years: 1, months: 1, ... }) => { years: 1, months: 1, ... }
  */
-const precision = (prop: keyof Duration, duration: Duration) =>
+const precision = (precision: keyof Duration, duration: Duration) =>
   durationProps
-    .slice(durationProps.indexOf(prop) + 1)
+    .slice(durationProps.indexOf(precision) + 1)
     .reduce((result, ignore) => ({ ...result, [ignore]: 0 }), duration)
 
 /**

@@ -95,8 +95,8 @@ describe('retirement/calculator/lib/duration', () => {
       ['minutes', durations.minutes],
       ['seconds', durations.seconds],
       ['milliseconds', durations.milliseconds],
-    ] as const)('should find the max between durations', (prop, result) => {
-      expect(precision(prop, durations.original)).toEqual(result)
+    ] as const)('should find the max between durations', (prec, result) => {
+      expect(precision(prec, durations.original)).toEqual(result)
     })
   })
 
