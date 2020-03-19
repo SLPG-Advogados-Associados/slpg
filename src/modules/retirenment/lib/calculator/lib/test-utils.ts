@@ -60,4 +60,7 @@ const contribution = (
 }
 const c = contribution
 
-export { date, d, birth, b, contribution, c, period, p }
+// short alias for undefined.
+const und = undefined
+
+export { und, date, d, birth, b, contribution, c, period, p }
