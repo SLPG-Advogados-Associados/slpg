@@ -8,6 +8,17 @@ import {
 import { ServiceKind, Contribution } from '../types'
 import { TODAY, NO_DURATION } from './const'
 
+const durationProps: Array<keyof Duration> = [
+  'years',
+  'months',
+  'weeks',
+  'days',
+  'hours',
+  'minutes',
+  'seconds',
+  'milliseconds',
+]
+
 /**
  * Apply a given function to the provided duration.
  *
@@ -66,6 +77,20 @@ export type DurationProcessor<Context = {}> = (
 ) => DurationInput
 
 /**
+ * Floors a duration to a given property precision.
+ *
+ * @param prop The maximum Duration precision.
+ * @param duration The duration object.
+ *
+ * i.e.: precision('years', { years: 1, months: 1, ... }) => { years: 1, months: 0, ... }
+ * i.e.: precision('months', { years: 1, months: 1, ... }) => { years: 1, months: 1, ... }
+ */
+const precision = (prop: keyof Duration, duration: Duration) =>
+  durationProps
+    .slice(durationProps.indexOf(prop) + 1)
+    .reduce((result, ignore) => ({ ...result, [ignore]: 0 }), duration)
+
+/**
  * Reusable filters to be used as processors.
  *
  * Duration -> Duration functions/factories that retrieve NO_DURATION on failure.
@@ -84,4 +109,4 @@ const filters = {
   ) => (service.kind === kind ? duration : NO_DURATION),
 }
 
-export { apply, multiply, max, min, filters }
+export { apply, multiply, max, min, precision, filters }
