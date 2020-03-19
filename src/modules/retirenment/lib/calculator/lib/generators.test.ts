@@ -1,4 +1,10 @@
-import { DateParams, date, birth, period } from './generators'
+import { Post, ServiceKind } from '../types'
+import { DateParams, date, birth, period, contribution } from './generators'
+
+const { OTHER, TEACHER } = Post
+const { PUBLIC, PRIVATE } = ServiceKind
+
+const und = undefined
 
 describe('retirement/calculator/lib/generators', () => {
   describe('date', () => {
@@ -44,6 +50,24 @@ describe('retirement/calculator/lib/generators', () => {
       ['1995', [date('1995')]],
     ] as const)('should generate valid dates', (input, expected) => {
       expect(period(input)).toMatchObject(expected)
+    })
+  })
+
+  describe('contribution', () => {
+    type Input = [string, [ServiceKind?, Post?]?]
+
+    it.each([
+      // period.
+      [['2000^2002'], { start: date('2000'), end: date('2002') }],
+      [['1950^2010'], { start: date('1950'), end: date('2010') }],
+      [['1950'], { start: date('1950'), end: und }],
+      // service.
+      [['2000'], { service: { kind: PUBLIC, post: OTHER } }],
+      [['2000', [PRIVATE, und]], { service: { kind: PRIVATE, post: OTHER } }],
+      [['2000', [und, TEACHER]], { service: { kind: PUBLIC, post: TEACHER } }],
+    ])('should generate valid dates', (input, expected) => {
+      const [span, service] = input as Input
+      expect(contribution(span, service)).toMatchObject(expected)
     })
   })
 })

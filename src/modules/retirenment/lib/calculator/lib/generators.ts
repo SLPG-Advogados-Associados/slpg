@@ -1,3 +1,8 @@
+import { Post, ServiceKind } from '../types'
+
+const { OTHER } = Post
+const { PUBLIC } = ServiceKind
+
 export type DateParams = ConstructorParameters<typeof Date>
 
 /**
@@ -38,4 +43,21 @@ const period = (span: string) => {
 }
 const p = period
 
-export { date, d, birth, b, period, p }
+/**
+ * Constructs a service object.
+ */
+const service = (kind = PUBLIC, post = OTHER) => ({ kind, post })
+
+/**
+ * Constructs a single contribution object.
+ */
+const contribution = (
+  span: string,
+  [kind, post]: [ServiceKind?, Post?] = []
+) => {
+  const [start, end] = period(span)
+  return { start, end, salary: 1000, service: service(kind, post) }
+}
+const c = contribution
+
+export { date, d, birth, b, contribution, c, period, p }
