@@ -1,4 +1,7 @@
+import { min as minDate, max as maxDate, Interval } from 'date-fns'
+
 import {
+  between,
   normalize,
   toMilliseconds,
   Duration,
@@ -69,14 +72,6 @@ const min = (left: DurationInput, right: DurationInput) =>
   toMilliseconds(left) < toMilliseconds(right) ? left : right
 
 /**
- * A function that processes Duration -> Duration for altering purposes.
- */
-export type DurationProcessor<Context = {}> = (
-  duration: Duration,
-  context: Context
-) => DurationInput
-
-/**
  * Floors a duration to a given property precision.
  *
  * @param precision The maximum Duration precision.
@@ -89,6 +84,27 @@ const precision = (precision: keyof Duration, duration: Duration) =>
   durationProps
     .slice(durationProps.indexOf(precision) + 1)
     .reduce((result, ignore) => ({ ...result, [ignore]: 0 }), duration)
+
+/**
+ * Split a start/end interval in two durations: before "middle" and after
+ * "middle".
+ *
+ * @param start The starting date of the interval.
+ * @param end The ending date of the interval.
+ * @param middle The splitting point in time.
+ */
+const split = ({ start, end }: Interval, middle: Date) => [
+  between(start, minDate([middle, end])),
+  between(maxDate([start, middle]), end),
+]
+
+/**
+ * A function that processes Duration -> Duration for altering purposes.
+ */
+export type DurationProcessor<Context = {}> = (
+  duration: Duration,
+  context: Context
+) => DurationInput
 
 /**
  * Reusable filters to be used as processors.
@@ -109,4 +125,4 @@ const filters = {
   ) => (service.kind === kind ? duration : NO_DURATION),
 }
 
-export { apply, multiply, max, min, precision, filters }
+export { apply, multiply, max, min, precision, split, filters }

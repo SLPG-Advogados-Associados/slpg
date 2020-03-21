@@ -1,11 +1,20 @@
 import { Duration, DurationInput } from 'duration-fns'
-import { apply, multiply, max, min, precision, filters } from './duration'
-import { NO_DURATION } from './const'
 import { ServiceKind, Contribution } from '../types'
+import {
+  apply,
+  multiply,
+  max,
+  min,
+  precision,
+  split,
+  filters,
+} from './duration'
+import { NO_DURATION } from './const'
+import { d, p } from './test-utils'
 
 const { PUBLIC, PRIVATE } = ServiceKind
 
-const ref = new Date('2000')
+const ref = d('2000')
 
 describe('retirement/calculator/lib/duration', () => {
   describe('apply', () => {
@@ -97,6 +106,15 @@ describe('retirement/calculator/lib/duration', () => {
       ['milliseconds', durations.milliseconds],
     ] as const)('should find the max between durations', (prec, result) => {
       expect(precision(prec, durations.original)).toEqual(result)
+    })
+  })
+
+  describe('split', () => {
+    it.each([
+      [p('2000^2005'), d('2003'), { years: 3 }, { years: 2 }],
+      [p('1990^2020'), d('2000'), { years: 10 }, { years: 20 }],
+    ])('should split interval', ([start, end], middle, before, after) => {
+      expect(split({ start, end }, middle)).toMatchObject([before, after])
     })
   })
 
