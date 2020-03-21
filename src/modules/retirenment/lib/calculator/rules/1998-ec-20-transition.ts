@@ -1,9 +1,8 @@
 /* cspell: disable */
-import { sum, between, isNegative } from 'duration-fns'
-import { min, max } from 'date-fns'
+import { sum, isNegative } from 'duration-fns'
 import { BaseRule } from './base'
-import { age, contribution, merge, DurationProcessor } from '../lib/conditions'
-import { multiply } from '../lib/duration'
+import { age, contribution, merge } from '../lib/conditions'
+import { multiply, split, DurationProcessor } from '../lib/duration'
 import { TODAY, NO_DURATION } from '../lib/const'
 
 import {
@@ -72,9 +71,9 @@ const processors = {
     // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
     const by = { [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender]
 
-    // (...) tempo de serviço exercido até a publicação desta Emenda contado com o acréscimo (...)
-    const before = between(start, min([due, end]))
-    const after = between(max([start, due]), end)
+    // (...) tempo de serviço exercido até a publicação desta Emenda contado com
+    // o acréscimo (...)
+    const [before, after] = split({ start, end }, due)
 
     return sum(
       isNegative(before) ? NO_DURATION : multiply(by, before, start),
