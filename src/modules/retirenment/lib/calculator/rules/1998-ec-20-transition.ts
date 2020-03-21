@@ -31,29 +31,6 @@ export interface ConditionContext extends ConditionContextBase {
  */
 const due = new Date('2003-12-31')
 
-const reusable = {
-  /**
-   * (...)
-   * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
-   * de idade, se mulher;
-   * (...)
-   */
-  age: {
-    [MALE]: age(due)(53),
-    [FEMALE]: age(due)(48),
-  },
-
-  contribution: {
-    /**
-     * (...)
-     * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
-     * aposentadoria;
-     * (...)
-     */
-    last: contribution.last(due)(5),
-  },
-}
-
 const processors = {
   /**
    * Custom contribution duration processor to add exception indexes.
@@ -105,8 +82,21 @@ const conditions: Condition<Input, ConditionContext>[] = [
     const integrality = true
 
     const subConditions = [
-      reusable.age[input.gender],
-      reusable.contribution.last,
+      /**
+       * (...)
+       * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
+       * de idade, se mulher;
+       * (...)
+       */
+      age(due)({ [MALE]: 53, [FEMALE]: 48 }[input.gender]),
+
+      /**
+       * (...)
+       * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
+       * aposentadoria;
+       * (...)
+       */
+      contribution.last(due)(5),
 
       /**
        * (...)
@@ -152,6 +142,14 @@ const conditions: Condition<Input, ConditionContext>[] = [
    * Proporcional
    * ------------
    *
+   * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
+   * de idade, se mulher;
+   *
+   * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
+   * aposentadoria;
+   *
+   * (...)
+   *
    * § 1º - O servidor de que trata este artigo, desde que atendido o disposto
    * em seus incisos I e II, e observado o disposto no art. 4º desta Emenda,
    * pode aposentar-se com proventos proporcionais ao tempo de contribuição,
@@ -171,8 +169,21 @@ const conditions: Condition<Input, ConditionContext>[] = [
     const integrality = false
 
     const subConditions = [
-      reusable.age[input.gender],
-      reusable.contribution.last,
+      /**
+       * (...)
+       * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
+       * de idade, se mulher;
+       * (...)
+       */
+      age(due)({ [MALE]: 53, [FEMALE]: 48 }[input.gender]),
+
+      /**
+       * (...)
+       * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
+       * aposentadoria;
+       * (...)
+       */
+      contribution.last(due)(5),
 
       /**
        * (...)
