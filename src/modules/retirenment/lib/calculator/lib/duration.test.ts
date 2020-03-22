@@ -7,6 +7,7 @@ import {
   min,
   precision,
   split,
+  compare,
   filters,
 } from './duration'
 import { NO_DURATION } from './const'
@@ -77,6 +78,46 @@ describe('retirement/calculator/lib/duration', () => {
       [{ years: -1 }, { years: 0 }, 'left'],
     ])('should find the max between durations', (left, right, expected) => {
       expect(min(left, right)).toEqual(expected === 'left' ? left : right)
+    })
+  })
+
+  describe('compare', () => {
+    describe('longer', () => {
+      it.each([
+        [[{ years: 2 }, { years: 1 }, false], true],
+        [[{ years: 2 }, { years: 3 }, false], false],
+        [[{ years: 2 }, { years: 2 }, false], false],
+        [[{ years: 2 }, { years: 2 }, true], true],
+
+        [[{ years: 2, days: 2 }, { years: 2, days: 1 }, false], true],
+        [[{ years: 2, days: 2 }, { years: 2, days: 3 }, false], false],
+        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, false], false],
+        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, true], true],
+      ] as const)(
+        'should check longer duration',
+        ([left, right, equality], expected) => {
+          expect(compare.longer(left, right, equality)).toBe(expected)
+        }
+      )
+    })
+
+    describe('shorter', () => {
+      it.each([
+        [[{ years: 1 }, { years: 2 }, false], true],
+        [[{ years: 3 }, { years: 2 }, false], false],
+        [[{ years: 2 }, { years: 2 }, false], false],
+        [[{ years: 2 }, { years: 2 }, true], true],
+
+        [[{ years: 2, days: 1 }, { years: 2, days: 2 }, false], true],
+        [[{ years: 2, days: 3 }, { years: 2, days: 2 }, false], false],
+        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, false], false],
+        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, true], true],
+      ] as const)(
+        'should check shorter duration',
+        ([left, right, equality], expected) => {
+          expect(compare.shorter(left, right, equality)).toBe(expected)
+        }
+      )
     })
   })
 
