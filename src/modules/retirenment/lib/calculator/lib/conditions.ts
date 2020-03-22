@@ -88,8 +88,6 @@ const contribution = {
       duration.real = normalize(sum(duration.real, real), start)
       duration.processed = normalize(sum(duration.processed, processed), start)
 
-      // console.log({ processed, duration, reached, years })
-
       // calculate reaching date, when it happens.
       if (!reached && duration.processed.years >= years) {
         // remove duration from end date, add necessary years.
