@@ -88,7 +88,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * de idade, se mulher;
        * (...)
        */
-      age(due)({ [MALE]: 53, [FEMALE]: 48 }[input.gender]),
+      age(due)({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
 
       /**
        * (...)
@@ -96,7 +96,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * aposentadoria;
        * (...)
        */
-      contribution.last(due)(5),
+      contribution.last(due)({ years: 5 }),
 
       /**
        * (...)
@@ -128,7 +128,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * efetivo exercício das funções de magistério.
        */
       contribution.total(due)(
-        { [MALE]: 35, [FEMALE]: 30 }[input.gender],
+        { years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] },
         processors.duration(input)
       ),
     ]
@@ -175,7 +175,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * de idade, se mulher;
        * (...)
        */
-      age(due)({ [MALE]: 53, [FEMALE]: 48 }[input.gender]),
+      age(due)({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
 
       /**
        * (...)
@@ -183,7 +183,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
        * aposentadoria;
        * (...)
        */
-      contribution.last(due)(5),
+      contribution.last(due)({ years: 5 }),
 
       /**
        * (...)
@@ -198,7 +198,9 @@ const conditions: Condition<Input, ConditionContext>[] = [
        *
        * @todo: a) and b) not currently considered!
        */
-      contribution.total(due)({ [MALE]: 30, [FEMALE]: 25 }[input.gender]),
+      contribution.total(due)({
+        years: { [MALE]: 30, [FEMALE]: 25 }[input.gender],
+      }),
     ]
 
     const [satisfied, { reached }] = merge.all(subConditions)(input)
