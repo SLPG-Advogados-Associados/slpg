@@ -99,6 +99,34 @@ const split = ({ start, end }: Interval, middle: Date) => [
 ]
 
 /**
+ * Duration comparison helpers.
+ */
+const compare = {
+  /**
+   * Checks whether left duration is longer than right one.
+   *
+   * @param left Duration
+   * @param right Duration
+   * @param equality Whether should be true in case durations are equal.
+   */
+  longer: (left: DurationInput, right: DurationInput, equality = false) => {
+    const lengths = [toMilliseconds(left), toMilliseconds(right)]
+
+    return equality ? lengths[0] >= lengths[1] : lengths[0] > lengths[1]
+  },
+
+  /**
+   * Checks whether left duration is shorter than right one.
+   *
+   * @param left Duration
+   * @param right Duration
+   * @param equality Whether should be true in case durations are equal.
+   */
+  shorter: (left: DurationInput, right: DurationInput, equality = false) =>
+    compare.longer(right, left, equality),
+}
+
+/**
  * A function that processes Duration -> Duration for altering purposes.
  */
 export type DurationProcessor<Context = {}> = (
@@ -125,4 +153,4 @@ const filters = {
   ) => (service.kind === kind ? duration : NO_DURATION),
 }
 
-export { apply, multiply, max, min, precision, split, filters }
+export { apply, multiply, max, min, precision, split, compare, filters }
