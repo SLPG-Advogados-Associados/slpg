@@ -1,9 +1,9 @@
 /* cspell: disable */
 import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
-import { between, sum, normalize, Duration } from 'duration-fns'
+import { between, sum, normalize, Duration, DurationInput } from 'duration-fns'
 import { TODAY } from './const'
-import { DurationProcessor } from './duration'
+import { compare, DurationProcessor } from './duration'
 import { floor } from './date'
 
 import {
@@ -15,13 +15,14 @@ import {
 
 /**
  * Age condition factory.
+ *
  * @param due The due date.
- * @param years The age to reach by due date.
+ * @param duration The age to reach by due date, expressed in a duration object.
  */
-const age = (due: Date) => (years: number) => (input: {
+const age = (due: Date) => (age: DurationInput) => (input: {
   birthDate: Date
 }): ConditionResult<ConditionContextBase> => {
-  const reached = add(input.birthDate, { years })
+  const reached = add(input.birthDate, normalize(age))
   return [reached <= due, { reached }]
 }
 
@@ -34,32 +35,33 @@ type ContributionsInput = {
  */
 const contribution = {
   /**
-   * Last contribution min years condition.
+   * Last contribution duration condition.
    *
    * @todo consider the possibility another post but the last
    * be one that the retirement time was reached.
    *
    * @param due The due date.
-   * @param years The years the last contribution must have by due date.
+   * @param duration The expected duration of the last contribution by due date.
    */
-  last: (due: Date) => (years: number) => (
+  last: (due: Date) => (expected: DurationInput) => (
     input: ContributionsInput
   ): ConditionResult<ConditionContextBase> => {
     const { start, end } = last(input.contributions)
-    const reached = add(start, { years })
+    const reached = add(start, normalize(expected))
     return [reached <= due && (!end || reached <= end), { reached }]
   },
 
   /**
-   * Full contribution min years condition.
+   * Full contribution duration condition.
+   *
    * @param due The due date.
-   * @param years The combined duration years contributions must have by due date.
+   * @param expected The expected combined duration of all contributions by due date.
    */
   total: (due: Date | null) => (
-    years: number,
+    _expected: DurationInput,
     process: DurationProcessor<{
       due: Date
-      years: number
+      expected: DurationInput
       contribution: Contribution
     }> = identity
   ) => (
@@ -68,6 +70,7 @@ const contribution = {
     ConditionContextBase & { duration: { real: Duration; processed: Duration } }
   > => {
     let reached: Date
+    const expected = normalize(_expected)
     const duration = { real: {}, processed: {} } as {
       real: Duration
       processed: Duration
@@ -75,7 +78,7 @@ const contribution = {
 
     for (const contribution of input.contributions) {
       // processing context.
-      const context = { due, years, contribution }
+      const context = { due, expected, contribution }
 
       const { start, end = TODAY } = contribution
 
@@ -89,15 +92,15 @@ const contribution = {
       duration.processed = normalize(sum(duration.processed, processed), start)
 
       // calculate reaching date, when it happens.
-      if (!reached && duration.processed.years >= years) {
-        // remove duration from end date, add necessary years.
-        reached = floor('day', add(sub(end, duration.processed), { years }))
+      if (!reached && compare.longer(duration.processed, expected, true)) {
+        // remove duration from end date, add necessary expected duration.
+        reached = floor('day', add(sub(end, duration.processed), expected))
       }
     }
 
     return [
-      // when no due, simply count current duration
-      due ? reached <= due : duration.processed.years >= years,
+      // when no due, simply consider current duration
+      due ? reached <= due : compare.longer(duration.processed, expected, true),
       { reached, duration },
     ]
   },
