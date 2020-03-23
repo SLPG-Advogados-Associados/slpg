@@ -1,8 +1,9 @@
-import { floor } from './date'
+import { floor, splitPeriod } from './date'
+import { i, d } from './test-utils'
 
 describe('retirement/calculator/lib/date', () => {
   describe('floor', () => {
-    const date = new Date('2019-09-18T19:10:52.230Z')
+    const date = d('2019-09-18T19:10:52.230Z')
 
     it.each([
       ['years', '2019-01-01T00:00:00.000Z'],
@@ -15,5 +16,31 @@ describe('retirement/calculator/lib/date', () => {
     ] as const)('should correctly floor a date', (precision, expected) => {
       expect(floor(precision, date).toISOString()).toBe(expected)
     })
+  })
+
+  describe('splitPeriod', () => {
+    it.each([
+      ['2000^2010', '2005', '2000^2005', '2005^2010'],
+      ['2000^2010', '1990', '2000^1990', '2000^2010'], // negative before
+      ['2000^2010', '2020', '2000^2010', '2020^2010'], // negative after
+    ] as const)('should split periods', (original, middle, before, after) => {
+      expect(splitPeriod(i(original), d(middle))).toMatchObject([
+        i(before),
+        i(after),
+      ])
+    })
+
+    it.each([
+      ['2000^2010', '2005', false, false],
+      ['2000^2010', '1990', true, false], // negative before
+      ['2000^2010', '2020', false, true], // negative after
+    ] as const)(
+      'should identify negative periods',
+      (original, middle, before, after) => {
+        const split = splitPeriod(i(original), d(middle))
+        expect(split[0]).toHaveProperty('negative', before)
+        expect(split[1]).toHaveProperty('negative', after)
+      }
+    )
   })
 })
