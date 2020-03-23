@@ -1,15 +1,9 @@
 /* cspell: disable */
 import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
-import {
-  between,
-  sum,
-  normalize,
-  Duration,
-  DurationInput as _DurationInput,
-} from 'duration-fns'
+import { between, sum, normalize, Duration } from 'duration-fns'
 import { TODAY } from './const'
-import { compare, DurationProcessor } from './duration'
+import { compare, DurationProcessor, DurationInput } from './duration'
 import { floor } from './date'
 
 import {
@@ -18,8 +12,6 @@ import {
   ConditionResult,
   Contribution,
 } from '../types'
-
-type DurationInput = Exclude<_DurationInput, number | string>
 
 /**
  * Age condition factory.

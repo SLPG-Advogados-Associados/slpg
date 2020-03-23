@@ -5,11 +5,13 @@ import {
   normalize,
   toMilliseconds,
   Duration,
-  DurationInput,
+  DurationInput as _DurationInput,
 } from 'duration-fns'
 
 import { ServiceKind, Contribution } from '../types'
 import { TODAY, NO_DURATION } from './const'
+
+export type DurationInput = Exclude<_DurationInput, number | string>
 
 const durationProps: Array<keyof Duration> = [
   'years',
