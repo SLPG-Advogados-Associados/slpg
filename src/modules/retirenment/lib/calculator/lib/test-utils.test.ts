@@ -5,6 +5,7 @@ import {
   date,
   birth,
   period,
+  interval,
   contribution,
   reachedAt,
 } from './test-utils'
@@ -57,6 +58,16 @@ describe('retirement/calculator/lib/test-utils', () => {
         ['1995', [date('1995')]],
       ] as const)('should generate date periods', (input, expected) => {
         expect(period(input)).toMatchObject(expected)
+      })
+    })
+
+    describe('interval', () => {
+      it.each([
+        ['2000^2002', [date('2000'), date('2002')]],
+        ['1995^2010', [date('1995'), date('2010')]],
+        ['1995', [date('1995')]],
+      ] as const)('should generate date periods', (input, [start, end]) => {
+        expect(interval(input)).toMatchObject({ start, end })
       })
     })
 

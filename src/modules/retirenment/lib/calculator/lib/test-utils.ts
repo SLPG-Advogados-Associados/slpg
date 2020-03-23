@@ -49,6 +49,19 @@ const period = (span: string) => {
 const p = period
 
 /**
+ * Constructs a time span interval.
+ *
+ * @param span Span in string format. i.e.:
+ *  - '2002' = [2002, today]
+ *  - '2002^2004' = [2002, 2004]
+ */
+const interval = (span: string) => {
+  const [start, end] = period(span)
+  return { start, end }
+}
+const i = interval
+
+/**
  * Constructs a service object.
  */
 const service = (kind = PUBLIC, post = OTHER) => ({ kind, post })
@@ -87,4 +100,17 @@ const reachedAt = (input: string | number) => ([
 
 const und = undefined
 
-export { und, date, d, birth, b, contribution, c, period, p, reachedAt }
+export {
+  und,
+  date,
+  d,
+  birth,
+  b,
+  contribution,
+  c,
+  period,
+  p,
+  interval,
+  i,
+  reachedAt,
+}
