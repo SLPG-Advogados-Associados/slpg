@@ -1,3 +1,10 @@
+import { min, isAfter, Interval as _Interval, max } from 'date-fns'
+
+// prevent dates as numbers for interval objects.
+export type Interval = {
+  [P in keyof _Interval]: Exclude<_Interval[P], number>
+} & { negative?: boolean }
+
 const precisions = [
   'years',
   'months',
@@ -30,4 +37,12 @@ const floor = (precision, date: Date) => {
   return result
 }
 
-export { floor }
+/**
+ * Splits the given date interval into two intervals, based on middle point.
+ */
+const splitPeriod = ({ start, end }: Interval, middle: Date) => [
+  { start, end: min([end, middle]), negative: isAfter(start, middle) },
+  { start: max([start, middle]), end, negative: isAfter(middle, end) },
+]
+
+export { floor, splitPeriod }
