@@ -1,12 +1,12 @@
 ---
-title: Governo aproveita o coronavirus para atacar os trabalhadores
+title: Governo aproveita o coronavírus para atacar os trabalhadores
 date: 2020-03-25T16:32:21.540Z
 image: /admin/content/media/coronavirus_bolsonaro_e_guedes.jpg
 summary: >-
   A MP 927 permite que por acordo individual sejam retirados direitos da classe
   trabalhadora e impede a atuação dos sindicatos.
 ---
-_**Por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG.**_
+**_Por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG._**
 
 No dia 23 de março o Governo editou a MP 927/2020,  que, entre outras medidas, permite a  suspensão dos contratos de trabalho e substitui os salários por uma “bolsa” a ser negociada individualmente entre o trabalhador e seu patrão. Ao invés de garantir condições de sobrevivência digna aos trabalhadores neste momento de crise econômica e pandemia o governo optou por desferir um brutal ataque aos direitos fundamentais da classe trabalhadora.
 
