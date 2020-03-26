@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { theme } from 'styled-tools'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
@@ -7,26 +8,56 @@ import { PostListItem } from '~modules/blog'
 import { list as expertises } from '~modules/expertise'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
-import { ContactCTA } from '~app/components/ContactCTA'
 import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
 import { BLOG_LATEST } from './index.gql'
 
 const Welcome = styled.div`
+  position: relative;
   height: 28rem;
   padding: 3.75rem 1.5rem;
-  font-size: ${theme('fontSize.heading')};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: ${theme('fontSize.500')};
   text-align: center;
   color: white;
   background: url('/background.jpg') center no-repeat;
   background-size: cover;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+    }
+  }
 
   .phone {
     font-weight: bold;
   }
 
   @media screen and (min-width: ${t.theme('screens.lg')}) {
-    display: block;
     padding: 3.75rem;
+    font-size: ${theme('fontSize.heading')};
   }
 `
 
@@ -61,12 +92,37 @@ const HomePage = () => {
   return (
     <Page meta={{ type: 'website' }}>
       <Welcome>
-        <p className="mb-4">
+        <div className="content">
+          <p className="mb-4">
+            Por causa da quarentena{' '}
+            <Link
+              href="/noticias/[slug]"
+              as="/noticias/escritório-slpg-trabalhará-remotamente"
+            >
+              estamos trabalhando
+            </Link>{' '}
+            por meios remotos.
+          </p>
+
+          <p className="mb-4">
+            Formas de contato:
+            <br />
+            <span className="phone">
+              (48) 3024-4166 / (48) 98835-9010
+              <br />
+              <a href="mailto:secretaria@slpgadvogados.adv.br">
+                secretaria@slpgadvogados.adv.br
+              </a>
+            </span>
+          </p>
+
+          {/* <p className="mb-4">
           Nosso trabalho é defender os direitos da classe trabalhadora.
         </p>
         <p className="mb-4">
           Ligue: <span className="phone">(48) 3024-4166</span>
-        </p>
+        </p> */}
+        </div>
       </Welcome>
 
       <LocalNav primary>
