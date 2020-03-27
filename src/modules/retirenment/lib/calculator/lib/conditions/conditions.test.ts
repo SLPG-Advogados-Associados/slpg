@@ -1,8 +1,8 @@
 /* cspell: disable */
 import { isValid } from 'date-fns'
 import { sum, normalize } from 'duration-fns'
-import { Condition, Contribution } from '../types'
-import { d, b, c, reachedAt } from './test-utils'
+import { Condition, Contribution } from '../../types'
+import { d, b, c, reachedAt } from '../test-utils'
 
 import {
   age,
@@ -10,7 +10,7 @@ import {
   merge,
   // @ts-ignore
   __set__,
-} from './conditions'
+} from '.'
 
 describe('retirement/calculator/lib/conditions', () => {
   // beforeEach(() => __set__('TODAY', d('2020')))

@@ -2,16 +2,16 @@
 import { last, identity } from 'ramda'
 import { add, max, sub } from 'date-fns'
 import { between, sum, normalize, Duration } from 'duration-fns'
-import { TODAY } from './const'
-import { compare, DurationProcessor, DurationInput } from './duration'
-import { floor } from './date'
+import { TODAY } from '../const'
+import { compare, DurationProcessor, DurationInput } from '../duration'
+import { floor } from '../date'
 
 import {
   Condition,
   ConditionContextBase,
   ConditionResult,
   Contribution,
-} from '../types'
+} from '../../types'
 
 /**
  * Age condition factory.
