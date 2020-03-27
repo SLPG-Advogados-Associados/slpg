@@ -40,7 +40,10 @@ const floor = (precision, date: Date) => {
 /**
  * Splits the given date interval into two intervals, based on middle point.
  */
-const splitPeriod = ({ start, end }: Interval, middle: Date) => [
+const splitPeriod = (
+  { start, end }: Interval,
+  middle: Date
+): [Interval, Interval] => [
   { start, end: min([end, middle]), negative: isAfter(start, middle) },
   { start: max([start, middle]), end, negative: isAfter(middle, end) },
 ]
