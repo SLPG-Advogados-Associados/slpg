@@ -13,7 +13,7 @@ import {
 } from '.'
 
 describe('retirement/calculator/lib/conditions', () => {
-  // beforeEach(() => __set__('TODAY', d('2020')))
+  beforeEach(() => __set__('TODAY', d('2020')))
 
   describe('age', () => {
     it.each([
