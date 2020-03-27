@@ -95,7 +95,7 @@ describe('retirement/calculator/lib/conditions', () => {
         const result = contribution.total(due)({ years })(input)
 
         expect(result).toSatisfy(reachedAt(reached))
-        expect(result).toHaveProperty('1.duration.processed.years', duration)
+        expect(result).toHaveProperty('1.durations.processed.years', duration)
       })
 
       describe('process', () => {
