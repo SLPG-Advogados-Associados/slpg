@@ -8,7 +8,7 @@ const NavbarLogo = styled(Logo)`
 `
 
 const Header = () => (
-  <header className="bg-white">
+  <header className="bg-white relative z-10">
     <Container className="flex" fullOnMobile>
       <a href="/" title="Início">
         <NavbarLogo />
