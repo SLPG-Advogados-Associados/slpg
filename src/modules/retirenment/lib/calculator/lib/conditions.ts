@@ -67,11 +67,14 @@ const contribution = {
   ) => (
     input: ContributionsInput
   ): ConditionResult<
-    ConditionContextBase & { duration: { real: Duration; processed: Duration } }
+    ConditionContextBase & {
+      durations: { real: Duration; processed: Duration }
+    }
   > => {
     let reached: Date
     const expected = normalize(_expected)
-    const duration = { real: {}, processed: {} } as {
+
+    const durations = { real: {}, processed: {} } as {
       real: Duration
       processed: Duration
     }
@@ -87,21 +90,28 @@ const contribution = {
       // processed duration, with possible manipulation.
       const processed = process(real, context)
 
-      // sum-up durations.
-      duration.real = normalize(sum(duration.real, real), start)
-      duration.processed = normalize(sum(duration.processed, processed), start)
+      // sum-up real time-based duration so far.
+      durations.real = normalize(sum(durations.real, real), start)
+
+      // sum-up processed calculation purposed duration so far.
+      durations.processed = normalize(
+        sum(durations.processed, processed),
+        start
+      )
 
       // calculate reaching date, when it happens.
-      if (!reached && compare.longer(duration.processed, expected, true)) {
+      if (!reached && compare.longer(durations.processed, expected, true)) {
         // remove duration from end date, add necessary expected duration.
-        reached = floor('day', add(sub(end, duration.processed), expected))
+        reached = floor('day', add(sub(end, durations.processed), expected))
       }
     }
 
     return [
       // when no due, simply consider current duration
-      due ? reached <= due : compare.longer(duration.processed, expected, true),
-      { reached, duration },
+      due
+        ? reached <= due
+        : compare.longer(durations.processed, expected, true),
+      { reached, durations },
     ]
   },
 }
