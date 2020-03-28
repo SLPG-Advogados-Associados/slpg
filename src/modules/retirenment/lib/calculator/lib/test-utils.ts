@@ -5,6 +5,19 @@ const { PUBLIC } = ServiceKind
 
 export type DateParams = ConstructorParameters<typeof Date>
 
+/**
+ * Comparison helpers.
+ */
+const eq = {
+  /**
+   * Checks if the given date input is contained in a date.
+   *
+   * @param input Date in (possibly partial) ISO format.
+   */
+  date: (input: string | number) => (date: Date) =>
+    date.toISOString().indexOf(input + '') === 0,
+}
+
 /*
  * Input/output generators.
  * ------------------------
@@ -101,6 +114,7 @@ const reachedAt = (input: string | number) => ([
 const und = undefined
 
 export {
+  eq,
   und,
   date,
   d,

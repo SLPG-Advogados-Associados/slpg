@@ -1,6 +1,7 @@
 import { Post, ServiceKind, ConditionResult } from '../types'
 import {
   DateParams,
+  eq,
   und,
   date,
   birth,
@@ -14,6 +15,19 @@ const { OTHER, TEACHER } = Post
 const { PUBLIC, PRIVATE } = ServiceKind
 
 describe('retirement/calculator/lib/test-utils', () => {
+  describe('eq', () => {
+    describe('date', () => {
+      it.each([
+        ['2010', new Date('2010'), true],
+        ['2011', new Date('2010'), false],
+        ['2010-10-10', new Date('2010'), false],
+        ['2010-10-10', new Date('2010-10-10'), true],
+      ])('should check date equality', (input, date, expected) => {
+        expect(eq.date(input)(date)).toBe(expected)
+      })
+    })
+  })
+
   describe('generators', () => {
     describe('date', () => {
       type Items = [DateParams, number][]
