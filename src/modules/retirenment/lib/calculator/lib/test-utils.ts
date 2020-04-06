@@ -1,4 +1,4 @@
-import { Post, ServiceKind, ConditionResult } from '../types'
+import { Post, ServiceKind, ConditionContextBase } from '../types'
 
 const { OTHER } = Post
 const { PUBLIC } = ServiceKind
@@ -101,10 +101,9 @@ const c = contribution
  *
  * @param input Date in (possibly partial) ISO format.
  */
-const reachedAt = (input: string | number) => ([
-  ,
-  { reached },
-]: ConditionResult) => reached.toISOString().indexOf(input + '') === 0
+const reachedAt = (input: string | number) => ({
+  reached,
+}: ConditionContextBase) => eq.date(input)(reached)
 
 /*
  * Aliases and short vars.
