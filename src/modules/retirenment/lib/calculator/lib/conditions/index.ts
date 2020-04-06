@@ -3,20 +3,18 @@ import { add, max } from 'date-fns'
 import { normalize } from 'duration-fns'
 import { DurationInput } from '../duration'
 import * as contribution from './contribution'
-import { Condition, ConditionContextBase, ConditionResult } from '../../types'
+import { Condition, ConditionContext, ConditionContextBase } from '../../types'
 
 /**
  * Age condition factory.
  *
- * @param due The due date.
- * @param duration The age to reach by due date, expressed in a duration object.
+ * @param required The age to reach by due date, expressed in a duration object.
  */
-const age = (due: Date) => (age: DurationInput) => (input: {
+const age = (required: DurationInput) => (input: {
   birthDate: Date
-}): ConditionResult<ConditionContextBase> => {
-  const reached = add(input.birthDate, normalize(age))
-  return [reached <= due, { reached }]
-}
+}): ConditionContextBase => ({
+  reached: add(input.birthDate, normalize(required)),
+})
 
 /**
  * Helper functions to combine conditions into one.
@@ -27,13 +25,11 @@ const merge = {
    */
   all: (conditions: Condition[]) => (
     input
-  ): ConditionResult<{ reached: Date; results: ConditionResult[] }> => {
+  ): ConditionContext<{ results: ConditionContextBase[] }> => {
     const results = conditions.map(condition => condition(input))
+    const reached = max(results.map(({ reached }) => reached))
 
-    const satisfied = results.every(([satisfied]) => satisfied)
-    const reached = max(results.map(([, { reached }]) => reached))
-
-    return [satisfied, { reached, results }]
+    return { reached, results }
   },
 }
 
