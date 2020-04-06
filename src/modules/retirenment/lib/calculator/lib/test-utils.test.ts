@@ -1,4 +1,5 @@
-import { Post, ServiceKind, ConditionResult } from '../types'
+import { Post, ServiceKind, ConditionContextBase } from '../types'
+
 import {
   DateParams,
   eq,
@@ -119,7 +120,7 @@ describe('retirement/calculator/lib/test-utils', () => {
         ['2001', new Date('2000'), false],
         ['2001-01-01', new Date('2000'), false],
       ])('should correctly check reached date', (input, reached, expected) => {
-        const conditionResult = [und, { reached }] as ConditionResult
+        const conditionResult = { reached } as ConditionContextBase
 
         expect(reachedAt(input)(conditionResult)).toBe(expected)
 
