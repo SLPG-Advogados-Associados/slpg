@@ -1,4 +1,5 @@
 import { Post, ServiceKind, ConditionContextBase } from '../types'
+import { NEVER } from './const'
 
 import {
   DateParams,
@@ -23,6 +24,9 @@ describe('retirement/calculator/lib/test-utils', () => {
         ['2011', new Date('2010'), false],
         ['2010-10-10', new Date('2010'), false],
         ['2010-10-10', new Date('2010-10-10'), true],
+        ['2010', NEVER, false],
+        [NaN, NEVER, true],
+        [NaN, new Date('2010'), false],
       ])('should check date equality', (input, date, expected) => {
         expect(eq.date(input)(date)).toBe(expected)
       })
