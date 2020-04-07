@@ -90,18 +90,21 @@ const last = (
 // }
 
 type Context<Input> = {
-  expected: DurationInput
   input: Input
+  expected: DurationInput
   contribution: Contribution
 }
 
-type TotalReacherConfig<Input> = {
-  split: (duration: Duration, context: Context<Input>) => Duration[]
-  filter: (duration: Duration, context: Context<Input>) => boolean
+type TotalReacherConfig<Input> = Partial<{
+  split: (contribution: Contribution, context: Context<Input>) => Contribution[]
+  filter: (contribution: Contribution, context: Context<Input>) => boolean
   process: (duration: Duration, context: Context<Input>) => DurationInput
-}
+}>
 
-type TotalReacherFactory = <Input extends ContributionsInput>(
+type TotalReacherFactory = <
+  ExtraInput extends object,
+  Input = ExtraInput & ContributionsInput
+>(
   expected: DurationInput | ((input: Input) => DurationInput),
   config?: TotalReacherConfig<Input>
 ) => Reacher<Input, { durations: { real: Duration; processed: Duration } }>
@@ -115,8 +118,8 @@ type TotalReacherFactory = <Input extends ContributionsInput>(
  * @param config.split A duration split callback to allow processing in isolation.
  */
 const total: TotalReacherFactory = (_expected, _config) => input => {
-  const config = {
-    split: duration => [duration],
+  const config: TotalReacherConfig<typeof input> = {
+    split: contribution => [contribution],
     filter: () => true,
     process: identity,
     ..._config,
@@ -133,37 +136,42 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
     processed: Duration
   }
 
-  for (const contribution of input.contributions) {
-    // processing context.
-    const context = { input, expected, contribution }
+  for (const source of input.contributions) {
+    const splitContext = { input, expected, contribution: source }
 
-    const { start, end = TODAY } = contribution
+    // allow spliting contributions, for granular processing.
+    for (const contribution of config.split(source, splitContext)) {
+      // processing context.
+      const context = { input, expected, contribution }
 
-    // plain isolated duration addition.
-    const real = between(start, end)
-    // processed duration, with possible manipulation.
-    const processed = config.process(real, context)
+      // allow skipping contribution periods.
+      if (!config.filter(contribution, context)) continue
 
-    // sum-up real time-based duration so far, with start as reference.
-    durations.real = normalize(sum(durations.real, real), start)
+      const { start, end = TODAY } = contribution
 
-    // sum-up processed calculation purposed duration so far, with start as reference
-    durations.processed = normalize(sum(durations.processed, processed), start)
+      // plain isolated duration addition.
+      const real = between(start, end)
+      // processed duration, with possible manipulation.
+      const processed = config.process(real, context)
 
-    // calculate reaching date, when it happens.
-    if (!reached && compare.longer(durations.processed, expected, true)) {
-      // remove duration from end date, add necessary expected duration.
-      reached = floor('day', add(sub(end, durations.processed), expected))
+      // sum-up real time-based duration so far, with start as reference.
+      durations.real = normalize(sum(durations.real, real), start)
+
+      // sum-up processed calculation purposed duration so far, with start as reference
+      durations.processed = normalize(
+        sum(durations.processed, processed),
+        start
+      )
+
+      // calculate reaching date, when it happens.
+      if (!reached && compare.longer(durations.processed, expected, true)) {
+        // remove duration from end date, add necessary expected duration.
+        reached = floor('day', add(sub(end, durations.processed), expected))
+      }
     }
   }
 
   return [reached || NEVER, { durations }]
-
-  // return [
-  //   // when no due, simply consider current duration
-  //   due ? reached <= due : compare.longer(durations.processed, expected, true),
-  //   { reached, durations },
-  // ]
 }
 
 export { last, total }

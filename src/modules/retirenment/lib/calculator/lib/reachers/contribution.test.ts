@@ -3,8 +3,7 @@ import { sum, normalize } from 'duration-fns'
 import { Contribution } from '../../types'
 import { d, c } from '../test-utils'
 import { NEVER } from '../const'
-
-import { last, total, __set__ } from './contribution'
+import { last, total } from './contribution'
 
 describe('retirement/calculator/lib/reachers/contribution', () => {
   describe('last', () => {
@@ -29,29 +28,39 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
   describe('total', () => {
     const i = (...contributions: Contribution[]) => ({ contributions })
 
-    it.each([
-      [20, i(c('70^90')), d('1990')],
-      [20, i(c('60^65'), c('70^85')), d('1985')],
-      [20, i(c('70')), d('1990')],
-      [20, i(c('80^90')), NEVER],
-      [20, i(c('60^65'), c('70^75')), NEVER],
-      [20, i(c('90')), d('2010')],
-      [20, i(c('90^95'), c('2000')), d('2015')],
-    ])('should correctly calculate reach', (years, input, expected) => {
-      expect(total({ years })(input)[0]).toEqual(expected)
+    describe('simple', () => {
+      it.each([
+        [20, i(c('70^90')), d('1990'), 20],
+        [20, i(c('60^65'), c('70^85')), d('1985'), 20],
+        [20, i(c('70')), d('1990'), 50],
+        [20, i(c('80^90')), NEVER, 10],
+        [20, i(c('60^65'), c('70^75')), NEVER, 10],
+        [20, i(c('90')), d('2010'), 30],
+        [20, i(c('90^95'), c('2000')), d('2015'), 25],
+      ])('should correctly calculate reach', (years, input, by, duration) => {
+        const [reached, context] = total({ years })(input)
+
+        expect(reached).toEqual(by)
+        expect(context).toHaveProperty('durations.real.years', duration)
+        expect(context).toHaveProperty('durations.processed.years', duration)
+      })
     })
 
-    it.each([
-      [20, i(c('80')), d('2000'), 40], // reached 20 at 2000, has currently 40
-      [20, i(c('90')), d('2010'), 30], // reached 20 at 2010, has currently 30
-      [20, i(c('70^95')), d('1990'), 25], // reached 20 at 1990, has currently 25 (stopped)
-      [20, i(c('70^80'), c('85')), d('1995'), 45], // reached 20 at 1995, has currently 45
-    ])('should check context', (years, input, reached, duration) => {
-      const [result, context] = total({ years })(input)
+    describe('filtered', () => {
+      it.each([
+        [20, i(c('70^80'), c('80')), NEVER, 10],
+        [20, i(c('70^90'), c('90^00')), d('1990'), 20],
+        [20, i(c('70^80'), c('80^90'), c('90^00')), d('2000'), 20],
+      ])('should correctly calculate reach', (years, input, by, duration) => {
+        let curr = 0
+        // filter-in even contributions (just to difeer)
+        const filter = () => curr++ % 2 === 0
+        const [reached, context] = total({ years }, { filter })(input)
 
-      expect(result).toEqual(reached)
-      expect(context).toHaveProperty('durations.real.years', duration)
-      expect(context).toHaveProperty('durations.processed.years', duration)
+        expect(reached).toEqual(by)
+        expect(context).toHaveProperty('durations.real.years', duration)
+        expect(context).toHaveProperty('durations.processed.years', duration)
+      })
     })
 
     describe('process', () => {
