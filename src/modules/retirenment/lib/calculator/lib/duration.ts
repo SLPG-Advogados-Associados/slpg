@@ -107,12 +107,4 @@ const compare = {
     compare.longer(right, left, equality),
 }
 
-/**
- * A function that processes Duration -> Duration for altering purposes.
- */
-export type DurationProcessor<Context = {}> = (
-  duration: Duration,
-  context: Context
-) => DurationInput
-
 export { multiply, max, min, precision, split, compare }
