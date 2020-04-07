@@ -36,7 +36,6 @@ const last = (
 /**
  * Full contribution duration reacher.
  *
- * @param due The due date.
  * @param expected The expected combined duration of all contributions by due date.
  */
 const total = (
@@ -68,10 +67,10 @@ const total = (
     // processed duration, with possible manipulation.
     const processed = process(real, context)
 
-    // sum-up real time-based duration so far.
+    // sum-up real time-based duration so far, with start as reference.
     durations.real = normalize(sum(durations.real, real), start)
 
-    // sum-up processed calculation purposed duration so far.
+    // sum-up processed calculation purposed duration so far, with start as reference
     durations.processed = normalize(sum(durations.processed, processed), start)
 
     // calculate reaching date, when it happens.
