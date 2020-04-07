@@ -5,7 +5,7 @@
 
 /* cspell: disable */
 import { last as getLast, identity } from 'ramda'
-import { add, sub } from 'date-fns'
+import { add, sub, min, max } from 'date-fns'
 import { between, sum, normalize, Duration } from 'duration-fns'
 import { floor } from '../date'
 import { TODAY, NEVER } from '../const'
@@ -174,4 +174,21 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
   return [reached || NEVER, { durations }]
 }
 
-export { last, total }
+const utils = {
+  /**
+   * Create a contribution time splitter based on the passed middle-point date.
+   */
+  splitAt: (date: Date) => (contribution: Contribution) => {
+    const { start, end } = contribution
+
+    // no split necessary:
+    if (start > date || (end && end < date)) return [contribution]
+
+    const left = { ...contribution, start, end: min([end || TODAY, date]) }
+    const right = { ...contribution, start: max([start, date]), end }
+
+    return [left, right]
+  },
+}
+
+export { last, total, utils }
