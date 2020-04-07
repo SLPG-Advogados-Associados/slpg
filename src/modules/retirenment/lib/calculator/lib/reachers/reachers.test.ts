@@ -3,15 +3,15 @@ import { isValid } from 'date-fns'
 import { Reacher } from '../../types'
 import { eq, d, b } from '../test-utils'
 import { NEVER } from '../const'
-import { age, merge /*, contribution*/ } from '.'
+import { age, merge, contribution } from '.'
 
 describe('retirement/calculator/lib/reachers', () => {
-  // describe('contribution', () => {
-  //   it('should exposed contribution based reachers', () => {
-  //     expect(contribution).toHaveProperty('last')
-  //     expect(contribution).toHaveProperty('total')
-  //   })
-  // })
+  describe('contribution', () => {
+    it('should exposed contribution based reachers', () => {
+      expect(contribution).toHaveProperty('last')
+      expect(contribution).toHaveProperty('total')
+    })
+  })
 
   describe('age', () => {
     it.each([

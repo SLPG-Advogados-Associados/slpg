@@ -3,6 +3,7 @@ import { add, max } from 'date-fns'
 import { normalize } from 'duration-fns'
 import { DurationInput } from '../duration'
 import { Reacher } from '../../types'
+import * as contribution from './contribution'
 
 /**
  * Age reacher factory.
@@ -31,4 +32,4 @@ const merge = {
   },
 }
 
-export { age, merge }
+export { age, merge, contribution }
