@@ -2,7 +2,7 @@
 import { c, d } from '../lib/test-utils'
 import { NEVER } from '../lib/const'
 import { Gender, Contribution, Post } from '../types'
-import { conditions /*, Rule1988CF*/ } from './1988-cf'
+import { conditions } from './1988-cf'
 
 const { TEACHER } = Post
 const { MALE: M, FEMALE: F } = Gender
@@ -112,39 +112,4 @@ describe('retirement/calculator/rules/cf-1998', () => {
       })
     })
   })
-
-  /* eslint-disable */
-  // describe('rule', () => {
-  //   it('should have statics', () => {
-  //     expect(Rule1988CF).toHaveProperty('title')
-  //     expect(Rule1988CF).toHaveProperty('description')
-  //   })
-
-  //   it('should be possible to instantiate rule', () => {
-  //     const rule = getRule(M, '1950', '1990', false)
-  //     expect(rule).toBeInstanceOf(Rule1988CF)
-  //   })
-
-  //   it('should be possible to check rule satisfaction result', () => {
-  //     // satisfies a)
-  //     expect(getRule(M, '1940', '1962', false).satisfied).toBe(true)
-  //     expect(getRule(F, '1940', '1967', false).satisfied).toBe(true)
-  //     // satisfies b)
-  //     expect(getRule(M, '1940', '1967', true).satisfied).toBe(true)
-  //     expect(getRule(F, '1940', '1972', true).satisfied).toBe(true)
-  //     // satisfies c)
-  //     expect(getRule(M, '1940', '1967', false).satisfied).toBe(true)
-  //     expect(getRule(F, '1940', '1972', false).satisfied).toBe(true)
-  //     // satisfies d)
-  //     expect(getRule(M, '1932', '1990', false).satisfied).toBe(true)
-  //     expect(getRule(F, '1937', '1990', false).satisfied).toBe(true)
-  //     // satisfies none
-  //     expect(getRule(M, '1934', '1980', false).satisfied).toBe(false)
-  //     expect(getRule(F, '1939', '1980', false).satisfied).toBe(false)
-  //     expect(getRule(M, '1940', '1969', false).satisfied).toBe(false)
-  //     expect(getRule(M, '1940', '1969', true).satisfied).toBe(false)
-  //     expect(getRule(F, '1940', '1974', false).satisfied).toBe(false)
-  //     expect(getRule(F, '1940', '1974', true).satisfied).toBe(false)
-  //   })
-  // })
 })

@@ -1,6 +1,5 @@
 /* cspell: disable */
 import { add } from 'date-fns'
-import { BaseRule } from './base'
 import * as reach from '../lib/reachers'
 
 import {
@@ -11,25 +10,26 @@ import {
   Post,
 } from '../types'
 
-const { TEACHER } = Post
-const { MALE, FEMALE } = Gender
-
-export interface Input {
+interface Input {
   gender: Gender
   birthDate: Date
   contributions: Contribution[]
 }
 
-export interface ConditionContext extends ConditionContextBase {
+interface ResultContext extends ConditionContextBase {
   integrality: boolean
 }
 
-/**
- * Date when EC 20/1998 is approved, deprecating the below rules.
- */
+const { TEACHER } = Post
+const { MALE, FEMALE } = Gender
+
+// Date when this rule became valid.
+const start = new Date('1988-10-05')
+
+// Date when EC 20/1998 is approved, deprecating the below rules.
 const due = new Date('1998-12-16')
 
-const conditions: Condition<Input, ConditionContext>[] = [
+const conditions: Condition<Input, ResultContext>[] = [
   /**
    * a) aos trinta e cinco anos de serviço, se homem, e aos trinta, se mulher,
    * com proventos integrais;
@@ -87,17 +87,12 @@ const conditions: Condition<Input, ConditionContext>[] = [
   },
 ]
 
-const description =
-  'Regra do art. 40 da Constituição Federal de 1988, texto original'
-
-class Rule1988CF extends BaseRule<Input, ConditionContext> {
-  public static date = new Date('1988-10-05')
-  public static title = 'CF 1988'
-  public static description = description
-
-  constructor(input) {
-    super(input, conditions)
-  }
+const rule = {
+  due,
+  start,
+  title: 'CF 1988',
+  description:
+    'Regra do art. 40 da Constituição Federal de 1988, texto original',
 }
 
-export { conditions, Rule1988CF }
+export { conditions, rule }

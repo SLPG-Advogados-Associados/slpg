@@ -1,6 +1,5 @@
 /* cspell: disable */
 import { sum, isNegative } from 'duration-fns'
-import { BaseRule } from './base'
 import { age, contribution, merge } from '../lib/conditions'
 import { multiply, split, DurationProcessor } from '../lib/duration'
 import { TODAY, NO_DURATION } from '../lib/const'
@@ -13,22 +12,23 @@ import {
   Post,
 } from '../types'
 
-const { MALE, FEMALE } = Gender
-const { TEACHER } = Post
-
-export interface Input {
+interface Input {
   gender: Gender
   birthDate: Date
   contributions: Contribution[]
 }
 
-export interface ConditionContext extends ConditionContextBase {
+interface ResultContext extends ConditionContextBase {
   integrality: boolean
 }
 
-/**
- * Date when EC 41/2003 is approved, deprecating the below rules.
- */
+const { MALE, FEMALE } = Gender
+const { TEACHER } = Post
+
+// Date when this rule became active.
+const start = new Date('1998-12-16')
+
+// Date when EC 41/2003 is approved, deprecating the below rules.
 const due = new Date('2003-12-31')
 
 const processors = {
@@ -59,7 +59,7 @@ const processors = {
   },
 }
 
-const conditions: Condition<Input, ConditionContext>[] = [
+const conditions: Condition<Input, ResultContext>[] = [
   /**
    * Integral
    * --------
@@ -209,16 +209,11 @@ const conditions: Condition<Input, ConditionContext>[] = [
   },
 ]
 
-const description = 'Regra de transição como descrita na EC nº 20, de 1998'
-
-class Rule1998EC20Transition extends BaseRule<Input, ConditionContext> {
-  public static date = new Date('1998-12-16')
-  public static title = 'EC nº 20 - Regra de Transição'
-  public static description = description
-
-  constructor(input) {
-    super(input, conditions)
-  }
+const rule = {
+  start,
+  due,
+  title: 'EC nº 20 - Regra de Transição',
+  description: 'Regra de transição como descrita na EC nº 20, de 1998',
 }
 
-export { conditions, Rule1998EC20Transition }
+export { conditions, rule }
