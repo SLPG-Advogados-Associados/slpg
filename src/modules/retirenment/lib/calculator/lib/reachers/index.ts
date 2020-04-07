@@ -24,7 +24,7 @@ const merge = {
   /**
    * Reaches when last reaches.
    */
-  all: (reachers: Reacher[]) => input => {
+  all: (reachers: Reacher[]): Reacher => input => {
     const results = reachers.map(reacher => reacher(input))
     const reached = max(results.map(([reached]) => reached))
 
