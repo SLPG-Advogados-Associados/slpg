@@ -3,7 +3,7 @@ import { sum, normalize } from 'duration-fns'
 import { Contribution } from '../../types'
 import { d, c } from '../test-utils'
 import { NEVER } from '../const'
-import { last, total } from './contribution'
+import { last, total, utils } from './contribution'
 
 describe('retirement/calculator/lib/reachers/contribution', () => {
   describe('last', () => {
@@ -22,6 +22,19 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
       [20, i(c('50^75'), c('80^90')), NEVER],
     ])('should correctly calculate reach', (years, input, expected) => {
       expect(last({ years })(input)[0]).toEqual(expected)
+    })
+  })
+
+  describe('utils', () => {
+    describe('splitAt', () => {
+      it.each([
+        [c('70^90'), d('60'), [c('70^90')]], // cut before, keep same
+        [c('70^90'), d('00'), [c('70^90')]], // cut after, keep same
+        [c('70^90'), d('80'), [c('70^80'), c('80^90')]], // cut between
+        [c('70'), d('80'), [c('70^80'), c('80')]], // cut without end
+      ])('should split conditions based on date', (input, date, expected) => {
+        expect(utils.splitAt(date)(input)).toMatchObject(expected)
+      })
     })
   })
 
