@@ -103,7 +103,7 @@ type TotalReacherConfig<Input> = Partial<{
 
 type TotalReacherFactory = <
   ExtraInput extends object,
-  Input = ExtraInput & ContributionsInput
+  Input extends ContributionsInput & ExtraInput
 >(
   expected: DurationInput | ((input: Input) => DurationInput),
   config?: TotalReacherConfig<Input>
