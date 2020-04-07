@@ -14,16 +14,16 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
     const i = (...contributions: Contribution[]) => ({ contributions })
 
     it.each([
-      [10, i(c('1980')), d('1990')],
-      [20, i(c('1980')), d('2000')],
-      [20, i(c('1950^1975'), c('1980')), d('2000')],
-      [10, i(c('1970^1990')), d('1980')],
-      [10, i(c('1950^1975'), c('1970^1990')), d('1980')],
-      [20, i(c('1950^1975'), c('1970^1990')), d('1990')],
-      [20, i(c('1981')), d('2001')],
-      [20, i(c('1950^1975'), c('1981')), d('2001')],
-      [20, i(c('1980^1990')), NEVER],
-      [20, i(c('1950^1975'), c('1980^1990')), NEVER],
+      [10, i(c('80')), d('1990')],
+      [20, i(c('80')), d('2000')],
+      [20, i(c('50^75'), c('80')), d('2000')],
+      [10, i(c('70^90')), d('1980')],
+      [10, i(c('50^75'), c('70^90')), d('1980')],
+      [20, i(c('50^75'), c('70^90')), d('1990')],
+      [20, i(c('81')), d('2001')],
+      [20, i(c('50^75'), c('81')), d('2001')],
+      [20, i(c('80^90')), NEVER],
+      [20, i(c('50^75'), c('80^90')), NEVER],
     ])('should correctly calculate reach', (years, input, expected) => {
       expect(last({ years })(input)[0]).toEqual(expected)
     })
@@ -33,22 +33,22 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
     const i = (...contributions: Contribution[]) => ({ contributions })
 
     it.each([
-      [20, i(c('1970^1990')), d('1990')],
-      [20, i(c('1960^1965'), c('1970^1985')), d('1985')],
-      [20, i(c('1970')), d('1990')],
-      [20, i(c('1980^1990')), NEVER],
-      [20, i(c('1960^1965'), c('1970^1975')), NEVER],
-      [20, i(c('1990')), d('2010')],
-      [20, i(c('1990^1995'), c('2000')), d('2015')],
+      [20, i(c('70^90')), d('1990')],
+      [20, i(c('60^65'), c('70^85')), d('1985')],
+      [20, i(c('70')), d('1990')],
+      [20, i(c('80^90')), NEVER],
+      [20, i(c('60^65'), c('70^75')), NEVER],
+      [20, i(c('90')), d('2010')],
+      [20, i(c('90^95'), c('2000')), d('2015')],
     ])('should correctly calculate reach', (years, input, expected) => {
       expect(total({ years })(input)[0]).toEqual(expected)
     })
 
     it.each([
-      [20, i(c('1980')), d('2000'), 40], // reached 20 at 2000, has currently 40
-      [20, i(c('1990')), d('2010'), 30], // reached 20 at 2010, has currently 30
-      [20, i(c('1970^1995')), d('1990'), 25], // reached 20 at 1990, has currently 25 (stopped)
-      [20, i(c('1970^1980'), c('1985')), d('1995'), 45], // reached 20 at 1995, has currently 45
+      [20, i(c('80')), d('2000'), 40], // reached 20 at 2000, has currently 40
+      [20, i(c('90')), d('2010'), 30], // reached 20 at 2010, has currently 30
+      [20, i(c('70^95')), d('1990'), 25], // reached 20 at 1990, has currently 25 (stopped)
+      [20, i(c('70^80'), c('85')), d('1995'), 45], // reached 20 at 1995, has currently 45
     ])('should check context', (years, input, reached, duration) => {
       const [result, context] = total({ years })(input)
 
@@ -59,9 +59,9 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
 
     describe('process', () => {
       it.each([
-        [i(c('1991^2000')), d('2000'), 9, 10],
-        [i(c('1992')), d('2001'), 28, 29],
-        [i(c('1992^1993'), c('1993')), d('2000'), 28, 30],
+        [i(c('91^2000')), d('2000'), 9, 10],
+        [i(c('92')), d('2001'), 28, 29],
+        [i(c('92^93'), c('93')), d('2000'), 28, 30],
       ])(
         'should be possible to increment duration on processor',
         (input, expected, real, processed) => {
