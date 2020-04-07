@@ -1,6 +1,6 @@
 /* cspell: disable */
 import { sum, isNegative } from 'duration-fns'
-import { age, contribution, merge } from '../lib/conditions'
+import * as reacher from '../lib/reachers'
 import { multiply, split, DurationProcessor } from '../lib/duration'
 import { TODAY, NO_DURATION } from '../lib/const'
 
@@ -81,14 +81,14 @@ const conditions: Condition<Input, ResultContext>[] = [
   input => {
     const integrality = true
 
-    const subConditions = [
+    const reachers = [
       /**
        * (...)
        * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
        * de idade, se mulher;
        * (...)
        */
-      age(due)({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
+      reacher.age({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
 
       /**
        * (...)
@@ -96,7 +96,7 @@ const conditions: Condition<Input, ResultContext>[] = [
        * aposentadoria;
        * (...)
        */
-      contribution.last(due)({ years: 5 }),
+      reacher.contribution.last({ years: 5 }),
 
       /**
        * (...)
@@ -109,7 +109,7 @@ const conditions: Condition<Input, ResultContext>[] = [
        * limite de tempo constante da alínea anterior.
        * (...)
        *
-       * @todo: a) and b) not currently considered!
+       * @todo: b) is currently not considered!
        *
        * (...)
        *
@@ -127,15 +127,15 @@ const conditions: Condition<Input, ResultContext>[] = [
        * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
        * efetivo exercício das funções de magistério.
        */
-      contribution.total(due)(
+      reacher.contribution.total(
         { years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] },
         processors.duration(input)
       ),
     ]
 
-    const [satisfied, { reached }] = merge.all(subConditions)(input)
+    const [reached] = reacher.merge.all(reachers)(input)
 
-    return [satisfied, { reached, integrality }]
+    return [reached <= due, { reached, integrality }]
   },
 
   /**
@@ -163,19 +163,19 @@ const conditions: Condition<Input, ResultContext>[] = [
    * tempo que, na data da publicação desta Emenda, faltaria para atingir o
    * limite de tempo constante da alínea anterior;
    *
-   * @todo: a) and b) not currently considered!
+   * @todo: b) is currently not considered!
    */
   input => {
     const integrality = false
 
-    const subConditions = [
+    const reachers = [
       /**
        * (...)
        * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
        * de idade, se mulher;
        * (...)
        */
-      age(due)({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
+      reacher.age({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
 
       /**
        * (...)
@@ -183,7 +183,7 @@ const conditions: Condition<Input, ResultContext>[] = [
        * aposentadoria;
        * (...)
        */
-      contribution.last(due)({ years: 5 }),
+      reacher.contribution.last({ years: 5 }),
 
       /**
        * (...)
@@ -196,16 +196,16 @@ const conditions: Condition<Input, ResultContext>[] = [
        * limite de tempo constante da alínea anterior.
        * (...)
        *
-       * @todo: a) and b) not currently considered!
+       * @todo: b) is currently not considered!
        */
-      contribution.total(due)({
+      reacher.contribution.total({
         years: { [MALE]: 30, [FEMALE]: 25 }[input.gender],
       }),
     ]
 
-    const [satisfied, { reached }] = merge.all(subConditions)(input)
+    const [reached] = reacher.merge.all(reachers)(input)
 
-    return [satisfied, { reached, integrality }]
+    return [reached <= due, { reached, integrality }]
   },
 ]
 
