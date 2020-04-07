@@ -103,9 +103,9 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
       ])(
         'should be possible to increment duration on processor',
         (input, expected, real, processed) => {
-          const processor = duration => normalize(sum(duration, { years: 1 }))
+          const process = duration => normalize(sum(duration, { years: 1 }))
           const duration = { years: 10 }
-          const [reached, context] = total(duration, processor)(input)
+          const [reached, context] = total(duration, { process })(input)
 
           expect(reached).toEqual(expected)
           expect(context).toHaveProperty('durations.real.years', real)
