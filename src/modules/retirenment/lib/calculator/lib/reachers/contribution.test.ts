@@ -4,12 +4,9 @@ import { Contribution } from '../../types'
 import { d, c } from '../test-utils'
 import { NEVER } from '../const'
 
-// @ts-ignore
 import { last, total, __set__ } from './contribution'
 
 describe('retirement/calculator/lib/reachers/contribution', () => {
-  beforeEach(() => __set__('TODAY', d('2020')))
-
   describe('last', () => {
     const i = (...contributions: Contribution[]) => ({ contributions })
 
