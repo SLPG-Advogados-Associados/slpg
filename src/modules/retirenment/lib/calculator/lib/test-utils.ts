@@ -1,3 +1,4 @@
+import { isValid } from 'date-fns'
 import { Post, ServiceKind, ConditionContextBase } from '../types'
 
 const { OTHER } = Post
@@ -14,8 +15,10 @@ const eq = {
    *
    * @param input Date in (possibly partial) ISO format.
    */
-  date: (input: string | number) => (date: Date) =>
-    date.toISOString().indexOf(input + '') === 0,
+  date: (input: string | number) => (date: Date) => {
+    if (!isValid(date)) return isNaN(Number(input))
+    return date.toISOString().indexOf(input + '') === 0
+  },
 }
 
 /*
