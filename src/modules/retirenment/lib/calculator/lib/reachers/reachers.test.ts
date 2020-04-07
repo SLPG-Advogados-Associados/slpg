@@ -2,6 +2,7 @@
 import { isValid } from 'date-fns'
 import { Reacher } from '../../types'
 import { eq, d, b } from '../test-utils'
+import { NEVER } from '../const'
 import { age, merge /*, contribution*/ } from '.'
 
 describe('retirement/calculator/lib/reachers', () => {
@@ -26,25 +27,19 @@ describe('retirement/calculator/lib/reachers', () => {
   })
 
   describe('merge', () => {
-    type ReachersDictonary = { [key: string]: { [key: string]: Reacher } }
     const { all } = merge
 
-    const reachers: ReachersDictonary = {
-      pass: {
-        on1990: () => [d('1990')],
-        on2000: () => [d('2000')],
-      },
-      fail: {
-        on1995: () => [d('1995')],
-        on2005: () => [d('2005')],
-      },
+    const reachers = {
+      on1990: (() => [d('1990')]) as Reacher,
+      on2000: (() => [d('2000')]) as Reacher,
+      never: (() => [NEVER]) as Reacher,
     }
 
     describe('all', () => {
       it('should merge multiple reachers', () => {
         expect(all([])).toBeFunction()
-        expect(all([reachers.pass.on1990])).toBeFunction()
-        expect(all([reachers.pass.on1990, reachers.pass.on2000])).toBeFunction()
+        expect(all([reachers.on1990])).toBeFunction()
+        expect(all([reachers.on1990, reachers.on2000])).toBeFunction()
       })
 
       it('should handle empty condition set', () => {
@@ -54,21 +49,21 @@ describe('retirement/calculator/lib/reachers', () => {
       })
 
       it('should have same result for single condition', () => {
-        const left = all([reachers.pass.on1990])({})
-        const right = reachers.pass.on1990({})
+        const left = all([reachers.on1990])({})
+        const right = reachers.on1990({})
         expect(left[0]).toEqual(right[0])
       })
 
       it.each([
-        [all([reachers.pass.on1990]), 1990],
-        [all([reachers.pass.on2000]), 2000],
-        [all([reachers.pass.on1990, reachers.pass.on2000]), 2000],
-        [all([reachers.pass.on1990, reachers.pass.on2000]), 2000],
-        [all([reachers.pass.on1990, reachers.pass.on2000]), 2000],
-        [all([reachers.pass.on1990, reachers.fail.on2005]), 2005],
-        [all([reachers.fail.on1995, reachers.fail.on2005]), 2005],
-        [all([reachers.fail.on2005, reachers.fail.on1995]), 2005],
-      ])('should reach on latest reach, even failed ones', (cond, year) => {
+        [all([reachers.on1990]), 1990],
+        [all([reachers.on2000]), 2000],
+        [all([reachers.on1990, reachers.on2000]), 2000],
+        [all([reachers.on1990, reachers.on2000]), 2000],
+        [all([reachers.on1990, reachers.on2000]), 2000],
+        [all([reachers.on1990, reachers.never]), NaN],
+        [all([reachers.never, reachers.on2000]), NaN],
+        [all([reachers.never, reachers.never]), NaN],
+      ])('should reach on latest reach', (cond, year) => {
         expect(cond({})[0]).toSatisfy(eq.date(year))
       })
     })
