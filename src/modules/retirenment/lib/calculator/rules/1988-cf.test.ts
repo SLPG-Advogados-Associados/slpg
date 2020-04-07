@@ -28,11 +28,11 @@ describe('retirement/calculator/rules/cf-1998', () => {
     describe('a)', () => {
       it.each([
         // male
-        [i(M, [c('1962')]), true, d('1997')], //   ✅ +35 contribution years by 1998
-        [i(M, [c('1964')]), false, d('1999')], //  ❌ -35 contribution years by 1998
+        [i(M, [c('62')]), true, d('1997')], //   ✅ +35 contribution years by 1998
+        [i(M, [c('64')]), false, d('1999')], //  ❌ -35 contribution years by 1998
         // female
-        [i(F, [c('1967')]), true, d('1997')], //   ✅ +30 contribution years by 1998
-        [i(F, [c('1969')]), false, d('1999')], //  ❌ -30 contribution years by 1998
+        [i(F, [c('67')]), true, d('1997')], //   ✅ +30 contribution years by 1998
+        [i(F, [c('69')]), false, d('1999')], //  ❌ -30 contribution years by 1998
       ])('should check qualification', (input, qualified, by) => {
         const [reached, context] = condA(input)
         expect(reached).toEqual(qualified)
@@ -48,22 +48,22 @@ describe('retirement/calculator/rules/cf-1998', () => {
     describe('b)', () => {
       it.each([
         // male teacher
-        [i(M, [c('1967', [null, TEACHER])]), true, d('1997')], //   ✅ +30 contribution years by 1998
-        [i(M, [c('1969', [null, TEACHER])]), false, d('1999')], //  ❌ -30 contribution years by 1998
+        [i(M, [c('67', [null, TEACHER])]), true, d('1997')], //   ✅ +30 contribution years by 1998
+        [i(M, [c('69', [null, TEACHER])]), false, d('1999')], //  ❌ -30 contribution years by 1998
         // female teacher
-        [i(F, [c('1972', [null, TEACHER])]), true, d('1997')], //   ✅ +25 contribution years by 1998
-        [i(F, [c('1974', [null, TEACHER])]), false, d('1999')], //  ❌ -25 contribution years by 1998
+        [i(F, [c('72', [null, TEACHER])]), true, d('1997')], //   ✅ +25 contribution years by 1998
+        [i(F, [c('74', [null, TEACHER])]), false, d('1999')], //  ❌ -25 contribution years by 1998
         // non-teacher
-        [i(M, [c('1960')]), false, NEVER], //   ✅ not-teacher
-        [i(F, [c('1960')]), false, NEVER], //  ❌ not-teacher
+        [i(M, [c('60')]), false, NEVER], //  ✅ not-teacher
+        [i(F, [c('60')]), false, NEVER], //  ❌ not-teacher
         // mixed post types
-        [i(M, [c('1960^1970'), c('1970', [null, TEACHER])]), false, d('2000')], //  ❌ -30 contribution years by 1998
-        [i(M, [c('1960^1967'), c('1967', [null, TEACHER])]), true, d('1997')], //   ✅ +30 contribution years by 1998
-        [i(M, [c('1960^1967'), c('1969', [null, TEACHER])]), false, d('1999')], //  ❌ -30 contribution years by 1998
+        [i(M, [c('60^70'), c('70', [null, TEACHER])]), false, d('2000')], //  ❌ -30 contribution years by 1998
+        [i(M, [c('60^67'), c('67', [null, TEACHER])]), true, d('1997')], //   ✅ +30 contribution years by 1998
+        [i(M, [c('60^67'), c('69', [null, TEACHER])]), false, d('1999')], //  ❌ -30 contribution years by 1998
 
-        [i(F, [c('1960^1975'), c('1975', [null, TEACHER])]), false, d('2000')], //  ❌ -25 contribution years by 1998
-        [i(F, [c('1960^1972'), c('1972', [null, TEACHER])]), true, d('1997')], //   ✅ +25 contribution years by 1998
-        [i(F, [c('1960^1972'), c('1974', [null, TEACHER])]), false, d('1999')], //  ❌ -25 contribution years by 1998
+        [i(F, [c('60^75'), c('75', [null, TEACHER])]), false, d('2000')], //  ❌ -25 contribution years by 1998
+        [i(F, [c('60^72'), c('72', [null, TEACHER])]), true, d('1997')], //   ✅ +25 contribution years by 1998
+        [i(F, [c('60^72'), c('74', [null, TEACHER])]), false, d('1999')], //  ❌ -25 contribution years by 1998
       ])('should check qualification', (input, qualified, by) => {
         const [reached, context] = condB(input)
         expect(reached).toEqual(qualified)
@@ -79,11 +79,11 @@ describe('retirement/calculator/rules/cf-1998', () => {
     describe('c)', () => {
       it.each([
         // male
-        [i(M, [c('1967')]), true, d('1997')], //   ✅ +30 contribution years by 1998
-        [i(M, [c('1969')]), false, d('1999')], //  ❌ -30 contribution years by 1998
+        [i(M, [c('67')]), true, d('1997')], //   ✅ +30 contribution years by 1998
+        [i(M, [c('69')]), false, d('1999')], //  ❌ -30 contribution years by 1998
         // female
-        [i(F, [c('1972')]), true, d('1997')], //   ✅ +25 contribution years by 1998
-        [i(F, [c('1974')]), false, d('1999')], //  ❌ -25 contribution years by 1998
+        [i(F, [c('72')]), true, d('1997')], //   ✅ +25 contribution years by 1998
+        [i(F, [c('74')]), false, d('1999')], //  ❌ -25 contribution years by 1998
       ])('should check qualification', (input, qualified, by) => {
         const [reached, context] = condC(input)
         expect(reached).toEqual(qualified)
