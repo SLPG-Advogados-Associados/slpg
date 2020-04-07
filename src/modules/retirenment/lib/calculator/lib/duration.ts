@@ -8,9 +8,6 @@ import {
   DurationInput as _DurationInput,
 } from 'duration-fns'
 
-import { ServiceKind, Contribution } from '../types'
-import { TODAY, NO_DURATION } from './const'
-
 export type DurationInput = Exclude<_DurationInput, number | string>
 
 const durationProps: Array<keyof Duration> = [
@@ -25,19 +22,6 @@ const durationProps: Array<keyof Duration> = [
 ]
 
 /**
- * Apply a given function to the provided duration.
- *
- * @param func Function to alter duration.
- * @param duration The original duration.
- * @param ref Date of reference, if needed.
- */
-const apply = (
-  func: (DurationInput) => DurationInput,
-  duration: DurationInput,
-  ref: Date = TODAY
-) => normalize(func(normalize(duration)), ref)
-
-/**
  * Multiply a given duration by the provided factor.
  *
  * @param by Factor to multiply by. I.e.: 2.2
@@ -45,13 +29,8 @@ const apply = (
  * @param ref Date of reference.
  */
 const multiply = (by: number, duration: DurationInput, ref: Date) =>
-  apply(
-    input =>
-      normalize(
-        { milliseconds: Math.floor(toMilliseconds(normalize(input)) * by) },
-        ref
-      ),
-    duration,
+  normalize(
+    { milliseconds: Math.floor(toMilliseconds(normalize(duration)) * by) },
     ref
   )
 
@@ -136,23 +115,4 @@ export type DurationProcessor<Context = {}> = (
   context: Context
 ) => DurationInput
 
-/**
- * Reusable filters to be used as processors.
- *
- * Duration -> Duration functions/factories that retrieve NO_DURATION on failure.
- */
-const filters = {
-  /**
-   * Filter out any contribution time related to different service kinds.
-   *
-   * @param kind The required service kind.
-   */
-  serviceKind: (
-    kind: ServiceKind
-  ): DurationProcessor<{ contribution: Contribution }> => (
-    duration,
-    { contribution: { service } }
-  ) => (service.kind === kind ? duration : NO_DURATION),
-}
-
-export { apply, multiply, max, min, precision, split, compare, filters }
+export { multiply, max, min, precision, split, compare }
