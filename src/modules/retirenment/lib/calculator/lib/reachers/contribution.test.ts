@@ -76,6 +76,25 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
       })
     })
 
+    describe('split', () => {
+      it.each([
+        [20, i(c('70^80')), NEVER, 10, 1], // uncut
+        [20, i(c('70^90'), c('90^00')), d('1990'), 30, 2], // uncut
+        [20, i(c('85^95')), NEVER, 10, 2], // cut to two
+        [20, i(c('70^80'), c('85^00')), d('1995'), 25, 3], // cut to three
+      ])('should process splitted', (years, input, by, duration, times) => {
+        const split = utils.splitAt(d('90'))
+        // watcher
+        const process = jest.fn(d => d)
+        const [reached, context] = total({ years }, { split, process })(input)
+
+        expect(reached).toEqual(by)
+        expect(process).toHaveBeenCalledTimes(times)
+        expect(context).toHaveProperty('durations.real.years', duration)
+        expect(context).toHaveProperty('durations.processed.years', duration)
+      })
+    })
+
     describe('process', () => {
       it.each([
         [i(c('91^2000')), d('2000'), 9, 10],
