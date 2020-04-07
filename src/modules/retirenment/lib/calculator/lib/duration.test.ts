@@ -1,59 +1,20 @@
-import { Duration, DurationInput } from 'duration-fns'
-import { ServiceKind, Contribution } from '../types'
-import {
-  apply,
-  multiply,
-  max,
-  min,
-  precision,
-  split,
-  compare,
-  filters,
-} from './duration'
-import { NO_DURATION } from './const'
+import { Duration } from 'duration-fns'
+import { multiply, max, min, precision, split, compare } from './duration'
 import { d, p } from './test-utils'
-
-const { PUBLIC, PRIVATE } = ServiceKind
 
 const ref = d('2000')
 
 describe('retirement/calculator/lib/duration', () => {
-  describe('apply', () => {
-    type Item = [
-      [(DurationInput) => DurationInput, DurationInput, Date?],
-      DurationInput
-    ]
-
-    const process = {
-      plusYear: ({ years }) => ({ years: years + 1 }),
-      lessYear: ({ years }) => ({ years: years - 1 }),
-    }
-
-    it.each([
-      [[process.plusYear, { years: 1 }, ref], { years: 2 }],
-      [[process.plusYear, { years: 2 }, ref], { years: 3 }],
-      [[process.lessYear, { years: 1 }, ref], { years: 0 }],
-      [[process.lessYear, { years: 2 }, ref], { years: 1 }],
-    ] as Item[])(
-      'should correctly apply durations transforms',
-      ([func, duration, ref], expected) => {
-        expect(apply(func, duration, ref)).toMatchObject(expected)
-      }
-    )
-  })
-
   describe('multiply', () => {
-    type Item = [[number, DurationInput, Date?], DurationInput]
-
     // floats to account for imprecision.
     it.each([
-      [[2.1, { years: 1 }, ref], { years: 2 }],
-      [[3.1, { years: 2 }, ref], { years: 6 }],
-      [[-1.1, { years: 1 }, ref], { years: -1 }],
-      [[-2.1, { years: 2 }, ref], { years: -4 }],
-    ] as Item[])(
+      [2.1, { years: 1 }, ref, { years: 2 }],
+      [3.1, { years: 2 }, ref, { years: 6 }],
+      [-1.1, { years: 1 }, ref, { years: -1 }],
+      [-2.1, { years: 2 }, ref, { years: -4 }],
+    ])(
       'should correctly apply durations transforms',
-      ([by, duration, ref], expected) => {
+      (by, duration, ref, expected) => {
         expect(multiply(by, duration, ref)).toMatchObject(expected)
       }
     )
@@ -84,40 +45,34 @@ describe('retirement/calculator/lib/duration', () => {
   describe('compare', () => {
     describe('longer', () => {
       it.each([
-        [[{ years: 2 }, { years: 1 }, false], true],
-        [[{ years: 2 }, { years: 3 }, false], false],
-        [[{ years: 2 }, { years: 2 }, false], false],
-        [[{ years: 2 }, { years: 2 }, true], true],
+        [{ years: 2 }, { years: 1 }, false, true],
+        [{ years: 2 }, { years: 3 }, false, false],
+        [{ years: 2 }, { years: 2 }, false, false],
+        [{ years: 2 }, { years: 2 }, true, true],
 
-        [[{ years: 2, days: 2 }, { years: 2, days: 1 }, false], true],
-        [[{ years: 2, days: 2 }, { years: 2, days: 3 }, false], false],
-        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, false], false],
-        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, true], true],
-      ] as const)(
-        'should check longer duration',
-        ([left, right, equality], expected) => {
-          expect(compare.longer(left, right, equality)).toBe(expected)
-        }
-      )
+        [{ years: 2, days: 2 }, { years: 2, days: 1 }, false, true],
+        [{ years: 2, days: 2 }, { years: 2, days: 3 }, false, false],
+        [{ years: 2, days: 2 }, { years: 2, days: 2 }, false, false],
+        [{ years: 2, days: 2 }, { years: 2, days: 2 }, true, true],
+      ])('should check longer duration', (left, right, equality, expected) => {
+        expect(compare.longer(left, right, equality)).toBe(expected)
+      })
     })
 
     describe('shorter', () => {
       it.each([
-        [[{ years: 1 }, { years: 2 }, false], true],
-        [[{ years: 3 }, { years: 2 }, false], false],
-        [[{ years: 2 }, { years: 2 }, false], false],
-        [[{ years: 2 }, { years: 2 }, true], true],
+        [{ years: 1 }, { years: 2 }, false, true],
+        [{ years: 3 }, { years: 2 }, false, false],
+        [{ years: 2 }, { years: 2 }, false, false],
+        [{ years: 2 }, { years: 2 }, true, true],
 
-        [[{ years: 2, days: 1 }, { years: 2, days: 2 }, false], true],
-        [[{ years: 2, days: 3 }, { years: 2, days: 2 }, false], false],
-        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, false], false],
-        [[{ years: 2, days: 2 }, { years: 2, days: 2 }, true], true],
-      ] as const)(
-        'should check shorter duration',
-        ([left, right, equality], expected) => {
-          expect(compare.shorter(left, right, equality)).toBe(expected)
-        }
-      )
+        [{ years: 2, days: 1 }, { years: 2, days: 2 }, false, true],
+        [{ years: 2, days: 3 }, { years: 2, days: 2 }, false, false],
+        [{ years: 2, days: 2 }, { years: 2, days: 2 }, false, false],
+        [{ years: 2, days: 2 }, { years: 2, days: 2 }, true, true],
+      ])('should check shorter duration', (left, right, equality, expected) => {
+        expect(compare.shorter(left, right, equality)).toBe(expected)
+      })
     })
   })
 
@@ -145,9 +100,12 @@ describe('retirement/calculator/lib/duration', () => {
       ['minutes', durations.minutes],
       ['seconds', durations.seconds],
       ['milliseconds', durations.milliseconds],
-    ] as const)('should find the max between durations', (prec, result) => {
-      expect(precision(prec, durations.original)).toEqual(result)
-    })
+    ])(
+      'should find the max between durations',
+      (prec: keyof Duration, result) => {
+        expect(precision(prec, durations.original)).toEqual(result)
+      }
+    )
   })
 
   describe('split', () => {
@@ -156,26 +114,6 @@ describe('retirement/calculator/lib/duration', () => {
       [p('1990^2020'), d('2000'), { years: 10 }, { years: 20 }],
     ])('should split interval', ([start, end], middle, before, after) => {
       expect(split({ start, end }, middle)).toMatchObject([before, after])
-    })
-  })
-
-  describe('filters', () => {
-    describe('serviceKind', () => {
-      const factory = filters.serviceKind
-
-      it.each([
-        [factory(PUBLIC), PUBLIC, true],
-        [factory(PUBLIC), PRIVATE, false],
-        [factory(PRIVATE), PUBLIC, false],
-        [factory(PRIVATE), PRIVATE, true],
-      ])('serviceKind: should filter correctly', (filter, kind, result) => {
-        const duration = { years: 1 } as Duration
-        const contribution = { service: { kind } } as Contribution
-        const context = { contribution }
-        const expected = result ? duration : NO_DURATION
-
-        expect(filter(duration, context)).toBe(expected)
-      })
     })
   })
 })
