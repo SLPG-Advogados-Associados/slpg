@@ -21,7 +21,7 @@ describe('retirement/calculator/lib/reachers', () => {
       [30, '1960', 1990],
       [30, '1970', 2000],
       [30, '1980', 2010],
-    ] as const)('should correctly qualify', (years, birth, reached) => {
+    ])('should correctly calculate reach', (years, birth, reached) => {
       expect(age({ years })(b(birth))[0]).toSatisfy(eq.date(reached))
     })
   })
