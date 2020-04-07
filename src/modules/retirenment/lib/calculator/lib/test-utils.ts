@@ -114,10 +114,12 @@ const reachedAt = (input: string | number) => ({
  */
 
 const und = undefined
+const u = und
 
 export {
   eq,
   und,
+  u,
   date,
   d,
   birth,
