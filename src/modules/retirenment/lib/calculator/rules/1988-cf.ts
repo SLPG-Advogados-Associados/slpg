@@ -1,17 +1,23 @@
 /* cspell: disable */
 import { add } from 'date-fns'
 import { BaseRule } from './base'
-import { Condition, ConditionContextBase, Gender } from '../types'
+import * as reach from '../lib/reachers'
 
+import {
+  Contribution,
+  Condition,
+  ConditionContextBase,
+  Gender,
+  Post,
+} from '../types'
+
+const { TEACHER } = Post
 const { MALE, FEMALE } = Gender
 
 export interface Input {
   gender: Gender
   birthDate: Date
-  teacher: boolean
-  contribution: {
-    start: Date
-  }
+  contributions: Contribution[]
 }
 
 export interface ConditionContext extends ConditionContextBase {
@@ -32,7 +38,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
     const integrality = true
     const years = { [MALE]: 35, [FEMALE]: 30 }[input.gender]
 
-    const reached = add(input.contribution.start, { years })
+    const [reached] = reach.contribution.total({ years })(input)
 
     return [reached < due, { integrality, reached }]
   },
@@ -45,9 +51,13 @@ const conditions: Condition<Input, ConditionContext>[] = [
     const integrality = true
     const years = { [MALE]: 30, [FEMALE]: 25 }[input.gender]
 
-    const reached = add(input.contribution.start, { years })
+    const contributions = input.contributions.filter(
+      ({ service }) => service.post === TEACHER
+    )
 
-    return [input.teacher && reached < due, { integrality, reached }]
+    const [reached] = reach.contribution.total({ years })({ contributions })
+
+    return [reached < due, { integrality, reached }]
   },
 
   /**
@@ -58,7 +68,7 @@ const conditions: Condition<Input, ConditionContext>[] = [
     const integrality = false
     const years = { [MALE]: 30, [FEMALE]: 25 }[input.gender]
 
-    const reached = add(input.contribution.start, { years })
+    const [reached] = reach.contribution.total({ years })(input)
 
     return [reached < due, { integrality, reached }]
   },
