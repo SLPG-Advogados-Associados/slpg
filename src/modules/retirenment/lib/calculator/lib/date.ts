@@ -48,4 +48,37 @@ const splitPeriod = (
   { start: max([start, middle]), end, negative: isAfter(middle, end) },
 ]
 
-export { floor, splitPeriod }
+/**
+ * Count the amount of leap days (Feb 29) between two dates.
+ *
+ * @param _start Starting date.
+ * @param _end Ending date.
+ */
+const leapsBetween = (_start: Date, _end: Date) => {
+  const start = _start instanceof Date ? _start : new Date(_start)
+  const end = _end instanceof Date ? _end : new Date(_end)
+
+  let days = 0
+  let currYear = start.getFullYear()
+  const endYear = end.getFullYear()
+  const years: number[] = []
+
+  // get all years in between.
+  while (currYear <= endYear) {
+    years.push(currYear++)
+  }
+
+  // add day for each leap year.
+  for (const year of years) {
+    const isLeap = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
+    const leapDay = new Date(`${year}-02-29`)
+
+    if (isLeap && leapDay > start && leapDay < end) {
+      days++
+    }
+  }
+
+  return days
+}
+
+export { floor, splitPeriod, leapsBetween }

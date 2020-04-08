@@ -1,4 +1,4 @@
-import { floor, splitPeriod } from './date'
+import { floor, splitPeriod, leapsBetween } from './date'
 import { i, d } from './test-utils'
 
 describe('retirement/calculator/lib/date', () => {
@@ -42,5 +42,32 @@ describe('retirement/calculator/lib/date', () => {
         expect(split[1]).toHaveProperty('negative', after)
       }
     )
+  })
+
+  describe('leapsBetween', () => {
+    it.each([
+      // non-leap
+      [d('1990'), d('1991'), 0],
+      [d('1990'), d('1992'), 0],
+      [d('1990'), d('1992-02-28'), 0],
+      [d('1990'), d('1992-02-29'), 0],
+      // leaped
+      [d('1990'), d('1992-03-01'), 1],
+
+      // leaped once
+      [d('1990'), d('1996'), 1],
+      [d('1990'), d('1996-02-28'), 1],
+      [d('1990'), d('1996-02-29'), 1],
+      // leaped twice
+      [d('1990'), d('1996-03-01'), 2],
+
+      // non-leap
+      [d('1992-03-01'), d('1993'), 0],
+      [d('1992-02-29'), d('1993'), 0],
+      // leaped
+      [d('1992-02-28'), d('1993'), 1],
+    ])('should count leap days', (start, end, expected) => {
+      expect(leapsBetween(start, end)).toBe(expected)
+    })
   })
 })
