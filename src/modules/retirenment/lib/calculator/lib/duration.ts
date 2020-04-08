@@ -1,12 +1,15 @@
 import { min as minDate, max as maxDate, Interval } from 'date-fns'
 
 import {
-  between,
+  sum,
+  between as _between,
   normalize,
   toMilliseconds,
   Duration,
   DurationInput as _DurationInput,
 } from 'duration-fns'
+
+import { leapsBetween } from './date'
 
 export type DurationInput = Exclude<_DurationInput, number | string>
 
@@ -20,6 +23,15 @@ const durationProps: Array<keyof Duration> = [
   'seconds',
   'milliseconds',
 ]
+
+/**
+ * Gets the duration between two dates accounting for leap years.
+ *
+ * @param start The starting date of the interval.
+ * @param end The ending date of the interval.
+ */
+const between = (start: number | Date, end: number | Date) =>
+  normalize(sum(_between(start, end), { days: leapsBetween(start, end) }))
 
 /**
  * Multiply a given duration by the provided factor.
@@ -107,4 +119,4 @@ const compare = {
     compare.longer(right, left, equality),
 }
 
-export { multiply, max, min, precision, split, compare }
+export { multiply, max, min, precision, split, compare, between }

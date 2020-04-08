@@ -1,10 +1,31 @@
 import { Duration, toString as string } from 'duration-fns'
-import { multiply, max, min, precision, split, compare } from './duration'
+import {
+  multiply,
+  max,
+  min,
+  precision,
+  split,
+  compare,
+  between,
+} from './duration'
 import { d, p } from './test-utils'
 
 const ref = d('2000')
 
 describe('retirement/calculator/lib/duration', () => {
+  describe('between', () => {
+    it.each([
+      // normal
+      [d('1990'), d('1991'), 'P1Y'],
+      [d('1990'), d('1991-01-02'), 'P1Y1D'],
+      // leap year
+      [d('2000'), d('2001'), 'P1Y1D'],
+      [d('2000'), d('2001-01-02'), 'P1Y2D'],
+    ])('should calculate duration', (start, end, expected) => {
+      expect(string(between(start, end))).toBe(expected)
+    })
+  })
+
   describe('multiply', () => {
     // floats to account for imprecision.
     it.each([
