@@ -1,4 +1,5 @@
 /* cspell: disable */
+import { max } from 'date-fns'
 import * as reacher from '../lib/reachers'
 import { multiply, round } from '../lib/duration'
 
@@ -133,9 +134,15 @@ const conditions: Condition<Input, ResultContext>[] = [
       ),
     ]
 
-    const [reached] = reacher.merge.all(reachers)(input)
+    const [reached, reachersContext] = reacher.merge.all(reachers)(input)
 
-    return [reached <= due, { reached, integrality }]
+    const context = {
+      reached: max([reached, promulgation]),
+      integrality,
+      reachersContext,
+    }
+
+    return [reached <= due, context]
   },
 
   /**
