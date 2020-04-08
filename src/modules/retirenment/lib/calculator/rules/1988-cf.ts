@@ -24,7 +24,7 @@ const { TEACHER } = Post
 const { MALE, FEMALE } = Gender
 
 // Date when this rule became valid.
-const start = new Date('1988-10-05')
+const promulgation = new Date('1988-10-05')
 
 // Date when EC 20/1998 is approved, deprecating the below rules.
 const due = new Date('1998-12-16')
@@ -89,7 +89,7 @@ const conditions: Condition<Input, ResultContext>[] = [
 
 const rule = {
   due,
-  start,
+  promulgation,
   title: 'CF 1988',
   description:
     'Regra do art. 40 da Constituição Federal de 1988, texto original',
