@@ -1,13 +1,13 @@
 /* cspell: disable */
-import { between, toString as _toString } from 'duration-fns'
+import { toString as string } from 'duration-fns'
 import { Gender, Post, Contribution } from '../types'
-import { d, c, und as u } from '../lib/test-utils'
+import { d, c, u } from '../lib/test-utils'
+import { between } from '../lib/duration'
 // @ts-ignore
 import { conditions, __get__, __set__ } from './1998-ec-20-transition'
 
 const { MALE: M, FEMALE: F } = Gender
-const { TEACHER: T } = Post
-const TODAY = d('2020')
+const { TEACHER: T, OTHER: O } = Post
 
 /**
  * Generates a valid 1998-ec-20-transition rule input.
@@ -19,6 +19,39 @@ const i = (gender: Gender, birth: string, contributions: Contribution[]) => ({
 })
 
 describe('retirement/calculator/rules/1998-ec-20-transition', () => {
+  describe('processor', () => {
+    const { split, process } = __get__('processor')
+
+    it.each([
+      // before promulgation
+      [c('1960^1980'), [c('1960^1980')]],
+      [c('1960^1980'), [c('1960^1980')]],
+      // after promulgation
+      [c('2000^2010'), [c('2000^2010')]],
+      [c('2000^2010'), [c('2000^2010')]],
+      // between promulgation
+      [c('1990^2010'), [c('1990^1998-12-16'), c('1998-12-16^2010')]],
+      [c('1990^2010'), [c('1990^1998-12-16'), c('1998-12-16^2010')]],
+    ])('should split contributions', (input, expected) => {
+      expect(split(input)).toEqual(expected)
+    })
+
+    it.each([
+      // before promulgation
+      [c('1960^1980', [u, O]), M, 'P20Y5D'], // 5D = leap years
+      [c('1960^1980', [u, T]), M, 'P8547D'], // 7305 * 1.17
+      // after promulgation
+      [c('2000^2010', [u, O]), M, 'P10Y3D'], // 3D = leap years
+      [c('2000^2010', [u, T]), M, 'P10Y3D'], // 3D = leap years, after 1998 activation
+    ])('should process contributions', (contribution, gender, expected) => {
+      const { start, end } = contribution
+      const context = { contribution, input: { gender } }
+      const duration = between(start, end)
+
+      expect(string(process(duration, context))).toBe(expected)
+    })
+  })
+
   describe('conditions', () => {
     const [integral, proportional] = conditions
 
@@ -133,38 +166,6 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         it.todo('should calculate condition result')
         it.todo('should be never integral')
         it.todo('should return correct reached date')
-      })
-    })
-  })
-
-  describe('processors', () => {
-    const processors = __get__('processors')
-
-    describe('duration', () => {
-      it.each([
-        // not teacher (non-changing)
-        [{ gender: M }, c('1990^2000'), 'P10Y'],
-        [{ gender: F }, c('1990^2000'), 'P10Y'],
-
-        // teacher (changing)
-        [{ gender: M }, c('1990^2000', [u, T]), 'P11Y8M9DT12H'], // +17%
-        [{ gender: F }, c('1990^2000', [u, T]), 'P11Y11M28D'], //   +20%
-
-        // teacher, after 2003 (non-changing)
-        [{ gender: M }, c('2005^2015', [u, T]), 'P10Y'],
-        [{ gender: F }, c('2005^2015', [u, T]), 'P10Y'],
-
-        // teacher, partial (changing)
-        // (2000/2003-12-31 = P4Y8M2DT17H6M) + (2003-12-31/2005-12-31 = P2Y)
-        [{ gender: M }, c('2000^2005-12-31', [u, T]), 'P6Y8M2DT17H6M'],
-        // (2000/2003-12-31 = P4Y9M16DT12H) + (2003-12-31/2005-12-31 = P2Y)
-        [{ gender: F }, c('2000^2005-12-31', [u, T]), 'P6Y9M16DT12H'],
-      ])('should calculate duration', (input, contribution, expected) => {
-        const { start, end = TODAY } = contribution
-        const duration = between(start, end)
-        const result = processors.duration(input)(duration, { contribution })
-
-        expect(_toString(result)).toBe(expected)
       })
     })
   })

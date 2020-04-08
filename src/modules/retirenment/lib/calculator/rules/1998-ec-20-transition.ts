@@ -1,8 +1,6 @@
 /* cspell: disable */
-import { sum, isNegative } from 'duration-fns'
 import * as reacher from '../lib/reachers'
-import { multiply, split, DurationProcessor } from '../lib/duration'
-import { TODAY, NO_DURATION } from '../lib/const'
+import { multiply, round } from '../lib/duration'
 
 import {
   Condition,
@@ -26,36 +24,38 @@ const { MALE, FEMALE } = Gender
 const { TEACHER } = Post
 
 // Date when this rule became active.
-const start = new Date('1998-12-16')
+const promulgation = new Date('1998-12-16')
 
 // Date when EC 41/2003 is approved, deprecating the below rules.
 const due = new Date('2003-12-31')
 
-const processors = {
-  /**
-   * Custom contribution duration processor to add exception indexes.
-   */
-  duration: (
-    input: Input
-  ): DurationProcessor<{ contribution: Contribution }> => (
-    duration,
-    { contribution: { start, end = TODAY, service } }
-  ) => {
-    if (service.post !== TEACHER) {
-      return duration
+const processor: reacher.contribution.TotalReacherConfig<Input> = {
+  split: reacher.contribution.utils.splitAt(promulgation),
+  process: (duration, { contribution, input }) => {
+    /**
+     * (...)
+     * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+     * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+     * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+     * de magistério e que opte por aposentar-se na forma do disposto no
+     * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+     * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+     * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+     * efetivo exercício das funções de magistério.
+     * (...)
+     */
+    if (
+      contribution.service.post === TEACHER &&
+      contribution.end <= promulgation
+    ) {
+      // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
+      return round(
+        multiply({ [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender], duration),
+        'days'
+      )
     }
 
-    // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
-    const by = { [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender]
-
-    // (...) tempo de serviço exercido até a publicação desta Emenda contado com
-    // o acréscimo (...)
-    const [before, after] = split({ start, end }, due)
-
-    return sum(
-      isNegative(before) ? NO_DURATION : multiply(by, before, start),
-      isNegative(after) ? NO_DURATION : after
-    )
+    return duration
   },
 }
 
@@ -129,7 +129,7 @@ const conditions: Condition<Input, ResultContext>[] = [
        */
       reacher.contribution.total(
         { years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] },
-        processors.duration(input)
+        processor
       ),
     ]
 
@@ -210,7 +210,7 @@ const conditions: Condition<Input, ResultContext>[] = [
 ]
 
 const rule = {
-  start,
+  promulgation,
   due,
   title: 'EC nº 20 - Regra de Transição',
   description: 'Regra de transição como descrita na EC nº 20, de 1998',
