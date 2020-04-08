@@ -56,12 +56,12 @@ const min = (left: DurationInput, right: DurationInput) =>
  * Floors a duration to a given property precision.
  *
  * @param precision The maximum Duration precision.
- * @param duration The duration object.
+ * @param duration The duration input object.
  *
  * i.e.: precision('years', { years: 1, months: 1, ... }) => { years: 1, months: 0, ... }
  * i.e.: precision('months', { years: 1, months: 1, ... }) => { years: 1, months: 1, ... }
  */
-const precision = (precision: keyof Duration, duration: Duration) =>
+const precision = (precision: keyof Duration, duration: DurationInput) =>
   durationProps
     .slice(durationProps.indexOf(precision) + 1)
     .reduce((result, ignore) => ({ ...result, [ignore]: 0 }), duration)
