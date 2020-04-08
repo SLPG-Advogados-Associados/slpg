@@ -1,7 +1,37 @@
-import { floor, ceil, splitPeriod, leapsBetween } from './date'
+import { add, floor, ceil, splitPeriod, leapsBetween } from './date'
 import { i, d } from './test-utils'
 
 describe('retirement/calculator/lib/date', () => {
+  describe('add', () => {
+    it.each([
+      [d('2002-01-01'), { days: 5 }, d('2002-01-06')],
+      [d('2002-01-01'), { days: 60 }, d('2002-03-02')],
+      [d('2000-01-01'), { days: 60 }, d('2000-03-01')], // leap
+      // month
+      [d('2002-01-01'), { months: 2 }, d('2002-03-02')],
+      [d('2000-01-01'), { months: 2 }, d('2000-03-01')], // leap
+      // year
+      [d('2002-01-01'), { years: 2 }, d('2004-01-01')],
+      [d('2000-01-01'), { years: 2 }, d('2001-12-31')], // leap
+    ])('should compute as days', (date, duration, expected) => {
+      expect(add(date, duration)).toEqual(expected)
+    })
+
+    it.each([
+      [d('2002-01-01'), { days: 5 }, d('2002-01-06')],
+      [d('2002-01-01'), { days: 60 }, d('2002-03-02')],
+      [d('2000-01-01'), { days: 60 }, d('2000-03-01')], // leap
+      // month
+      [d('2002-01-01'), { months: 2 }, d('2002-03-01')],
+      [d('2000-01-01'), { months: 2 }, d('2000-03-01')], // leap
+      // year
+      [d('2002-01-01'), { years: 2 }, d('2004-01-01')],
+      [d('2000-01-01'), { years: 2 }, d('2002-01-01')], // leap
+    ])('should compute as is', (date, duration, expected) => {
+      expect(add(date, duration, true)).toEqual(expected)
+    })
+  })
+
   describe('floor', () => {
     const date = d('2019-09-18T19:10:52.230Z')
 

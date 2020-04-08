@@ -1,4 +1,5 @@
-import { min, isAfter, Interval as _Interval, max } from 'date-fns'
+import { toDays, Duration, DurationInput } from 'duration-fns'
+import { add as _add, min, isAfter, Interval as _Interval, max } from 'date-fns'
 
 // prevent dates as numbers for interval objects.
 export type Interval = {
@@ -21,7 +22,7 @@ const precisions = [
  * @param precision The maximum Duration precision.
  * @param date The original Date object.
  */
-const floor = (precision, date: Date) => {
+const floor = (precision: typeof precisions[number], date: Date) => {
   const result = new Date(date.getTime()) // clone, for immutability.
 
   for (const key of precisions.slice(precisions.indexOf(precision) + 1)) {
@@ -43,7 +44,7 @@ const floor = (precision, date: Date) => {
  * @param precision The maximum Duration precision.
  * @param date The original Date object.
  */
-const ceil = (precision, date: Date) => {
+const ceil = (precision: typeof precisions[number], date: Date) => {
   const result = new Date(date.getTime()) // clone, for immutability.
 
   for (const key of precisions.slice(precisions.indexOf(precision) + 1)) {
@@ -110,4 +111,10 @@ const leapsBetween = (_start: Date | number, _end: Date | number) => {
   return days
 }
 
-export { floor, ceil, splitPeriod, leapsBetween }
+/**
+ * add method override to always account for leap years.
+ */
+const add = (date: Date, duration: DurationInput, ignoreLeap = false) =>
+  _add(date, ignoreLeap ? (duration as Duration) : { days: toDays(duration) })
+
+export { floor, ceil, splitPeriod, leapsBetween, add }
