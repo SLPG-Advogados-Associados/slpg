@@ -66,6 +66,11 @@ describe('retirement/calculator/lib/date', () => {
       [d('1992-02-29'), d('1993'), 0],
       // leaped
       [d('1992-02-28'), d('1993'), 1],
+
+      // should not break for invalid dates.
+      [d('1990'), new Date(NaN), 0],
+      [new Date(NaN), d('1990'), 0],
+      [new Date(NaN), new Date(NaN), 0],
     ])('should count leap days', (start, end, expected) => {
       expect(leapsBetween(start, end)).toBe(expected)
     })
