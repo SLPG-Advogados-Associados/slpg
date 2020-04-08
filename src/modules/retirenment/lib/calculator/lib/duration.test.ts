@@ -1,4 +1,4 @@
-import { Duration } from 'duration-fns'
+import { Duration, toString as string } from 'duration-fns'
 import { multiply, max, min, precision, split, compare } from './duration'
 import { d, p } from './test-utils'
 
@@ -77,35 +77,40 @@ describe('retirement/calculator/lib/duration', () => {
   })
 
   describe('precision', () => {
-    // prettier-ignore
-    const durations = {
-      original: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 2, milliseconds: 2 },
-      // results
-      years: { years: 2, months: 0, weeks: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
-      months: { years: 2, months: 2, weeks: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
-      weeks: { years: 2, months: 2, weeks: 2, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
-      days: { years: 2, months: 2, weeks: 2, days: 2, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 },
-      hours: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 0, seconds: 0, milliseconds: 0 },
-      minutes: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 0, milliseconds: 0 },
-      seconds: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 2, milliseconds: 0 },
-      milliseconds: { years: 2, months: 2, weeks: 2, days: 2, hours: 2, minutes: 2, seconds: 2, milliseconds: 2 },
+    const input = {
+      years: 2,
+      months: 2,
+      weeks: 2,
+      days: 2,
+      hours: 2,
+      minutes: 2,
+      seconds: 2,
+      milliseconds: 2,
+    }
+
+    const results = {
+      years: 'P2Y',
+      months: 'P2Y2M',
+      weeks: 'P2Y2M14D',
+      days: 'P2Y2M16D',
+      hours: 'P2Y2M16DT2H',
+      minutes: 'P2Y2M16DT2H2M',
+      seconds: 'P2Y2M16DT2H2M2S',
+      milliseconds: 'P2Y2M16DT2H2M2,002S',
     }
 
     it.each([
-      ['years', durations.years],
-      ['months', durations.months],
-      ['weeks', durations.weeks],
-      ['days', durations.days],
-      ['hours', durations.hours],
-      ['minutes', durations.minutes],
-      ['seconds', durations.seconds],
-      ['milliseconds', durations.milliseconds],
-    ])(
-      'should find the max between durations',
-      (prec: keyof Duration, result) => {
-        expect(precision(prec, durations.original)).toEqual(result)
-      }
-    )
+      ['years', results.years],
+      ['months', results.months],
+      ['weeks', results.weeks],
+      ['days', results.days],
+      ['hours', results.hours],
+      ['minutes', results.minutes],
+      ['seconds', results.seconds],
+      ['milliseconds', results.milliseconds],
+    ])('should reduce duration to a precision', (prec, expected) => {
+      expect(string(precision(prec as keyof Duration, input))).toEqual(expected)
+    })
   })
 
   describe('split', () => {
