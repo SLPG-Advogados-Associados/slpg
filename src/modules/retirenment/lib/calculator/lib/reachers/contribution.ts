@@ -5,11 +5,11 @@
 
 /* cspell: disable */
 import { last as getLast, identity } from 'ramda'
-import { add, sub, min, max } from 'date-fns'
-import { between, sum, normalize, Duration } from 'duration-fns'
-import { floor } from '../date'
+import { add, min, max } from 'date-fns'
+import { sum, normalize, Duration, apply, subtract, negate } from 'duration-fns'
+import { ceil, leapsBetween } from '../date'
 import { TODAY, NEVER } from '../const'
-import { compare, DurationInput } from '../duration'
+import { compare, between, DurationInput } from '../duration'
 import { Contribution, Reacher } from '../../types'
 
 type ContributionsInput = {
@@ -95,22 +95,27 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
 
       // plain isolated duration addition.
       const real = between(start, end)
+
       // processed duration, with possible manipulation.
       const processed = config.process(real, context)
 
       // sum-up real time-based duration so far, with start as reference.
-      durations.real = normalize(sum(durations.real, real), start)
+      durations.real = normalize(sum(durations.real, real))
 
       // sum-up processed calculation purposed duration so far, with start as reference
-      durations.processed = normalize(
-        sum(durations.processed, processed),
-        start
-      )
+      durations.processed = normalize(sum(durations.processed, processed))
 
       // calculate reaching date, when it happens.
       if (!reached && compare.longer(durations.processed, expected, true)) {
-        // remove duration from end date, add necessary expected duration.
-        reached = floor('day', add(sub(end, durations.processed), expected))
+        // find amount of extra days processed, unconsidering leap year days.
+        const overlap = subtract(subtract(durations.processed), expected)
+
+        // remove these extra days from end date.
+        reached = apply(end, negate(overlap))
+
+        const leadingLeaps = { days: leapsBetween(reached, end) - 1 }
+
+        reached = ceil('days', apply(reached, leadingLeaps))
       }
     }
   }
