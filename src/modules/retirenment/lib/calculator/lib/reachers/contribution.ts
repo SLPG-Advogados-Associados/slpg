@@ -5,9 +5,9 @@
 
 /* cspell: disable */
 import { last as getLast, identity } from 'ramda'
-import { add, min, max } from 'date-fns'
+import { min, max } from 'date-fns'
 import { sum, normalize, Duration, apply, subtract, negate } from 'duration-fns'
-import { ceil, leapsBetween } from '../date'
+import { add, ceil, leapsBetween } from '../date'
 import { TODAY, NEVER } from '../const'
 import { compare, between, DurationInput } from '../duration'
 import { Contribution, Reacher } from '../../types'
@@ -28,7 +28,7 @@ const last = (
   expected: DurationInput
 ): Reacher<ContributionsInput> => input => {
   const { start, end } = getLast(input.contributions)
-  const reached = add(start, normalize(expected))
+  const reached = add(start, expected)
 
   return [!end || reached <= end ? reached : NEVER]
 }
