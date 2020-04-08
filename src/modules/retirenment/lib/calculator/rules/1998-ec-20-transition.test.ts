@@ -73,15 +73,26 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
     describe('integral', () => {
       it.each([
         // male
-        [i(M, '49', [c('67^77'), c('77')]), true, d('2002')], //   male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-        [i(M, '51', [c('67^77'), c('77')]), false, d('2004')], //  male, 52 ❌, contributing 36 ✅, last more than 5 ✅
-        [i(M, '49', [c('67^77'), c('79')]), false, d('2004')], //  male, 54 ✅, contributing 34 ❌, last more than 5 ✅
-        [i(M, '49', [c('67^00'), c('00')]), false, d('2005')], //  male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+
+        // by contrib:
+        [i(M, '49', [c('57^67'), c('78')]), true, d('2002-12-24')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+        [i(M, '49', [c('57^67'), c('80')]), false, d('2004-12-23')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+        // by age:
+        [i(M, '49', [c('57^67'), c('70')]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+        [i(M, '51', [c('57^67'), c('70')]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+        // by last:
+        [i(M, '49', [c('57^00'), c('00')]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+
         // female
-        [i(F, '54', [c('72^77'), c('77')]), true, d('2002')], //   female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-        [i(F, '56', [c('72^77'), c('77')]), false, d('2004')], //  female, 47 ❌, contributing 31 ✅, last more than 5 ✅
-        [i(F, '54', [c('72^77'), c('79')]), false, d('2004')], //  female, 49 ✅, contributing 29 ❌, last more than 5 ✅
-        [i(F, '54', [c('72^00'), c('00')]), false, d('2005')], //  female, 49 ✅, contributing 31 ✅, last less than 5 ❌
+
+        // by contrib:
+        [i(F, '54', [c('57^62'), c('78')]), true, d('2002-12-25')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+        [i(F, '54', [c('57^62'), c('80')]), false, d('2004-12-24')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+        // by age:
+        [i(F, '54', [c('57^62'), c('70')]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+        [i(F, '56', [c('57^62'), c('70')]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+        // by last:
+        [i(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
       ])('should calculate condition result', (input, satisfied, by) => {
         const [reached, context] = integral(input)
         expect(reached).toBe(satisfied)
