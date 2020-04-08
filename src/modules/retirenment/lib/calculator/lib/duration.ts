@@ -5,6 +5,13 @@ import {
   between as _between,
   normalize,
   toMilliseconds,
+  toSeconds,
+  toMinutes,
+  toHours,
+  toDays,
+  toWeeks,
+  toMonths,
+  toYears,
   Duration,
   DurationInput as _DurationInput,
 } from 'duration-fns'
@@ -24,6 +31,17 @@ const durationProps: Array<keyof Duration> = [
   'milliseconds',
 ]
 
+const to = {
+  years: toYears,
+  months: toMonths,
+  weeks: toWeeks,
+  days: toDays,
+  hours: toHours,
+  minutes: toMinutes,
+  seconds: toSeconds,
+  milliseconds: toMilliseconds,
+}
+
 /**
  * Gets the duration between two dates accounting for leap years.
  *
@@ -40,9 +58,9 @@ const between = (start: number | Date, end: number | Date) =>
  * @param duration The original duration.
  * @param ref Date of reference.
  */
-const multiply = (by: number, duration: DurationInput, ref: Date) =>
+const multiply = (by: number, duration: DurationInput, ref?: Date) =>
   normalize(
-    { milliseconds: Math.floor(toMilliseconds(normalize(duration)) * by) },
+    { milliseconds: Math.round(toMilliseconds(normalize(duration)) * by) },
     ref
   )
 
@@ -63,6 +81,25 @@ const max = (left: DurationInput, right: DurationInput) =>
  */
 const min = (left: DurationInput, right: DurationInput) =>
   toMilliseconds(left) < toMilliseconds(right) ? left : right
+
+/**
+ * Multiply a given duration by the provided factor.
+ *
+ * @param duration The original duration.
+ * @param precision The precision to round at
+ * @param ref? Date of reference.
+ */
+const round = (
+  duration: DurationInput,
+  precision: keyof typeof to,
+  ref?: Date
+) =>
+  normalize(
+    {
+      [precision]: Math.round(to[precision](duration)),
+    },
+    ref
+  )
 
 /**
  * Floors a duration to a given property precision.
@@ -119,4 +156,4 @@ const compare = {
     compare.longer(right, left, equality),
 }
 
-export { multiply, max, min, precision, split, compare, between }
+export { multiply, max, min, round, precision, split, compare, between }

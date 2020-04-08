@@ -3,6 +3,7 @@ import {
   multiply,
   max,
   min,
+  round,
   precision,
   split,
   compare,
@@ -39,6 +40,20 @@ describe('retirement/calculator/lib/duration', () => {
         expect(multiply(by, duration, ref)).toMatchObject(expected)
       }
     )
+  })
+
+  describe('round', () => {
+    it.each([
+      [{ days: 10, hours: 10 }, 'days', { days: 10 }],
+      [{ days: 10, hours: 11 }, 'days', { days: 10 }],
+      [{ days: 10, hours: 11, minutes: 59 }, 'days', { days: 10 }],
+      [{ days: 10, hours: 11, minutes: 60 }, 'days', { days: 11 }],
+      [{ days: 10, hours: 12 }, 'days', { days: 11 }],
+      [{ days: 10, hours: 23 }, 'days', { days: 11 }],
+      [{ days: 10, hours: 48 }, 'days', { days: 12 }],
+    ] as const)('should correctly round', (input, by, expected) => {
+      expect(round(input, by)).toMatchObject(expected)
+    })
   })
 
   describe('max', () => {
