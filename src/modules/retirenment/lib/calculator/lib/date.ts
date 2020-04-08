@@ -54,7 +54,7 @@ const splitPeriod = (
  * @param _start Starting date.
  * @param _end Ending date.
  */
-const leapsBetween = (_start: Date, _end: Date) => {
+const leapsBetween = (_start: Date | number, _end: Date | number) => {
   const start = _start instanceof Date ? _start : new Date(_start)
   const end = _end instanceof Date ? _end : new Date(_end)
 
