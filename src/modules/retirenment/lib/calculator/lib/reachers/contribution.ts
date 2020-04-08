@@ -33,69 +33,13 @@ const last = (
   return [!end || reached <= end ? reached : NEVER]
 }
 
-// /**
-//  * Full contribution duration reacher.
-//  *
-//  * @param expected The expected combined duration of all contributions by due date.
-//  */
-// const total = <Input extends ContributionsInput>(
-//   _expected: DurationInput,
-//   process: DurationProcessor<{
-//     expected: DurationInput
-//     contribution: Contribution
-//   }> = identity
-// ): Reacher<
-//   Input,
-//   { durations: { real: Duration; processed: Duration } }
-// > => input => {
-//   let reached: Date
-//   const expected = normalize(_expected)
-
-//   const durations = { real: {}, processed: {} } as {
-//     real: Duration
-//     processed: Duration
-//   }
-
-//   for (const contribution of input.contributions) {
-//     // processing context.
-//     const context = { expected, contribution }
-
-//     const { start, end = TODAY } = contribution
-
-//     // plain isolated duration addition.
-//     const real = between(start, end)
-//     // processed duration, with possible manipulation.
-//     const processed = process(real, context)
-
-//     // sum-up real time-based duration so far, with start as reference.
-//     durations.real = normalize(sum(durations.real, real), start)
-
-//     // sum-up processed calculation purposed duration so far, with start as reference
-//     durations.processed = normalize(sum(durations.processed, processed), start)
-
-//     // calculate reaching date, when it happens.
-//     if (!reached && compare.longer(durations.processed, expected, true)) {
-//       // remove duration from end date, add necessary expected duration.
-//       reached = floor('day', add(sub(end, durations.processed), expected))
-//     }
-//   }
-
-//   return [reached || NEVER, { durations }]
-
-//   // return [
-//   //   // when no due, simply consider current duration
-//   //   due ? reached <= due : compare.longer(durations.processed, expected, true),
-//   //   { reached, durations },
-//   // ]
-// }
-
 type Context<Input> = {
   input: Input
   expected: DurationInput
   contribution: Contribution
 }
 
-type TotalReacherConfig<Input> = Partial<{
+export type TotalReacherConfig<Input> = Partial<{
   split: (contribution: Contribution, context: Context<Input>) => Contribution[]
   filter: (contribution: Contribution, context: Context<Input>) => boolean
   process: (duration: Duration, context: Context<Input>) => DurationInput
