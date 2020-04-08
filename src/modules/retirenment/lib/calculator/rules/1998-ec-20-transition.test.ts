@@ -4,7 +4,7 @@ import { Gender, Post, Contribution } from '../types'
 import { d, c, u } from '../lib/test-utils'
 import { between } from '../lib/duration'
 // @ts-ignore
-import { conditions, __get__, __set__ } from './1998-ec-20-transition'
+import { conditions, rule, __get__, __set__ } from './1998-ec-20-transition'
 
 const { MALE: M, FEMALE: F } = Gender
 const { TEACHER: T, OTHER: O } = Post
@@ -72,6 +72,10 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
      */
     describe('integral', () => {
       it.each([
+        // reached before promulgation:
+        [i(M, '40', [c('50')]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+        [i(F, '40', [c('50')]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+
         // male
 
         // by contrib:
