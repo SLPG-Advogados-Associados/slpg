@@ -2,7 +2,8 @@
 import { sum, normalize } from 'duration-fns'
 import { Contribution } from '../../types'
 import { d, c } from '../test-utils'
-import { NEVER } from '../const'
+import { between } from '../duration'
+import { NEVER, TODAY } from '../const'
 import { last, total, utils } from './contribution'
 
 describe('retirement/calculator/lib/reachers/contribution', () => {
@@ -34,6 +35,13 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
         [c('70'), d('80'), [c('70^80'), c('80')]], // cut without end
       ])('should split conditions based on date', (input, date, expected) => {
         expect(utils.splitAt(date)(input)).toMatchObject(expected)
+
+        const left = between(input.start, input.end || TODAY)
+        // prettier-ignore
+        const right = sum(...expected.map(c => between(c.start, c.end || TODAY)))
+
+        // assert total duration is the same.
+        expect(left).toEqual(right)
       })
     })
   })
