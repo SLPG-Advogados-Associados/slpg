@@ -61,8 +61,8 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
         const [reached, context] = total({ years })(input)
 
         expect(reached).toEqual(by)
-        expect(context).toHaveProperty('durations.real.days', duration)
-        expect(context).toHaveProperty('durations.processed.days', duration)
+        expect(context).toHaveProperty('computed.real.days', duration)
+        expect(context).toHaveProperty('computed.processed.days', duration)
       })
     })
 
@@ -78,8 +78,8 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
         const [reached, context] = total({ years }, { filter })(input)
 
         expect(reached).toEqual(by)
-        expect(context).toHaveProperty('durations.real.days', duration)
-        expect(context).toHaveProperty('durations.processed.days', duration)
+        expect(context).toHaveProperty('computed.real.days', duration)
+        expect(context).toHaveProperty('computed.processed.days', duration)
       })
     })
 
@@ -97,8 +97,8 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
 
         expect(reached).toEqual(by)
         expect(process).toHaveBeenCalledTimes(times)
-        expect(context).toHaveProperty('durations.real.days', duration)
-        expect(context).toHaveProperty('durations.processed.days', duration)
+        expect(context).toHaveProperty('computed.real.days', duration)
+        expect(context).toHaveProperty('computed.processed.days', duration)
       })
     })
 
@@ -116,8 +116,8 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
           const [reached, context] = total(duration, { process })(input)
 
           expect(reached).toEqual(expected)
-          expect(context).toHaveProperty('durations.real.days', real)
-          expect(context).toHaveProperty('durations.processed.days', processed)
+          expect(context).toHaveProperty('computed.real.days', real)
+          expect(context).toHaveProperty('computed.processed.days', processed)
         }
       )
     })
