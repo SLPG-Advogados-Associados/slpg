@@ -1,3 +1,6 @@
+import React from 'react'
+import styled from 'styled-components'
+import { render } from '@testing-library/react'
 import { classed } from './classed-str'
 
 describe('design/lib/classed', () => {
@@ -56,5 +59,24 @@ describe('design/lib/classed', () => {
 
   it('should accept an array of classes', () => {
     expect(classed(['foo', 'bar'])({})).toHaveProperty('className', 'foo bar')
+  })
+
+  describe('integration', () => {
+    it('should be possible to use as argument to styled-components .attrs method', () => {
+      const classes = classed`foo`
+      const Div = styled.div.attrs(classes)``
+      const { container } = render(<Div className="bar" />)
+
+      expect(container.firstChild).toHaveClass('foo', 'bar')
+    })
+
+    it('should be possible to use any of the component properties on interpolation', () => {
+      type Props = { custom: string }
+      const classes = classed<Props>`${props => props.custom}`
+      const Div = styled.div.attrs(classes)``
+      const { container } = render(<Div custom="foo" />)
+
+      expect(container.firstChild).toHaveClass('foo')
+    })
   })
 })
