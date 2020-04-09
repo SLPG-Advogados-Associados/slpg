@@ -5,7 +5,7 @@ import { i, d } from './test-utils'
 const { add, floor, ceil, splitPeriod, leapsBetween } = lib
 
 describe('retirement/calculator/lib/date', () => {
-  it('should re-export everything available at base libary', () => {
+  it('should re-export everything available at base library', () => {
     expect(lib).toContainKeys(Object.keys(base))
   })
 

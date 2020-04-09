@@ -1,5 +1,9 @@
-import { parse, toString as string, Duration } from 'duration-fns'
-import {
+import * as base from 'duration-fns'
+import * as lib from './duration'
+import { Duration } from './duration'
+import { d, p } from './test-utils'
+
+const {
   normalize,
   multiply,
   max,
@@ -9,10 +13,15 @@ import {
   split,
   compare,
   between,
-} from './duration'
-import { d, p } from './test-utils'
+  parse,
+  toString: string,
+} = lib
 
 describe('retirement/calculator/lib/duration', () => {
+  it('should re-export everything available at base library', () => {
+    expect(lib).toContainKeys(Object.keys(base))
+  })
+
   describe('normalize', () => {
     it.each([
       ['P1Y', 'P365D'],

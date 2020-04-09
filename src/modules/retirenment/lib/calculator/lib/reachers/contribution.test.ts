@@ -1,8 +1,7 @@
 /* cspell: disable */
-import { sum, normalize } from 'duration-fns'
 import { Contribution } from '../../types'
 import { d, c } from '../test-utils'
-import { between } from '../duration'
+import { between, sum, normalize } from '../duration'
 import { NEVER, TODAY } from '../const'
 import { last, total, utils } from './contribution'
 
