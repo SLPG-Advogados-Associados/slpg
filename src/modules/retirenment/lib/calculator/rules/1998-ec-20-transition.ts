@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { max } from 'date-fns'
+import { max } from '../lib/date'
 import * as reacher from '../lib/reachers'
 import { multiply, round } from '../lib/duration'
 

@@ -1,6 +1,6 @@
 /* cspell: disable */
-import { add, max } from 'date-fns'
 import { normalize } from 'duration-fns'
+import { add, max } from '../date'
 import { DurationInput } from '../duration'
 import { Reacher } from '../../types'
 import * as contribution from './contribution'

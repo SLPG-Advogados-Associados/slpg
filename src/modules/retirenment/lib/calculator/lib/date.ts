@@ -135,4 +135,6 @@ const leapsBetween = (_start: Date | number, _end: Date | number) => {
 const add = (date: Date, duration: DurationInput, ignoreLeap = false) =>
   _add(date, ignoreLeap ? (duration as Duration) : { days: toDays(duration) })
 
+export * from 'date-fns'
+
 export { floor, ceil, splitPeriod, leapsBetween, add }

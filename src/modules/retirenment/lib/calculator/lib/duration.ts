@@ -1,4 +1,4 @@
-import { min as minDate, max as maxDate, Interval } from 'date-fns'
+import { min as minDate, max as maxDate, Interval } from './date'
 
 import {
   normalize as _normalize,
