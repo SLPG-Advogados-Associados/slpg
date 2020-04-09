@@ -1,6 +1,6 @@
 /* cspell: disable */
 import { add, max } from '../date'
-import { normalize, DurationInput } from '../duration'
+import { DurationInput } from '../duration'
 import { Reacher } from '../../types'
 import * as contribution from './contribution'
 
@@ -10,11 +10,11 @@ import * as contribution from './contribution'
  * @param duration Age of reaching.
  * @param input Person input.
  */
-const age = (duration: DurationInput): Reacher<{ birthDate: Date }> => {
-  // pre-calc normalization
-  const normalized = normalize(duration)
-  return input => [add(input.birthDate, normalized)]
-}
+const age = (
+  duration: DurationInput
+): Reacher<{ birthDate: Date }> => input => [
+  add(input.birthDate, duration, true),
+]
 
 /**
  * Helper functions to combine reachers into one.
