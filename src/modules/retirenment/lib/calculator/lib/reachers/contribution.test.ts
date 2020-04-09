@@ -51,19 +51,19 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
 
     describe('simple', () => {
       it.each([
-        [20, i(c('70^90')), d('1989-12-27'), 20],
-        [20, i(c('60^65'), c('70^85')), d('1984-12-26'), 20],
-        [20, i(c('70')), d('1989-12-27'), 50],
-        [20, i(c('80^90')), NEVER, 10],
-        [20, i(c('60^65'), c('70^75')), NEVER, 10],
-        [20, i(c('90')), d('2009-12-27'), 30],
-        // [20, i(c('90^95'), c('2000')), d('2015'), 25],
+        [20, i(c('70^90')), d('1989-12-27'), 7305],
+        [20, i(c('60^65'), c('70^85')), d('1984-12-26'), 7306],
+        [20, i(c('70')), d('1989-12-27'), 18262],
+        [20, i(c('80^90')), NEVER, 3653],
+        [20, i(c('60^65'), c('70^75')), NEVER, 3653],
+        [20, i(c('90')), d('2009-12-27'), 10957],
+        [20, i(c('90^95'), c('2000')), d('2014-12-27'), 9131],
       ])('should correctly calculate reach', (years, input, by, duration) => {
         const [reached, context] = total({ years })(input)
 
         expect(reached).toEqual(by)
-        expect(context).toHaveProperty('durations.real.years', duration)
-        expect(context).toHaveProperty('durations.processed.years', duration)
+        expect(context).toHaveProperty('durations.real.days', duration)
+        expect(context).toHaveProperty('durations.processed.days', duration)
       })
     })
 

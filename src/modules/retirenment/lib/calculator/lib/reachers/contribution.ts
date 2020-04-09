@@ -6,8 +6,16 @@
 /* cspell: disable */
 import { last as getLast, identity } from 'ramda'
 import { min, max } from 'date-fns'
-import { sum, normalize, Duration, apply, subtract, negate } from 'duration-fns'
-import { add, ceil, leapsBetween } from '../date'
+import {
+  sum,
+  normalize,
+  Duration,
+  apply,
+  subtract,
+  negate,
+  toDays,
+} from 'duration-fns'
+import { add, ceil } from '../date'
 import { TODAY, NEVER } from '../const'
 import { compare, between, DurationInput } from '../duration'
 import { Contribution, Reacher } from '../../types'
@@ -69,9 +77,11 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
     ..._config,
   }
 
-  const expected = normalize(
-    typeof _expected === 'function' ? _expected(input) : _expected
-  )
+  const expected = normalize({
+    days: toDays(
+      typeof _expected === 'function' ? _expected(input) : _expected
+    ),
+  })
 
   let reached: Date
 
@@ -108,14 +118,13 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
       // calculate reaching date, when it happens.
       if (!reached && compare.longer(durations.processed, expected, true)) {
         // find amount of extra days processed, unconsidering leap year days.
-        const overlap = subtract(subtract(durations.processed), expected)
+        const overlap = toDays(subtract(durations.processed, expected))
 
         // remove these extra days from end date.
-        reached = apply(end, negate(overlap))
-
-        const leadingLeaps = { days: leapsBetween(reached, end) - 1 }
-
-        reached = ceil('days', apply(reached, leadingLeaps))
+        reached = ceil(
+          'days',
+          apply(end, negate({ days: Math.round(overlap) }))
+        )
       }
     }
   }
