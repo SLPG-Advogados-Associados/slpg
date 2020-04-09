@@ -1,4 +1,4 @@
-import { Duration, toString as string } from 'duration-fns'
+import { Duration, toString as string, between as _between } from 'duration-fns'
 import {
   multiply,
   max,
@@ -17,11 +17,13 @@ describe('retirement/calculator/lib/duration', () => {
   describe('between', () => {
     it.each([
       // normal
-      [d('1990'), d('1991'), 'P1Y'],
-      [d('1990'), d('1991-01-02'), 'P1Y1D'],
+      [d('1990'), d('1991'), 'P365D'],
+      [d('1990'), d('1991-01-02'), 'P366D'],
       // leap year
-      [d('2000'), d('2001'), 'P1Y1D'],
-      [d('2000'), d('2001-01-02'), 'P1Y2D'],
+      [d('2000'), d('2001'), 'P366D'],
+      [d('2000'), d('2001-01-02'), 'P367D'],
+      // found inconsistences
+      [d('1978-02-01'), d('1978-03-01'), 'P28D'],
     ])('should calculate duration', (start, end, expected) => {
       expect(string(between(start, end))).toBe(expected)
     })
@@ -151,8 +153,8 @@ describe('retirement/calculator/lib/duration', () => {
 
   describe('split', () => {
     it.each([
-      [p('2000^2005'), d('2003'), { years: 3 }, { years: 2 }],
-      [p('1990^2020'), d('2000'), { years: 10 }, { years: 20 }],
+      [p('2000^2005'), d('2003'), { days: 1096 }, { days: 731 }],
+      [p('1990^2020'), d('2000'), { days: 3652 }, { days: 7305 }],
     ])('should split interval', ([start, end], middle, before, after) => {
       expect(split({ start, end }, middle)).toMatchObject([before, after])
     })
