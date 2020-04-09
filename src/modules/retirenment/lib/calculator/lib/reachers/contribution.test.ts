@@ -68,9 +68,9 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
 
     describe('filtered', () => {
       it.each([
-        [20, i(c('70^80'), c('80')), NEVER, 10],
-        [20, i(c('70^90'), c('90^00')), d('1989-12-27'), 20],
-        [20, i(c('70^80'), c('80^90'), c('90^00')), d('1999-12-28'), 20],
+        [20, i(c('70^80'), c('80')), NEVER, 3652],
+        [20, i(c('70^90'), c('90^00')), d('1989-12-27'), 7305],
+        [20, i(c('70^80'), c('80^90'), c('90^00')), d('1999-12-28'), 7304],
       ])('should correctly calculate reach', (years, input, by, duration) => {
         let curr = 0
         // filter-in even contributions (just to difeer)
@@ -78,17 +78,17 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
         const [reached, context] = total({ years }, { filter })(input)
 
         expect(reached).toEqual(by)
-        expect(context).toHaveProperty('durations.real.years', duration)
-        expect(context).toHaveProperty('durations.processed.years', duration)
+        expect(context).toHaveProperty('durations.real.days', duration)
+        expect(context).toHaveProperty('durations.processed.days', duration)
       })
     })
 
     describe('split', () => {
       it.each([
-        [20, i(c('70^80')), NEVER, 10, 1], // uncut
-        [20, i(c('70^90'), c('90^00')), d('1989-12-27'), 30, 2], // uncut
-        [20, i(c('85^95')), NEVER, 10, 2], // cut to two
-        [20, i(c('70^80'), c('85^00')), d('1994-12-28'), 25, 3], // cut to three
+        [20, i(c('70^80')), NEVER, 3652, 1], // uncut
+        [20, i(c('70^90'), c('90^00')), d('1989-12-27'), 10957, 2], // uncut
+        [20, i(c('85^95')), NEVER, 3652, 2], // cut to two
+        [20, i(c('70^80'), c('85^00')), d('1994-12-28'), 9130, 3], // cut to three
       ])('should process splitted', (years, input, by, duration, times) => {
         const split = utils.splitAt(d('90'))
         // watcher
@@ -97,26 +97,27 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
 
         expect(reached).toEqual(by)
         expect(process).toHaveBeenCalledTimes(times)
-        expect(context).toHaveProperty('durations.real.years', duration)
-        expect(context).toHaveProperty('durations.processed.years', duration)
+        expect(context).toHaveProperty('durations.real.days', duration)
+        expect(context).toHaveProperty('durations.processed.days', duration)
       })
     })
 
     describe('process', () => {
       it.each([
-        [i(c('91^2000')), d('1999-12-30'), 9, 10],
-        [i(c('92')), d('2000-12-29'), 28, 29],
-        [i(c('92^93'), c('93')), d('1999-12-30'), 28, 30],
+        [i(c('91^2000')), d('1999-12-30'), 3287, 3652],
+        [i(c('92')), d('2000-12-29'), 10227, 10592],
+        [i(c('92^93'), c('93')), d('1999-12-30'), 10227, 10957],
       ])(
         'should be possible to increment duration on processor',
         (input, expected, real, processed) => {
           const process = duration => normalize(sum(duration, { years: 1 }))
+
           const duration = { years: 10 }
           const [reached, context] = total(duration, { process })(input)
 
           expect(reached).toEqual(expected)
-          expect(context).toHaveProperty('durations.real.years', real)
-          expect(context).toHaveProperty('durations.processed.years', processed)
+          expect(context).toHaveProperty('durations.real.days', real)
+          expect(context).toHaveProperty('durations.processed.days', processed)
         }
       )
     })
