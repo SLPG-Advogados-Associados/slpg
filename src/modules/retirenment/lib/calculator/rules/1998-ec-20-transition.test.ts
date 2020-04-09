@@ -1,8 +1,7 @@
 /* cspell: disable */
-import { toString as string } from 'duration-fns'
-import { Gender, Post, Contribution } from '../types'
+import { Gender, Post, Contribution, ServiceKind } from '../types'
 import { d, c, u } from '../lib/test-utils'
-import { between } from '../lib/duration'
+import { between, string } from '../lib/duration'
 // @ts-ignore
 import { conditions, rule, __get__, __set__ } from './1998-ec-20-transition'
 
@@ -38,11 +37,11 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
     it.each([
       // before promulgation
-      [c('1960^1980', [u, O]), M, 'P20Y5D'], // 5D = leap years
-      [c('1960^1980', [u, T]), M, 'P8547D'], // 7305 * 1.17
+      [c('1960^1980', [u, O]), M, 'P7305D'], // 5D = leap years
+      [c('1960^1980', [u, T]), M, 'P8546DT20H24M'], // 7305 * 1.17
       // after promulgation
-      [c('2000^2010', [u, O]), M, 'P10Y3D'], // 3D = leap years
-      [c('2000^2010', [u, T]), M, 'P10Y3D'], // 3D = leap years, after 1998 activation
+      [c('2000^2010', [u, O]), M, 'P3653D'], // 3D = leap years
+      [c('2000^2010', [u, T]), M, 'P3653D'], // 3D = leap years, after 1998 activation
     ])('should process contributions', (contribution, gender, expected) => {
       const { start, end } = contribution
       const context = { contribution, input: { gender } }
@@ -153,14 +152,6 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
     })
 
     /*
-     * § 2º - Aplica-se ao magistrado e ao membro do Ministério Público e de
-     * Tribunal de Contas o disposto neste artigo.
-     *
-     * § 3º - Na aplicação do disposto no parágrafo anterior, o magistrado ou o
-     * membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
-     * tempo de serviço exercido até a publicação desta Emenda contado com o
-     * acréscimo de dezessete por cento.
-     *
      * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
      * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
      * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
@@ -171,20 +162,38 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
      * efetivo exercício das funções de magistério.
      */
     describe('teacher', () => {
+      const y = [u, T] as [ServiceKind, Post]
+      const n = [u, u] as [ServiceKind, Post]
+
       describe('integral', () => {
         it.each([
+          // reached before promulgation:
+          [i(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+          [i(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+
           // male
-          [i(M, '49', [c('67^77', [u, T]), c('77', [u, T])]), true, d('2002')], //   male, teacher, 54 ✅, contributing ~43 (~36 + 17%) ✅, last more than 5 ✅
-          [i(M, '49', [c('67^77', [u, T]), c('84', [u, T])]), true, d('2003')], //   male, teacher, 54 ✅, contributing ~35 (~30 + 17%) ✅, last more than 5 ✅
-          [i(M, '51', [c('67^77', [u, T]), c('84', [u, T])]), false, d('2004')], //  male, teacher, 52 ❌, contributing ~35 (~30 + 17%) ✅, last more than 5 ✅
-          [i(M, '49', [c('67^77', [u, T]), c('85', [u, T])]), false, d('2005')], //  male, teacher, 54 ✅, contributing ~34 (~29 + 17%) ❌, last more than 5 ✅
-          [i(M, '49', [c('74^00', [u, T]), c('00', [u, T])]), false, d('2005')], //  male, teacher, 54 ✅, contributing ~35 (~30 + 17%) ✅, last less than 5 ❌
+
+          // by contrib:
+          [i(M, '49', [c('60^65', y), c('78', y)]), true, d('2003-07-25')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '49', [c('60^65', y), c('80', y)]), false, d('2005-11-25')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          [i(M, '49', [c('60^65', n), c('80', y)]), false, d('2006-10-02')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          // by age:
+          [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+          // by last:
+          [i(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+
           // female
-          [i(F, '54', [c('72^77', [u, T]), c('77', [u, T])]), true, d('2002')], //   female, teacher, 49 ✅, contributing ~36 (~31 + 17%) ✅, last more than 5 ✅
-          [i(F, '54', [c('72^77', [u, T]), c('83', [u, T])]), true, d('2002')], //   female, teacher, 49 ✅, contributing ~30 (~26 + 17%) ✅, last more than 5 ✅
-          [i(F, '56', [c('72^77', [u, T]), c('83', [u, T])]), false, d('2004')], //  female, teacher, 47 ❌, contributing ~30 (~25 + 17%) ✅, last more than 5 ✅
-          [i(F, '54', [c('72^77', [u, T]), c('84', [u, T])]), false, d('2004')], //  female, teacher, 49 ✅, contributing ~29 (~24 + 17%) ❌, last more than 5 ✅
-          [i(F, '54', [c('79^00', [u, T]), c('00', [u, T])]), false, d('2005')], //  female, teacher, 49 ✅, contributing ~30 (~25 + 17%) ✅, last less than 5 ❌
+
+          // by contrib:
+          [i(F, '54', [c('60^65', y), c('82', y)]), true, d('2002-08-03')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [i(F, '54', [c('60^65', y), c('84', y)]), false, d('2004-12-26')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [i(F, '54', [c('60^65', n), c('84', y)]), false, d('2005-12-26')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          // by age:
+          [i(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+          // by last:
+          [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
         ])('should calculate condition result', (input, satisfied, by) => {
           const [reached, context] = integral(input)
           expect(reached).toBe(satisfied)
