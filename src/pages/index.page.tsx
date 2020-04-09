@@ -165,7 +165,7 @@ const HomePage = () => {
         ) : null}
 
         <div className="text-center my-20">
-          <Button as="a" href="/blogue">
+          <Button asLink href="/blogue">
             Visite Nosso Blogue
           </Button>
         </div>
@@ -184,7 +184,7 @@ const HomePage = () => {
             <ItemTitle>Atuação em outros estados da federação</ItemTitle>
             <Button
               className="mt-auto"
-              as="a"
+              asLink
               href="/atuacao-em-outros-estados-da-federacao"
             >
               Saiba Mais
@@ -196,7 +196,7 @@ const HomePage = () => {
             <ItemTitle>Atuação nos Tribunais Superiores</ItemTitle>
             <Button
               className="mt-auto"
-              as="a"
+              asLink
               href="/atuacao-nos-tribunais-superiores"
             >
               Saiba Mais
@@ -214,7 +214,7 @@ const HomePage = () => {
             </ItemTitle>
             <Button
               className="mt-auto"
-              as="a"
+              asLink
               href="o-coletivo-nacional-de-advogados-de-servidores-publicos"
             >
               Saiba Mais

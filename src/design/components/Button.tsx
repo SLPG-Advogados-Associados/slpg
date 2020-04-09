@@ -10,6 +10,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   title?: string
   target?: string
   // variants
+  asLink?: boolean
   small?: boolean
   big?: boolean
   cta?: boolean
@@ -87,10 +88,16 @@ const classes =
 const Base: React.FC<Props> = ({
   children,
   loading,
+  asLink,
   className = '',
   ...props
 }) => (
-  <Styled {...props} className={`${className} ${classes}`}>
+  // @ts-ignore
+  <Styled
+    {...props}
+    as={asLink ? 'a' : undefined}
+    className={`${className} ${classes}`}
+  >
     {loading ? <BounceLoader color={theme.colors.white} size={24} /> : children}
   </Styled>
 )

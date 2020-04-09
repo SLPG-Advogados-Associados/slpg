@@ -67,7 +67,7 @@ const Footer = () => {
               <Button
                 circle
                 small
-                as="a"
+                asLink
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://www.facebook.com/SLPG.Advogados.Associados/"
@@ -79,7 +79,7 @@ const Footer = () => {
               <Button
                 circle
                 small
-                as="a"
+                asLink
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://www.youtube.com/channel/UCjbphG4OMGO9n7DhJ4ckS3g"
