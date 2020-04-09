@@ -73,7 +73,7 @@ describe('design/lib/classed', () => {
     it('should be possible to use any of the component properties on interpolation', () => {
       type Props = { custom: string }
       const classes = classed<Props>`${props => props.custom}`
-      const Div = styled.div.attrs(classes)``
+      const Div = styled.div.attrs(classes)<Props>``
       const { container } = render(<Div custom="foo" />)
 
       expect(container.firstChild).toHaveClass('foo')
