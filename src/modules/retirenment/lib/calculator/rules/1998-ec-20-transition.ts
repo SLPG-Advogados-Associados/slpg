@@ -30,23 +30,33 @@ const promulgation = new Date('1998-12-16')
 // Date when EC 41/2003 is approved, deprecating the below rules.
 const due = new Date('2003-12-31')
 
-const processor: reacher.contribution.TotalReacherConfig<Input> = {
+const processor = (
+  integrality: boolean
+): reacher.contribution.TotalReacherConfig<Input> => ({
   split: reacher.contribution.utils.splitAt(promulgation),
   process: (duration, { contribution, input, computed, expected }) => {
     let result = duration
 
-    /*
+    /**
+     * (...)
      * b) um período adicional de contribuição equivalente a vinte por cento do
      * tempo que, na data da publicação desta Emenda, faltaria para atingir o
      * limite de tempo constante da alínea anterior.
      *
-     * Step back of 20% of was missing by promulgation day.
+     * (...)
+     *
+     * b) um período adicional de contribuição equivalente a quarenta por cento do
+     * tempo que, na data da publicação desta Emenda, faltaria para atingir o
+     * limite de tempo constante da alínea anterior;
+     * (...)
+     *
+     * Step back of 20%/40% of was missing by promulgation day.
      */
     if (isEqual(contribution.start, promulgation)) {
-      result = subtract(
-        result,
-        multiply(0.2, subtract(expected, computed.processed))
-      )
+      const missing = subtract(expected, computed.processed)
+      const toll = multiply(integrality ? 0.2 : 0.4, missing)
+
+      result = subtract(result, toll)
     }
 
     /**
@@ -66,12 +76,18 @@ const processor: reacher.contribution.TotalReacherConfig<Input> = {
       contribution.end <= promulgation
     ) {
       // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
-      result = multiply({ [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender], result)
+      result = multiply(
+        {
+          [MALE]: 1.17,
+          [FEMALE]: 1.2,
+        }[input.gender],
+        result
+      )
     }
 
     return result
   },
-}
+})
 
 const conditions: Condition<Input, ResultContext>[] = [
   /**
@@ -121,9 +137,6 @@ const conditions: Condition<Input, ResultContext>[] = [
        * b) um período adicional de contribuição equivalente a vinte por cento do
        * tempo que, na data da publicação desta Emenda, faltaria para atingir o
        * limite de tempo constante da alínea anterior.
-       * (...)
-       *
-       * @todo: b) is currently not considered!
        *
        * (...)
        *
@@ -143,7 +156,7 @@ const conditions: Condition<Input, ResultContext>[] = [
        */
       reacher.contribution.total(
         { years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] },
-        processor
+        processor(integrality)
       ),
     ]
 
@@ -182,8 +195,6 @@ const conditions: Condition<Input, ResultContext>[] = [
    * b) um período adicional de contribuição equivalente a quarenta por cento do
    * tempo que, na data da publicação desta Emenda, faltaria para atingir o
    * limite de tempo constante da alínea anterior;
-   *
-   * @todo: b) is currently not considered!
    */
   input => {
     const integrality = false
@@ -215,12 +226,10 @@ const conditions: Condition<Input, ResultContext>[] = [
        * tempo que, na data da publicação desta Emenda, faltaria para atingir o
        * limite de tempo constante da alínea anterior.
        * (...)
-       *
-       * @todo: b) is currently not considered!
        */
       reacher.contribution.total(
         { years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] },
-        processor
+        processor(integrality)
       ),
     ]
 
