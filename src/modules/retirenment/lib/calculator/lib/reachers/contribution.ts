@@ -5,20 +5,21 @@
 
 /* cspell: disable */
 import { last as getLast, identity } from 'ramda'
-import { min, max } from 'date-fns'
+import { Contribution, Reacher } from '../../types'
+import { add, ceil, min, max } from '../date'
+import { TODAY, NEVER } from '../const'
 import {
-  sum,
+  compare,
+  between,
   normalize,
+  DurationInput,
+  sum,
   Duration,
   apply,
   subtract,
   negate,
   toDays,
-} from 'duration-fns'
-import { add, ceil } from '../date'
-import { TODAY, NEVER } from '../const'
-import { compare, between, DurationInput } from '../duration'
-import { Contribution, Reacher } from '../../types'
+} from '../duration'
 
 type ContributionsInput = {
   contributions: Contribution[]
