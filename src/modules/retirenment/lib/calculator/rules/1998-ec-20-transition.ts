@@ -202,9 +202,10 @@ const conditions: Condition<Input, ResultContext>[] = [
        *
        * @todo: b) is currently not considered!
        */
-      reacher.contribution.total({
-        years: { [MALE]: 30, [FEMALE]: 25 }[input.gender],
-      }),
+      reacher.contribution.total(
+        { years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] },
+        processor
+      ),
     ]
 
     const [reached, reachersContext] = reacher.merge.all(reachers)(input)
