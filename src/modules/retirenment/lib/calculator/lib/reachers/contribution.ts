@@ -7,7 +7,7 @@
 import { last as getLast, identity } from 'ramda'
 import { Contribution, Reacher } from '../../types'
 import { add, ceil, min, max } from '../date'
-import { TODAY, NEVER } from '../const'
+import { TODAY, NEVER, NO_DURATION } from '../const'
 import {
   compare,
   between,
@@ -42,10 +42,16 @@ const last = (
   return [!end || reached <= end ? reached : NEVER]
 }
 
+type ComputedDurations = {
+  real: Duration
+  processed: Duration
+}
+
 type Context<Input> = {
   input: Input
   expected: DurationInput
   contribution: Contribution
+  computed: ComputedDurations
 }
 
 export type TotalReacherConfig<Input> = Partial<{
@@ -60,7 +66,7 @@ type TotalReacherFactory = <
 >(
   expected: DurationInput | ((input: Input) => DurationInput),
   config?: TotalReacherConfig<Input>
-) => Reacher<Input, { durations: { real: Duration; processed: Duration } }>
+) => Reacher<Input, { computed: { real: Duration; processed: Duration } }>
 
 /**
  * Full contribution duration reacher.
@@ -85,19 +91,15 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
   })
 
   let reached: Date
-
-  const durations = { real: {}, processed: {} } as {
-    real: Duration
-    processed: Duration
-  }
+  const computed = { real: NO_DURATION, processed: NO_DURATION }
 
   for (const source of input.contributions) {
-    const splitContext = { input, expected, contribution: source }
+    const splitContext = { input, expected, contribution: source, computed }
 
     // allow spliting contributions, for granular processing.
     for (const contribution of config.split(source, splitContext)) {
       // processing context.
-      const context = { input, expected, contribution }
+      const context = { input, expected, contribution, computed }
 
       // allow skipping contribution periods.
       if (!config.filter(contribution, context)) continue
@@ -111,15 +113,15 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
       const processed = config.process(real, context)
 
       // sum-up real time-based duration so far, with start as reference.
-      durations.real = normalize(sum(durations.real, real))
+      computed.real = normalize(sum(computed.real, real))
 
       // sum-up processed calculation purposed duration so far, with start as reference
-      durations.processed = normalize(sum(durations.processed, processed))
+      computed.processed = normalize(sum(computed.processed, processed))
 
       // calculate reaching date, when it happens.
-      if (!reached && compare.longer(durations.processed, expected, true)) {
+      if (!reached && compare.longer(computed.processed, expected, true)) {
         // find amount of extra days processed, unconsidering leap year days.
-        const overlap = toDays(subtract(durations.processed, expected))
+        const overlap = toDays(subtract(computed.processed, expected))
 
         // remove these extra days from end date.
         reached = ceil(
@@ -130,7 +132,7 @@ const total: TotalReacherFactory = (_expected, _config) => input => {
     }
   }
 
-  return [reached || NEVER, { durations }]
+  return [reached || NEVER, { computed }]
 }
 
 const utils = {
