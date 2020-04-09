@@ -1,4 +1,4 @@
-import { isValid } from 'date-fns'
+import { isValid } from './date'
 import { Post, ServiceKind, ConditionContextBase } from '../types'
 
 const { OTHER } = Post

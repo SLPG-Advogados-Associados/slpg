@@ -1,6 +1,6 @@
 /* cspell: disable */
-import { isValid } from 'date-fns'
 import { Reacher } from '../../types'
+import { isValid } from '../date'
 import { eq, d, b } from '../test-utils'
 import { NEVER } from '../const'
 import { age, merge, contribution } from '.'

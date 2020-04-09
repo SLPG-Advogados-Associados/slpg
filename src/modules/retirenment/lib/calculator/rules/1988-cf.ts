@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { add } from 'date-fns'
+import { add } from '../lib/date'
 import * as reach from '../lib/reachers'
 
 import {

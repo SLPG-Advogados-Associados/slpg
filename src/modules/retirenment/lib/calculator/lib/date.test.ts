@@ -1,7 +1,14 @@
-import { add, floor, ceil, splitPeriod, leapsBetween } from './date'
+import * as base from 'date-fns'
+import * as lib from './date'
 import { i, d } from './test-utils'
 
+const { add, floor, ceil, splitPeriod, leapsBetween } = lib
+
 describe('retirement/calculator/lib/date', () => {
+  it('should re-export everything available at base libary', () => {
+    expect(lib).toContainKeys(Object.keys(base))
+  })
+
   describe('add', () => {
     it.each([
       [d('2002-01-01'), { days: 5 }, d('2002-01-06')],
