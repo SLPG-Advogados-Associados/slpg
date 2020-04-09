@@ -1,5 +1,6 @@
-import { Duration, toString as string, between as _between } from 'duration-fns'
+import { parse, toString as string, Duration } from 'duration-fns'
 import {
+  normalize,
   multiply,
   max,
   min,
@@ -11,9 +12,19 @@ import {
 } from './duration'
 import { d, p } from './test-utils'
 
-const ref = d('2000')
-
 describe('retirement/calculator/lib/duration', () => {
+  describe('normalize', () => {
+    it.each([
+      ['P1Y', 'P365D'],
+      ['P1Y1M', 'P395DT10H'],
+      ['P1Y1W', 'P372D'],
+      ['P1Y10D', 'P375D'],
+      ['P1YT10H', 'P365DT10H'],
+    ])('should normalize durations', (input, expected) => {
+      expect(string(normalize(parse(input)))).toBe(expected)
+    })
+  })
+
   describe('between', () => {
     it.each([
       // normal
@@ -30,16 +41,28 @@ describe('retirement/calculator/lib/duration', () => {
   })
 
   describe('multiply', () => {
-    // floats to account for imprecision.
+    const ref = d('2000')
+
     it.each([
-      [2.1, { years: 1 }, ref, { years: 2 }],
-      [3.1, { years: 2 }, ref, { years: 6 }],
-      [-1.1, { years: 1 }, ref, { years: -1 }],
-      [-2.1, { years: 2 }, ref, { years: -4 }],
+      [2, { years: 1 }, null, 'P730D'],
+      // floats to account for imprecision.
+      [2.1, { years: 1 }, null, 'P766DT12H'],
+      [3.1, { years: 2 }, null, 'P2263D'],
+      [-1.1, { years: 1 }, null, 'P-402DT-12H'],
+      [-2.1, { years: 2 }, null, 'P-1533D'],
+
+      // using reference date (accounts for leap days)
+
+      [2, { years: 1 }, ref, 'P1Y11M30D'], // leap year
+      // floats to account for imprecision.
+      [2.1, { years: 1 }, ref, 'P2Y1M4DT12H'],
+      [3.1, { years: 2 }, ref, 'P6Y2M12D'],
+      [-1.1, { years: 1 }, ref, 'P-1Y-2M23DT12H'],
+      [-2.1, { years: 2 }, ref, 'P-4Y-3M20D'],
     ])(
       'should correctly apply durations transforms',
       (by, duration, ref, expected) => {
-        expect(multiply(by, duration, ref)).toMatchObject(expected)
+        expect(string(multiply(by, duration, ref))).toEqual(expected)
       }
     )
   })
