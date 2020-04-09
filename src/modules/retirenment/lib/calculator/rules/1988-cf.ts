@@ -81,7 +81,7 @@ const conditions: Condition<Input, ResultContext>[] = [
     const integrality = false
     const years = { [MALE]: 65, [FEMALE]: 60 }[input.gender]
 
-    const reached = add(input.birthDate, { years })
+    const reached = add(input.birthDate, { years }, true)
 
     return [reached < due, { integrality, reached }]
   },
