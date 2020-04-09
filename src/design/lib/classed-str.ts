@@ -2,6 +2,8 @@ const classed = <P extends {}>(
   classes: TemplateStringsArray | string[],
   ...substitutions: Array<string | ((props: P) => string)>
 ) => (props: P) => {
+  type Props = P & { className?: string }
+
   const parts = [classes[0]]
 
   for (let i = 0; i < substitutions.length; i++) {
@@ -20,7 +22,7 @@ const classed = <P extends {}>(
     .replace(/ {2,}/g, ' ')
     .trim()
 
-  return { className }
+  return { className } as Props
 }
 
 export { classed }
