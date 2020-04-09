@@ -53,4 +53,8 @@ describe('design/lib/classed', () => {
     expect(fn).toHaveBeenCalledTimes(1)
     expect(fn).toHaveBeenCalledWith(props)
   })
+
+  it('should accept an array of classes', () => {
+    expect(classed(['foo', 'bar'])({})).toHaveProperty('className', 'foo bar')
+  })
 })
