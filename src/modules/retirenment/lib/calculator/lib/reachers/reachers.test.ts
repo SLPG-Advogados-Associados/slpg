@@ -15,14 +15,15 @@ describe('retirement/calculator/lib/reachers', () => {
 
   describe('age', () => {
     it.each([
-      [50, '1940', 1990],
-      [50, '1950', 2000],
-      [50, '1960', 2010],
-      [30, '1960', 1990],
-      [30, '1970', 2000],
-      [30, '1980', 2010],
-    ])('should correctly calculate reach', (years, birth, reached) => {
-      expect(age({ years })(b(birth))[0]).toSatisfy(eq.date(reached))
+      [50, '1940', '1990'],
+      [50, '1950', '2000'],
+      [50, '1960', '2010'],
+      [30, '1960', '1990'],
+      [30, '1970', '2000'],
+      [30, '1980', '2010'],
+    ])('should correctly calculate reach', (years, birth, expected) => {
+      const [reached] = age({ years })(b(birth))
+      expect(reached).toEqual(d(expected))
     })
   })
 
