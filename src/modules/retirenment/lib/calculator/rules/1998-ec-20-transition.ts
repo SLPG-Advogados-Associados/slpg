@@ -1,7 +1,7 @@
 /* cspell: disable */
 import { max } from '../lib/date'
 import * as reacher from '../lib/reachers'
-import { multiply, round } from '../lib/duration'
+import { multiply } from '../lib/duration'
 
 import {
   Condition,
@@ -50,10 +50,7 @@ const processor: reacher.contribution.TotalReacherConfig<Input> = {
       contribution.end <= promulgation
     ) {
       // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
-      return round(
-        multiply({ [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender], duration),
-        'days'
-      )
+      return multiply({ [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender], duration)
     }
 
     return duration
