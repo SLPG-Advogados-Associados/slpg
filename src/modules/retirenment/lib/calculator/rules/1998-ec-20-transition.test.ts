@@ -202,9 +202,39 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
       })
 
       describe('proportional', () => {
-        it.todo('should calculate condition result')
-        it.todo('should be never integral')
-        it.todo('should return correct reached date')
+        it.each([
+          // reached before promulgation:
+          [i(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+          [i(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+
+          // male
+
+          // by contrib:
+          [i(M, '49', [c('60^65', y), c('81', y)]), true, d('2002-01-29')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '49', [c('60^65', y), c('83', y)]), false, d('2004-06-01')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          [i(M, '49', [c('60^65', n), c('83', y)]), false, d('2005-04-07')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          // by age:
+          [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+          // by last:
+          [i(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+
+          // female
+
+          // by contrib:
+          [i(F, '54', [c('60^65', y), c('86', y)]), true, d('2002-05-23')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [i(F, '54', [c('60^65', y), c('88', y)]), false, d('2004-10-15')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [i(F, '54', [c('60^65', n), c('88', y)]), false, d('2005-10-16')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          // by age:
+          [i(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+          // by last:
+          [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
+        ])('should calculate condition result', (input, satisfied, by) => {
+          const [reached, context] = proportional(input)
+          expect(reached).toBe(satisfied)
+          expect(context).toMatchObject({ integrality: false, reached: by })
+        })
       })
     })
   })
