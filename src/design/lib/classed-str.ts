@@ -1,5 +1,5 @@
 const classed = <P extends { className?: string }>(
-  classes: TemplateStringsArray,
+  classes: TemplateStringsArray | string[],
   ...substitutions: Array<string | ((props: P) => string)>
 ) => (props: P) => {
   const parts = [classes[0]]
@@ -13,7 +13,7 @@ const classed = <P extends { className?: string }>(
     parts.push(interpolated + classes[i + 1])
   }
 
-  const className = [parts.join('')]
+  const className = (!substitutions.length ? [...classes] : [parts.join('')])
     .concat(props.className || '')
     .join(' ')
     .replace(/ {2,}/g, ' ')
