@@ -1,4 +1,5 @@
-import { toDays, Duration, DurationInput } from 'duration-fns'
+// @warn: this is a cyclic dependency.
+import { toDays, Duration, DurationInput } from './duration'
 import { add as _add, min, isAfter, Interval as _Interval, max } from 'date-fns'
 
 // prevent dates as numbers for interval objects.

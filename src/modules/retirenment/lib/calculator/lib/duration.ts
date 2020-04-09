@@ -10,6 +10,7 @@ import {
   toWeeks,
   toMonths,
   toYears,
+  toString as string,
   Duration,
   DurationInput as _DurationInput,
 } from 'duration-fns'
@@ -173,6 +174,8 @@ const compare = {
     compare.longer(right, left, equality),
 }
 
+export * from 'duration-fns'
+
 export {
   multiply,
   max,
@@ -183,4 +186,5 @@ export {
   compare,
   between,
   normalize,
+  string,
 }
