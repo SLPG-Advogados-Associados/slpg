@@ -1,7 +1,7 @@
 import { min as minDate, max as maxDate, Interval } from 'date-fns'
 
 import {
-  normalize,
+  normalize as _normalize,
   toMilliseconds,
   toSeconds,
   toMinutes,
@@ -36,6 +36,23 @@ const to = {
   minutes: toMinutes,
   seconds: toSeconds,
   milliseconds: toMilliseconds,
+}
+
+/**
+ * Normalize duration for practical use on day based calculation.
+ *
+ * @param duration The duration input.
+ */
+const normalize = (duration: DurationInput, ref?: Date) => {
+  const days = toDays(duration)
+
+  return _normalize(
+    {
+      days: Math.floor(days),
+      milliseconds: Math.floor((days % 1) * 1000 * 60 * 60 * 24),
+    },
+    ref
+  )
 }
 
 /**
@@ -156,4 +173,14 @@ const compare = {
     compare.longer(right, left, equality),
 }
 
-export { multiply, max, min, round, precision, split, compare, between }
+export {
+  multiply,
+  max,
+  min,
+  round,
+  precision,
+  split,
+  compare,
+  between,
+  normalize,
+}
