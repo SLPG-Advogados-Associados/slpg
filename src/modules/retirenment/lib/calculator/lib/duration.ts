@@ -1,8 +1,6 @@
 import { min as minDate, max as maxDate, Interval } from 'date-fns'
 
 import {
-  sum,
-  between as _between,
   normalize,
   toMilliseconds,
   toSeconds,
@@ -15,8 +13,6 @@ import {
   Duration,
   DurationInput as _DurationInput,
 } from 'duration-fns'
-
-import { leapsBetween } from './date'
 
 export type DurationInput = Exclude<_DurationInput, number | string>
 
@@ -48,8 +44,12 @@ const to = {
  * @param start The starting date of the interval.
  * @param end The ending date of the interval.
  */
-const between = (start: number | Date, end: number | Date) =>
-  normalize(sum(_between(start, end), { days: leapsBetween(start, end) }))
+const between = (start: number | Date, end: number | Date) => {
+  const diff = Math.abs((end as number) - (start as number))
+  const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
+
+  return normalize({ days })
+}
 
 /**
  * Multiply a given duration by the provided factor.
