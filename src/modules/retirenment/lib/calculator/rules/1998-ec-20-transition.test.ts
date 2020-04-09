@@ -78,8 +78,8 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         // male
 
         // by contrib:
-        [i(M, '49', [c('57^67'), c('78')]), true, d('2002-12-24')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-        [i(M, '49', [c('57^67'), c('80')]), false, d('2004-12-23')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+        [i(M, '49', [c('57^67'), c('78')]), true, d('2003-10-14')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+        [i(M, '49', [c('57^67'), c('80')]), false, d('2006-03-08')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
         // by age:
         [i(M, '49', [c('57^67'), c('70')]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
         [i(M, '51', [c('57^67'), c('70')]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
@@ -89,8 +89,8 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         // female
 
         // by contrib:
-        [i(F, '54', [c('57^62'), c('78')]), true, d('2002-12-25')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-        [i(F, '54', [c('57^62'), c('80')]), false, d('2004-12-24')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+        [i(F, '54', [c('57^62'), c('78')]), true, d('2003-10-15')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+        [i(F, '54', [c('57^62'), c('80')]), false, d('2006-03-09')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
         // by age:
         [i(F, '54', [c('57^62'), c('70')]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
         [i(F, '56', [c('57^62'), c('70')]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
@@ -174,9 +174,10 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           // male
 
           // by contrib:
-          [i(M, '49', [c('60^65', y), c('78', y)]), true, d('2003-07-25')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '49', [c('60^65', y), c('80', y)]), false, d('2005-11-25')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
-          [i(M, '49', [c('60^65', n), c('80', y)]), false, d('2006-10-02')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          [i(M, '49', [c('60^65', y), c('77', y)]), true, d('2003-01-30')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '49', [c('60^65', y), c('78', y)]), false, d('2004-06-26')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          // combined teacher/non-teacher periods
+          [i(M, '49', [c('60^65', n), c('78', y)]), false, d('2005-07-03')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
           // by age:
           [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
           [i(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
@@ -186,9 +187,9 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           // female
 
           // by contrib:
-          [i(F, '54', [c('60^65', y), c('82', y)]), true, d('2002-08-03')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          [i(F, '54', [c('60^65', y), c('84', y)]), false, d('2004-12-26')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
-          [i(F, '54', [c('60^65', n), c('84', y)]), false, d('2005-12-26')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [i(F, '54', [c('60^65', y), c('82', y)]), true, d('2003-04-25')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [i(F, '54', [c('60^65', y), c('83', y)]), false, d('2004-10-02')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [i(F, '54', [c('60^65', n), c('83', y)]), false, d('2005-12-14')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
           // by age:
           [i(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
           [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
@@ -212,6 +213,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           // by contrib:
           [i(M, '49', [c('60^65', y), c('81', y)]), true, d('2002-01-29')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
           [i(M, '49', [c('60^65', y), c('83', y)]), false, d('2004-06-01')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          // combined teacher/non-teacher periods
           [i(M, '49', [c('60^65', n), c('83', y)]), false, d('2005-04-07')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
           // by age:
           [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
