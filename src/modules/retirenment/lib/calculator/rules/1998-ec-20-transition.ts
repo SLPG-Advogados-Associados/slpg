@@ -1,7 +1,7 @@
 /* cspell: disable */
-import { max } from '../lib/date'
+import { max, isEqual } from '../lib/date'
 import * as reacher from '../lib/reachers'
-import { multiply } from '../lib/duration'
+import { multiply, subtract } from '../lib/duration'
 
 import {
   Condition,
@@ -32,7 +32,23 @@ const due = new Date('2003-12-31')
 
 const processor: reacher.contribution.TotalReacherConfig<Input> = {
   split: reacher.contribution.utils.splitAt(promulgation),
-  process: (duration, { contribution, input }) => {
+  process: (duration, { contribution, input, computed, expected }) => {
+    let result = duration
+
+    /*
+     * b) um período adicional de contribuição equivalente a vinte por cento do
+     * tempo que, na data da publicação desta Emenda, faltaria para atingir o
+     * limite de tempo constante da alínea anterior.
+     *
+     * Step back of 20% of was missing by promulgation day.
+     */
+    if (isEqual(contribution.start, promulgation)) {
+      result = subtract(
+        result,
+        multiply(0.2, subtract(expected, computed.processed))
+      )
+    }
+
     /**
      * (...)
      * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
@@ -50,10 +66,10 @@ const processor: reacher.contribution.TotalReacherConfig<Input> = {
       contribution.end <= promulgation
     ) {
       // (...) acréscimo de dezessete por cento, se homem, e de vinte por cento, se mulher
-      return multiply({ [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender], duration)
+      result = multiply({ [MALE]: 1.17, [FEMALE]: 1.2 }[input.gender], result)
     }
 
-    return duration
+    return result
   },
 }
 
