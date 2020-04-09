@@ -16,6 +16,36 @@ const precisions = [
   'milliseconds',
 ] as const
 
+const zero = {
+  years: 0,
+  months: 0,
+  days: 1,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  milliseconds: 0,
+}
+
+const setters = {
+  years: (date: Date, value: number) => date.setUTCFullYear(value),
+  months: (date: Date, value: number) => date.setUTCMonth(value),
+  days: (date: Date, value: number) => date.setUTCDate(value),
+  hours: (date: Date, value: number) => date.setUTCHours(value),
+  minutes: (date: Date, value: number) => date.setUTCMinutes(value),
+  seconds: (date: Date, value: number) => date.setUTCSeconds(value),
+  milliseconds: (date: Date, value: number) => date.setUTCMilliseconds(value),
+}
+
+const getters = {
+  years: (date: Date) => date.getUTCFullYear(),
+  months: (date: Date) => date.getUTCMonth(),
+  days: (date: Date) => date.getUTCDate(),
+  hours: (date: Date) => date.getUTCHours(),
+  minutes: (date: Date) => date.getUTCMinutes(),
+  seconds: (date: Date) => date.getUTCSeconds(),
+  milliseconds: (date: Date) => date.getUTCMilliseconds(),
+}
+
 /**
  * Floors a Date to a given precision.
  *
@@ -23,19 +53,13 @@ const precisions = [
  * @param date The original Date object.
  */
 const floor = (precision: typeof precisions[number], date: Date) => {
-  const result = new Date(date.getTime()) // clone, for immutability.
+  const clone = new Date(date.getTime()) // clone, for immutability.
 
   for (const key of precisions.slice(precisions.indexOf(precision) + 1)) {
-    // if (key === 'years') result.setUTCFullYear(0) // never happens :)
-    if (key === 'months') result.setUTCMonth(0)
-    if (key === 'days') result.setUTCDate(1)
-    if (key === 'hours') result.setUTCHours(0)
-    if (key === 'minutes') result.setUTCMinutes(0)
-    if (key === 'seconds') result.setUTCSeconds(0)
-    if (key === 'milliseconds') result.setUTCMilliseconds(0)
+    setters[key](clone, zero[key])
   }
 
-  return result
+  return clone
 }
 
 /**
@@ -45,26 +69,20 @@ const floor = (precision: typeof precisions[number], date: Date) => {
  * @param date The original Date object.
  */
 const ceil = (precision: typeof precisions[number], date: Date) => {
-  const result = new Date(date.getTime()) // clone, for immutability.
+  let changed = false
+  const clone = new Date(date.getTime()) // clone, for immutability.
 
   for (const key of precisions.slice(precisions.indexOf(precision) + 1)) {
-    // if (key === 'years') result.setUTCFullYear(0) // never happens :)
-    if (key === 'months') result.setUTCMonth(0)
-    if (key === 'days') result.setUTCDate(1)
-    if (key === 'hours') result.setUTCHours(0)
-    if (key === 'minutes') result.setUTCMinutes(0)
-    if (key === 'seconds') result.setUTCSeconds(0)
-    if (key === 'milliseconds') result.setUTCMilliseconds(0)
+    changed = changed || getters[key](clone) > zero[key]
+    setters[key](clone, zero[key])
   }
 
-  if (precision === 'years') result.setUTCFullYear(result.getUTCFullYear() + 1)
-  if (precision === 'months') result.setUTCMonth(result.getUTCMonth() + 1)
-  if (precision === 'days') result.setUTCDate(result.getUTCDate() + 1)
-  if (precision === 'hours') result.setUTCHours(result.getUTCHours() + 1)
-  if (precision === 'minutes') result.setUTCMinutes(result.getUTCMinutes() + 1)
-  if (precision === 'seconds') result.setUTCSeconds(result.getUTCSeconds() + 1)
+  // ceil
+  if (changed) {
+    setters[precision](clone, getters[precision](clone) + 1)
+  }
 
-  return result
+  return clone
 }
 
 /**
