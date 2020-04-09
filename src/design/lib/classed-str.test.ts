@@ -38,4 +38,19 @@ describe('design/lib/classed', () => {
       'foo bar-tor'
     )
   })
+
+  it('should resolve passed in class names, interpolations, and received class names', () => {
+    expect(classed`foo ${'bar'}`({ className: 'tor' })).toHaveProperty(
+      'className',
+      'foo bar tor'
+    )
+  })
+
+  it('should execute function interpolations', () => {
+    const props = {}
+    const fn = jest.fn(() => 'bar')
+    expect(classed`foo ${fn}`(props)).toHaveProperty('className', 'foo bar')
+    expect(fn).toHaveBeenCalledTimes(1)
+    expect(fn).toHaveBeenCalledWith(props)
+  })
 })
