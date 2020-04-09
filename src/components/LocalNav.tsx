@@ -32,7 +32,7 @@ const LocalNav: React.FC<{ primary?: boolean; className?: string }> = ({
 )
 
 const LocalNavButton = styled(({ primary, ...props }) => (
-  <Button secondary={!primary} {...props} as="a" />
+  <Button secondary={!primary} {...props} asLink />
 ))`
   display: flex;
   justify-content: center;
