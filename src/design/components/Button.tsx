@@ -1,6 +1,7 @@
 import React from 'react'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { styled, css, t } from '../lib/styled'
+import { classed } from '../lib/classed-str'
 import { theme } from '../theme'
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -82,26 +83,15 @@ const Styled = styled.button<Props>`
   ${t.variants(variants)}
 `
 
-const classes =
-  'text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button'
-
-const Base: React.FC<Props> = ({
-  children,
-  loading,
-  asLink,
-  className = '',
-  ...props
-}) => (
+const Base: React.FC<Props> = ({ children, loading, asLink, ...props }) => (
   // @ts-ignore
-  <Styled
-    {...props}
-    as={asLink ? 'a' : undefined}
-    className={`${className} ${classes}`}
-  >
+  <Styled {...props} as={asLink ? 'a' : undefined}>
     {loading ? <BounceLoader color={theme.colors.white} size={24} /> : children}
   </Styled>
 )
 
-const Button = styled(Base)``
+const Button = styled(Base).attrs(
+  classed`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button`
+)``
 
 export { Button }
