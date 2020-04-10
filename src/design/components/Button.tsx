@@ -90,10 +90,8 @@ const Base: React.FC<Props> = ({ children, loading, asLink, ...props }) => (
   </Styled>
 )
 
-const Button = styled(Base).attrs(
-  classed<
-    Props
-  >`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button`
-)``
+const classes = classed`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button`
+
+const Button = styled(Base).attrs(classes)``
 
 export { Button }
