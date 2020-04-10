@@ -6,7 +6,7 @@ import { withGraphQL, GT } from '~api'
 import { Button, Heading, AlertContent, styled } from '~design'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
-import { Input, Field, field, useForm } from '~app/modules/form'
+import { Input, FieldWrapper, useForm } from '~app/modules/form'
 import { CONTACT } from './contact.gql'
 
 const Map = styled.iframe.attrs({
@@ -40,10 +40,10 @@ const ContatoPage = () => {
   const form = useForm<Input>({ validationSchema, mode: 'onBlur' })
 
   const fields = {
-    name: field(form, 'name'),
-    phone: field(form, 'phone'),
-    email: field(form, 'email'),
-    message: field(form, 'message'),
+    name: form.field('name'),
+    phone: form.field('phone'),
+    email: form.field('email'),
+    message: form.field('message'),
   }
 
   const onSubmit = form.handleSubmit(async variables => {
@@ -98,26 +98,26 @@ const ContatoPage = () => {
           </p>
 
           <form onSubmit={onSubmit}>
-            <Field {...fields.name.meta}>
+            <FieldWrapper {...fields.name.meta}>
               <Input {...fields.name.field} placeholder="Nome" />
-            </Field>
+            </FieldWrapper>
 
-            <Field {...fields.phone.meta}>
+            <FieldWrapper {...fields.phone.meta}>
               <Input {...fields.phone.field} placeholder="Telefone" />
-            </Field>
+            </FieldWrapper>
 
-            <Field {...fields.email.meta}>
+            <FieldWrapper {...fields.email.meta}>
               <Input {...fields.email.field} placeholder="E-mail" />
-            </Field>
+            </FieldWrapper>
 
-            <Field {...fields.message.meta}>
+            <FieldWrapper {...fields.message.meta}>
               <Input
                 {...fields.message.field}
                 as="textarea"
                 rows={5}
                 placeholder="Mensagem"
               />
-            </Field>
+            </FieldWrapper>
 
             <Button
               type="submit"
