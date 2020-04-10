@@ -1,6 +1,6 @@
 export * from './theme'
 export * from './lib/styled'
-export * from './lib/classed'
+export * from './lib/classed-str'
 export * from './hooks/useModal'
 
 // components
