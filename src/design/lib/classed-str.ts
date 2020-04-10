@@ -1,7 +1,7 @@
-const classed = <P extends {}>(
+const classed = <SubstitutionProps extends {}>(
   classes: TemplateStringsArray | string[],
-  ...substitutions: Array<string | ((props: P) => string)>
-) => (props: P) => {
+  ...substitutions: Array<string | ((props: SubstitutionProps) => string)>
+) => <P extends SubstitutionProps>(props: P) => {
   type Props = P & { className?: string }
 
   const parts = [classes[0]]
