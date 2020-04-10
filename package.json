@@ -65,7 +65,7 @@
     "md5": "^2.2.1",
     "mobile-detect": "^1.4.4",
     "netlify-lambda": "^1.6.3",
-    "next": "9.3.2",
+    "next": "^9.3.4",
     "nodemailer": "^6.4.1",
     "querystring": "^0.2.0",
     "ramda": "^0.26.1",
@@ -137,7 +137,7 @@
     "prettier": "^1.19.1",
     "shell-quote": "^1.7.2",
     "sort-package-json": "^1.23.1",
-    "typescript": "^3.7.2"
+    "typescript": "^3.8.3"
   },
   "resolutions": {
     "hoist-non-react-statics": "3.0.0"
