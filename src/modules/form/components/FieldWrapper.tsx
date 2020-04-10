@@ -1,8 +1,8 @@
 import React from 'react'
 
-type Props = { touched?: boolean; error?: React.ReactElement }
+type Props = { touched?: boolean; error?: React.ReactNode }
 
-const Field: React.FC<Props> = ({ touched, error, children }) => (
+const FieldWrapper: React.FC<Props> = ({ touched, error, children }) => (
   <label className="mb-4 block">
     {children}
 
@@ -12,4 +12,4 @@ const Field: React.FC<Props> = ({ touched, error, children }) => (
   </label>
 )
 
-export { Field }
+export { FieldWrapper }
