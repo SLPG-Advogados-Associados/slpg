@@ -1,14 +1,13 @@
 import React from 'react'
 import * as Yup from 'yup'
-import { Formik } from 'formik'
 import { useAlert } from 'react-alert'
 import { useMutation } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
-import { Page } from '~app/components/Page'
 import { Button, Heading, AlertContent, styled } from '~design'
+import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
+import { Input, Field, field, useForm } from '~app/modules/form'
 import { CONTACT } from './contact.gql'
-import { TextField, TextAreaField } from '~app/modules/form'
 
 const Map = styled.iframe.attrs({
   src:
@@ -22,7 +21,7 @@ const Map = styled.iframe.attrs({
 
 const initialValues = { name: '', phone: '', email: '', message: '' }
 
-type Inputs = typeof initialValues
+type Input = typeof initialValues
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Campo obrigatório'),
@@ -37,6 +36,35 @@ const ContatoPage = () => {
     GT.CONTACT_MUTATION,
     GT.CONTACT_MUTATION_VARIABLES
   >(CONTACT)
+
+  const form = useForm<Input>({ validationSchema, mode: 'onBlur' })
+
+  const fields = {
+    name: field(form, 'name'),
+    phone: field(form, 'phone'),
+    email: field(form, 'email'),
+    message: field(form, 'message'),
+  }
+
+  const onSubmit = form.handleSubmit(async variables => {
+    try {
+      await contact({ variables })
+
+      form.reset()
+
+      alert.success(
+        <AlertContent title="Sucesso!">
+          Formulário de contato enviado com sucesso
+        </AlertContent>
+      )
+    } catch {
+      alert.error(
+        <AlertContent title="Não foi possível enviar o formulário">
+          Tente novamente mais tarde
+        </AlertContent>
+      )
+    }
+  })
 
   return (
     <Page
@@ -69,46 +97,36 @@ const ContatoPage = () => {
             formulário abaixo, ou pelo telefone <strong>(48) 3024-4166</strong>.
           </p>
 
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={async (variables, form) => {
-              try {
-                await contact({ variables })
+          <form onSubmit={onSubmit}>
+            <Field {...fields.name.meta}>
+              <Input {...fields.name.field} placeholder="Nome" />
+            </Field>
 
-                form.resetForm({})
+            <Field {...fields.phone.meta}>
+              <Input {...fields.phone.field} placeholder="Telefone" />
+            </Field>
 
-                alert.success(
-                  <AlertContent title="Sucesso!">
-                    Formulário de contato enviado com sucesso
-                  </AlertContent>
-                )
-              } catch {
-                alert.error(
-                  <AlertContent title="Não foi possível enviar o formulário">
-                    Tente novamente mais tarde
-                  </AlertContent>
-                )
-              }
-            }}
-          >
-            {form => (
-              <form onSubmit={form.handleSubmit}>
-                <TextField name="name" placeholder="Nome" />
-                <TextField name="phone" placeholder="Telefone" />
-                <TextField name="email" placeholder="E-mail" />
-                <TextAreaField name="message" placeholder="Mensagem" rows={5} />
+            <Field {...fields.email.meta}>
+              <Input {...fields.email.field} placeholder="E-mail" />
+            </Field>
 
-                <Button
-                  type="submit"
-                  className="w-full justify-center"
-                  disabled={form.isSubmitting}
-                  loading={form.isSubmitting}
-                  children="Enviar"
-                />
-              </form>
-            )}
-          </Formik>
+            <Field {...fields.message.meta}>
+              <Input
+                {...fields.message.field}
+                as="textarea"
+                rows={5}
+                placeholder="Mensagem"
+              />
+            </Field>
+
+            <Button
+              type="submit"
+              className="w-full justify-center"
+              disabled={form.formState.isSubmitting}
+              loading={form.formState.isSubmitting}
+              children="Enviar"
+            />
+          </form>
         </Section>
 
         <Section className="text-center lg:text-textual-title">
