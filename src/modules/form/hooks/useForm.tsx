@@ -11,11 +11,14 @@ const useForm = <
 >(
   options: UseFormOptions<FormValues, ValidationContext>
 ) => {
-  const form = _useForm<FormValues, ValidationContext>(options)
+  const form = _useForm<FormValues, ValidationContext>({
+    mode: 'onBlur',
+    ...options,
+  })
 
   const field = (name: keyof FormValues) => ({
     meta: {
-      touched: form.formState.touched[name],
+      touched: [].concat(form.formState.touched[name]).some(Boolean),
       error: (form.errors[name] as FieldError)?.message,
     },
     input: {
