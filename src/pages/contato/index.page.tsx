@@ -9,6 +9,11 @@ import { Section } from '~app/components/Section'
 import { Input, FieldWrapper, useForm } from '~app/modules/form'
 import { CONTACT } from './contact.gql'
 
+const page = {
+  title: 'Contato',
+  description: 'Entre em contato e agende uma consulta',
+}
+
 const Map = styled.iframe.attrs({
   src:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.829957690526!2d-48.55102268497343!3d-27.598800982837005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952738254a4b6e49%3A0xb0290625e1d82ca9!2sSLPG%20Advogados%20Associados!5e0!3m2!1spt-BR!2scz!4v1575744925010!5m2!1spt-BR!2scz',
@@ -67,13 +72,7 @@ const ContatoPage = () => {
   })
 
   return (
-    <Page
-      off={{ contactCTA: true }}
-      meta={{
-        title: 'Contato',
-        description: 'Entre em contato e agende uma consulta',
-      }}
-    >
+    <Page off={{ contactCTA: true }} meta={page}>
       <div className="bg-reverse text-white py-8">
         <Heading noMargins>Contato</Heading>
       </div>
@@ -99,20 +98,20 @@ const ContatoPage = () => {
 
           <form onSubmit={onSubmit}>
             <FieldWrapper {...fields.name.meta}>
-              <Input {...fields.name.field} placeholder="Nome" />
+              <Input {...fields.name.input} placeholder="Nome" />
             </FieldWrapper>
 
             <FieldWrapper {...fields.phone.meta}>
-              <Input {...fields.phone.field} placeholder="Telefone" />
+              <Input {...fields.phone.input} placeholder="Telefone" />
             </FieldWrapper>
 
             <FieldWrapper {...fields.email.meta}>
-              <Input {...fields.email.field} placeholder="E-mail" />
+              <Input {...fields.email.input} placeholder="E-mail" />
             </FieldWrapper>
 
             <FieldWrapper {...fields.message.meta}>
               <Input
-                {...fields.message.field}
+                {...fields.message.input}
                 as="textarea"
                 rows={5}
                 placeholder="Mensagem"
