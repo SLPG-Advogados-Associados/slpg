@@ -2,6 +2,7 @@
   "presets": ["next/babel"],
   "plugins": [
     ["macros"],
+    ["@babel/plugin-proposal-export-namespace-from"],
     ["styled-components", { "ssr": true, "fileName": false }],
     [
       "module-resolver",
