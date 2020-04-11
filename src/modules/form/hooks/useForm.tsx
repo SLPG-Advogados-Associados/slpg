@@ -15,11 +15,10 @@ const useForm = <
 
   const field = (name: keyof FormValues) => ({
     meta: {
-      name,
       touched: form.formState.touched[name],
       error: (form.errors[name] as FieldError)?.message,
     },
-    field: {
+    input: {
       name,
       ref: form.register,
     },
