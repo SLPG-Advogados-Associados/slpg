@@ -1,14 +1,15 @@
 import React from 'react'
+import classnames from 'classnames'
+import { ErrorMessage } from './ErrorMessage'
 
-type Props = { touched?: boolean; error?: React.ReactNode }
-
-const FieldWrapper: React.FC<Props> = ({ touched, error, children }) => (
-  <label className="mb-4 block">
+const FieldWrapper: React.FC<{
+  touched?: boolean
+  error?: React.ReactNode
+  className?: string
+}> = ({ touched, error, className, children }) => (
+  <label className={classnames('mb-4 block', className)}>
     {children}
-
-    {touched && error ? (
-      <span className="text-meta text-danger block p-2">{error}</span>
-    ) : null}
+    <ErrorMessage touched={touched} error={error} />
   </label>
 )
 

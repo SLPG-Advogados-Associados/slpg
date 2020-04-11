@@ -9,7 +9,7 @@ const useForm = <
   FormValues extends Record<string, any> = Record<string, any>,
   ValidationContext extends object = object
 >(
-  options: UseFormOptions<FormValues, ValidationContext>
+  options?: UseFormOptions<FormValues, ValidationContext>
 ) => {
   const form = _useForm<FormValues, ValidationContext>({
     mode: 'onBlur',
