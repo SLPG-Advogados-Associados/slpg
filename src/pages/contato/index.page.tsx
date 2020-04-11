@@ -24,9 +24,9 @@ const Map = styled.iframe.attrs({
   width: 100%;
 `
 
-const initialValues = { name: '', phone: '', email: '', message: '' }
+const defaultValues = { name: '', phone: '', email: '', message: '' }
 
-type Input = typeof initialValues
+type Input = typeof defaultValues
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Campo obrigatório'),
@@ -42,7 +42,7 @@ const ContatoPage = () => {
     GT.CONTACT_MUTATION_VARIABLES
   >(CONTACT)
 
-  const form = useForm<Input>({ validationSchema, mode: 'onBlur' })
+  const form = useForm({ defaultValues, validationSchema })
 
   const fields = {
     name: form.field('name'),
