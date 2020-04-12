@@ -20,12 +20,17 @@ describe('form/useForm', () => {
     expect(result.current).toHaveProperty('formState')
   })
 
-  describe('field', () => {
-    const shape = (name: string, meta?: {}) => ({
-      meta: { touched: false, error: undefined, ...meta },
-      input: { name, ref: expect.toBeFunction() },
-    })
+  const shape = (name: string, meta?: {}) => ({
+    meta: { touched: false, error: undefined, ...meta },
+    input: { name, ref: expect.toBeFunction() },
+  })
 
+  const arrShape = (name: string, value: any, meta?: {}) => ({
+    ...shape(name, meta),
+    item: { id: expect.toBeString(), value },
+  })
+
+  describe('field', () => {
     it('should retrieve a single field api', () => {
       const { result } = renderHook(() => useForm())
 
@@ -51,93 +56,87 @@ describe('form/useForm', () => {
         shape('field-name', { error: 'error message' })
       )
     })
+  })
 
-    describe('fieldArray', () => {
-      const arrShape = (name: string, value: any, meta?: {}) => ({
-        ...shape(name, meta),
-        item: { id: expect.toBeString(), value },
+  describe('fieldArray', () => {
+    it('should retrieve a single field array api', () => {
+      const form = renderHook(() => useForm())
+
+      expect(form.result.current).toHaveProperty('useFieldArray')
+
+      const field = renderHook(() =>
+        form.result.current.useFieldArray('field-name')
+      )
+
+      expect(field.result.current).toHaveProperty('swap')
+      expect(field.result.current).toHaveProperty('move')
+      expect(field.result.current).toHaveProperty('prepend')
+      expect(field.result.current).toHaveProperty('append')
+      expect(field.result.current).toHaveProperty('remove')
+      expect(field.result.current).toHaveProperty('insert')
+      expect(field.result.current).toHaveProperty('fields', [])
+    })
+
+    it('should update with form values', () => {
+      const form = renderHook(() => useForm<{ 'field-name': string[] }>())
+
+      expect(form.result.current).toHaveProperty('useFieldArray')
+
+      const field = renderHook(() =>
+        form.result.current.useFieldArray('field-name')
+      )
+
+      act(() => field.result.current.append('first'))
+
+      expect(field.result.current.fields).toMatchObject([
+        arrShape('field-name[0]', 'first'),
+      ])
+
+      act(() => field.result.current.append('second'))
+
+      expect(field.result.current.fields).toMatchObject([
+        arrShape('field-name[0]', 'first'),
+        arrShape('field-name[1]', 'second'),
+      ])
+
+      // ensure we register before deleting, for refs to be set.
+      act(() => {
+        form.result.current.register({ name: 'field-name[0]' })
+        form.result.current.register({ name: 'field-name[1]' })
       })
 
-      it('should retrieve a single field array api', () => {
-        const form = renderHook(() => useForm())
+      act(() => field.result.current.remove(0))
 
-        expect(form.result.current).toHaveProperty('useFieldArray')
+      expect(field.result.current.fields).toMatchObject([
+        arrShape('field-name[0]', 'second'),
+      ])
+    })
+  })
 
-        const field = renderHook(() =>
-          form.result.current.useFieldArray('field-name')
-        )
+  describe('fields', () => {
+    it('should retrieve first level fields', () => {
+      const form = renderHook(() => useForm())
+      const fields = renderHook(() => form.result.current.useFields(['a', 'b']))
 
-        expect(field.result.current).toHaveProperty('swap')
-        expect(field.result.current).toHaveProperty('move')
-        expect(field.result.current).toHaveProperty('prepend')
-        expect(field.result.current).toHaveProperty('append')
-        expect(field.result.current).toHaveProperty('remove')
-        expect(field.result.current).toHaveProperty('insert')
-        expect(field.result.current).toHaveProperty('fields', [])
-      })
-
-      it('should update with form values', () => {
-        const form = renderHook(() => useForm<{ 'field-name': string[] }>())
-
-        expect(form.result.current).toHaveProperty('useFieldArray')
-
-        const field = renderHook(() =>
-          form.result.current.useFieldArray('field-name')
-        )
-
-        act(() => field.result.current.append('first'))
-
-        expect(field.result.current.fields).toMatchObject([
-          arrShape('field-name[0]', 'first'),
-        ])
-
-        act(() => field.result.current.append('second'))
-
-        expect(field.result.current.fields).toMatchObject([
-          arrShape('field-name[0]', 'first'),
-          arrShape('field-name[1]', 'second'),
-        ])
-
-        // ensure we register before deleting, for refs to be set.
-        act(() => {
-          form.result.current.register({ name: 'field-name[0]' })
-          form.result.current.register({ name: 'field-name[1]' })
-        })
-
-        act(() => field.result.current.remove(0))
-
-        expect(field.result.current.fields).toMatchObject([
-          arrShape('field-name[0]', 'second'),
-        ])
+      expect(fields.result.current).toMatchObject({
+        a: shape('a'),
+        b: shape('b'),
       })
     })
 
-    describe('fields', () => {
-      it('should retrieve first level fields', () => {
-        const { result } = renderHook(() => useForm())
+    it('should retrieve second level fields', () => {
+      const form = renderHook(() => useForm())
+      const fields = renderHook(() => form.result.current.useFields(['a.b']))
 
-        expect(result.current.fields(['a', 'b'])).toMatchObject({
-          a: shape('a'),
-          b: shape('b'),
-        })
-      })
+      expect(fields.result.current).toMatchObject({ a: { b: shape('a.b') } })
+    })
 
-      it('should retrieve second level fields', () => {
-        const { result } = renderHook(() => useForm())
+    it('should retrieve empty array level fields', () => {
+      const form = renderHook(() => useForm())
+      const fields = renderHook(() => form.result.current.useFields(['a[]']))
 
-        expect(result.current.fields(['a.b'])).toMatchObject({
-          a: {
-            b: shape('a.b'),
-          },
-        })
-      })
-
-      it('should retrieve empty array level fields', () => {
-        const { result } = renderHook(() => useForm())
-
-        expect(result.current.fields(['a[]'])).toMatchObject({
-          a: [],
-        })
+      expect(fields.result.current).toMatchObject({
+        a: [],
       })
     })
   })
