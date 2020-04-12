@@ -16,7 +16,7 @@ const useForm = <
     ...options,
   })
 
-  const field = (name: keyof FormValues) => ({
+  const field = <Name extends string>(name: Name) => ({
     meta: {
       touched: [].concat(form.formState.touched[name]).some(Boolean),
       error: (form.errors[name] as FieldError)?.message,
@@ -27,7 +27,19 @@ const useForm = <
     },
   })
 
-  return { ...form, field }
+  const fields = (structure: string[], prefix = '') => {
+    const result = {}
+
+    for (const name of structure) {
+      const paths = name.split('.')
+
+      if (paths.length === 1) result[paths[0]] = field(`${prefix}${name}`)
+    }
+
+    return result
+  }
+
+  return { ...form, field, fields }
 }
 
 export { useForm }
