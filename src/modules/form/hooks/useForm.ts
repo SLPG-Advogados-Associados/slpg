@@ -3,6 +3,7 @@ import {
   useForm as _useForm,
   UseFormOptions,
   FieldError,
+  useFieldArray as _useFieldArray,
 } from 'react-hook-form'
 
 const useForm = <
@@ -27,6 +28,20 @@ const useForm = <
     },
   })
 
+  const useFieldArray = <Name extends string>(name: Name) => {
+    const api = _useFieldArray<FormValues[Name][number]>({
+      name: name as string,
+      control: form.control,
+    })
+
+    const fields = api.fields.map((item, index) => ({
+      item,
+      ...field(`${name}[${index}]`),
+    }))
+
+    return { ...api, fields }
+  }
+
   const fields = (structure: string[], prefix = '') => {
     const result = {}
 
@@ -39,7 +54,7 @@ const useForm = <
     return result
   }
 
-  return { ...form, field, fields }
+  return { ...form, field, useFieldArray, fields }
 }
 
 export { useForm }
