@@ -45,7 +45,7 @@ const useForm = <
   }
 
   const useFields = (structure: string[], prefix = '') => {
-    const result = {}
+    const result = {} as any
 
     for (const name of structure) {
       const arrIndex = name.indexOf('[]')
@@ -55,9 +55,10 @@ const useForm = <
       } else {
         const left = name.substr(0, arrIndex)
         // const right = name.substr(arrIndex + 2)
+        const curr = get(result, left) || useFieldArray(`${prefix}${left}`)
 
-        // ensure array is created.
-        set(result, left, get(result, left, []))
+        // ensure array field is created.
+        set(result, left, curr)
       }
     }
 
