@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook, act } from '@testing-library/react-hooks'
 import { useForm } from './useForm'
 
 describe('form/useForm', () => {
@@ -24,5 +24,38 @@ describe('form/useForm', () => {
     for (const key of coreKeys) {
       expect(result.current).toHaveProperty(key)
     }
+  })
+
+  describe('field', () => {
+    const shape = (name: string, meta?: {}) => ({
+      meta: { touched: false, error: undefined, ...meta },
+      input: { name, ref: expect.toBeFunction() },
+    })
+
+    it('should retrieve a single field api', () => {
+      const { result } = renderHook(() => useForm())
+
+      expect(result.current).toHaveProperty('field')
+
+      expect(result.current.field('field-name')).toMatchObject(
+        shape('field-name')
+      )
+    })
+
+    it('should update with form values', () => {
+      const { result } = renderHook(() => useForm())
+
+      expect(result.current.field('field-name')).toMatchObject(
+        shape('field-name')
+      )
+
+      act(() => {
+        result.current.setError('field-name', null, 'error message')
+      })
+
+      expect(result.current.field('field-name')).toMatchObject(
+        shape('field-name', { error: 'error message' })
+      )
+    })
   })
 })
