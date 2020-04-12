@@ -1,4 +1,5 @@
 export * from './components/Input'
 export * from './components/FieldWrapper'
 export * from './components/ErrorMessage'
+export * from './lib/normalize'
 export * from './hooks/useForm'
