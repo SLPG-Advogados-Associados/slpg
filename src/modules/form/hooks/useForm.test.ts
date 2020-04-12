@@ -25,9 +25,15 @@ describe('form/useForm', () => {
     input: { name, ref: expect.toBeFunction() },
   })
 
-  const arrShape = (name: string, value: any, meta?: {}) => ({
+  const arrShape = <Mapped = ReturnType<typeof shape>>(
+    name: string,
+    value: any,
+    meta?: {},
+    // @ts-ignore
+    mapper: (name: string) => Mapped = () => shape(name, meta)
+  ) => ({
     item: { id: expect.toBeString(), value },
-    field: shape(name, meta),
+    field: mapper(name),
   })
 
   describe('field', () => {
@@ -58,7 +64,7 @@ describe('form/useForm', () => {
     })
   })
 
-  describe('fieldArray', () => {
+  describe('useFieldArray', () => {
     it('should retrieve a single field array api', () => {
       const form = renderHook(() => useForm())
 
@@ -88,13 +94,13 @@ describe('form/useForm', () => {
 
       act(() => field.result.current.append('first'))
 
-      expect(field.result.current.fields).toMatchObject([
+      expect(field.result.current.items).toMatchObject([
         arrShape('field-name[0]', 'first'),
       ])
 
       act(() => field.result.current.append('second'))
 
-      expect(field.result.current.fields).toMatchObject([
+      expect(field.result.current.items).toMatchObject([
         arrShape('field-name[0]', 'first'),
         arrShape('field-name[1]', 'second'),
       ])
@@ -107,8 +113,51 @@ describe('form/useForm', () => {
 
       act(() => field.result.current.remove(0))
 
-      expect(field.result.current.fields).toMatchObject([
+      expect(field.result.current.items).toMatchObject([
         arrShape('field-name[0]', 'second'),
+      ])
+    })
+
+    it('should be possible to control field value', () => {
+      const form = renderHook(() => useForm<{ 'field-name': string[] }>())
+
+      expect(form.result.current).toHaveProperty('useFieldArray')
+
+      const field = renderHook(() =>
+        form.result.current.useFieldArray('field-name', () => true)
+      )
+
+      act(() => field.result.current.append('first'))
+
+      expect(field.result.current.items).toMatchObject([
+        arrShape('field-name[0]', 'first', {}, () => true),
+      ])
+    })
+
+    it('should be possible to return sub-fields', () => {
+      const form = renderHook(() =>
+        useForm<{ 'field-name': { a: boolean; b: boolean } }>()
+      )
+
+      expect(form.result.current).toHaveProperty('useFieldArray')
+
+      const field = renderHook(() =>
+        form.result.current.useFieldArray('field-name', path => ({
+          a: form.result.current.field(`${path}.a`),
+          b: form.result.current.field(`${path}.b`),
+        }))
+      )
+
+      act(() => field.result.current.append({ a: true, b: false }))
+
+      expect(field.result.current.items).toMatchObject([
+        {
+          item: { id: expect.toBeString(), a: true, b: false },
+          field: {
+            a: shape(`field-name[0].a`),
+            b: shape(`field-name[0].b`),
+          },
+        },
       ])
     })
   })
