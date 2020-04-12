@@ -131,6 +131,14 @@ describe('form/useForm', () => {
           },
         })
       })
+
+      it('should retrieve empty array level fields', () => {
+        const { result } = renderHook(() => useForm())
+
+        expect(result.current.fields(['a[]'])).toMatchObject({
+          a: [],
+        })
+      })
     })
   })
 })
