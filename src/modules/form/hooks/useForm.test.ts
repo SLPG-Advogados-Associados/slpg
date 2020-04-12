@@ -121,6 +121,16 @@ describe('form/useForm', () => {
           b: shape('b'),
         })
       })
+
+      it('should retrieve second level fields', () => {
+        const { result } = renderHook(() => useForm())
+
+        expect(result.current.fields(['a.b'])).toMatchObject({
+          a: {
+            b: shape('a.b'),
+          },
+        })
+      })
     })
   })
 })

@@ -6,6 +6,8 @@ import {
   useFieldArray as _useFieldArray,
 } from 'react-hook-form'
 
+import { set } from 'lodash'
+
 const useForm = <
   FormValues extends Record<string, any> = Record<string, any>,
   ValidationContext extends object = object
@@ -46,9 +48,7 @@ const useForm = <
     const result = {}
 
     for (const name of structure) {
-      const paths = name.split('.')
-
-      if (paths.length === 1) result[paths[0]] = field(`${prefix}${name}`)
+      set(result, name, field(`${prefix}${name}`))
     }
 
     return result
