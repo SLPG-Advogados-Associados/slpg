@@ -44,7 +44,7 @@ const useForm = <
     return { ...api, fields }
   }
 
-  const fields = (structure: string[], prefix = '') => {
+  const useFields = (structure: string[], prefix = '') => {
     const result = {}
 
     for (const name of structure) {
@@ -64,7 +64,7 @@ const useForm = <
     return result
   }
 
-  return { ...form, field, useFieldArray, fields }
+  return { ...form, field, useFieldArray, useFields }
 }
 
 export { useForm }
