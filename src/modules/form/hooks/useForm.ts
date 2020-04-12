@@ -6,7 +6,7 @@ import {
   useFieldArray as _useFieldArray,
 } from 'react-hook-form'
 
-import { set } from 'lodash'
+import { set, get } from 'lodash'
 
 const useForm = <
   FormValues extends Record<string, any> = Record<string, any>,
@@ -48,7 +48,17 @@ const useForm = <
     const result = {}
 
     for (const name of structure) {
-      set(result, name, field(`${prefix}${name}`))
+      const arrIndex = name.indexOf('[]')
+
+      if (arrIndex === -1) {
+        set(result, name, field(`${prefix}${name}`))
+      } else {
+        const left = name.substr(0, arrIndex)
+        // const right = name.substr(arrIndex + 2)
+
+        // ensure array is created.
+        set(result, left, get(result, left, []))
+      }
     }
 
     return result
