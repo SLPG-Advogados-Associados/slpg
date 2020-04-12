@@ -57,5 +57,16 @@ describe('form/useForm', () => {
         shape('field-name', { error: 'error message' })
       )
     })
+
+    describe('fields', () => {
+      it('should retrieve first level fields', () => {
+        const { result } = renderHook(() => useForm())
+
+        expect(result.current.fields(['a', 'b'])).toMatchObject({
+          a: shape('a'),
+          b: shape('b'),
+        })
+      })
+    })
   })
 })
