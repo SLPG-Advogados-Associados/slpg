@@ -26,8 +26,8 @@ describe('form/useForm', () => {
   })
 
   const arrShape = (name: string, value: any, meta?: {}) => ({
-    ...shape(name, meta),
     item: { id: expect.toBeString(), value },
+    field: shape(name, meta),
   })
 
   describe('field', () => {

@@ -38,7 +38,7 @@ const useForm = <
 
     const fields = api.fields.map((item, index) => ({
       item,
-      ...field(`${name}[${index}]`),
+      field: field(`${name}[${index}]`),
     }))
 
     return { ...api, fields }
