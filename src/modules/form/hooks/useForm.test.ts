@@ -135,9 +135,13 @@ describe('form/useForm', () => {
       const form = renderHook(() => useForm())
       const fields = renderHook(() => form.result.current.useFields(['a[]']))
 
-      expect(fields.result.current).toMatchObject({
-        a: [],
-      })
+      expect(fields.result.current.a).toHaveProperty('swap')
+      expect(fields.result.current.a).toHaveProperty('move')
+      expect(fields.result.current.a).toHaveProperty('prepend')
+      expect(fields.result.current.a).toHaveProperty('append')
+      expect(fields.result.current.a).toHaveProperty('remove')
+      expect(fields.result.current.a).toHaveProperty('insert')
+      expect(fields.result.current.a).toHaveProperty('fields', [])
     })
   })
 })
