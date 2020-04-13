@@ -66,6 +66,25 @@ describe('form/useForm', () => {
         shape('field-name', { error: 'error message' })
       )
     })
+
+    it('should retrieve nested meta', () => {
+      const form = renderHook(() => useForm())
+      let field = renderHook(() => form.result.current.useField('foo.bar'))
+
+      form.result.current.register({ name: 'foo.bar' })
+
+      expect(field.result.current.meta.touched).toBe(false)
+
+      act(() => form.result.current.setValue('foo.bar', 'value'))
+      field = renderHook(() => form.result.current.useField('foo.bar'))
+
+      expect(field.result.current.meta.touched).toBe(true)
+
+      act(() => form.result.current.setError('foo.bar', 'type', 'message'))
+      field = renderHook(() => form.result.current.useField('foo.bar'))
+
+      expect(field.result.current.meta.error).toBe('message')
+    })
   })
 
   describe('useFieldArray', () => {
