@@ -46,6 +46,7 @@ module.exports = {
     console: false,
     Promise: false,
     CMS: false,
+    Proxy: false,
   },
   rules: {
     'no-console': 'error',

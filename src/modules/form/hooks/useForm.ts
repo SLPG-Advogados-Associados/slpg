@@ -84,11 +84,11 @@ const useForm = <
 
     const field = { ...api, items }
 
-    type Field = typeof field & {
+    type FieldArray = typeof field & {
       value: FormValues[Name]
     }
 
-    return new Proxy<Field>(field as any, {
+    return new Proxy<FieldArray>(field as any, {
       get: (obj, prop) => (prop === 'value' ? form.watch(name) : obj[prop]),
       set: (obj, prop, value) => {
         if (prop === 'value') {
