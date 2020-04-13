@@ -65,28 +65,7 @@ const useForm = <
     return { ...api, items }
   }
 
-  const useFields = (structure: string[], prefix = '') => {
-    const result = {} as any
-
-    for (const name of structure) {
-      const arrIndex = name.indexOf('[]')
-
-      if (arrIndex === -1) {
-        set(result, name, field(`${prefix}${name}`))
-      } else {
-        const left = name.substr(0, arrIndex)
-        // const right = name.substr(arrIndex + 2)
-        const curr = get(result, left) || useFieldArray(`${prefix}${left}`)
-
-        // ensure array field is created.
-        set(result, left, curr)
-      }
-    }
-
-    return result
-  }
-
-  return { ...form, field, useFieldArray, useFields }
+  return { ...form, field, useFieldArray }
 }
 
 export { useForm }

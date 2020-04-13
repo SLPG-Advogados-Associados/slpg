@@ -161,36 +161,4 @@ describe('form/useForm', () => {
       ])
     })
   })
-
-  describe('fields', () => {
-    it('should retrieve first level fields', () => {
-      const form = renderHook(() => useForm())
-      const fields = renderHook(() => form.result.current.useFields(['a', 'b']))
-
-      expect(fields.result.current).toMatchObject({
-        a: shape('a'),
-        b: shape('b'),
-      })
-    })
-
-    it('should retrieve second level fields', () => {
-      const form = renderHook(() => useForm())
-      const fields = renderHook(() => form.result.current.useFields(['a.b']))
-
-      expect(fields.result.current).toMatchObject({ a: { b: shape('a.b') } })
-    })
-
-    it('should retrieve empty array level fields', () => {
-      const form = renderHook(() => useForm())
-      const fields = renderHook(() => form.result.current.useFields(['a[]']))
-
-      expect(fields.result.current.a).toHaveProperty('swap')
-      expect(fields.result.current.a).toHaveProperty('move')
-      expect(fields.result.current.a).toHaveProperty('prepend')
-      expect(fields.result.current.a).toHaveProperty('append')
-      expect(fields.result.current.a).toHaveProperty('remove')
-      expect(fields.result.current.a).toHaveProperty('insert')
-      expect(fields.result.current.a).toHaveProperty('fields', [])
-    })
-  })
 })
