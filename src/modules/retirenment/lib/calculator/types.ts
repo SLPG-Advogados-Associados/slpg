@@ -7,24 +7,24 @@
  * Classification used for retirement calc purposes.
  */
 export enum Gender {
-  MALE,
-  FEMALE,
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
 }
 
 /**
  * Kinds of services.
  */
 export enum ServiceKind {
-  PUBLIC,
-  PRIVATE,
+  PUBLIC = 'PUBLIC',
+  PRIVATE = 'PRIVATE',
 }
 
 /**
  * Kinds of post.
  */
 export enum Post {
-  TEACHER,
-  OTHER,
+  TEACHER = 'TEACHER',
+  OTHER = 'OTHER',
 }
 
 /**
