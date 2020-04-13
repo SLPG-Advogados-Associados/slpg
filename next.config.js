@@ -13,7 +13,26 @@ const config = {
   exportPathMap,
   exportTrailingSlash: true,
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'].map(ext => `page.${ext}`),
-  webpack: config => {
+  webpack: (original, { dev }) => {
+    const config = Object.assign({}, original, {
+      entry: async () => {
+        const entries = await original.entry()
+
+        if (dev && entries['static/runtime/main.js']) {
+          entries['static/runtime/main.js'] = [
+            'react-hot-loader/patch',
+            entries['static/runtime/main.js'],
+          ]
+        }
+
+        return entries
+      },
+    })
+
+    if (dev) {
+      config.resolve.alias['react-dom'] = '@hot-loader/react-dom'
+    }
+
     // disable TypeScript checks (use `yarn type-check` and editor plugins instead)
     config.plugins = config.plugins.filter(
       plugin => plugin.constructor.name !== 'ForkTsCheckerWebpackPlugin'
@@ -28,7 +47,7 @@ const config = {
     config.module.rules.push({
       test: /\.md$/,
       loader: 'frontmatter-markdown-loader',
-      options: { mode: ['body'] }
+      options: { mode: ['body'] },
     })
 
     config.module.rules.push({
