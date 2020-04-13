@@ -18,7 +18,7 @@
     "qa": "run-p type-check test lint",
     "site-map": "node site-map.js",
     "start": "next start",
-    "test": "jest",
+    "test": "TZ=UTC jest",
     "type-check": "tsc"
   },
   "husky": {
