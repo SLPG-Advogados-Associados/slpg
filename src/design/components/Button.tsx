@@ -17,6 +17,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   cta?: boolean
   circle?: boolean
   outline?: boolean
+  secondary?: boolean
   // states
   loading?: boolean
 }
