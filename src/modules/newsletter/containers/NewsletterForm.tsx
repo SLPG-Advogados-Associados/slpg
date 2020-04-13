@@ -39,9 +39,9 @@ const NewsletterForm: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
   const form = useForm<Inputs>({ defaultValues, validationSchema })
 
   const fields = {
-    email: form.field('email'),
-    name: form.field('name'),
-    interests: form.field('interests'),
+    email: form.useField('email'),
+    name: form.useField('name'),
+    interests: form.useField('interests'),
   }
 
   const onSubmit = form.handleSubmit(async variables => {

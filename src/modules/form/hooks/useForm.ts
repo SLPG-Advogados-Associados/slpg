@@ -32,7 +32,7 @@ const useForm = <
     }
   }
 
-  const field = (name: string): Field => ({
+  const useField = (name: string): Field => ({
     meta: {
       touched: [].concat(form.formState.touched[name]).some(Boolean),
       error: (form.errors[name] as FieldError)?.message,
@@ -50,7 +50,7 @@ const useForm = <
       item: Partial<ArrayField<FormValues[Name][number], 'id'>>
     ) => //
     // @ts-ignore
-    Mapped = path => field(path)
+    Mapped = path => useField(path)
   ) => {
     const api = _useFieldArray<FormValues[Name][number]>({
       name: name as string,
@@ -65,7 +65,7 @@ const useForm = <
     return { ...api, items }
   }
 
-  return { ...form, field, useFieldArray }
+  return { ...form, useField, useFieldArray }
 }
 
 export { useForm }
