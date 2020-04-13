@@ -68,6 +68,7 @@
     "mobile-detect": "^1.4.4",
     "netlify-lambda": "^1.6.3",
     "next": "^9.3.4",
+    "next-hot-loader": "^0.1.2",
     "nodemailer": "^6.4.1",
     "querystring": "^0.2.0",
     "ramda": "^0.26.1",
