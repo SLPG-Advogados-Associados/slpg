@@ -1,38 +1,20 @@
 const compose = require('next-compose-plugins')
 const withCSS = require('@zeit/next-css')
 const withImages = require('next-images')
+const withHotLoader = require('next-plugin-hot-loader')
 const nextEnv = require('next-env')
 const { exportPathMap } = require('./next.export')
 
 require('dotenv-load')()
 const withNextEnv = nextEnv()
 
-const plugins = [[withNextEnv], [withImages], [withCSS]]
+const plugins = [[withHotLoader], [withNextEnv], [withImages], [withCSS]]
 
 const config = {
   exportPathMap,
   exportTrailingSlash: true,
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'].map(ext => `page.${ext}`),
-  webpack: (original, { dev }) => {
-    const config = Object.assign({}, original, {
-      entry: async () => {
-        const entries = await original.entry()
-
-        if (dev && entries['static/runtime/main.js']) {
-          entries['static/runtime/main.js'] = [
-            'react-hot-loader/patch',
-            entries['static/runtime/main.js'],
-          ]
-        }
-
-        return entries
-      },
-    })
-
-    if (dev) {
-      config.resolve.alias['react-dom'] = '@hot-loader/react-dom'
-    }
-
+  webpack: config => {
     // disable TypeScript checks (use `yarn type-check` and editor plugins instead)
     config.plugins = config.plugins.filter(
       plugin => plugin.constructor.name !== 'ForkTsCheckerWebpackPlugin'

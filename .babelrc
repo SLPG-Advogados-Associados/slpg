@@ -21,9 +21,6 @@
   "env": {
     "test": {
       "plugins": ["rewire-ts"]
-    },
-    "development": {
-      "plugins": ["react-hot-loader/babel"]
     }
   }
 }
