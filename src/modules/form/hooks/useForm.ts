@@ -4,11 +4,12 @@ import {
   UseFormOptions,
   Message,
   FieldError,
+  FieldName,
   ArrayField,
   useFieldArray as _useFieldArray,
 } from 'react-hook-form'
 
-import { set, get } from 'lodash'
+import { get } from 'lodash'
 
 const useForm = <
   FormValues extends Record<string, any> = Record<string, any>,
@@ -32,10 +33,10 @@ const useForm = <
     }
   }
 
-  const useField = (name: string): Field => ({
+  const useField = <Name extends FieldName<FormValues>>(name: Name): Field => ({
     meta: {
-      touched: [].concat(form.formState.touched[name]).some(Boolean),
-      error: (form.errors[name] as FieldError)?.message,
+      touched: [].concat(get(form.formState.touched, name)).some(Boolean),
+      error: (get(form.errors, name) as FieldError)?.message,
     },
     input: {
       name,
@@ -43,7 +44,7 @@ const useForm = <
     },
   })
 
-  const useFieldArray = <Name extends string, Mapped = Field>(
+  const useFieldArray = <Name extends FieldName<FormValues>, Mapped = Field>(
     name: Name,
     mapper: (
       path: string,
