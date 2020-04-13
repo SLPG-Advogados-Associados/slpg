@@ -5,6 +5,8 @@ describe('form/useForm', () => {
   it('should return core api', () => {
     const { result } = renderHook(() => useForm())
 
+    // core
+
     expect(result.current).toHaveProperty('watch')
     expect(result.current).toHaveProperty('control')
     expect(result.current).toHaveProperty('handleSubmit')
@@ -18,6 +20,10 @@ describe('form/useForm', () => {
     expect(result.current).toHaveProperty('setError')
     expect(result.current).toHaveProperty('errors')
     expect(result.current).toHaveProperty('formState')
+
+    // custom
+    expect(result.current).toHaveProperty('useField')
+    expect(result.current).toHaveProperty('useFieldArray')
   })
 
   const shape = (name: string, meta?: {}) => ({
@@ -36,13 +42,11 @@ describe('form/useForm', () => {
     field: mapper(name),
   })
 
-  describe('field', () => {
+  describe('useField', () => {
     it('should retrieve a single field api', () => {
       const { result } = renderHook(() => useForm())
 
-      expect(result.current).toHaveProperty('field')
-
-      expect(result.current.field('field-name')).toMatchObject(
+      expect(result.current.useField('field-name')).toMatchObject(
         shape('field-name')
       )
     })
@@ -50,7 +54,7 @@ describe('form/useForm', () => {
     it('should update with form values', () => {
       const { result } = renderHook(() => useForm())
 
-      expect(result.current.field('field-name')).toMatchObject(
+      expect(result.current.useField('field-name')).toMatchObject(
         shape('field-name')
       )
 
@@ -58,7 +62,7 @@ describe('form/useForm', () => {
         result.current.setError('field-name', null, 'error message')
       })
 
-      expect(result.current.field('field-name')).toMatchObject(
+      expect(result.current.useField('field-name')).toMatchObject(
         shape('field-name', { error: 'error message' })
       )
     })
@@ -143,8 +147,8 @@ describe('form/useForm', () => {
 
       const field = renderHook(() =>
         form.result.current.useFieldArray('field-name', path => ({
-          a: form.result.current.field(`${path}.a`),
-          b: form.result.current.field(`${path}.b`),
+          a: form.result.current.useField(`${path}.a`),
+          b: form.result.current.useField(`${path}.b`),
         }))
       )
 

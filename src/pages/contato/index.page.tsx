@@ -45,10 +45,10 @@ const ContatoPage = () => {
   const form = useForm({ defaultValues, validationSchema })
 
   const fields = {
-    name: form.field('name'),
-    phone: form.field('phone'),
-    email: form.field('email'),
-    message: form.field('message'),
+    name: form.useField('name'),
+    phone: form.useField('phone'),
+    email: form.useField('email'),
+    message: form.useField('message'),
   }
 
   const onSubmit = form.handleSubmit(async variables => {
