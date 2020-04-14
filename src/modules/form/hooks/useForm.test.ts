@@ -199,7 +199,7 @@ describe('form/useForm', () => {
       ])
     })
 
-    it('should be possible to get field value', () => {
+    it('should be possible to use a custom mapper', () => {
       const form = renderHook(() => useForm<{ 'field-name': string[] }>())
 
       const field = renderHook(() =>
@@ -240,16 +240,56 @@ describe('form/useForm', () => {
 
     it('should be possible to interact with a field array value', () => {
       const form = renderHook(() => useForm<{ foo: string[] }>())
-      const field = renderHook(() => form.result.current.useFieldArray('foo'))
-      form.result.current.register({ name: 'foo' })
 
-      expect(field.result.current.value).toBeUndefined()
-      expect(form.result.current.getValues()).toEqual({})
+      const field = renderHook(() => {
+        const field = form.result.current.useFieldArray('foo')
 
-      act(() => void (field.result.current.value = []))
+        for (const index in field.fields) {
+          field.items[index].field.input.ref({
+            name: `foo[${index}]`,
+            // @ts-ignore
+            value: field.fields[index].value,
+          })
+        }
+
+        return field
+      })
 
       expect(field.result.current.value).toEqual([])
-      expect(form.result.current.getValues()).toEqual({ foo: [] })
+      expect(form.result.current.getValues()).toEqual({})
+
+      act(() => void field.result.current.append(['first']))
+      expect(field.result.current.value).toEqual(['first'])
+      expect(form.result.current.getValues()).toEqual({ 'foo[0]': 'first' })
+
+      act(() => void field.result.current.append('second'))
+      expect(field.result.current.value).toEqual(['first', 'second'])
+      expect(form.result.current.getValues()).toEqual({
+        'foo[0]': 'first',
+        'foo[1]': 'second',
+      })
+
+      act(() => void field.result.current.append(['third', 'fourth']))
+      expect(field.result.current.value).toEqual([
+        'first',
+        'second',
+        'third',
+        'fourth',
+      ])
+      expect(form.result.current.getValues()).toEqual({
+        'foo[0]': 'first',
+        'foo[1]': 'second',
+        'foo[2]': 'third',
+        'foo[3]': 'fourth',
+      })
+
+      act(() => void field.result.current.remove(1))
+      expect(field.result.current.value).toEqual(['first', 'third', 'fourth'])
+      expect(form.result.current.getValues()).toEqual({
+        'foo[0]': 'first',
+        'foo[1]': 'third',
+        'foo[2]': 'fourth',
+      })
     })
 
     it('should re-render only when acessing a field value', () => {
@@ -260,36 +300,55 @@ describe('form/useForm', () => {
         return useForm<{ foo: string[] }>()
       })
 
-      const field = renderHook(() => form.result.current.useFieldArray('foo'))
+      const field = renderHook(() => {
+        const field = form.result.current.useFieldArray('foo')
 
-      // must create ref for watchers to work
-      form.result.current.register({ name: 'foo' })
+        for (const index in field.fields) {
+          field.items[index].field.input.ref({
+            name: `foo[${index}]`,
+            // @ts-ignore
+            value: field.fields[index].value,
+          })
+        }
+
+        return field
+      })
 
       expect(rendered).toBe(1)
       expect(form.result.current.getValues().foo).toBeUndefined()
 
       // set without watching
 
-      act(() => void (field.result.current.value = ['first']))
+      act(() => field.result.current.append('first'))
       expect(rendered).toBe(1)
-      expect(form.result.current.getValues().foo).toEqual(['first'])
+      expect(form.result.current.getValues()).toEqual({ 'foo[0]': 'first' })
 
-      act(() => void (field.result.current.value = ['first', 'second']))
+      act(() => field.result.current.append('second'))
       expect(rendered).toBe(1)
-      expect(form.result.current.getValues().foo).toEqual(['first', 'second'])
+      expect(form.result.current.getValues()).toEqual({
+        'foo[0]': 'first',
+        'foo[1]': 'second',
+      })
 
       // start watching
       expect(field.result.current.value).toEqual(['first', 'second'])
 
       // set with watching
 
-      act(() => void (field.result.current.value = ['third']))
+      act(() => field.result.current.append('third'))
       expect(rendered).toBe(2)
-      expect(form.result.current.getValues().foo).toEqual(['third'])
+      expect(form.result.current.getValues()).toEqual({
+        'foo[0]': 'first',
+        'foo[1]': 'second',
+        'foo[2]': 'third',
+      })
 
-      act(() => void (field.result.current.value = ['fourth']))
+      act(() => field.result.current.remove(1))
       expect(rendered).toBe(3)
-      expect(form.result.current.getValues().foo).toEqual(['fourth'])
+      expect(form.result.current.getValues()).toEqual({
+        'foo[0]': 'first',
+        'foo[1]': 'third',
+      })
     })
   })
 })
