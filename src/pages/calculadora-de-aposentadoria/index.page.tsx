@@ -80,14 +80,18 @@ const CalculatorPage = () => {
                 />
 
                 <div className="flex">
-                  <FieldWrapper {...field.start.meta} label="Início:">
+                  <FieldWrapper
+                    {...field.start.meta}
+                    label="Início:"
+                    className="flex-grow-0"
+                  >
                     <Input {...field.start.input} placeholder="dd/mm/aaaa" />
                   </FieldWrapper>
 
                   <FieldWrapper
                     {...field.end.meta}
                     label="Fim:"
-                    className="ml-8"
+                    className="ml-8 flex-grow-0"
                   >
                     <Input {...field.end.input} placeholder="dd/mm/aaaa" />
                   </FieldWrapper>
@@ -101,7 +105,7 @@ const CalculatorPage = () => {
                   </FieldWrapper>
 
                   <FieldWrapper
-                    className="flex flex-col ml-8"
+                    className="flex flex-col ml-8 flex-grow-0"
                     wrapper="div"
                     label="Setor:"
                   >
@@ -121,7 +125,7 @@ const CalculatorPage = () => {
                   </FieldWrapper>
 
                   <FieldWrapper
-                    className="flex flex-col ml-8"
+                    className="flex flex-col ml-8 flex-grow-0"
                     wrapper="div"
                     label="Cargo:"
                   >
