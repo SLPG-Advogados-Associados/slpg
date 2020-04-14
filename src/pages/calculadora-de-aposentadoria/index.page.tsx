@@ -1,6 +1,6 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import { Heading, Button } from '~design'
+import { Heading, Button, Icons } from '~design'
 import { Input, FieldWrapper, ErrorMessage } from '~modules/form'
 import { Calculator } from '~modules/retirenment'
 import { Section } from '~app/components/Section'
@@ -67,12 +67,17 @@ const CalculatorPage = () => {
             {form.fields.contributions.items.map(({ item, field }, index) => (
               <fieldset
                 key={item.id}
-                className="border-l-4 border-divisor bg-aside p-8 mb-4"
+                className="border-l-4 border-divisor bg-aside p-8 mb-4 relative"
               >
                 <legend>
                   {form.fields.contributions.value?.[index]?.service.title ||
                     'Sem título'}
                 </legend>
+
+                <Icons.X
+                  className="absolute top-0 right-0 mt-5 mr-2 opacity-50 hover:opacity-100 cursor-pointer"
+                  onClick={() => form.fields.contributions.remove(index)}
+                />
 
                 <div className="flex">
                   <FieldWrapper {...field.start.meta} label="Início:">
