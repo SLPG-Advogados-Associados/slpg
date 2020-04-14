@@ -7,11 +7,11 @@ const parse = {
   stringToDate: (
     format = 'dd/MM/yyyy'
   ): Yup.TransformFunction<Yup.DateSchema> =>
-    function(value: Date | string, originalValue: string) {
-      if (this.isType(value)) return value
-      if (!originalValue) return null
-      const parsed = parseDate(originalValue, format, new Date())
-      return isValid(parsed) ? parsed : originalValue
+    function(_value: Date | string, value: string) {
+      if (!value) return null
+      if (value.length !== format.length) return new Date(NaN)
+      const parsed = parseDate(value, format, new Date())
+      return isValid(parsed) ? parsed : value
     },
 }
 

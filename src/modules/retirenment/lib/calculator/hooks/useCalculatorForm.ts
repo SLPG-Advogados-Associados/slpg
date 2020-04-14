@@ -8,12 +8,25 @@ type FormData = {
   contributions: Contribution[]
 }
 
+const date = schemas
+  .date()
+  .required('Campo obrigatório')
+  .typeError('"${originalValue}" não é uma data válida')
+
 const validationSchema = Yup.object().shape({
   gender: Yup.string().required('Campo obrigatório'),
-  birthDate: schemas
-    .date()
-    .required('Campo obrigatório')
-    .typeError('"${originalValue}" não é uma data válida'),
+  birthDate: date,
+  contributions: Yup.array().of(
+    Yup.object().shape({
+      start: date,
+      end: date.notRequired(),
+      service: Yup.object().shape({
+        title: Yup.string(),
+        kind: Yup.string().required('Campo obrigatório'),
+        post: Yup.string().required('Campo obrigatório'),
+      }),
+    })
+  ),
 })
 
 const useCalculatorForm = () => {
