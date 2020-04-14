@@ -89,16 +89,8 @@ const useForm = <
     }
 
     return new Proxy<FieldArray>(field as any, {
-      get: (obj, prop) => (prop === 'value' ? form.watch(name) : obj[prop]),
-      set: (obj, prop, value) => {
-        if (prop === 'value') {
-          form.setValue(name, value)
-        } else {
-          obj[prop] = value
-        }
-
-        return true
-      },
+      get: (obj, prop) =>
+        prop === 'value' ? form.watch(name) || [] : obj[prop],
     })
   }
 
