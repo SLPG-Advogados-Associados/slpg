@@ -35,14 +35,15 @@ const useForm = <
   }
 
   const useField = <Name extends FieldName<FormValues>>(
-    name: Name
+    name: Name,
+    preRef = false
   ): Field<Name> => {
     const touched = [].concat(get(form.formState.touched, name)).some(Boolean)
     const error = (get(form.errors, name) as FieldError)?.message
 
     const field = {
       meta: { touched, error },
-      input: { name, ref: form.register },
+      input: { name, ref: preRef ? form.register() : form.register },
     }
 
     return new Proxy(field as any, {
@@ -69,7 +70,7 @@ const useForm = <
       item: Partial<ArrayField<FormValues[Name][number], 'id'>>
     ) => //
     // @ts-ignore
-    Mapped = path => useField(path)
+    Mapped = path => useField(path, true)
   ) => {
     const api = _useFieldArray<FormValues[Name][number]>({
       name: name as string,
