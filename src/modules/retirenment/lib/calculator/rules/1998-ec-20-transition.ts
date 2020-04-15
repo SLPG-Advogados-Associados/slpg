@@ -3,19 +3,7 @@ import { max, isEqual } from '../lib/date'
 import * as reacher from '../lib/reachers'
 import { multiply, subtract } from '../lib/duration'
 
-import {
-  Condition,
-  Gender,
-  Contribution,
-  ConditionContextBase,
-  Post,
-} from '../types'
-
-interface Input {
-  gender: Gender
-  birthDate: Date
-  contributions: Contribution[]
-}
+import { Condition, Gender, ConditionContextBase, Post, Input } from '../types'
 
 interface ResultContext extends ConditionContextBase {
   integrality: boolean
