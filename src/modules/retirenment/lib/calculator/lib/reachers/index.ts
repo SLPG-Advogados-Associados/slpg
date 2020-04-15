@@ -27,7 +27,7 @@ const merge = {
     const results = reachers.map(reacher => reacher(input))
     const reached = max(results.map(([reached]) => reached))
 
-    return [reached, { results }]
+    return [reached, results]
   },
 }
 
