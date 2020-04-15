@@ -1,26 +1,39 @@
 import React from 'react'
+import qs from 'qs'
 import { hot } from 'react-hot-loader/root'
+import { useRouter } from 'next/router'
 import { Heading, Button, Icons } from '~design'
 import { Input, FieldWrapper, ErrorMessage } from '~modules/form'
 import { Calculator } from '~modules/retirenment'
-import { Section } from '~app/components/Section'
 import { Page } from '~app/components/Page'
+import { Section } from '~app/components/Section'
+import { useConfirmUnload } from '~app/hooks/useConfirmUnload'
 
 const meta = {
   title: 'Calculadora de Aposentadoria',
   description: 'Estude aqui suas possibilidades de aposentadoria',
 }
 
-const CalculatorPage = () => {
+const CalculatorFormPage = () => {
+  const router = useRouter()
   const form = Calculator.useCalculatorForm()
 
+  // block leaving in case form is modified
+  useConfirmUnload(() => form.formState.dirty, [form.formState.dirty])
+
   const onSubmit = form.handleSubmit(values => {
-    // eslint-disable-next-line
-    console.log({ values })
+    router.push({
+      pathname: '/calculadora-de-aposentadoria/resultado',
+      query: {
+        input: encodeURIComponent(
+          qs.stringify(values, { encodeValuesOnly: true })
+        ),
+      },
+    })
   })
 
   return (
-    <Page off={{ contactCTA: true }} meta={meta}>
+    <Page meta={meta}>
       <div className="bg-reverse text-white py-8">
         <Heading noMargins>Calculadora de Aposentadoria</Heading>
       </div>
@@ -172,4 +185,4 @@ const CalculatorPage = () => {
   )
 }
 
-export default hot(CalculatorPage)
+export default hot(CalculatorFormPage)
