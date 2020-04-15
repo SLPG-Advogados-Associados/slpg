@@ -9,6 +9,8 @@ summary: >-
   Aprendizes-Marinheiros em Santa Catarina - EAMSC a exercerem trabalho remoto
   em razão da pandemia da COVID-19.
 ---
+**Por Emmanuel Martins (OAB/SC 23080), advogado/sócio do SLPG.**
+
 O TRF/4 acaba de deferir liminar autorizando os servidores civis da Escola de Aprendizes-Marinheiros em Santa Catarina - EAMSC a exercerem trabalho remoto em razão da pandemia da COVID-19.
 
 A decisão concede efeito suspensivo positivo em agravo de instrumento interposto pelo SINASEFE-Seção IFSC, que representa o interesse dos servidores em mandado de segurança impetrado pela entidade na Justiça Federal de Florianópolis contra o Comandante da EAMSC.
