@@ -46,6 +46,12 @@ export type Contribution = {
   service: Service
 }
 
+export interface Input {
+  gender: Gender
+  birthDate: Date
+  contributions: Contribution[]
+}
+
 /**
  * Reachers are atomic reach date calculators.
  * -------------------------------------------

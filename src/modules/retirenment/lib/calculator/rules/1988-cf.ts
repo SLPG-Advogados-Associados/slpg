@@ -2,19 +2,7 @@
 import { add } from '../lib/date'
 import * as reach from '../lib/reachers'
 
-import {
-  Contribution,
-  Condition,
-  ConditionContextBase,
-  Gender,
-  Post,
-} from '../types'
-
-interface Input {
-  gender: Gender
-  birthDate: Date
-  contributions: Contribution[]
-}
+import { Condition, ConditionContextBase, Gender, Post, Input } from '../types'
 
 interface ResultContext extends ConditionContextBase {
   integrality: boolean
