@@ -17,4 +17,4 @@ Apesar dos decretos do Estado de Santa Catarina e do Município de Florianópoli
 
 Ao assegurar o direito dos trabalhadores ao trabalho remoto, a decisão proferida pelo TRF/4 prestigia direitos fundamentais como o direito à vida (art. 5º, caput, da CF), o direito à saúde (art. 6º, caput, e art. 196 da CF) e o direito ao ambiente de trabalho seguro (art. 7º, XXII), além de dar eficácia ao princípio federativo (art. 1º, caput, da CF) e às regras de distribuição de competências entre União, Estados, Municípios e o Distrito Federal (arts. 23, II, e 24, XII, da CF).
 
-Confira [NESTE LINK](https://eproc.trf4.jus.br/eproc2trf4/controlador.php?acao=acessar_documento&doc=41586965057493263406053032983&evento=41586965057493263406053043181&key=3c4b372588e0e475445d2634744727d639667296f6f3bfa8f840bd71465d43e5&hash=dea2f8e0b01c65bfeab2b72af04ad5a4) a íntegra da decisão.
+Confira [NESTE LINK](https://eproc.trf4.jus.br/eproc2trf4/controlador.php?acao=acessar_documento_publico&doc=41586965057493263406053032983&evento=489&key=4fc4ceb0573ea1f3a13372c1936f02d5ca02799f12e1880c65a6dd683d45db93&hash=27a2d57847581085a2fad35284531a33) a íntegra da decisão.
