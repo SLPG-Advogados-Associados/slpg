@@ -103,6 +103,56 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         expect(reached).toBe(satisfied)
         expect(context).toMatchObject({ integrality: true, reached: by })
       })
+
+      /*
+       * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+       * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+       * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+       * de magistério e que opte por aposentar-se na forma do disposto no
+       * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+       * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+       * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+       * efetivo exercício das funções de magistério.
+       */
+      describe('teacher', () => {
+        const y = [u, T] as [ServiceKind, Post]
+        const n = [u, u] as [ServiceKind, Post]
+
+        it.each([
+          // reached before promulgation:
+          [i(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+          [i(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+
+          // male
+
+          // by contrib:
+          [i(M, '49', [c('60^65', y), c('77', y)]), true, d('2003-01-30')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '49', [c('60^65', y), c('78', y)]), false, d('2004-06-26')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          // combined teacher/non-teacher periods
+          [i(M, '49', [c('60^65', n), c('78', y)]), false, d('2005-07-03')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          // by age:
+          [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [i(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+          // by last:
+          [i(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+
+          // female
+
+          // by contrib:
+          [i(F, '54', [c('60^65', y), c('82', y)]), true, d('2003-04-25')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [i(F, '54', [c('60^65', y), c('83', y)]), false, d('2004-10-02')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [i(F, '54', [c('60^65', n), c('83', y)]), false, d('2005-12-14')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          // by age:
+          [i(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+          // by last:
+          [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
+        ])('should calculate condition result', (input, satisfied, by) => {
+          const [reached, context] = integral(input)
+          expect(reached).toBe(satisfied)
+          expect(context).toMatchObject({ integrality: true, reached: by })
+        })
+      })
     })
 
     /**
@@ -151,60 +201,21 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         expect(reached).toBe(satisfied)
         expect(context).toMatchObject({ integrality: false, reached: by })
       })
-    })
 
-    /*
-     * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
-     * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
-     * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
-     * de magistério e que opte por aposentar-se na forma do disposto no
-     * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
-     * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
-     * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
-     * efetivo exercício das funções de magistério.
-     */
-    describe('teacher', () => {
-      const y = [u, T] as [ServiceKind, Post]
-      const n = [u, u] as [ServiceKind, Post]
+      /*
+       * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+       * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+       * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+       * de magistério e que opte por aposentar-se na forma do disposto no
+       * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+       * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+       * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+       * efetivo exercício das funções de magistério.
+       */
+      describe('teacher', () => {
+        const y = [u, T] as [ServiceKind, Post]
+        const n = [u, u] as [ServiceKind, Post]
 
-      describe('integral', () => {
-        it.each([
-          // reached before promulgation:
-          [i(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
-          [i(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
-
-          // male
-
-          // by contrib:
-          [i(M, '49', [c('60^65', y), c('77', y)]), true, d('2003-01-30')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '49', [c('60^65', y), c('78', y)]), false, d('2004-06-26')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
-          // combined teacher/non-teacher periods
-          [i(M, '49', [c('60^65', n), c('78', y)]), false, d('2005-07-03')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
-          // by age:
-          [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
-          // by last:
-          [i(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
-
-          // female
-
-          // by contrib:
-          [i(F, '54', [c('60^65', y), c('82', y)]), true, d('2003-04-25')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          [i(F, '54', [c('60^65', y), c('83', y)]), false, d('2004-10-02')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
-          [i(F, '54', [c('60^65', n), c('83', y)]), false, d('2005-12-14')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
-          // by age:
-          [i(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
-          // by last:
-          [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
-        ])('should calculate condition result', (input, satisfied, by) => {
-          const [reached, context] = integral(input)
-          expect(reached).toBe(satisfied)
-          expect(context).toMatchObject({ integrality: true, reached: by })
-        })
-      })
-
-      describe('proportional', () => {
         it.each([
           // reached before promulgation:
           [i(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
