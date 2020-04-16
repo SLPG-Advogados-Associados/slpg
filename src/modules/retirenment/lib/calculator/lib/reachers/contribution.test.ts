@@ -121,5 +121,26 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
         }
       )
     })
+
+    describe('expected constructor', () => {
+      it.each([
+        [20, i(c('70^90')), d('1989-12-27'), 7305],
+        [20, i(c('60^65'), c('70^85')), d('1984-12-26'), 7306],
+        [20, i(c('70')), d('1989-12-27'), 18262],
+        [20, i(c('80^90')), NEVER, 3653],
+        [20, i(c('60^65'), c('70^75')), NEVER, 3653],
+        [20, i(c('90')), d('2009-12-27'), 10957],
+        [20, i(c('90^95'), c('2000')), d('2014-12-27'), 9131],
+      ])('should correctly calculate reach', (years, input, by, duration) => {
+        const expected = jest.fn(() => ({ years }))
+        const [reached, context] = total(expected)(input)
+
+        expect(reached).toEqual(by)
+        expect(context).toHaveProperty('computed.real.days', duration)
+        expect(context).toHaveProperty('computed.processed.days', duration)
+        expect(expected).toHaveBeenCalledTimes(1)
+        expect(expected).toHaveBeenCalledWith(input)
+      })
+    })
   })
 })
