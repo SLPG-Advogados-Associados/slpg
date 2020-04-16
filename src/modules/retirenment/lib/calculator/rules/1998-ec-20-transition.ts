@@ -2,8 +2,7 @@
 import { max, isEqual } from '../lib/date'
 import * as reacher from '../lib/reachers'
 import { multiply, subtract } from '../lib/duration'
-
-import { Rule, Possibility, Gender, Post, Input } from '../types'
+import { Rule, Possibility, Gender, Post, Input, Operation } from '../types'
 
 const { MALE, FEMALE } = Gender
 const { TEACHER } = Post
@@ -91,7 +90,7 @@ const possibilities: Possibility[] = [
 
       (...)
     `,
-    condition: input => {
+    execute: input => {
       const reachers = {
         /**
          * (...)
@@ -101,7 +100,7 @@ const possibilities: Possibility[] = [
          */
         age: {
           description: 'Idade mínima',
-          condition: reacher.age({
+          execute: reacher.age({
             years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
           }),
         },
@@ -114,7 +113,7 @@ const possibilities: Possibility[] = [
          */
         last: {
           description: 'Tempo no último cargo',
-          condition: reacher.contribution.last({ years: 5 }),
+          execute: reacher.contribution.last({ years: 5 }),
         },
 
         /**
@@ -145,24 +144,27 @@ const possibilities: Possibility[] = [
          */
         total: {
           description: 'Tempo total de contribuição',
-          condition: reacher.contribution.total(
+          execute: reacher.contribution.total(
             { years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] },
             processor(true)
           ),
         },
       }
 
-      const conditions = [
-        [reachers.age, reachers.age.condition(input)],
-        [reachers.last, reachers.last.condition(input)],
-        [reachers.total, reachers.total.condition(input)],
-      ] as const
+      const result = {
+        op: Operation.AND,
+        conditions: [
+          [reachers.age, reachers.age.execute(input)],
+          [reachers.last, reachers.last.execute(input)],
+          [reachers.total, reachers.total.execute(input)],
+        ] as const,
+      }
 
       const reached = max(
-        conditions.map(([, [date]]) => date).concat(promulgation)
+        result.conditions.map(([, [date]]) => date).concat(promulgation)
       )
 
-      return [reached <= due, { reached, conditions }]
+      return [reached <= due, { reached, result }]
     },
   },
 
@@ -184,7 +186,7 @@ const possibilities: Possibility[] = [
     a) trinta anos, se homem, e vinte e cinco anos, se mulher; e
     b) um período adicional de contribuição equivalente a quarenta por cento do tempo que, na data da publicação desta Emenda, faltaria para atingir o limite de tempo constante da alínea anterior;
     `,
-    condition: input => {
+    execute: input => {
       const reachers = {
         /**
          * (...)
@@ -194,7 +196,7 @@ const possibilities: Possibility[] = [
          */
         age: {
           description: 'Idade mínima',
-          condition: reacher.age({
+          execute: reacher.age({
             years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
           }),
         },
@@ -207,7 +209,7 @@ const possibilities: Possibility[] = [
          */
         last: {
           description: 'Tempo no último cargo',
-          condition: reacher.contribution.last({ years: 5 }),
+          execute: reacher.contribution.last({ years: 5 }),
         },
 
         /**
@@ -238,24 +240,27 @@ const possibilities: Possibility[] = [
          */
         total: {
           description: 'Tempo total de contribuição',
-          condition: reacher.contribution.total(
+          execute: reacher.contribution.total(
             { years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] },
             processor(false)
           ),
         },
       }
 
-      const conditions = [
-        [reachers.age, reachers.age.condition(input)],
-        [reachers.last, reachers.last.condition(input)],
-        [reachers.total, reachers.total.condition(input)],
-      ] as const
+      const result = {
+        op: Operation.AND,
+        conditions: [
+          [reachers.age, reachers.age.execute(input)],
+          [reachers.last, reachers.last.execute(input)],
+          [reachers.total, reachers.total.execute(input)],
+        ] as const,
+      }
 
       const reached = max(
-        conditions.map(([, [date]]) => date).concat(promulgation)
+        result.conditions.map(([, [date]]) => date).concat(promulgation)
       )
 
-      return [reached <= due, { reached, conditions }]
+      return [reached <= due, { reached, result }]
     },
   },
 ]

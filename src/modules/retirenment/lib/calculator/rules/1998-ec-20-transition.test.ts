@@ -55,8 +55,8 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
   describe('conditions', () => {
     const [
-      { condition: integral },
-      { condition: proportional },
+      { execute: integral },
+      { execute: proportional },
     ] = rule.possibilities
 
     /**

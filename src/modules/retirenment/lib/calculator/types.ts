@@ -102,15 +102,35 @@ export type Condition<Input = object, T = {}> = (
   input: Input
 ) => ConditionResult<ConditionContext<T>>
 
+export enum Operation {
+  OR = 'OR',
+  AND = 'AND',
+}
+
 /**
  * Rules
  * -----
  */
 
+export interface PCondition {
+  description: string
+  execute: Reacher
+}
+
+export type PossibilityResult = {
+  op: Operation
+  conditions: readonly (
+    | PossibilityResult
+    | readonly [PCondition, ReacherResult]
+  )[]
+}
+
 export interface Possibility {
   title: string
   description: string
-  condition: Condition<Input>
+  execute: (
+    input: Input
+  ) => [boolean, { reached: Date | null; result: PossibilityResult }]
 }
 
 export interface Rule {
