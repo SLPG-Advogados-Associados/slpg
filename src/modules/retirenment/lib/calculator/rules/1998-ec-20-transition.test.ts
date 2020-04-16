@@ -2,6 +2,7 @@
 import { Gender, Post, Contribution, ServiceKind } from '../types'
 import { d, c, u } from '../lib/test-utils'
 import { between, string } from '../lib/duration'
+import { NEVER } from '../lib/const'
 // @ts-ignore
 import { rule, __get__ } from './1998-ec-20-transition'
 
@@ -53,11 +54,8 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
     })
   })
 
-  describe('conditions', () => {
-    const [
-      { execute: integral },
-      { execute: proportional },
-    ] = rule.possibilities
+  describe('possibilities', () => {
+    const [integral, proportional] = rule.possibilities
 
     /**
      * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
@@ -75,6 +73,78 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
      * limite de tempo constante da alínea anterior.
      */
     describe('integral', () => {
+      describe('conditions', () => {
+        const [age, last, total] = integral.conditions
+
+        /**
+         * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
+         * de idade, se mulher;
+         */
+        it.each([
+          [d('1950'), M, d('2003')],
+          [d('1950'), F, d('1998')],
+        ])('should reach by age', (birthDate, gender, reached) => {
+          expect(age.execute({ birthDate, gender })).toEqual([reached])
+        })
+
+        /**
+         * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
+         * aposentadoria;
+         */
+        it.each([
+          // single
+          [[c('2000')], d('2004-12-30')],
+          [[c('2000^2005')], d('2004-12-30')],
+          [[c('2000^2004-12-30')], d('2004-12-30')],
+          // @ts-ignore
+          [[c('2000^2003')], expect.not.toBeValidDate()],
+
+          // multiple
+          [[c('50^60'), c('2000')], d('2004-12-30')],
+          [[c('50^60'), c('2000^2005')], d('2004-12-30')],
+          [[c('50^60'), c('2000^2004-12-30')], d('2004-12-30')],
+          // @ts-ignore
+          [[c('50^60'), c('2000^2003')], expect.not.toBeValidDate()],
+        ])('should reach by last post', (contributions, reached) => {
+          expect(last.execute({ contributions })).toEqual([reached])
+        })
+
+        /**
+         * III - contar tempo de contribuição igual, no mínimo, à soma de:
+         *
+         * a) trinta e cinco anos, se homem, e trinta anos, se mulher; e
+         *
+         * b) um período adicional de contribuição equivalente a vinte por cento do
+         * tempo que, na data da publicação desta Emenda, faltaria para atingir o
+         * limite de tempo constante da alínea anterior.
+         */
+        it.each([
+          [[c('2000')], M, NEVER],
+          [[c('1950')], M, d('1984-12-23')],
+          [[c('50^60'), c('70')], M, d('1994-12-24')],
+
+          [[c('2000')], F, NEVER],
+          [[c('1950')], F, d('1979-12-25')],
+          [[c('50^60'), c('70')], F, d('1989-12-25')],
+
+          // teacher
+
+          [[c('2000', [u, T])], M, NEVER],
+          [[c('1950', [u, T])], M, d('1976-08-27')],
+          [[c('50^60'), c('70', [u, T])], M, d('1990-01-21')],
+
+          [[c('2000', [u, T])], F, NEVER],
+          [[c('1950', [u, T])], F, d('1970-03-11')],
+          [[c('50^60'), c('70', [u, T])], F, d('1984-03-11')],
+        ])(
+          'should reach by contributions',
+          (contributions, gender, expected) => {
+            const [reached] = total.execute({ contributions, gender })
+            expect(reached).toEqual(expected)
+          }
+        )
+      })
+
       it.each([
         // reached before promulgation:
         [i(M, '40', [c('50')]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
@@ -102,7 +172,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         // by last:
         [i(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
       ])('should calculate condition result', (input, satisfied, by) => {
-        const [reached, context] = integral(input)
+        const [reached, context] = integral.execute(input)
         expect(reached).toBe(satisfied)
         expect(context).toMatchObject({ reached: by })
       })
@@ -151,7 +221,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           // by last:
           [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
         ])('should calculate condition result', (input, satisfied, by) => {
-          const [reached, context] = integral(input)
+          const [reached, context] = integral.execute(input)
           expect(reached).toBe(satisfied)
           expect(context).toMatchObject({ reached: by })
         })
@@ -173,6 +243,81 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
      * limite de tempo constante da alínea anterior;
      */
     describe('proportional', () => {
+      describe('conditions', () => {
+        const [age, last, total] = proportional.conditions
+
+        /**
+         * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
+         * de idade, se mulher;
+         */
+        it.each([
+          [d('1950'), M, d('2003')],
+          [d('1950'), F, d('1998')],
+        ])('should reach by age', (birthDate, gender, reached) => {
+          expect(age.execute({ birthDate, gender })).toEqual([reached])
+        })
+
+        /**
+         * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
+         * aposentadoria;
+         */
+        it.each([
+          // single
+          [[c('2000')], d('2004-12-30')],
+          [[c('2000^2005')], d('2004-12-30')],
+          [[c('2000^2004-12-30')], d('2004-12-30')],
+          // @ts-ignore
+          [[c('2000^2003')], expect.not.toBeValidDate()],
+
+          // multiple
+          [[c('50^60'), c('2000')], d('2004-12-30')],
+          [[c('50^60'), c('2000^2005')], d('2004-12-30')],
+          [[c('50^60'), c('2000^2004-12-30')], d('2004-12-30')],
+          // @ts-ignore
+          [[c('50^60'), c('2000^2003')], expect.not.toBeValidDate()],
+        ])('should reach by last post', (contributions, reached) => {
+          expect(last.execute({ contributions })).toEqual([reached])
+        })
+
+        /**
+         * I - contar tempo de contribuição igual, no mínimo, à soma de:
+         *
+         * a) trinta anos, se homem, e vinte e cinco anos, se mulher; e
+         *
+         * b) um período adicional de contribuição equivalente a quarenta por cento do
+         * tempo que, na data da publicação desta Emenda, faltaria para atingir o
+         * limite de tempo constante da alínea anterior;
+         */
+        it.each([
+          [[c('2000')], M, NEVER],
+          [[c('1950')], M, d('1979-12-25')],
+          [[c('50^60'), c('70')], M, d('1989-12-25')],
+
+          [[c('2000')], F, NEVER],
+          [[c('1950')], F, d('1974-12-26')],
+          [[c('50^60'), c('70')], F, d('1984-12-26')],
+
+          // teacher
+
+          [[c('2000', [u, T])], M, NEVER],
+          [[c('1950', [u, T])], M, d('1971-08-29')],
+          [[c('50^60'), c('70', [u, T])], M, d('1985-01-22')],
+
+          [[c('2000', [u, T])], F, NEVER],
+          [[c('1950', [u, T])], F, d('1965-03-12')],
+          [[c('50^60'), c('70', [u, T])], F, d('1979-03-13')],
+        ])(
+          'should reach by contributions',
+          (contributions, gender, expected) => {
+            const [reached] = total.execute({
+              contributions,
+              gender,
+            })
+            expect(reached).toEqual(expected)
+          }
+        )
+      })
+
       it.each([
         // reached before promulgation:
         [i(M, '40', [c('50')]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
@@ -200,7 +345,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         // by last:
         [i(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 26 ✅, last less than 5 ❌
       ])('should calculate condition result', (input, satisfied, by) => {
-        const [reached, context] = proportional(input)
+        const [reached, context] = proportional.execute(input)
         expect(reached).toBe(satisfied)
         expect(context).toMatchObject({ reached: by })
       })
@@ -249,7 +394,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           // by last:
           [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
         ])('should calculate condition result', (input, satisfied, by) => {
-          const [reached, context] = proportional(input)
+          const [reached, context] = proportional.execute(input)
           expect(reached).toBe(satisfied)
           expect(context).toMatchObject({ reached: by })
         })
