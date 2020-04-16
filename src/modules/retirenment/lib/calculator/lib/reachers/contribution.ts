@@ -71,6 +71,8 @@ type TotalReacherFactory = <
 /**
  * Full contribution duration reacher.
  *
+ * @todo make reached be (reached || TODAY) + remaining duration?
+ *
  * @param expected The expected combined duration of all contributions, or a factory to it.
  * @param config.process A processor to alter a provided duration accountability.
  * @param config.filter A filter to remove contributions.

@@ -1,10 +1,8 @@
 /* cspell: disable */
 import { add } from '../date'
 import { DurationInput } from '../duration'
-import { Reacher } from '../../types'
+import { Input, Reacher } from '../../types'
 import * as contribution from './contribution'
-
-type Input = { birthDate: Date }
 
 /**
  * Age reacher factory.
