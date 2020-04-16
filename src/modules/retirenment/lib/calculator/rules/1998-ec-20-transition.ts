@@ -1,6 +1,6 @@
 /* cspell: disable */
 import { max, isEqual } from '../lib/date'
-import * as reacher from '../lib/reachers'
+import * as reachers from '../lib/reachers'
 import { multiply, subtract } from '../lib/duration'
 import { Rule, Possibility, Gender, Post, Input, Operation } from '../types'
 
@@ -15,8 +15,8 @@ const due = new Date('2003-12-31')
 
 const processor = (
   integrality: boolean
-): reacher.contribution.TotalReacherConfig<Input> => ({
-  split: reacher.contribution.utils.splitAt(promulgation),
+): reachers.contribution.TotalReacherConfig<Input> => ({
+  split: reachers.contribution.utils.splitAt(promulgation),
   process: (duration, { contribution, input, computed, expected }) => {
     let result = duration
 
@@ -101,7 +101,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Idade mínima',
-        execute: reacher.age(input => ({
+        execute: reachers.age(input => ({
           years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
         })),
       },
@@ -114,7 +114,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo no último cargo',
-        execute: reacher.contribution.last({ years: 5 }),
+        execute: reachers.contribution.last({ years: 5 }),
       },
 
       /**
@@ -145,7 +145,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo total de contribuição',
-        execute: reacher.contribution.total(
+        execute: reachers.contribution.total(
           input => ({ years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] }),
           processor(true)
         ),
@@ -200,7 +200,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Idade mínima',
-        execute: reacher.age(input => ({
+        execute: reachers.age(input => ({
           years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
         })),
       },
@@ -213,7 +213,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo no último cargo',
-        execute: reacher.contribution.last({ years: 5 }),
+        execute: reachers.contribution.last({ years: 5 }),
       },
 
       /**
@@ -244,7 +244,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo total de contribuição',
-        execute: reacher.contribution.total(
+        execute: reachers.contribution.total(
           input => ({ years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] }),
           processor(false)
         ),
