@@ -22,5 +22,22 @@ describe('retirement/calculator/lib/reachers', () => {
       const [reached] = age({ years })(b(birth))
       expect(reached).toEqual(d(expected))
     })
+
+    it.each([
+      [50, '1940', '1990'],
+      [50, '1950', '2000'],
+      [50, '1960', '2010'],
+      [30, '1960', '1990'],
+      [30, '1970', '2000'],
+      [30, '1980', '2010'],
+    ])('should be constructable', (years, birth, result) => {
+      const input = b(birth)
+      const expected = jest.fn(() => ({ years }))
+      const [reached] = age(expected)(input)
+
+      expect(reached).toEqual(d(result))
+      expect(expected).toHaveBeenCalledTimes(1)
+      expect(expected).toHaveBeenCalledWith(input)
+    })
   })
 })

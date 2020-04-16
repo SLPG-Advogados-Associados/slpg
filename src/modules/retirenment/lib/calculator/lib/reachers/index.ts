@@ -4,6 +4,8 @@ import { DurationInput } from '../duration'
 import { Reacher } from '../../types'
 import * as contribution from './contribution'
 
+type Input = { birthDate: Date }
+
 /**
  * Age reacher factory.
  *
@@ -11,9 +13,13 @@ import * as contribution from './contribution'
  * @param input Person input.
  */
 const age = (
-  duration: DurationInput
-): Reacher<{ birthDate: Date }> => input => [
-  add(input.birthDate, duration, true),
+  duration: DurationInput | ((input: Input) => DurationInput)
+): Reacher<Input> => input => [
+  add(
+    input.birthDate,
+    typeof duration === 'function' ? duration(input) : duration,
+    true
+  ),
 ]
 
 export { age, contribution }
