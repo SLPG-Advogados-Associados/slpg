@@ -1,7 +1,7 @@
 /* cspell: disable */
 import { add } from '../date'
 import { DurationInput } from '../duration'
-import { Input, Reacher } from '../../types'
+import { Reacher, CalculatorInput } from '../../types'
 import * as contribution from './contribution'
 
 /**
@@ -11,8 +11,8 @@ import * as contribution from './contribution'
  * @param input Person input.
  */
 const age = (
-  duration: DurationInput | ((input: Input) => DurationInput)
-): Reacher<Input> => input => [
+  duration: DurationInput | ((input: CalculatorInput) => DurationInput)
+): Reacher => input => [
   add(
     input.birthDate,
     typeof duration === 'function' ? duration(input) : duration,

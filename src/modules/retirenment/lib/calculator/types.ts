@@ -46,7 +46,7 @@ export type Contribution = {
   service: Service
 }
 
-export interface Input {
+export interface CalculatorInput {
   gender: Gender
   birthDate: Date
   contributions: Contribution[]
@@ -72,35 +72,9 @@ export type ReacherResult<Context = {}> =
  * @return [0] The reaching date.
  * @return [1] The reaching context.
  */
-export type Reacher<Input = object, Context = {}> = (
-  input: Input
+export type Reacher<Context = {}> = (
+  input: CalculatorInput
 ) => ReacherResult<Context>
-
-/**
- * Minimum condition context shape.
- */
-export type ConditionContextBase = { reached: Date | null }
-
-/**
- * ConditionContext factory.
- */
-export type ConditionContext<T extends {}> = T & ConditionContextBase
-
-/**
- * A condition check result, with varying context.
- */
-export type ConditionResult<ConditionContext = ConditionContextBase> = [
-  boolean,
-  ConditionContext
-]
-
-/**
- * An adapted logic predicate function the returns the result
- * with possible result context.
- */
-export type Condition<Input = object, T = {}> = (
-  input: Input
-) => ConditionResult<ConditionContext<T>>
 
 export enum Operation {
   OR = 'OR',
@@ -112,7 +86,7 @@ export enum Operation {
  * -----
  */
 
-export interface PCondition {
+export interface Condition {
   description: string
   execute: Reacher
 }
@@ -121,15 +95,16 @@ export type PossibilityResult = {
   op: Operation
   conditions: readonly (
     | PossibilityResult
-    | readonly [PCondition, ReacherResult]
+    | readonly [Condition, ReacherResult]
   )[]
 }
 
 export interface Possibility {
   title: string
   description: string
+  conditions: Condition[]
   execute: (
-    input: Input
+    input: CalculatorInput
   ) => [boolean, { reached: Date | null; result: PossibilityResult }]
 }
 

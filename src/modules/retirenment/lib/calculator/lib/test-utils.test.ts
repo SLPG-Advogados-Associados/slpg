@@ -1,10 +1,10 @@
-import { Post, ServiceKind, ConditionContextBase } from '../types'
+import { Post, ServiceKind } from '../types'
 import { NEVER } from './const'
 
 import {
   DateParams,
   eq,
-  und,
+  u,
   date,
   birth,
   period,
@@ -13,7 +13,7 @@ import {
   reachedAt,
 } from './test-utils'
 
-const { OTHER, TEACHER } = Post
+const { OTHER, TEACHER: T } = Post
 const { PUBLIC, PRIVATE } = ServiceKind
 
 describe('retirement/calculator/lib/test-utils', () => {
@@ -91,22 +91,17 @@ describe('retirement/calculator/lib/test-utils', () => {
     })
 
     describe('contribution', () => {
-      type Input = [string, [ServiceKind?, Post?]?]
-
       it.each([
         // period.
         [['2000^2002'], { start: date('2000'), end: date('2002') }],
         [['1950^2010'], { start: date('1950'), end: date('2010') }],
-        [['1950'], { start: date('1950'), end: und }],
+        [['1950'], { start: date('1950'), end: u }],
         // service.
         [['2000'], { service: { kind: PUBLIC, post: OTHER } }],
-        [['2000', [PRIVATE, und]], { service: { kind: PRIVATE, post: OTHER } }],
-        [
-          ['2000', [und, TEACHER]],
-          { service: { kind: PUBLIC, post: TEACHER } },
-        ],
+        [['2000', [PRIVATE, u]], { service: { kind: PRIVATE, post: OTHER } }],
+        [['2000', [u, T]], { service: { kind: PUBLIC, post: T } }],
       ])('should generate valid contributions', (input, expected) => {
-        const [span, service] = input as Input
+        const [span, service] = input as [string, [ServiceKind, Post]]
         expect(contribution(span, service)).toMatchObject(expected)
       })
     })
@@ -124,13 +119,11 @@ describe('retirement/calculator/lib/test-utils', () => {
         ['2001', new Date('2000'), false],
         ['2001-01-01', new Date('2000'), false],
       ])('should correctly check reached date', (input, reached, expected) => {
-        const conditionResult = { reached } as ConditionContextBase
-
-        expect(reachedAt(input)(conditionResult)).toBe(expected)
+        expect(reachedAt(input)({ reached })).toBe(expected)
 
         expected
-          ? expect(conditionResult).toSatisfy(reachedAt(input))
-          : expect(conditionResult).not.toSatisfy(reachedAt(input))
+          ? expect({ reached }).toSatisfy(reachedAt(input))
+          : expect({ reached }).not.toSatisfy(reachedAt(input))
       })
     })
   })
