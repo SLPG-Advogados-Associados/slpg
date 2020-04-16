@@ -2,7 +2,7 @@
 import { max, isEqual } from '../lib/date'
 import * as reachers from '../lib/reachers'
 import { multiply, subtract } from '../lib/duration'
-import { Rule, Possibility, Gender, Post, Input, Operation } from '../types'
+import { Rule, Possibility, Gender, Post, Operation } from '../types'
 
 const { MALE, FEMALE } = Gender
 const { TEACHER } = Post
@@ -15,7 +15,7 @@ const due = new Date('2003-12-31')
 
 const processor = (
   integrality: boolean
-): reachers.contribution.TotalReacherConfig<Input> => ({
+): reachers.contribution.TotalReacherConfig => ({
   split: reachers.contribution.utils.splitAt(promulgation),
   process: (duration, { contribution, input, computed, expected }) => {
     let result = duration
@@ -152,7 +152,7 @@ const possibilities: Possibility[] = [
       },
     ],
 
-    execute(this, input) {
+    execute(input) {
       const [age, last, total] = this.conditions
 
       const result = {

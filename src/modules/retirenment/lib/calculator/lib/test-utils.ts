@@ -1,5 +1,5 @@
 import { isValid } from './date'
-import { Post, ServiceKind, ConditionContextBase } from '../types'
+import { Post, ServiceKind, CalculatorInput } from '../types'
 
 const { OTHER } = Post
 const { PUBLIC } = ServiceKind
@@ -43,7 +43,8 @@ const d = date // alias
 /**
  * Constructs an object containing `birthDate` prop.
  */
-const birth = (...input: DateParams) => ({ birthDate: date(...input) })
+const birth = (...input: DateParams) =>
+  ({ birthDate: date(...input) } as CalculatorInput)
 const b = birth // alias
 
 /**
@@ -106,7 +107,9 @@ const c = contribution
  */
 const reachedAt = (input: string | number) => ({
   reached,
-}: ConditionContextBase) => eq.date(input)(reached)
+}: {
+  reached: Date
+}) => eq.date(input)(reached)
 
 /*
  * Aliases and short vars.

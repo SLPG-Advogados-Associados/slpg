@@ -5,7 +5,7 @@
 
 /* cspell: disable */
 import { last as getLast, identity } from 'ramda'
-import { Contribution, Reacher } from '../../types'
+import { CalculatorInput, Contribution, Reacher } from '../../types'
 import { add, ceil, min, max } from '../date'
 import { TODAY, NEVER, NO_DURATION } from '../const'
 import {
@@ -21,10 +21,6 @@ import {
   toDays,
 } from '../duration'
 
-type ContributionsInput = {
-  contributions: Contribution[]
-}
-
 /**
  * Last contribution duration reacher.
  *
@@ -33,9 +29,7 @@ type ContributionsInput = {
  *
  * @param duration The expected duration of the last contribution by due date.
  */
-const last = (
-  expected: DurationInput
-): Reacher<ContributionsInput> => input => {
+const last = (expected: DurationInput): Reacher => input => {
   const { start, end } = getLast(input.contributions)
   const reached = add(start, expected)
 
@@ -47,26 +41,18 @@ type ComputedDurations = {
   processed: Duration
 }
 
-type Context<Input> = {
-  input: Input
+type Context = {
+  input: CalculatorInput
   expected: DurationInput
   contribution: Contribution
   computed: ComputedDurations
 }
 
-export type TotalReacherConfig<Input> = Partial<{
-  split: (contribution: Contribution, context: Context<Input>) => Contribution[]
-  filter: (contribution: Contribution, context: Context<Input>) => boolean
-  process: (duration: Duration, context: Context<Input>) => DurationInput
+export type TotalReacherConfig = Partial<{
+  split: (contribution: Contribution, context: Context) => Contribution[]
+  filter: (contribution: Contribution, context: Context) => boolean
+  process: (duration: Duration, context: Context) => DurationInput
 }>
-
-type TotalReacherFactory = <
-  ExtraInput extends object,
-  Input extends ContributionsInput & ExtraInput
->(
-  expected: DurationInput | ((input: Input) => DurationInput),
-  config?: TotalReacherConfig<Input>
-) => Reacher<Input, { computed: { real: Duration; processed: Duration } }>
 
 /**
  * Full contribution duration reacher.
@@ -78,8 +64,11 @@ type TotalReacherFactory = <
  * @param config.filter A filter to remove contributions.
  * @param config.split A duration split callback to allow processing in isolation.
  */
-const total: TotalReacherFactory = (_expected, _config) => input => {
-  const config: TotalReacherConfig<typeof input> = {
+const total = (
+  _expected: DurationInput | ((input: CalculatorInput) => DurationInput),
+  _config?: TotalReacherConfig
+): Reacher<{ computed: { real: Duration; processed: Duration } }> => input => {
+  const config: TotalReacherConfig = {
     split: contribution => [contribution],
     filter: () => true,
     process: identity,

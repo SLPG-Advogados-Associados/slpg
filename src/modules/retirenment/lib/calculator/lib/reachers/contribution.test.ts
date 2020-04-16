@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { Contribution } from '../../types'
+import { Contribution, CalculatorInput } from '../../types'
 import { d, c } from '../test-utils'
 import { between, sum, normalize } from '../duration'
 import { NEVER, TODAY } from '../const'
@@ -7,7 +7,8 @@ import { last, total, utils } from './contribution'
 
 describe('retirement/calculator/lib/reachers/contribution', () => {
   describe('last', () => {
-    const i = (...contributions: Contribution[]) => ({ contributions })
+    const i = (...contributions: Contribution[]) =>
+      ({ contributions } as CalculatorInput)
 
     it.each([
       [10, i(c('80')), d('1989-12-29')],
@@ -46,7 +47,8 @@ describe('retirement/calculator/lib/reachers/contribution', () => {
   })
 
   describe('total', () => {
-    const i = (...contributions: Contribution[]) => ({ contributions })
+    const i = (...contributions: Contribution[]) =>
+      ({ contributions } as CalculatorInput)
 
     describe('simple', () => {
       it.each([
