@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { max, isValid } from '../lib/date'
+import { max, min, isValid } from '../lib/date'
 import * as reachers from '../lib/reachers'
 import { Rule, Possibility, Gender, Post, Operation } from '../types'
 
@@ -58,12 +58,8 @@ const possibilities: Possibility[] = [
         ] as const,
       }
 
-      const reached = max(
-        result.conditions
-          .map(([, [date]]) => date)
-          .filter(isValid)
-          .concat(promulgation)
-      )
+      const dates = result.conditions.map(([, [date]]) => date).filter(isValid)
+      const reached = max([min(dates), promulgation])
 
       return [reached <= due, { reached, result }]
     },
@@ -114,12 +110,8 @@ const possibilities: Possibility[] = [
         ] as const,
       }
 
-      const reached = max(
-        result.conditions
-          .map(([, [date]]) => date)
-          .filter(isValid)
-          .concat(promulgation)
-      )
+      const dates = result.conditions.map(([, [date]]) => date).filter(isValid)
+      const reached = max([min(dates), promulgation])
 
       return [reached <= due, { reached, result }]
     },

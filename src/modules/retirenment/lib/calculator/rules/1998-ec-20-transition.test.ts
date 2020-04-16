@@ -181,7 +181,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         [i(F, '56', [c('57^62'), c('70')]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
         // by last:
         [i(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
-      ])('should calculate condition result', (input, satisfied, by) => {
+      ])('should calculate possibility result', (input, satisfied, by) => {
         const [reached, context] = integral.execute(input)
         expect(reached).toBe(satisfied)
         expect(context).toMatchObject({ reached: by })
@@ -230,7 +230,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
           // by last:
           [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
-        ])('should calculate condition result', (input, satisfied, by) => {
+        ])('should calculate possibility result', (input, satisfied, by) => {
           const [reached, context] = integral.execute(input)
           expect(reached).toBe(satisfied)
           expect(context).toMatchObject({ reached: by })
@@ -354,7 +354,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         [i(F, '56', [c('57^62'), c('75')]), false, d('2004-01-01')], // female, 47 ❌, contributing 26 ✅, last more than 5 ✅
         // by last:
         [i(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 26 ✅, last less than 5 ❌
-      ])('should calculate condition result', (input, satisfied, by) => {
+      ])('should calculate possibility result', (input, satisfied, by) => {
         const [reached, context] = proportional.execute(input)
         expect(reached).toBe(satisfied)
         expect(context).toMatchObject({ reached: by })
@@ -403,7 +403,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
           // by last:
           [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
-        ])('should calculate condition result', (input, satisfied, by) => {
+        ])('should calculate possibility result', (input, satisfied, by) => {
           const [reached, context] = proportional.execute(input)
           expect(reached).toBe(satisfied)
           expect(context).toMatchObject({ reached: by })
