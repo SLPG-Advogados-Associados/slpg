@@ -62,7 +62,9 @@ export type Reached = Date
 /**
  * Reacher execution result.
  */
-export type ReacherResult<Context = {}> = [Reached] | [Reached, Context]
+export type ReacherResult<Context = {}> =
+  | readonly [Reached]
+  | readonly [Reached, Context]
 
 /**
  * Reacher functions.
