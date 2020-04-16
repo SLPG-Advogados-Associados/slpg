@@ -53,6 +53,8 @@ const processor = (
      * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
      * efetivo exercício das funções de magistério.
      * (...)
+     *
+     * @todo: not filtering?
      */
     if (
       contribution.service.post === TEACHER &&
@@ -90,73 +92,75 @@ const possibilities: Possibility[] = [
 
       (...)
     `,
-    execute: input => {
-      const reachers = {
-        /**
-         * (...)
-         * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
-         * de idade, se mulher;
-         * (...)
-         */
-        age: {
-          description: 'Idade mínima',
-          execute: reacher.age({
-            years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
-          }),
-        },
+    conditions: [
+      /**
+       * (...)
+       * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
+       * de idade, se mulher;
+       * (...)
+       */
+      {
+        description: 'Idade mínima',
+        execute: reacher.age(input => ({
+          years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
+        })),
+      },
 
-        /**
-         * (...)
-         * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
-         * aposentadoria;
-         * (...)
-         */
-        last: {
-          description: 'Tempo no último cargo',
-          execute: reacher.contribution.last({ years: 5 }),
-        },
+      /**
+       * (...)
+       * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
+       * aposentadoria;
+       * (...)
+       */
+      {
+        description: 'Tempo no último cargo',
+        execute: reacher.contribution.last({ years: 5 }),
+      },
 
-        /**
-         * (...)
-         * III - contar tempo de contribuição igual, no mínimo, à soma de:
-         *
-         * a) trinta e cinco anos, se homem, e trinta anos, se mulher; e
-         *
-         * b) um período adicional de contribuição equivalente a vinte por cento do
-         * tempo que, na data da publicação desta Emenda, faltaria para atingir o
-         * limite de tempo constante da alínea anterior.
-         *
-         * (...)
-         *
-         * § 3º - Na aplicação do disposto no parágrafo anterior, o magistrado ou o
-         * membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
-         * tempo de serviço exercido até a publicação desta Emenda contado com o
-         * acréscimo de dezessete por cento.
-         *
-         * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
-         * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
-         * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
-         * de magistério e que opte por aposentar-se na forma do disposto no
-         * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
-         * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
-         * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
-         * efetivo exercício das funções de magistério.
-         */
-        total: {
-          description: 'Tempo total de contribuição',
-          execute: reacher.contribution.total(
-            { years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] },
-            processor(true)
-          ),
-        },
-      }
+      /**
+       * (...)
+       * III - contar tempo de contribuição igual, no mínimo, à soma de:
+       *
+       * a) trinta e cinco anos, se homem, e trinta anos, se mulher; e
+       *
+       * b) um período adicional de contribuição equivalente a vinte por cento do
+       * tempo que, na data da publicação desta Emenda, faltaria para atingir o
+       * limite de tempo constante da alínea anterior.
+       *
+       * (...)
+       *
+       * § 3º - Na aplicação do disposto no parágrafo anterior, o magistrado ou o
+       * membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
+       * tempo de serviço exercido até a publicação desta Emenda contado com o
+       * acréscimo de dezessete por cento.
+       *
+       * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+       * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+       * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+       * de magistério e que opte por aposentar-se na forma do disposto no
+       * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+       * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+       * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+       * efetivo exercício das funções de magistério.
+       */
+      {
+        description: 'Tempo total de contribuição',
+        execute: reacher.contribution.total(
+          input => ({ years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] }),
+          processor(true)
+        ),
+      },
+    ],
+
+    execute(this, input) {
+      const [age, last, total] = this.conditions
 
       const result = {
         op: Operation.AND,
         conditions: [
-          [reachers.age, reachers.age.execute(input)],
-          [reachers.last, reachers.last.execute(input)],
-          [reachers.total, reachers.total.execute(input)],
+          [age, age.execute(input)],
+          [last, last.execute(input)],
+          [total, total.execute(input)],
         ] as const,
       }
 
@@ -186,73 +190,76 @@ const possibilities: Possibility[] = [
     a) trinta anos, se homem, e vinte e cinco anos, se mulher; e
     b) um período adicional de contribuição equivalente a quarenta por cento do tempo que, na data da publicação desta Emenda, faltaria para atingir o limite de tempo constante da alínea anterior;
     `,
-    execute: input => {
-      const reachers = {
-        /**
-         * (...)
-         * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
-         * de idade, se mulher;
-         * (...)
-         */
-        age: {
-          description: 'Idade mínima',
-          execute: reacher.age({
-            years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
-          }),
-        },
 
-        /**
-         * (...)
-         * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
-         * aposentadoria;
-         * (...)
-         */
-        last: {
-          description: 'Tempo no último cargo',
-          execute: reacher.contribution.last({ years: 5 }),
-        },
+    conditions: [
+      /**
+       * (...)
+       * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
+       * de idade, se mulher;
+       * (...)
+       */
+      {
+        description: 'Idade mínima',
+        execute: reacher.age(input => ({
+          years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
+        })),
+      },
 
-        /**
-         * (...)
-         * I - contar tempo de contribuição igual, no mínimo, à soma de:
-         *
-         * a) trinta anos, se homem, e vinte e cinco anos, se mulher; e
-         *
-         * b) um período adicional de contribuição equivalente a quarenta por cento do
-         * tempo que, na data da publicação desta Emenda, faltaria para atingir o
-         * limite de tempo constante da alínea anterior;
-         *
-         * (...)
-         *
-         * § 3º - Na aplicação do disposto no parágrafo anterior, o magistrado ou o
-         * membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
-         * tempo de serviço exercido até a publicação desta Emenda contado com o
-         * acréscimo de dezessete por cento.
-         *
-         * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
-         * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
-         * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
-         * de magistério e que opte por aposentar-se na forma do disposto no
-         * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
-         * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
-         * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
-         * efetivo exercício das funções de magistério.
-         */
-        total: {
-          description: 'Tempo total de contribuição',
-          execute: reacher.contribution.total(
-            { years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] },
-            processor(false)
-          ),
-        },
-      }
+      /**
+       * (...)
+       * II - tiver cinco anos de efetivo exercício no cargo em que se dará a
+       * aposentadoria;
+       * (...)
+       */
+      {
+        description: 'Tempo no último cargo',
+        execute: reacher.contribution.last({ years: 5 }),
+      },
+
+      /**
+       * (...)
+       * I - contar tempo de contribuição igual, no mínimo, à soma de:
+       *
+       * a) trinta anos, se homem, e vinte e cinco anos, se mulher; e
+       *
+       * b) um período adicional de contribuição equivalente a quarenta por cento do
+       * tempo que, na data da publicação desta Emenda, faltaria para atingir o
+       * limite de tempo constante da alínea anterior;
+       *
+       * (...)
+       *
+       * § 3º - Na aplicação do disposto no parágrafo anterior, o magistrado ou o
+       * membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
+       * tempo de serviço exercido até a publicação desta Emenda contado com o
+       * acréscimo de dezessete por cento.
+       *
+       * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+       * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+       * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+       * de magistério e que opte por aposentar-se na forma do disposto no
+       * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+       * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+       * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+       * efetivo exercício das funções de magistério.
+       */
+      {
+        description: 'Tempo total de contribuição',
+        execute: reacher.contribution.total(
+          input => ({ years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] }),
+          processor(false)
+        ),
+      },
+    ],
+
+    execute(input) {
+      const [age, last, total] = this.conditions
 
       const result = {
         op: Operation.AND,
         conditions: [
-          [reachers.age, reachers.age.execute(input)],
-          [reachers.last, reachers.last.execute(input)],
-          [reachers.total, reachers.total.execute(input)],
+          [age, age.execute(input)],
+          [last, last.execute(input)],
+          [total, total.execute(input)],
         ] as const,
       }
 
