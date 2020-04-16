@@ -3,7 +3,7 @@ import { Gender, Post, Contribution, ServiceKind } from '../types'
 import { d, c, u } from '../lib/test-utils'
 import { between, string } from '../lib/duration'
 // @ts-ignore
-import { conditions, rule, __get__, __set__ } from './1998-ec-20-transition'
+import { rule, __get__ } from './1998-ec-20-transition'
 
 const { MALE: M, FEMALE: F } = Gender
 const { TEACHER: T, OTHER: O } = Post
@@ -54,7 +54,10 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
   })
 
   describe('conditions', () => {
-    const [integral, proportional] = conditions
+    const [
+      { condition: integral },
+      { condition: proportional },
+    ] = rule.possibilities
 
     /**
      * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos
@@ -101,7 +104,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
       ])('should calculate condition result', (input, satisfied, by) => {
         const [reached, context] = integral(input)
         expect(reached).toBe(satisfied)
-        expect(context).toMatchObject({ integrality: true, reached: by })
+        expect(context).toMatchObject({ reached: by })
       })
 
       /*
@@ -150,7 +153,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         ])('should calculate condition result', (input, satisfied, by) => {
           const [reached, context] = integral(input)
           expect(reached).toBe(satisfied)
-          expect(context).toMatchObject({ integrality: true, reached: by })
+          expect(context).toMatchObject({ reached: by })
         })
       })
     })
@@ -199,7 +202,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
       ])('should calculate condition result', (input, satisfied, by) => {
         const [reached, context] = proportional(input)
         expect(reached).toBe(satisfied)
-        expect(context).toMatchObject({ integrality: false, reached: by })
+        expect(context).toMatchObject({ reached: by })
       })
 
       /*
@@ -248,7 +251,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         ])('should calculate condition result', (input, satisfied, by) => {
           const [reached, context] = proportional(input)
           expect(reached).toBe(satisfied)
-          expect(context).toMatchObject({ integrality: false, reached: by })
+          expect(context).toMatchObject({ reached: by })
         })
       })
     })
