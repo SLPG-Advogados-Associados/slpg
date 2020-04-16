@@ -101,3 +101,22 @@ export type ConditionResult<ConditionContext = ConditionContextBase> = [
 export type Condition<Input = object, T = {}> = (
   input: Input
 ) => ConditionResult<ConditionContext<T>>
+
+/**
+ * Rules
+ * -----
+ */
+
+export interface Possibility {
+  title: string
+  description: string
+  condition: Condition<Input>
+}
+
+export interface Rule {
+  title: string
+  description: string
+  due?: Date
+  promulgation: Date
+  possibilities: Possibility[]
+}

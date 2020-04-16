@@ -3,7 +3,7 @@ import { max, isEqual } from '../lib/date'
 import * as reacher from '../lib/reachers'
 import { multiply, subtract } from '../lib/duration'
 
-import { Condition, Gender, Post, Input } from '../types'
+import { Rule, Possibility, Gender, Post, Input } from '../types'
 
 const { MALE, FEMALE } = Gender
 const { TEACHER } = Post
@@ -72,12 +72,6 @@ const processor = (
     return result
   },
 })
-
-interface Possibility {
-  title: string
-  description: string
-  condition: Condition<Input>
-}
 
 const possibilities: Possibility[] = [
   {
@@ -266,7 +260,7 @@ const possibilities: Possibility[] = [
   },
 ]
 
-const rule = {
+const rule: Rule = {
   promulgation,
   due,
   title: 'EC nº 20 - Regra de Transição',
