@@ -99,9 +99,11 @@ export interface Condition {
 //   )[]
 // }
 
+export type ConditionResult = [Condition, ReacherResult]
+
 export type PossibilityResult = {
   op: Operation
-  conditions: readonly [Condition, ReacherResult][]
+  conditions: readonly ConditionResult[]
 }
 
 export type PossibilityExecution = [
