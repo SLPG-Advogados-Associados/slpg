@@ -8,22 +8,52 @@ import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { Box } from '~design'
 
-const samples: Calculator.CalculatorInput[] = [
+const samples = [
   {
-    gender: Calculator.Gender.MALE,
-    birthDate: new Date('1940-01-01T00:00:00.000Z'),
-    contributions: [
-      {
-        start: new Date('1960-01-01T00:00:00.000Z'),
-        salary: 1000,
-        service: {
-          kind: Calculator.ServiceKind.PUBLIC,
-          post: Calculator.Post.OTHER,
+    description: '',
+    input: {
+      gender: 'MALE',
+      birthDate: '1940-01-01T00:00:00.000Z',
+      contributions: [
+        {
+          start: '1960-01-01T00:00:00.000Z',
+          salary: 1000,
+          service: { kind: 'PUBLIC', post: 'OTHER' },
         },
-      },
-    ],
+      ],
+    },
+  },
+
+  {
+    description: '',
+    input: {
+      gender: 'MALE',
+      birthDate: '1940-01-01T00:00:00.000Z',
+      contributions: [
+        {
+          start: '1965-01-01T00:00:00.000Z',
+          salary: 1000,
+          service: { kind: 'PUBLIC', post: 'OTHER' },
+        },
+      ],
+    },
   },
 ]
+
+const parse = ({
+  description,
+  input,
+}): { description: string; input: Calculator.CalculatorInput } => {
+  input.birthDate = new Date(input.birthDate)
+  input.contributions = input.contributions || []
+
+  for (const contribution of input.contributions) {
+    contribution.start = new Date(contribution.start)
+    contribution.end = contribution.end ? new Date(contribution.end) : undefined
+  }
+
+  return { description, input }
+}
 
 const meta = {
   title: 'Calculadora de Aposentadoria',
@@ -56,14 +86,14 @@ const CalculatorSamplePage = () => {
       <main>
         <Section className="bg-aside">
           <ul className="flex -mx-4 flex-wrap justify-center">
-            {samples.map((sample, index) => (
+            {samples.map(parse).map(({ input }, index) => (
               <Box
                 as="li"
                 key={index}
                 className="mx-4 mb-8"
-                onClick={() => select(sample)}
+                onClick={() => select(input)}
               >
-                <InputInfo input={sample} />
+                <InputInfo input={input} />
               </Box>
             ))}
           </ul>
