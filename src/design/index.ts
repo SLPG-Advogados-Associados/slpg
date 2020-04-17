@@ -4,6 +4,7 @@ export * from './lib/classed-str'
 export * from './hooks/useModal'
 
 // components
+export * from './components/Box'
 export * from './components/Body'
 export * from './components/Logo'
 export * from './components/Menu'
