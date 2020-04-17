@@ -1,24 +1,16 @@
 import React, { useMemo } from 'react'
 import qs from 'qs'
-import { format as _format } from 'date-fns'
 import { hot } from 'react-hot-loader/root'
 import { useRouter } from '~app/lib/router'
 import { Heading } from '~design'
-import { Calculator, Possibility } from '~modules/retirenment'
+import { Calculator, Possibility, InputInfo } from '~modules/retirenment'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
-import { styled } from '~design'
 
 const meta = {
   title: 'Calculadora de Aposentadoria',
   description: 'Estude aqui suas possibilidades de aposentadoria',
 }
-
-const format = (value?: Date | null) =>
-  value ? _format(value, 'dd/MM/yyyy') : null
-
-// sample raw: `contributions%255B0%255D%255Bservice%255D%255Btitle%255D%253DPrimeiro%2526contributions%255B0%255D%255Bservice%255D%255Bkind%255D%253DPUBLIC%2526contributions%255B0%255D%255Bservice%255D%255Bpost%255D%253DTEACHER%2526contributions%255B0%255D%255Bend%255D%253D1989-12-31T23%25253A00%25253A00.000Z%2526contributions%255B0%255D%255Bstart%255D%253D1989-12-31T23%25253A00%25253A00.000Z%2526contributions%255B1%255D%255Bservice%255D%255Btitle%255D%253DSegudo%2526contributions%255B1%255D%255Bservice%255D%255Bkind%255D%253DPRIVATE%2526contributions%255B1%255D%255Bservice%255D%255Bpost%255D%253DTEACHER%2526contributions%255B1%255D%255Bend%255D%253D%2526contributions%255B1%255D%255Bstart%255D%253D1989-12-31T23%25253A00%25253A00.000Z%2526birthDate%253D1989-12-31T23%25253A00%25253A00.000Z%2526gender%253DMALE`
-
 const parseInput = (raw: string): Calculator.CalculatorInput => {
   if (!raw) return null
 
@@ -29,36 +21,11 @@ const parseInput = (raw: string): Calculator.CalculatorInput => {
 
   for (const contribution of parsed.contributions) {
     contribution.start = new Date(contribution.start)
-    contribution.end = contribution.end ? new Date(contribution.end) : null
+    contribution.end = contribution.end ? new Date(contribution.end) : undefined
   }
 
   return parsed
 }
-
-const InputInfo = styled.dl`
-  dt,
-  dd {
-    display: inline;
-  }
-
-  dt {
-    font-weight: bold;
-    margin-right: 1em;
-  }
-
-  dd::after {
-    content: '';
-    display: block;
-  }
-
-  table {
-    text-align: left;
-
-    td {
-      padding-right: 1em;
-    }
-  }
-`
 
 const CalculatorResultPage = () => {
   const router = useRouter<{ input: string }>()
@@ -67,22 +34,7 @@ const CalculatorResultPage = () => {
     router.query.input,
   ])
 
-  // const input: Calculator.CalculatorInput = {
-  //   gender: Calculator.Gender.MALE,
-  //   birthDate: new Date('1940'),
-  //   contributions: [
-  //     {
-  //       start: new Date('1960'),
-  //       salary: 10,
-  //       service: {
-  //         kind: Calculator.ServiceKind.PUBLIC,
-  //         post: Calculator.Post.OTHER,
-  //       },
-  //     },
-  //   ],
-  // }
-
-  // check inf input is ok
+  // @todo: check inf input is ok
 
   const result = useMemo(() => Calculator.calculate(input), [
     router.query.input,
@@ -100,38 +52,7 @@ const CalculatorResultPage = () => {
 
       <main>
         <Section title="Resumo dos Dados" className="bg-aside">
-          <InputInfo>
-            <dt>Sexo:</dt>
-            <dd>{input.gender}</dd>
-
-            <dt>Data de nascimento:</dt>
-            <dd>{format(input.birthDate)}</dd>
-
-            <dt>Contribuições:</dt>
-            <dd>
-              <table>
-                <thead className="text-200">
-                  <tr>
-                    <th>Início</th>
-                    <th>Fim</th>
-                    <th>Cargo</th>
-                  </tr>
-                </thead>
-
-                <tbody className="text-100">
-                  {input.contributions.map((contribution, index) => (
-                    <tr key={index}>
-                      <td>{format(contribution.start)}</td>
-                      <td>{format(contribution.end) || 'atual'}</td>
-                      <td>
-                        {contribution.service.kind}, {contribution.service.post}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </dd>
-          </InputInfo>
+          <InputInfo input={input} />
         </Section>
 
         {result.map(([rule, possibilities], index) => (
