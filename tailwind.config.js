@@ -78,6 +78,7 @@ const functional = {
     'link--active': t('colors.black'),
     button: t('colors.white'),
     divisor: t('colors.gray.300'),
+    'divisor--active': t('colors.gray.500'),
     border: t('colors.gray.300'),
     'reverse-border': t('colors.primary--active'),
     aside: t('colors.pampas'),
