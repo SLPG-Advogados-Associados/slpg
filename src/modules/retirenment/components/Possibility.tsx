@@ -2,14 +2,7 @@ import React from 'react'
 import { isValid, format } from 'date-fns'
 import { AsideTitle } from '~design'
 import { Calculator } from '~modules/retirenment'
-import { Icons, styled, t, css, classnames } from '~design'
-
-const Box = styled.div`
-  padding: 1rem;
-  border: 1px solid ${t.theme('colors.divisor')};
-  border-radius: 0.2rem;
-  background-color: ${t.theme('colors.white')};
-`
+import { Box, Icons, styled, t, css, classnames } from '~design'
 
 const variants = t.variants({
   success: css`
