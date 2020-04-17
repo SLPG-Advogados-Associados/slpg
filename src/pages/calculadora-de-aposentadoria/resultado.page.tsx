@@ -68,8 +68,9 @@ const CalculatorResultPage = () => {
               {possibilities.map(([possibility, result]) => (
                 <Possibility
                   key={possibility.title}
-                  possibility={possibility}
+                  rule={rule}
                   result={result}
+                  possibility={possibility}
                   className="mx-2 w-1/2"
                 />
               ))}
