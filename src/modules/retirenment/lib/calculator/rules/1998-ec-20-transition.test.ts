@@ -92,7 +92,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [d('1950'), F, d('1998')],
         ])('should reach by age', (birthDate, gender, reached) => {
           const input = { birthDate, gender } as CalculatorInput
-          expect(age.execute(input)).toEqual([reached])
+          expect(age.execute(input)).toEqual([reached, { reachable: false }])
         })
 
         /**
@@ -115,7 +115,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [[c('50^60'), c('2000^2003')], expect.not.toBeValidDate()],
         ])('should reach by last post', (contributions, reached) => {
           const input = { contributions } as CalculatorInput
-          expect(last.execute(input)).toEqual([reached])
+          expect(last.execute(input)).toEqual([reached, { reachable: false }])
         })
 
         /**
@@ -265,7 +265,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [d('1950'), F, d('1998')],
         ])('should reach by age', (birthDate, gender, reached) => {
           const input = { birthDate, gender } as CalculatorInput
-          expect(age.execute(input)).toEqual([reached])
+          expect(age.execute(input)).toEqual([reached, { reachable: false }])
         })
 
         /**
@@ -288,7 +288,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [[c('50^60'), c('2000^2003')], expect.not.toBeValidDate()],
         ])('should reach by last post', (contributions, reached) => {
           const input = { contributions } as CalculatorInput
-          expect(last.execute(input)).toEqual([reached])
+          expect(last.execute(input)).toEqual([reached, { reachable: false }])
         })
 
         /**

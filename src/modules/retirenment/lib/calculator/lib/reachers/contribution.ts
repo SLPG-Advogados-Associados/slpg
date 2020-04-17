@@ -33,7 +33,7 @@ const last = (expected: DurationInput): Reacher => input => {
   const { start, end } = getLast(input.contributions)
   const reached = add(start, expected)
 
-  return [!end || reached <= end ? reached : NEVER]
+  return [!end || reached <= end ? reached : NEVER, { reachable: false }]
 }
 
 type ComputedDurations = {
@@ -123,7 +123,7 @@ const total = (
     }
   }
 
-  return [reached || NEVER, { computed }]
+  return [reached || NEVER, { computed, reachable: true }]
 }
 
 const utils = {
