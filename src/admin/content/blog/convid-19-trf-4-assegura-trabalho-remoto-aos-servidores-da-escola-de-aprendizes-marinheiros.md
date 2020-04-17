@@ -1,6 +1,6 @@
 ---
 title: >-
-  Convid-19: TRF/4 assegura trabalho remoto aos servidores da Escola de
+  Covid-19: TRF/4 assegura trabalho remoto aos servidores da Escola de
   Aprendizes-Marinheiros
 date: 2020-04-15T19:13:40.874Z
 image: /admin/content/media/37915973716_df2e43fc81_b.jpg
