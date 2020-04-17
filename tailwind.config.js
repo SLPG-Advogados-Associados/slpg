@@ -65,6 +65,8 @@ const semantic = {
     primary: t('colors.blue.700'),
     'primary--active': t('colors.blue.500'),
     danger: t('colors.red.700'),
+    success: 'green',
+    failure: t('colors.red.700')
   },
 }
 
