@@ -28,7 +28,7 @@ const FormPage = () => {
       </pre>
 
       <div style={{ width: '50%', flexShrink: 0 }} className="text-black">
-        <button onClick={() => field.append('teste')}>Add</button>
+        <button onClick={() => field.append(['teste'])}>Add</button>
 
         {field.fields.map((item, index) => (
           <div key={item.id} className="mb-1">
