@@ -18,7 +18,7 @@ const ConditionResult: React.FC<{
   rule: Calculator.Rule
   condition: Calculator.Condition
   result: Calculator.ReacherResult
-}> = ({ rule, condition, result: [reached] }) => {
+}> = ({ rule, condition, result: [reached, { reachable }] }) => {
   const valid = isValid(reached)
   const formatted = valid ? format(reached, 'dd/MM/yyyy') : null
   const after = valid && rule.due < reached
@@ -30,9 +30,9 @@ const ConditionResult: React.FC<{
         {valid ? formatted : 'Inalcançável'}
 
         <div className="absolute top-0 right-0 mt-1">
-          {valid && after ? (
+          {valid && after && reachable ? (
             <Icons.Alert className="text-warning" />
-          ) : valid ? (
+          ) : valid && !after ? (
             <Icons.Check className="text-success" />
           ) : (
             <Icons.X className="text-failure" />
