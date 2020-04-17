@@ -91,21 +91,29 @@ export interface Condition {
   execute: Reacher
 }
 
+// export type PossibilityResult = {
+//   op: Operation
+//   conditions: readonly (
+//     | PossibilityResult
+//     | readonly [Condition, ReacherResult]
+//   )[]
+// }
+
 export type PossibilityResult = {
   op: Operation
-  conditions: readonly (
-    | PossibilityResult
-    | readonly [Condition, ReacherResult]
-  )[]
+  conditions: readonly [Condition, ReacherResult][]
 }
+
+export type PossibilityExecution = [
+  boolean,
+  { reached: Date | null; result: PossibilityResult }
+]
 
 export interface Possibility {
   title: string
   description: string
   conditions: Condition[]
-  execute: (
-    input: CalculatorInput
-  ) => [boolean, { reached: Date | null; result: PossibilityResult }]
+  execute: (input: CalculatorInput) => PossibilityExecution
 }
 
 export interface Rule {
