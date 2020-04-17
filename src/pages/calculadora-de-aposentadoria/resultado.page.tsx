@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import qs from 'qs'
 import { hot } from 'react-hot-loader/root'
-import { useRouter } from '~app/lib/router'
-import { Heading } from '~design'
+import { Heading, classnames } from '~design'
 import { Calculator, Possibility, InputInfo } from '~modules/retirenment'
+import { useRouter } from '~app/lib/router'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 
@@ -59,7 +59,7 @@ const CalculatorResultPage = () => {
           <Section
             key={rule.title}
             title={rule.title}
-            className={index % 2 ? 'bg-aside' : ''}
+            className={classnames('pb-20', { 'bg-aside': index % 2 })}
             textual
           >
             <p>{rule.description}</p>
