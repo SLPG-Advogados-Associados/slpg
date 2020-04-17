@@ -18,6 +18,7 @@ const age = (
     typeof duration === 'function' ? duration(input) : duration,
     true
   ),
+  { reachable: false },
 ]
 
 export { age, contribution }

@@ -62,9 +62,10 @@ export type Reached = Date
 /**
  * Reacher execution result.
  */
-export type ReacherResult<Context = {}> =
-  | readonly [Reached]
-  | readonly [Reached, Context]
+export type ReacherResult<Context = {}> = readonly [
+  Reached,
+  Context & { reachable: boolean }
+]
 
 /**
  * Reacher functions.
@@ -99,14 +100,14 @@ export interface Condition {
 //   )[]
 // }
 
-export type ConditionResult = [Condition, ReacherResult]
+export type ConditionResult = readonly [Condition, ReacherResult]
 
 export type PossibilityResult = {
   op: Operation
   conditions: readonly ConditionResult[]
 }
 
-export type PossibilityExecution = [
+export type PossibilityExecution = readonly [
   boolean,
   { reached: Date | null; result: PossibilityResult }
 ]
