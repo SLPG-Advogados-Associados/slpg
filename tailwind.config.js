@@ -29,7 +29,18 @@ const initial = {
     },
 
     red: {
-      700: '#8f2c1d'
+      500: '#8D1A1A',
+      700: '#650303'
+    },
+
+    green: {
+      500: '#157015',
+      700: '#1E5702'
+    },
+
+    yellow: {
+      500: '#8D8D1A',
+      700: '#655F03'
     }
   },
 
@@ -64,9 +75,10 @@ const semantic = {
     silent: t('colors.gray.500'),
     primary: t('colors.blue.700'),
     'primary--active': t('colors.blue.500'),
-    danger: t('colors.red.700'),
-    success: 'green',
-    failure: t('colors.red.700')
+    warning: t('colors.yellow.500'),
+    danger: t('colors.red.500'),
+    success: t('colors.green.500'),
+    failure: t('colors.red.500'),
   },
 }
 
