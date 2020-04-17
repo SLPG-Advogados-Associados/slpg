@@ -1,5 +1,11 @@
 import { isValid } from './date'
-import { Post, ServiceKind, CalculatorInput } from '../types'
+import {
+  Post,
+  ServiceKind,
+  CalculatorInput,
+  Gender,
+  Contribution,
+} from '../types'
 
 const { OTHER } = Post
 const { PUBLIC } = ServiceKind
@@ -111,6 +117,17 @@ const reachedAt = (input: string | number) => ({
   reached: Date
 }) => eq.date(input)(reached)
 
+const input = (
+  gender?: Gender,
+  contributions?: Contribution[],
+  birth = '1940'
+) => ({
+  gender: gender || Gender.MALE,
+  birthDate: d(birth),
+  contributions: contributions || [],
+})
+const I = input
+
 /*
  * Aliases and short vars.
  * -----------------------
@@ -134,4 +151,6 @@ export {
   interval,
   i,
   reachedAt,
+  input,
+  I,
 }

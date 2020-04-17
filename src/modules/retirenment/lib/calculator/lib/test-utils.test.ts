@@ -1,4 +1,5 @@
-import { Post, ServiceKind } from '../types'
+/* eslint-disable no-sparse-arrays */
+import { Post, ServiceKind, Gender } from '../types'
 import { NEVER } from './const'
 
 import {
@@ -11,8 +12,10 @@ import {
   interval,
   contribution,
   reachedAt,
+  input,
 } from './test-utils'
 
+const { MALE: M } = Gender
 const { OTHER, TEACHER: T } = Post
 const { PUBLIC, PRIVATE } = ServiceKind
 
@@ -103,6 +106,30 @@ describe('retirement/calculator/lib/test-utils', () => {
       ])('should generate valid contributions', (input, expected) => {
         const [span, service] = input as [string, [ServiceKind, Post]]
         expect(contribution(span, service)).toMatchObject(expected)
+      })
+    })
+
+    describe('input', () => {
+      it.each([
+        [input(), null],
+        [input(null, null, null), null],
+
+        [input(M), [M]],
+        [input(null, [contribution('50^60')]), [, [{ start: date('50') }]]],
+        [input(null, [contribution('50^60')]), [, [{ end: date('60') }]]],
+        [input(null, null, '80'), [, , date('80')]],
+      ])('should generate valid inputs', (input, expected) => {
+        expect(input).toEqual({
+          gender: expect.toBeOneOf(Object.values(Gender)),
+          birthDate: expect.toBeValidDate(),
+          contributions: expect.toBeArray(),
+        })
+
+        const [gender, contrib, birthDate] = expected || []
+
+        gender && expect(input.gender).toEqual(gender)
+        contrib && expect(input.contributions).toMatchObject(contrib)
+        birthDate && expect(input.birthDate).toEqual(birthDate)
       })
     })
   })
