@@ -1,11 +1,5 @@
-import { isValid } from './date'
-import {
-  Post,
-  ServiceKind,
-  CalculatorInput,
-  Gender,
-  Contribution,
-} from '../types'
+import { isValid, sub } from './date'
+import { Post, ServiceKind, Gender, Contribution } from '../types'
 
 const { OTHER } = Post
 const { PUBLIC } = ServiceKind
@@ -47,10 +41,13 @@ const date = (...input: DateParams) => {
 const d = date // alias
 
 /**
- * Constructs an object containing `birthDate` prop.
+ * Parses a birthdate notation.
  */
-const birth = (...input: DateParams) =>
-  ({ birthDate: date(...input) } as CalculatorInput)
+const birth = (input: string) => {
+  const [years, target] = input.split('@')
+
+  return target ? sub(date(target), { years: Number(years) }) : date(years)
+}
 const b = birth // alias
 
 /**
@@ -119,11 +116,11 @@ const reachedAt = (input: string | number) => ({
 
 const input = (
   gender?: Gender,
-  birth = '1940',
+  birthDate = '1940',
   contributions?: Contribution[]
 ) => ({
   gender: gender || Gender.MALE,
-  birthDate: d(birth),
+  birthDate: birth(birthDate),
   contributions: contributions || [],
 })
 const I = input
