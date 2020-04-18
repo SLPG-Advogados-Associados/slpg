@@ -59,18 +59,18 @@ describe('retirement/calculator/lib/test-utils', () => {
     })
 
     describe('birth', () => {
-      type Items = DateParams[][]
-
       it.each([
-        [['2020']],
-        [[0]],
-        [['December 17, 1995 03:24:00']],
-        [['1995-12-17T03:24:00']],
-        [[1995, 11, 17]],
-        [[1995, 11, 17, 3, 24, 0]],
-      ] as Items)('should generate valid birthDate objects', input => {
-        expect(birth(...input)).toEqual({ birthDate: new Date(...input) })
-      })
+        ['2020', date('2020')],
+        ['December 17, 1995 03:24:00', date('1995-12-17 03:24')],
+        ['50@90', date('1940')],
+        ['70@90', date('1920')],
+        ['70@December 17, 1995 03:24:00', date('1925-12-17 03:24')],
+      ] as const)(
+        'should generate valid birthDate objects',
+        (input, expected) => {
+          expect(birth(input)).toEqual(expected)
+        }
+      )
     })
 
     describe('period', () => {
