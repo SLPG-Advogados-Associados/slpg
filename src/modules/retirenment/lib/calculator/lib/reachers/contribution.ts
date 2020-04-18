@@ -19,7 +19,25 @@ import {
   subtract,
   negate,
   toDays,
+  toYears,
 } from '../duration'
+
+const utils = {
+  /**
+   * Create a contribution time splitter based on the passed middle-point date.
+   */
+  splitAt: (date: Date) => (contribution: Contribution) => {
+    const { start, end } = contribution
+
+    // no split necessary:
+    if (start >= date || (end && end <= date)) return [contribution]
+
+    const left = { ...contribution, start, end: min([end || TODAY, date]) }
+    const right = { ...contribution, start: max([start, date]), end }
+
+    return [left, right]
+  },
+}
 
 /**
  * Last contribution duration reacher.
@@ -49,6 +67,7 @@ type Context = {
 }
 
 export type TotalReacherConfig = Partial<{
+  due?: Date
   split: (contribution: Contribution, context: Context) => Contribution[]
   filter: (contribution: Contribution, context: Context) => boolean
   process: (duration: Duration, context: Context) => DurationInput
@@ -75,6 +94,10 @@ const total = (
     ..._config,
   }
 
+  const dueSplit = config.due
+    ? utils.splitAt(config.due)
+    : contribution => [contribution]
+
   const expected = normalize({
     days: toDays(
       typeof _expected === 'function' ? _expected(input) : _expected
@@ -82,65 +105,68 @@ const total = (
   })
 
   let reached: Date
-  const computed = { real: NO_DURATION, processed: NO_DURATION }
+
+  const computed = {
+    real: NO_DURATION,
+    processed: NO_DURATION,
+    byDue: NO_DURATION,
+  }
 
   for (const source of input.contributions) {
     const splitContext = { input, expected, contribution: source, computed }
 
     // allow spliting contributions, for granular processing.
-    for (const contribution of config.split(source, splitContext)) {
-      // processing context.
-      const context = { input, expected, contribution, computed }
+    for (const splitted of config.split(source, splitContext)) {
+      // default due date based splitting, for salary calculation purposes.
+      for (const contribution of dueSplit(splitted)) {
+        // processing context.
+        const context = { input, expected, contribution, computed }
 
-      // allow skipping contribution periods.
-      if (!config.filter(contribution, context)) continue
+        // allow skipping contribution periods.
+        if (!config.filter(contribution, context)) continue
 
-      const { start, end = TODAY } = contribution
+        const { start, end = TODAY } = contribution
 
-      // plain isolated duration addition.
-      const real = between(start, end)
+        // plain isolated duration addition.
+        const real = between(start, end)
 
-      // processed duration, with possible manipulation.
-      const processed = config.process(real, context)
+        // processed duration, with possible manipulation.
+        const processed = config.process(real, context)
 
-      // sum-up real time-based duration so far, with start as reference.
-      computed.real = normalize(sum(computed.real, real))
+        // sum-up real time-based duration so far, with start as reference.
+        computed.real = normalize(sum(computed.real, real))
 
-      // sum-up processed calculation purposed duration so far, with start as reference
-      computed.processed = normalize(sum(computed.processed, processed))
+        // sum-up processed calculation purposed duration so far, with start as reference
+        computed.processed = normalize(sum(computed.processed, processed))
 
-      // calculate reaching date, when it happens.
-      if (!reached && compare.longer(computed.processed, expected, true)) {
-        // find amount of extra days processed, unconsidering leap year days.
-        const overlap = toDays(subtract(computed.processed, expected))
+        // sum up by due.
+        computed.byDue =
+          config.due && contribution.end <= config.due
+            ? normalize(sum(computed.byDue, processed))
+            : computed.byDue
 
-        // remove these extra days from end date.
-        reached = ceil(
-          'days',
-          apply(end, negate({ days: Math.round(overlap) }))
-        )
+        // calculate reaching date, when it happens.
+        if (!reached && compare.longer(computed.processed, expected, true)) {
+          // find amount of extra days processed, unconsidering leap year days.
+          const overlap = toDays(subtract(computed.processed, expected))
+
+          // remove these extra days from end date.
+          reached = ceil(
+            'days',
+            apply(end, negate({ days: Math.round(overlap) }))
+          )
+        }
       }
     }
   }
 
-  return [reached || NEVER, { computed, reachable: true }]
-}
+  const context = {
+    computed,
+    reachable: true,
+    byDue: config.due ? toYears(computed.byDue) : null,
+  }
 
-const utils = {
-  /**
-   * Create a contribution time splitter based on the passed middle-point date.
-   */
-  splitAt: (date: Date) => (contribution: Contribution) => {
-    const { start, end } = contribution
-
-    // no split necessary:
-    if (start >= date || (end && end <= date)) return [contribution]
-
-    const left = { ...contribution, start, end: min([end || TODAY, date]) }
-    const right = { ...contribution, start: max([start, date]), end }
-
-    return [left, right]
-  },
+  return [reached || NEVER, context]
 }
 
 export { last, total, utils }

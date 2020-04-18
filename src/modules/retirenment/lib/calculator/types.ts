@@ -64,7 +64,7 @@ export type Reached = Date
  */
 export type ReacherResult<Context = {}> = readonly [
   Reached,
-  Context & { reachable: boolean }
+  Context & { reachable: boolean; byDue?: number }
 ]
 
 /**
@@ -112,10 +112,10 @@ export type PossibilityExecution = readonly [
   { reached: Date | null; result: PossibilityResult }
 ]
 
-export interface Possibility {
+export interface Possibility<Conditions = readonly Condition[]> {
   title: string
   description: string
-  conditions: Condition[]
+  conditions: Conditions
   execute: (input: CalculatorInput) => PossibilityExecution
 }
 
