@@ -119,8 +119,8 @@ const reachedAt = (input: string | number) => ({
 
 const input = (
   gender?: Gender,
-  contributions?: Contribution[],
-  birth = '1940'
+  birth = '1940',
+  contributions?: Contribution[]
 ) => ({
   gender: gender || Gender.MALE,
   birthDate: d(birth),

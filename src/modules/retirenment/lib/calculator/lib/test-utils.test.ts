@@ -111,13 +111,13 @@ describe('retirement/calculator/lib/test-utils', () => {
 
     describe('input', () => {
       it.each([
-        [input(), null],
-        [input(null, null, null), null],
+        [input(), u],
+        [input(u, u, u), u],
 
         [input(M), [M]],
-        [input(null, [contribution('50^60')]), [, [{ start: date('50') }]]],
-        [input(null, [contribution('50^60')]), [, [{ end: date('60') }]]],
-        [input(null, null, '80'), [, , date('80')]],
+        [input(u, u, [contribution('50^60')]), [, [{ start: date('50') }]]],
+        [input(u, u, [contribution('50^60')]), [, [{ end: date('60') }]]],
+        [input(u, '80'), [, , date('80')]],
       ])('should generate valid inputs', (input, expected) => {
         expect(input).toEqual({
           gender: expect.toBeOneOf(Object.values(Gender)),

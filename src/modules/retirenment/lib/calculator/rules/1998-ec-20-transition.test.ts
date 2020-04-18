@@ -2,26 +2,12 @@
 import { d, c, u, I } from '../lib/test-utils'
 import { between, string } from '../lib/duration'
 import { NEVER } from '../lib/const'
+import { Gender, Post, ServiceKind, CalculatorInput } from '../types'
 // @ts-ignore
 import { rule, __get__ } from './1998-ec-20-transition'
 
-import {
-  Gender,
-  Post,
-  Contribution,
-  ServiceKind,
-  CalculatorInput,
-} from '../types'
-
 const { MALE: M, FEMALE: F } = Gender
 const { TEACHER: T, OTHER: O } = Post
-
-/**
- * Generates a valid 1998-ec-20-transition rule input.
- */
-const i = (gender: Gender, birth: string, contributions: Contribution[]) =>
-  // better defaults
-  I(gender, contributions, birth)
 
 describe('retirement/calculator/rules/1998-ec-20-transition', () => {
   describe('processor', () => {
@@ -155,30 +141,30 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
       it.each([
         // reached before promulgation:
-        [i(M, '40', [c('50')]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
-        [i(F, '40', [c('50')]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+        [I(M, '40', [c('50')]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+        [I(F, '40', [c('50')]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
 
         // male
 
         // by contrib:
-        [i(M, '49', [c('57^67'), c('78')]), true, d('2003-10-14')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-        [i(M, '49', [c('57^67'), c('80')]), false, d('2006-03-08')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+        [I(M, '49', [c('57^67'), c('78')]), true, d('2003-10-14')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+        [I(M, '49', [c('57^67'), c('80')]), false, d('2006-03-08')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
         // by age:
-        [i(M, '49', [c('57^67'), c('70')]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-        [i(M, '51', [c('57^67'), c('70')]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+        [I(M, '49', [c('57^67'), c('70')]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+        [I(M, '51', [c('57^67'), c('70')]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
         // by last:
-        [i(M, '49', [c('57^00'), c('00')]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+        [I(M, '49', [c('57^00'), c('00')]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
 
         // female
 
         // by contrib:
-        [i(F, '54', [c('57^62'), c('78')]), true, d('2003-10-15')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-        [i(F, '54', [c('57^62'), c('80')]), false, d('2006-03-09')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+        [I(F, '54', [c('57^62'), c('78')]), true, d('2003-10-15')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+        [I(F, '54', [c('57^62'), c('80')]), false, d('2006-03-09')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
         // by age:
-        [i(F, '54', [c('57^62'), c('70')]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-        [i(F, '56', [c('57^62'), c('70')]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+        [I(F, '54', [c('57^62'), c('70')]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+        [I(F, '56', [c('57^62'), c('70')]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
         // by last:
-        [i(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
+        [I(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
       ])('should calculate possibility result', (input, satisfied, by) => {
         const [reached, context] = integral.execute(input)
         expect(reached).toBe(satisfied)
@@ -201,33 +187,33 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
         it.each([
           // reached before promulgation:
-          [i(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
-          [i(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+          [I(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+          [I(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
 
           // male
 
           // by contrib:
-          [i(M, '49', [c('60^65', y), c('77', y)]), true, d('2003-01-30')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '49', [c('60^65', y), c('78', y)]), false, d('2004-06-26')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          [I(M, '49', [c('60^65', y), c('77', y)]), true, d('2003-01-30')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [I(M, '49', [c('60^65', y), c('78', y)]), false, d('2004-06-26')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
           // combined teacher/non-teacher periods
-          [i(M, '49', [c('60^65', n), c('78', y)]), false, d('2005-07-03')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          [I(M, '49', [c('60^65', n), c('78', y)]), false, d('2005-07-03')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
           // by age:
-          [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+          [I(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [I(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
           // by last:
-          [i(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+          [I(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
 
           // female
 
           // by contrib:
-          [i(F, '54', [c('60^65', y), c('82', y)]), true, d('2003-04-25')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          [i(F, '54', [c('60^65', y), c('83', y)]), false, d('2004-10-02')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
-          [i(F, '54', [c('60^65', n), c('83', y)]), false, d('2005-12-14')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [I(F, '54', [c('60^65', y), c('82', y)]), true, d('2003-04-25')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [I(F, '54', [c('60^65', y), c('83', y)]), false, d('2004-10-02')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [I(F, '54', [c('60^65', n), c('83', y)]), false, d('2005-12-14')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
           // by age:
-          [i(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+          [I(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [I(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
           // by last:
-          [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
+          [I(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
         ])('should calculate possibility result', (input, satisfied, by) => {
           const [reached, context] = integral.execute(input)
           expect(reached).toBe(satisfied)
@@ -328,30 +314,30 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
       it.each([
         // reached before promulgation:
-        [i(M, '40', [c('50')]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
-        [i(F, '40', [c('50')]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+        [I(M, '40', [c('50')]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+        [I(F, '40', [c('50')]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
 
         // male
 
         // by contrib:
-        [i(M, '49', [c('60^70'), c('82')]), true, d('2003-03-11')], //  male, 54 ✅, contributing 31 ✅, last more than 5 ✅
-        [i(M, '49', [c('60^70'), c('83')]), false, d('2004-08-03')], // male, 54 ✅, contributing 29 ❌, last more than 5 ✅
+        [I(M, '49', [c('60^70'), c('82')]), true, d('2003-03-11')], //  male, 54 ✅, contributing 31 ✅, last more than 5 ✅
+        [I(M, '49', [c('60^70'), c('83')]), false, d('2004-08-03')], // male, 54 ✅, contributing 29 ❌, last more than 5 ✅
         // by age:
-        [i(M, '49', [c('57^67'), c('75')]), true, d('2002-01-01')], //  male, 54 ✅, contributing 31 ✅, last more than 5 ✅
-        [i(M, '51', [c('57^67'), c('75')]), false, d('2004-01-01')], // male, 52 ❌, contributing 31 ✅, last more than 5 ✅
+        [I(M, '49', [c('57^67'), c('75')]), true, d('2002-01-01')], //  male, 54 ✅, contributing 31 ✅, last more than 5 ✅
+        [I(M, '51', [c('57^67'), c('75')]), false, d('2004-01-01')], // male, 52 ❌, contributing 31 ✅, last more than 5 ✅
         // by last:
-        [i(M, '49', [c('57^00'), c('00')]), false, d('2004-12-30')], // male, 54 ✅, contributing 31 ✅, last less than 5 ❌
+        [I(M, '49', [c('57^00'), c('00')]), false, d('2004-12-30')], // male, 54 ✅, contributing 31 ✅, last less than 5 ❌
 
         // female
 
         // by contrib:
-        [i(F, '54', [c('60^70'), c('87')]), true, d('2003-03-12')], //  female, 49 ✅, contributing 26 ✅, last more than 5 ✅
-        [i(F, '54', [c('60^70'), c('88')]), false, d('2004-08-04')], // female, 49 ✅, contributing 24 ❌, last more than 5 ✅
+        [I(F, '54', [c('60^70'), c('87')]), true, d('2003-03-12')], //  female, 49 ✅, contributing 26 ✅, last more than 5 ✅
+        [I(F, '54', [c('60^70'), c('88')]), false, d('2004-08-04')], // female, 49 ✅, contributing 24 ❌, last more than 5 ✅
         // by age:
-        [i(F, '54', [c('57^62'), c('75')]), true, d('2002-01-01')], //  female, 49 ✅, contributing 26 ✅, last more than 5 ✅
-        [i(F, '56', [c('57^62'), c('75')]), false, d('2004-01-01')], // female, 47 ❌, contributing 26 ✅, last more than 5 ✅
+        [I(F, '54', [c('57^62'), c('75')]), true, d('2002-01-01')], //  female, 49 ✅, contributing 26 ✅, last more than 5 ✅
+        [I(F, '56', [c('57^62'), c('75')]), false, d('2004-01-01')], // female, 47 ❌, contributing 26 ✅, last more than 5 ✅
         // by last:
-        [i(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 26 ✅, last less than 5 ❌
+        [I(F, '54', [c('57^00'), c('00')]), false, d('2004-12-30')], // female, 49 ✅, contributing 26 ✅, last less than 5 ❌
       ])('should calculate possibility result', (input, satisfied, by) => {
         const [reached, context] = proportional.execute(input)
         expect(reached).toBe(satisfied)
@@ -374,33 +360,33 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
 
         it.each([
           // reached before promulgation:
-          [i(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
-          [i(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
+          [I(M, '40', [c('50', y)]), true, rule.promulgation], //  male,   58 ✅, contributing 48 ✅, last more than 5 ✅
+          [I(F, '40', [c('50', y)]), true, rule.promulgation], //  female, 58 ✅, contributing 48 ✅, last more than 5 ✅
 
           // male
 
           // by contrib:
-          [i(M, '49', [c('60^70', y), c('86', y)]), true, d('2003-04-29')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '49', [c('60^70', y), c('87', y)]), false, d('2004-12-17')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          [I(M, '49', [c('60^70', y), c('86', y)]), true, d('2003-04-29')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [I(M, '49', [c('60^70', y), c('87', y)]), false, d('2004-12-17')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
           // combined teacher/non-teacher periods
-          [i(M, '49', [c('60^70', n), c('87', y)]), false, d('2007-05-06')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
+          [I(M, '49', [c('60^70', n), c('87', y)]), false, d('2007-05-06')], // male, 54 ✅, contributing 34 ❌, last more than 5 ✅
           // by age:
-          [i(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
-          [i(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
+          [I(M, '49', [c('57^67', y), c('70', y)]), true, d('2002-01-01')], //  male, 54 ✅, contributing 36 ✅, last more than 5 ✅
+          [I(M, '51', [c('57^67', y), c('70', y)]), false, d('2004-01-01')], // male, 52 ❌, contributing 36 ✅, last more than 5 ✅
           // by last:
-          [i(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
+          [I(M, '49', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // male, 54 ✅, contributing 36 ✅, last less than 5 ❌
 
           // female
 
           // by contrib:
-          [i(F, '54', [c('60^65', y), c('86', y)]), true, d('2003-10-07')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          [i(F, '54', [c('60^65', y), c('87', y)]), false, d('2005-06-11')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
-          [i(F, '54', [c('60^65', n), c('87', y)]), false, d('2006-11-05')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [I(F, '54', [c('60^65', y), c('86', y)]), true, d('2003-10-07')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [I(F, '54', [c('60^65', y), c('87', y)]), false, d('2005-06-11')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
+          [I(F, '54', [c('60^65', n), c('87', y)]), false, d('2006-11-05')], // female, 49 ✅, contributing 29 ❌, last more than 5 ✅
           // by age:
-          [i(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
-          [i(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
+          [I(F, '54', [c('60^65', y), c('70', y)]), true, d('2002-01-01')], //  female, 49 ✅, contributing 31 ✅, last more than 5 ✅
+          [I(F, '56', [c('60^65', y), c('70', y)]), false, d('2004-01-01')], // female, 47 ❌, contributing 31 ✅, last more than 5 ✅
           // by last:
-          [i(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
+          [I(F, '54', [c('57^00', y), c('00', y)]), false, d('2004-12-30')], // female, 49 ✅, contributing 31 ✅, last less than 5 ❌
         ])('should calculate possibility result', (input, satisfied, by) => {
           const [reached, context] = proportional.execute(input)
           expect(reached).toBe(satisfied)
