@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { d, b } from '../test-utils'
+import { d, u, I } from '../test-utils'
 import { age, contribution } from '.'
 
 describe('retirement/calculator/lib/reachers', () => {
@@ -19,7 +19,7 @@ describe('retirement/calculator/lib/reachers', () => {
       [30, '1970', '2000'],
       [30, '1980', '2010'],
     ])('should correctly calculate reach', (years, birth, expected) => {
-      const [reached] = age({ years })(b(birth))
+      const [reached] = age({ years })(I(u, birth))
       expect(reached).toEqual(d(expected))
     })
 
@@ -31,7 +31,7 @@ describe('retirement/calculator/lib/reachers', () => {
       [30, '1970', '2000'],
       [30, '1980', '2010'],
     ])('should be constructable', (years, birth, result) => {
-      const input = b(birth)
+      const input = I(u, birth)
       const expected = jest.fn(() => ({ years }))
       const [reached] = age(expected)(input)
 
