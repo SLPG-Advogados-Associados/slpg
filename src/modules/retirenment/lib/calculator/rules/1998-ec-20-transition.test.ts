@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { d, c, u } from '../lib/test-utils'
+import { d, c, u, I } from '../lib/test-utils'
 import { between, string } from '../lib/duration'
 import { NEVER } from '../lib/const'
 // @ts-ignore
@@ -19,11 +19,9 @@ const { TEACHER: T, OTHER: O } = Post
 /**
  * Generates a valid 1998-ec-20-transition rule input.
  */
-const i = (gender: Gender, birth: string, contributions: Contribution[]) => ({
-  gender,
-  birthDate: d(birth),
-  contributions,
-})
+const i = (gender: Gender, birth: string, contributions: Contribution[]) =>
+  // better defaults
+  I(gender, contributions, birth)
 
 describe('retirement/calculator/rules/1998-ec-20-transition', () => {
   describe('processor', () => {
