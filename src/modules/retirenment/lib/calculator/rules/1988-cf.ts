@@ -29,9 +29,12 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo total de contribuição',
-        execute: reachers.contribution.total(input => ({
-          years: { [MALE]: 35, [FEMALE]: 30 }[input.gender],
-        })),
+        execute: reachers.contribution.total(
+          input => ({
+            years: { [MALE]: 35, [FEMALE]: 30 }[input.gender],
+          }),
+          { due }
+        ),
       },
 
       /**
@@ -42,7 +45,7 @@ const possibilities: Possibility[] = [
         description: 'Tempo total de contribuição (magistério)',
         execute: reachers.contribution.total(
           input => ({ years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] }),
-          { filter: ({ service }) => service.post === TEACHER }
+          { due, filter: ({ service }) => service.post === TEACHER }
         ),
       },
     ],
@@ -82,9 +85,12 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo total de contribuição',
-        execute: reachers.contribution.total(input => ({
-          years: { [MALE]: 30, [FEMALE]: 25 }[input.gender],
-        })),
+        execute: reachers.contribution.total(
+          input => ({
+            years: { [MALE]: 30, [FEMALE]: 25 }[input.gender],
+          }),
+          { due }
+        ),
       },
 
       /**

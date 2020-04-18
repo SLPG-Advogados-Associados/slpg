@@ -31,16 +31,18 @@ describe('retirement/calculator/rules/cf-1988', () => {
          */
         it.each([
           // male
-          [i(M, [c('63')]), d('1997-12-23')],
-          [i(M, [c('64')]), d('1998-12-23')],
-          [i(M, [c('1980')]), d('2014-12-23')],
+          [i(M, [c('60')]), d('1994-12-23'), 38],
+          [i(M, [c('63')]), d('1997-12-23'), 35],
+          [i(M, [c('64')]), d('1998-12-23'), 34],
+          [i(M, [c('80')]), d('2014-12-23'), 18],
           // female
-          [i(F, [c('67')]), d('1996-12-24')],
-          [i(F, [c('69')]), d('1998-12-25')],
-          [i(F, [c('1980')]), d('2009-12-24')],
-        ])('should reach by contribution', (input, expected) => {
-          const [reached] = general.execute(input)
+          [i(F, [c('67')]), d('1996-12-24'), 31],
+          [i(F, [c('69')]), d('1998-12-25'), 29],
+          [i(F, [c('1980')]), d('2009-12-24'), 18],
+        ])('should reach by contribution', (input, expected, contributed) => {
+          const [reached, context] = general.execute(input)
           expect(reached).toEqual(expected)
+          expect(Math.floor(context.byDue)).toBe(contributed)
         })
 
         /**
@@ -49,29 +51,33 @@ describe('retirement/calculator/rules/cf-1988', () => {
          */
         it.each([
           // male teacher
-          [i(M, [c('63', [u, T])]), d('1992-12-24')],
+          [i(M, [c('63', [u, T])]), d('1992-12-24'), 35],
           // female teacher
-          [i(F, [c('63', [u, T])]), d('1987-12-26')],
+          [i(F, [c('63', [u, T])]), d('1987-12-26'), 35],
 
           // non-teacher
-          [i(M, [c('60')]), NEVER],
-          [i(F, [c('60')]), NEVER],
+          [i(M, [c('60')]), NEVER, 0],
+          [i(F, [c('60')]), NEVER, 0],
 
           // mixed post types
 
           // male teacher
-          [i(M, [c('60^70'), c('70', [u, T])]), d('1999-12-25')],
-          [i(M, [c('60^67'), c('67', [u, T])]), d('1996-12-24')],
-          [i(M, [c('60^67'), c('69', [u, T])]), d('1998-12-25')],
+          [i(M, [c('60^70'), c('70', [u, T])]), d('1999-12-25'), 28],
+          [i(M, [c('60^67'), c('67', [u, T])]), d('1996-12-24'), 31],
+          [i(M, [c('60^67'), c('69', [u, T])]), d('1998-12-25'), 29],
 
           // female teacher
-          [i(F, [c('60^75'), c('75', [u, T])]), d('1999-12-26')],
-          [i(F, [c('60^72'), c('72', [u, T])]), d('1996-12-25')],
-          [i(F, [c('60^72'), c('74', [u, T])]), d('1998-12-26')],
-        ])('should reach by teacher contribution', (input, expected) => {
-          const [reached] = teacher.execute(input)
-          expect(reached).toEqual(expected)
-        })
+          [i(F, [c('60^75'), c('75', [u, T])]), d('1999-12-26'), 23],
+          [i(F, [c('60^72'), c('72', [u, T])]), d('1996-12-25'), 26],
+          [i(F, [c('60^72'), c('74', [u, T])]), d('1998-12-26'), 24],
+        ])(
+          'should reach by teacher contribution',
+          (input, expected, contributed) => {
+            const [reached, context] = teacher.execute(input)
+            expect(reached).toEqual(expected)
+            expect(Math.floor(context.byDue)).toBe(contributed)
+          }
+        )
       })
 
       it.each([
