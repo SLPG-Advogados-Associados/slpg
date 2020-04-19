@@ -16,6 +16,7 @@ const due = new Date('2003-12-31')
 const processor = (
   integrality: boolean
 ): reachers.contribution.TotalReacherConfig => ({
+  due,
   split: reachers.contribution.utils.splitAt(promulgation),
   process: (duration, { contribution, input, computed, expected }) => {
     let result = duration
@@ -101,9 +102,10 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Idade mínima',
-        execute: reachers.age(input => ({
-          years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
-        })),
+        execute: reachers.age(
+          input => ({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
+          { due }
+        ),
       },
 
       /**
@@ -114,7 +116,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo no último cargo',
-        execute: reachers.contribution.last({ years: 5 }),
+        execute: reachers.contribution.last({ years: 5 }, { due }),
       },
 
       /**
@@ -200,9 +202,10 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Idade mínima',
-        execute: reachers.age(input => ({
-          years: { [MALE]: 53, [FEMALE]: 48 }[input.gender],
-        })),
+        execute: reachers.age(
+          input => ({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
+          { due }
+        ),
       },
 
       /**
@@ -213,7 +216,7 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Tempo no último cargo',
-        execute: reachers.contribution.last({ years: 5 }),
+        execute: reachers.contribution.last({ years: 5 }, { due }),
       },
 
       /**

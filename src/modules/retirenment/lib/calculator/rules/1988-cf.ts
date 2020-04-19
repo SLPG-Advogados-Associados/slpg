@@ -30,9 +30,7 @@ const possibilities: Possibility[] = [
       {
         description: 'Tempo total de contribuição',
         execute: reachers.contribution.total(
-          input => ({
-            years: { [MALE]: 35, [FEMALE]: 30 }[input.gender],
-          }),
+          input => ({ years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] }),
           { due }
         ),
       },
@@ -86,9 +84,7 @@ const possibilities: Possibility[] = [
       {
         description: 'Tempo total de contribuição',
         execute: reachers.contribution.total(
-          input => ({
-            years: { [MALE]: 30, [FEMALE]: 25 }[input.gender],
-          }),
+          input => ({ years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] }),
           { due }
         ),
       },
@@ -99,9 +95,10 @@ const possibilities: Possibility[] = [
        */
       {
         description: 'Idade',
-        execute: reachers.age(input => ({
-          years: { [MALE]: 65, [FEMALE]: 60 }[input.gender],
-        })),
+        execute: reachers.age(
+          input => ({ years: { [MALE]: 65, [FEMALE]: 60 }[input.gender] }),
+          { due }
+        ),
       },
     ],
 
