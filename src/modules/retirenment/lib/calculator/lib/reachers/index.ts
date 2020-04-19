@@ -1,6 +1,6 @@
 /* cspell: disable */
 import { add } from '../date'
-import { DurationInput } from '../duration'
+import { DurationInput, between } from '../duration'
 import { Reacher, CalculatorInput } from '../../types'
 import * as contribution from './contribution'
 
@@ -11,14 +11,18 @@ import * as contribution from './contribution'
  * @param input Person input.
  */
 const age = (
-  duration: DurationInput | ((input: CalculatorInput) => DurationInput)
+  duration: DurationInput | ((input: CalculatorInput) => DurationInput),
+  config: { due?: Date } = {}
 ): Reacher => input => [
   add(
     input.birthDate,
     typeof duration === 'function' ? duration(input) : duration,
     true
   ),
-  { reachable: false },
+  {
+    reachable: false,
+    byDue: config.due ? between(input.birthDate, config.due) : null,
+  },
 ]
 
 export { age, contribution }

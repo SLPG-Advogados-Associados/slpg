@@ -19,7 +19,6 @@ import {
   subtract,
   negate,
   toDays,
-  toYears,
 } from '../duration'
 
 const utils = {
@@ -47,11 +46,19 @@ const utils = {
  *
  * @param duration The expected duration of the last contribution by due date.
  */
-const last = (expected: DurationInput): Reacher => input => {
+const last = (
+  expected: DurationInput,
+  config: { due?: Date } = {}
+): Reacher => input => {
   const { start, end } = getLast(input.contributions)
-  const reached = add(start, expected)
+  const fromStart = add(start, expected)
+  const reached = !end || fromStart <= end ? fromStart : NEVER
 
-  return [!end || reached <= end ? reached : NEVER, { reachable: false }]
+  const byDue = config.due
+    ? between(start, !end ? config.due : min([end, config.due]))
+    : null
+
+  return [!end || reached <= end ? reached : NEVER, { reachable: false, byDue }]
 }
 
 type ComputedDurations = {
@@ -163,7 +170,7 @@ const total = (
   const context = {
     computed,
     reachable: true,
-    byDue: config.due ? toYears(computed.byDue) : null,
+    byDue: config.due ? computed.byDue : null,
   }
 
   return [reached || NEVER, context]

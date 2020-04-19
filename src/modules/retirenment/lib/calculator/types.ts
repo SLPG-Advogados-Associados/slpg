@@ -1,3 +1,5 @@
+import { Duration } from 'date-fns'
+
 /**
  * Inputs and incoming types.
  * --------------------------
@@ -64,7 +66,7 @@ export type Reached = Date
  */
 export type ReacherResult<Context = {}> = readonly [
   Reached,
-  Context & { reachable: boolean; byDue?: number }
+  Context & { reachable: boolean; byDue?: Duration }
 ]
 
 /**
