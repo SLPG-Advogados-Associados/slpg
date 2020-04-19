@@ -1,4 +1,5 @@
 /* cspell: disable */
+import { toYears } from 'duration-fns'
 import { c, d, u } from '../lib/test-utils'
 import { NEVER } from '../lib/const'
 import { Gender, Contribution, Post } from '../types'
@@ -42,7 +43,7 @@ describe('retirement/calculator/rules/cf-1988', () => {
         ])('should reach by contribution', (input, expected, contributed) => {
           const [reached, context] = general.execute(input)
           expect(reached).toEqual(expected)
-          expect(Math.floor(context.byDue)).toBe(contributed)
+          expect(Math.floor(toYears(context.byDue))).toBe(contributed)
         })
 
         /**
@@ -75,7 +76,7 @@ describe('retirement/calculator/rules/cf-1988', () => {
           (input, expected, contributed) => {
             const [reached, context] = teacher.execute(input)
             expect(reached).toEqual(expected)
-            expect(Math.floor(context.byDue)).toBe(contributed)
+            expect(Math.floor(toYears(context.byDue))).toBe(contributed)
           }
         )
       })
