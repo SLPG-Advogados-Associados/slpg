@@ -1,5 +1,5 @@
 ---
-title: O que está acontecendo com os trabalhadores no mundo?
+title: 'Covid-19: O que está acontecendo com os trabalhadores no mundo?'
 date: 2020-04-13T19:07:38.183Z
 image: /admin/content/media/image.png
 summary: >-
