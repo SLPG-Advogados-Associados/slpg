@@ -8,6 +8,8 @@ summary: >-
   Saúde da trabalhadora é protegida por decisão judicial após negativa de
   trabalho remoto pela Administração do HU.
 ---
+**_Por Paula Avila Poli (OAB/SC 25685), advogada do SLPG._**\
+_\*\*\*\*_\
 A servidora, que trabalha no Hospital Universitário da UFSC, está no grupo de risco da Covid-19. Ela tinha tido seu pedido de realizar trabalho remoto negado pela Empresa Brasileira de Serviços Hospitalares. A Ebserh havia, inclusive, imposto o retorno imediato ao trabalho da técnica em enfermagem, sem levar em conta sua condição de saúde. 
 
 A tutela de urgência, concedida pela juíza Maria Aparecida Ferreira Jeronimo, titular da 3a. Vara do Trabalho de Florianópolis, garante que a servidora tem o direito ao trabalho remoto, e estabelece que ela realize em casa e caso necessário, outras funções, desde que correlatas à área da saúde. 
