@@ -10,6 +10,8 @@ summary: >-
   importante precedente em prol da população que passa pelas dificuldades
   econômicas.
 ---
+**Por Paula Avila Poli (OAB/SC 25685), advogada do SLPG.**
+
 Na segunda-feira dia 20 de abril de 2020, o juiz federal Renato Coelho Boreli determinou aos bancos que suspendam a cobrança, por 4 (quatro) meses, das parcelas de empréstimos realizados com débito em folha de pagamento.
 
 A ação popular que levou a essa decisão é de iniciativa do advogado Márcio Casado, tramita sob o nº 1022484-11.2020.4.01.3400 no Distrito Federal; segundo o advogado é necessário repassar aos correntistas e tomadores de empréstimos as iniciativas tomadas pelo Banco Central com objetivo de minimizar os efeitos da pandemia de COVID-19. 
