@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: lucasconstantino/slpg
+  repo: SLPG-Advogados-Associados/slpg
   branch: master
 media_folder: src/admin/content/media
 public_folder: /admin/content/media
