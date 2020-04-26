@@ -2,35 +2,41 @@ import React from 'react'
 import NextApp from 'next/app'
 import ErrorPage from './_error.page'
 import { ThemeProvider } from '~design'
+import { Provider as UserAgentProvider, getUserAgent } from '~app/lib/userAgent'
 
 import '../setup'
 
-class App extends NextApp<{ statusCode: number }> {
+class App extends NextApp<{ statusCode: number; userAgent: string }> {
   static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
+    const props = {
+      pageProps: {},
+      userAgent: getUserAgent(ctx),
+    }
 
     try {
       if (Component.getInitialProps) {
-        pageProps = await Component.getInitialProps(ctx)
+        props.pageProps = await Component.getInitialProps(ctx)
       }
 
-      return { pageProps }
+      return props
     } catch (err) {
       return {
+        ...props,
         ...(await ErrorPage.getInitialProps({ ...ctx, err })),
-        pageProps,
       }
     }
   }
 
   public render() {
-    const { statusCode, ...props } = this.props
+    const { statusCode, userAgent, ...props } = this.props
 
     return statusCode ? (
       <ErrorPage statusCode={statusCode} />
     ) : (
       <ThemeProvider>
-        <NextApp {...props} />
+        <UserAgentProvider userAgent={userAgent}>
+          <NextApp {...props} />
+        </UserAgentProvider>
       </ThemeProvider>
     )
   }
