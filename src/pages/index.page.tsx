@@ -9,7 +9,7 @@ import { list as expertises } from '~modules/expertise'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
-import { useUserAgent } from '~app/lib/userAgent'
+import { isMobile } from '~app/lib/userAgent'
 import { BLOG_LATEST } from './index.gql'
 import { WhatsApp } from './whats-app-icon'
 
@@ -91,7 +91,13 @@ const HomePage = () => {
   const blog = useQuery<GT.BLOG_LATEST_QUERY>(BLOG_LATEST)
   const posts = blog.data ? blog.data.posts.items.map(({ item }) => item) : []
 
-  const isMobile = useUserAgent().mobile()
+  const openWhatsApp = () =>
+    window.open(
+      `https://${
+        isMobile() ? 'api' : 'web'
+      }.whatsapp.com/send?phone=+5548988359010`,
+      '_blank'
+    )
 
   return (
     <Page meta={{ type: 'website' }}>
@@ -114,17 +120,10 @@ const HomePage = () => {
             <span className="phone">
               (48) 3024-4166 <span className="hidden md:inline">/</span>
               <br className="md:hidden" /> (48) 98835-9010{' '}
-              <a
-                href={`https://${
-                  isMobile ? 'api' : 'web'
-                }.whatsapp.com/send?phone=+5548988359010`}
-                className="inline-block"
-                rel="noopener noreferrer"
-                target="_blank"
-                style={{ marginBottom: '-0.2em' }}
-              >
-                <WhatsApp />
-              </a>
+              <WhatsApp
+                className="inline-block align-text-top"
+                onClick={openWhatsApp}
+              />
               <br />
               <a href="mailto:secretaria@slpgadvogados.adv.br">
                 secretaria@slpgadvogados.adv.br

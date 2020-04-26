@@ -1,6 +1,6 @@
 import React from 'react'
 
-const WhatsApp = () => (
+const WhatsApp = props => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -8,6 +8,7 @@ const WhatsApp = () => (
     height="1.2em"
     version="1.1"
     viewBox="0 0 175.216 175.552"
+    {...props}
   >
     <defs>
       <clipPath>

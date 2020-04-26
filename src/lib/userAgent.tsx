@@ -19,4 +19,6 @@ const Provider: React.FC<{ userAgent: string }> = ({ children, userAgent }) => {
 
 const useUserAgent = () => useContext(MobileDetectContext)
 
-export { Provider, getUserAgent, useUserAgent }
+const isMobile = () => new MobileDetect(window.navigator.userAgent).mobile()
+
+export { Provider, getUserAgent, useUserAgent, isMobile }
