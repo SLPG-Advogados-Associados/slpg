@@ -9,6 +9,8 @@ summary: >-
   a redução de salários e direitos e para efetivar o plano impedem a atuação
   sindical na defesa da classe trabalhadora.
 ---
+_**Por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG.**_
+
 Segundo Bolsonaro, a finalidade das duas medidas provisórias - MP 927 e MP 936 - que o seu governo editou recentemente é reduzir os impactos sociais e econômicos decorrentes da pandemia do coronavírus, garantindo a renda, o emprego e a continuidade das atividades econômicas.
 
 No entanto, apesar do discurso, a atuação concreta do Governo Bolsonaro se destina à proteção das empresas privadas em detrimento evidente dos trabalhadores. Além da redução da renda e da mutilação de direitos fundamentais, o Governo aproveita o momento para avançar com a  política de ataque às entidades sindicais que já é aplicada desde a reforma trabalhista de 2017, restringindo ainda mais a possibilidade de os sindicatos atuarem na defesa da classe trabalhadora..
