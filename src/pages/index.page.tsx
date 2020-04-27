@@ -120,10 +120,9 @@ const HomePage = () => {
             <span className="phone">
               (48) 3024-4166 <span className="hidden md:inline">/</span>
               <br className="md:hidden" /> (48) 98835-9010{' '}
-              <WhatsApp
-                className="inline-block align-text-top"
-                onClick={openWhatsApp}
-              />
+              <a href="#" onClick={openWhatsApp}>
+                <WhatsApp className="inline-block align-text-top" />
+              </a>
               <br />
               <a href="mailto:secretaria@slpgadvogados.adv.br">
                 secretaria@slpgadvogados.adv.br
