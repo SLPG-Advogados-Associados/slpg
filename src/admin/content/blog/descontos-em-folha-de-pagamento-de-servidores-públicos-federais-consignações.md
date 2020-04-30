@@ -3,14 +3,14 @@ title: Descontos em folha de pagamento de servidores públicos federais (consign
 date: 2020-04-30T16:46:02.000Z
 image: /admin/content/media/19680388513_92e4e96acb_b.jpg
 summary: >-
-  Foi publicado hoje, dia 29/04/2020, o Decreto nº 10.328/2020 que produziu
-  algumas mudanças no Decreto nº 8.690/2016, que dispõe sobre a gestão das
-  consignações em folha de pagamento no âmbito do sistema de gestão de pessoas
-  do Poder Executivo federal.
+  Foi publicado no dia 29/04/2020 o Decreto nº 10.328/2020 que produziu algumas
+  mudanças no Decreto nº 8.690/2016, que dispõe sobre a gestão das consignações
+  em folha de pagamento no âmbito do sistema de gestão de pessoas do Poder
+  Executivo federal.
 ---
-_**Por Johann Schuck (OAB/PI 14.977), advogado membro do SLPG.**_
+**_Por Johann Schuck (OAB/PI 14.977), advogado membro do SLPG._**
 
-Foi publicado hoje, dia 29/04/2020, o Decreto nº 10.328/2020 que produziu algumas mudanças no Decreto nº 8.690/2016, que dispõe sobre a gestão das consignações em folha de pagamento no âmbito do sistema de gestão de pessoas do Poder Executivo federal.
+Foi publicado no dia 29/04/2020 o Decreto nº 10.328/2020 que produziu algumas mudanças no Decreto nº 8.690/2016, que dispõe sobre a gestão das consignações em folha de pagamento no âmbito do sistema de gestão de pessoas do Poder Executivo federal.
 
 As novas regras autorizam, a partir de 7 dias da publicação do Decreto, os servidores públicos federais, inclusive aposentados, a solicitar o cancelamento unilateral e a qualquer momento de descontos em folha. 
 
