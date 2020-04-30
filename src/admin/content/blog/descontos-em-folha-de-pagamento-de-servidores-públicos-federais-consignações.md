@@ -8,6 +8,8 @@ summary: >-
   consignações em folha de pagamento no âmbito do sistema de gestão de pessoas
   do Poder Executivo federal.
 ---
+_**Por Johann Schuck (OAB/PI 14.977), advogado membro do SLPG.**_
+
 Foi publicado hoje, dia 29/04/2020, o Decreto nº 10.328/2020 que produziu algumas mudanças no Decreto nº 8.690/2016, que dispõe sobre a gestão das consignações em folha de pagamento no âmbito do sistema de gestão de pessoas do Poder Executivo federal.
 
 As novas regras autorizam, a partir de 7 dias da publicação do Decreto, os servidores públicos federais, inclusive aposentados, a solicitar o cancelamento unilateral e a qualquer momento de descontos em folha. 
