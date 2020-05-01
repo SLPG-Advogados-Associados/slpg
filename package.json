@@ -118,5 +118,8 @@
   },
   "resolutions": {
     "hoist-non-react-statics": "3.0.0"
+  },
+  "engines": {
+    "node": ">=12.x.x"
   }
 }
