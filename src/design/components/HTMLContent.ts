@@ -17,13 +17,33 @@ const HTMLContent = styled.div`
     font-size: 1.25em;
   }
 
+  ul,
   ol {
-    list-style-type: disc;
     margin-block-start: 1em;
-    margin-block-end: 1em;
+    margin-block-end: 2em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 1.4em;
+    padding-inline-start: 0em;
+    list-style-position: inside;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: none;
+    counter-reset: ordered-list;
+
+    li {
+      counter-increment: ordered-list;
+
+      &::before {
+        content: counter(ordered-list) '. ';
+        font-weight: bold;
+        font-family: ${t.theme('fontFamily.mono')};
+      }
+    }
   }
 
   a {
