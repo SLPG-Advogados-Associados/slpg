@@ -46,6 +46,10 @@ const initial = {
     1400: '4rem',
   },
 
+  fontFamily: {
+    mono: ['Roboto Mono', 'monospace']
+  },
+
   spacing: {
     xs: '0.5rem',
     sm: '0.75rem',

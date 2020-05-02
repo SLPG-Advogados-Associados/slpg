@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,600i,700,700i&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 
 *,
 *::before,
@@ -15,7 +16,7 @@ html,
 body {
   @apply text-body;
   font-size: 16px;
-  font-family: 'montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 p {
