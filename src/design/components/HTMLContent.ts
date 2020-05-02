@@ -17,7 +17,7 @@ const HTMLContent = styled.div`
     font-size: 1.25em;
   }
 
-  ul {
+  ol {
     list-style-type: disc;
     margin-block-start: 1em;
     margin-block-end: 1em;
