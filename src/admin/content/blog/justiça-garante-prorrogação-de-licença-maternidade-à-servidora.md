@@ -6,6 +6,8 @@ summary: >-
   Melhor interesse da criança preservado com a possibilidade de extensão da
   licença maternidade
 ---
+_**Por Paula Avila Poli (OAB/SC 25685), advogada do SLPG.**_\
+\
 Decisão da justiça dá à servidora mais 60 dias de licença maternidade, além dos 120 dias já garantidos. Ela adotou um menino em 11 de dezembro de 2019 e desde então dedica-se aos cuidados e à adaptação da criança em casa. A União havia negado anteriormente a prorrogação, sob o argumento de que a servidora não havia cumprido o prazo de 30 dias para o requerimento.
 
 A decisão atual é do juiz federal substituto Diógenes Tarcísio Marcelino Teixeira, da 3ª. vara federal de Florianópolis. Ele argumenta que a necessidade de organização do serviço público por parte da Administração não pode se sobrepor aos interesses e necessidades da criança, que demanda cuidados permanentes de seus responsáveis, sobretudo na fase inicial da vida.
