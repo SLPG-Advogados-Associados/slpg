@@ -35,9 +35,11 @@ const CalculatorResultPage = () => {
 
   // @todo: check inf input is ok
 
-  const result = useMemo(() => Calculator.calculate(input), [
-    router.query.input,
+  const result = useMemo(() => (input ? Calculator.calculate(input) : null), [
+    input,
   ])
+
+  if (!result) return 'Not ready'
 
   return (
     <Page meta={meta}>
