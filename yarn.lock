@@ -8328,6 +8328,14 @@ next-images@^1.2.0:
     file-loader "^4.0.0"
     url-loader "^2.0.0"
 
+next-plugin-hot-loader@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/next-plugin-hot-loader/-/next-plugin-hot-loader-0.1.1.tgz#0c3f20b98618817c0740433c6c0fe51bdd5fd092"
+  integrity sha512-g6DEFlFqChk8EnMN0g1JbqCsBYFl1D+OSy5wnVaOSXj04Fg52yrmPE06BZ35fIDYQ90Qmm6zz0hnLvZYFd81eQ==
+  dependencies:
+    react-hot-loader "^4.12.20"
+    traverse "^0.6.6"
+
 next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
