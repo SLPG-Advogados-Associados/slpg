@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import qs from 'qs'
-import { hot } from 'react-hot-loader/root'
 import { Heading, classnames } from '~design'
 import { Calculator, Possibility, InputInfo } from '~modules/retirenment'
 import { useRouter } from '~app/lib/router'
@@ -82,4 +81,4 @@ const CalculatorResultPage = () => {
   )
 }
 
-export default hot(CalculatorResultPage)
+export default CalculatorResultPage
