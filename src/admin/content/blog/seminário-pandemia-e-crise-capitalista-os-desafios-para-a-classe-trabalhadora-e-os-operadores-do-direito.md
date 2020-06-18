@@ -8,7 +8,7 @@ summary: >-
   Mulinari, economista e assessor sindical do DIEESE. O evento será transmitido
   ao vivo através de nossa página no Facebook e canal no Youtube.
 ---
-Salve em sua agenda: no dia 6 de julho às 16h realizaremos um seminário virtual sobre **Pandemia e crise capitalista: os desafios para a classe trabalhadora e os operadores do direito**. 
+Salve em sua agenda: no dia **6 de julho às 16h** realizaremos um seminário virtual sobre **Pandemia e crise capitalista: os desafios para a classe trabalhadora e os operadores do direito**. 
 
 Para desenvolver este debate contaremos com as palestras de **Alysson Mascaro**, renomado professor de direito da USP que falará sobre [**Crise e pandemia**](https://www.boitempoeditorial.com.br/produto/e-crise-e-pandemia-959), título de seu último livro, e **Mauricio Mulinari**, economista e assessor sindical do DIEESE, que tratará da **Luta de classes e o direito trabalhista: passado, presente e futuro**. A mediação será de **Luis Fernando Silva**, advogado e fundador do escritório SLPG Advogados Associados. 
 
