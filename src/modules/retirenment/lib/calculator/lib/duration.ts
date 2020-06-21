@@ -61,12 +61,13 @@ const normalize = (duration: DurationInput, ref?: Date) => {
  *
  * @param start The starting date of the interval.
  * @param end The ending date of the interval.
+ * @param ref Use start as reference date for normalization of duration.
  */
-const between = (start: number | Date, end: number | Date) => {
+const between = (start: number | Date, end: number | Date, ref = false) => {
   const diff = Math.abs((end as number) - (start as number))
   const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
 
-  return normalize({ days })
+  return normalize({ days }, ref ? new Date(start) : undefined)
 }
 
 /**
