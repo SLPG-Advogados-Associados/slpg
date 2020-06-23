@@ -4,7 +4,7 @@ import { age } from './age'
 
 const o = expect.objectContaining
 
-describe('retirement/calculator/lib/reachers/age', () => {
+describe('retirement/calculator/lib/requisites/age', () => {
   it.each([
     // age, due, birth | satisfied, satisfied at, age by due
     [50, '2000', d('1940'), true, d('1990'), 60],
@@ -16,7 +16,7 @@ describe('retirement/calculator/lib/reachers/age', () => {
   ])(
     'should correctly calculate results',
     (years, due, birthDate, satisfied, satisfiedAt, ageByDue) => {
-      const reacher = age({ duration: { years }, due: d(due) })
+      const reacher = age({ expected: { years }, due: d(due) })
 
       expect(reacher({ birthDate })).toEqual({
         satisfied,
