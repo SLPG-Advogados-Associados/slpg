@@ -98,6 +98,43 @@ const splitPeriod = (
 ]
 
 /**
+ * Parses an interval notation into an interval object.
+ *
+ * @param notation The interval notation.
+ * i.e.:
+ *  - 2000^2001: from 2000-01-01 until 2001-01-01
+ *  - 2000-10-01^2003: from 2000-10-01 until 2003
+ *  - 2000^: from 2000-01-01 until forever
+ *  - ^2000: from forever until 2000
+ *  - ^: always
+ *  - '': error
+ */
+const parseInterval = (notation: string): Interval => {
+  if (!notation.includes('^')) {
+    throw new Error(`Invalid interval notation: "${notation}"`)
+  }
+
+  const [left, right] = notation.split('^')
+
+  // as date strings are expected, this string based comparison is safe.
+  const inverted = left && right && left > right
+
+  const leftDate = left ? new Date(left) : null
+  const rightDate = right ? new Date(right) : null
+
+  for (const date of [leftDate, rightDate]) {
+    if (date !== null && isNaN(Number(date))) {
+      throw new Error(`Invalid interval notation: "${notation}"`)
+    }
+  }
+
+  return {
+    start: !inverted ? leftDate : rightDate,
+    end: !inverted ? rightDate : leftDate,
+  }
+}
+
+/**
  * Count the amount of leap days (Feb 29) between two dates.
  *
  * @param _start Starting date.
@@ -138,4 +175,4 @@ const add = (date: Date, duration: DurationInput, ignoreLeap = false) =>
 
 export * from 'date-fns'
 
-export { floor, ceil, splitPeriod, leapsBetween, add }
+export { floor, ceil, splitPeriod, leapsBetween, add, parseInterval }

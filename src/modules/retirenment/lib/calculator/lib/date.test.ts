@@ -2,7 +2,7 @@ import * as base from 'date-fns'
 import * as lib from './date'
 import { i, d } from './test-utils'
 
-const { add, floor, ceil, splitPeriod, leapsBetween } = lib
+const { add, floor, ceil, splitPeriod, leapsBetween, parseInterval } = lib
 
 describe('retirement/calculator/lib/date', () => {
   it('should re-export everything available at base library', () => {
@@ -111,6 +111,25 @@ describe('retirement/calculator/lib/date', () => {
         const split = splitPeriod(i(original), d(middle))
         expect(split[0]).toHaveProperty('negative', before)
         expect(split[1]).toHaveProperty('negative', after)
+      }
+    )
+  })
+
+  describe('parseInterval', () => {
+    it.each([
+      ['2000^2010', { start: d('2000'), end: d('2010') }],
+      ['2000^2010', { start: d('2000'), end: d('2010') }],
+      ['2000^2010', { start: d('2000'), end: d('2010') }],
+      // inverted:
+      ['2010^2000', { start: d('2000'), end: d('2010') }],
+    ])('should parse interval notations', (notation, interval) => {
+      expect(parseInterval(notation)).toEqual(interval)
+    })
+
+    it.each(['', 'left^right', 'left^', '^right'])(
+      'should throw for invalid interval notations',
+      notation => {
+        expect(() => parseInterval(notation)).toThrow('Invalid interval')
       }
     )
   })
