@@ -1,5 +1,5 @@
 ---
-title: Quinta feita tem debate sobre a destruição da previdência social no Brasil
+title: Quinta feira tem debate sobre a destruição da previdência social no Brasil
 date: 2020-06-24T21:00:44.001Z
 image: /admin/content/media/whatsapp-image-2020-06-23-at-17.02.49.jpeg
 summary: >-
