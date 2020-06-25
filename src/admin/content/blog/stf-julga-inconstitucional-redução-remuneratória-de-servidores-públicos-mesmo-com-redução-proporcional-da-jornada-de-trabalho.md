@@ -11,9 +11,9 @@ summary: >-
   de se manter alerta e mobilizado em torno da defesa deste e de outros direitos
   dos servidores, tão ameaçados nos dias atuais.
 ---
-_**Por Luis Fernando Silva¹**_
+**_Por Luis Fernando Silva¹_**
 
-[[youtube:https://youtu.be/4Pc1kD2OurQ ]]
+[[youtube:youtube:https://youtu.be/4Pc1kD2OurQ]]
 
 O Supremo Tribunal Federal (STF) concluiu ontem, 24 de junho, o julgamento da Ação Direta de Inconstitucionalidade nº 2.238, que havia sido ajuizada em 4 de julho de 2000 (há mais de vinte anos, portanto), pelo Partido Socialista Brasileiro, pelo Partido Comunista do Brasil (PCdoB), e pelo Partido dos Trabalhadores (PT).
 
