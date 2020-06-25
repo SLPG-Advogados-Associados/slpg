@@ -1,7 +1,7 @@
 ---
 title: >-
-  STF julga inconstitucional redução remuneratória de servidores públicos, mesmo
-  com redução proporcional da jornada de trabalho
+  STF decide que é inconstitucional redução remuneratória de servidores
+  públicos, mesmo com redução proporcional da jornada de trabalho
 date: 2020-06-25T15:04:02.064Z
 image: /admin/content/media/quinto-1000px.jpg
 summary: >-
