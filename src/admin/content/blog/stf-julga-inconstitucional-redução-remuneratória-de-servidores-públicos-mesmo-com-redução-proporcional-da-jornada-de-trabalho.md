@@ -11,7 +11,7 @@ summary: >-
   de se manter alerta e mobilizado em torno da defesa deste e de outros direitos
   dos servidores, tão ameaçados nos dias atuais.
 ---
-_**Por Luis Fernando Silva¹**_
+**_Por Luis Fernando Silva¹_**
 
 O Supremo Tribunal Federal (STF) concluiu ontem, 24 de junho, o julgamento da Ação Direta de Inconstitucionalidade nº 2.238, que havia sido ajuizada em 4 de julho de 2000 (há mais de vinte anos, portanto), pelo Partido Socialista Brasileiro, pelo Partido Comunista do Brasil (PCdoB), e pelo Partido dos Trabalhadores (PT).
 
@@ -31,5 +31,8 @@ O momento é de comemorar esta importante vitória, que é produto da luta incan
 
 Florianópolis, 24 de junho de 2020.
 
-___
+- - -
+
 ¹ **Luis Fernando Silva** é advogado (OAB/SC 9582) e sócio fundador do Escritório SLPG Advogados Associados, vinculado ao CNASP – Coletivo Nacional de Advogados de Servidores Públicos. Pesquisador-colaborador da Escola Nacional de Saúde Pública da Fundação Osvaldo Cruz. Membro da Comissão Especial de Direito Previdenciário do Conselho Federal da Ordem dos Advogados do Brasil.
+
+\* Confira [**AQUI**](https://www.youtube.com/watch?v=4Pc1kD2OurQ&feature=youtu.be) o vídeo que publicamos sobre este assunto em nosso canal no Youtube.
