@@ -2,9 +2,9 @@ const youTube = {
   id: 'youtube',
   label: 'YouTube',
   fields: [{ name: 'url', label: 'YouTube Video URL', widget: 'string' }],
-  pattern: /^\[\[youtube:(\S+)\]\]$/,
+  pattern: /^```youtube\n(\S+)\n```$/,
   fromBlock: match => ({ url: match[1] }),
-  toBlock: ({ url }) => `[[youtube:${url}]]`,
+  toBlock: ({ url }) => '```youtube\n' + url + '\n```',
   toPreview: ({ url }) => `
     <div style="overflow: hidden; padding-bottom: 56.25%; position: relative; height: 0;">
       <iframe
