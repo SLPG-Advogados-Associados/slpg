@@ -11,7 +11,7 @@ summary: >-
   de se manter alerta e mobilizado em torno da defesa deste e de outros direitos
   dos servidores, tão ameaçados nos dias atuais.
 ---
-**_Por Luis Fernando Silva¹_**
+_**Por Luis Fernando Silva¹**_
 
 O Supremo Tribunal Federal (STF) concluiu ontem, 24 de junho, o julgamento da Ação Direta de Inconstitucionalidade nº 2.238, que havia sido ajuizada em 4 de julho de 2000 (há mais de vinte anos, portanto), pelo Partido Socialista Brasileiro, pelo Partido Comunista do Brasil (PCdoB), e pelo Partido dos Trabalhadores (PT).
 
@@ -28,6 +28,10 @@ Com a decisão do STF, todas estas iniciativas legislativas, caso levadas a term
 É importante frisar, contudo, que nada impede que o Governo Federal venha a apresentar ao Congresso Nacional uma Proposta de Emenda à Constituição modificando o conteúdo do art. 37, XV, mas neste caso o processo de tramitação é bem mais dificultoso, exigindo duas votações na Câmara e duas no Senado, com pelo menos 3/5 (três quintos) de votos favoráveis em todas as votações.
 
 O momento é de comemorar esta importante vitória, que é produto da luta incansável das entidades sindicais representativas dos servidores públicos e de suas respectivas assessorias jurídicas, mas ao mesmo tempo também é momento de se manter alerta e mobilizado em torno da defesa deste e de outros direitos dos servidores, tão ameaçados nos dias atuais.
+
+```youtube
+https://www.youtube.com/watch?v=4Pc1kD2OurQ
+```
 
 Florianópolis, 24 de junho de 2020.
 
