@@ -29,6 +29,8 @@ Com a decisão do STF, todas estas iniciativas legislativas, caso levadas a term
 
 O momento é de comemorar esta importante vitória, que é produto da luta incansável das entidades sindicais representativas dos servidores públicos e de suas respectivas assessorias jurídicas, mas ao mesmo tempo também é momento de se manter alerta e mobilizado em torno da defesa deste e de outros direitos dos servidores, tão ameaçados nos dias atuais.
 
+[[youtube:https://www.youtube.com/watch?v=4Pc1kD2OurQ&feature=youtu.be]]
+
 Florianópolis, 24 de junho de 2020.
 
 - - -
