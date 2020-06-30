@@ -4,7 +4,10 @@ title: >-
   Youtube!
 date: 2020-06-29T10:57:38.469Z
 image: /admin/content/media/1000-yt.png
-summary: 'Confira em nosso canal no Youtube, e se ainda não é inscrito, se inscreva!'
+summary: >-
+  Somos um escritório de advocacia (OAB/SC 270/97) com sede em Florianópolis,
+  especializado na defesa dos direitos da classe trabalhadora, em especial dos
+  servidores públicos.
 ---
 Somos um escritório de advocacia (OAB/SC 270/97) com sede em Florianópolis, especializado na defesa dos direitos da classe trabalhadora, em especial dos servidores públicos.
 
@@ -16,4 +19,4 @@ Ao longo dos 23 anos de existência do SLPG, participamos ativamente de diversas
 
 Para enfrentar estes desafios, passados e futuros, temos investido fortemente na qualificação técnica e política dos componentes do Escritório, bem como na ampliação das nossas relações com outras organizações e movimentos sociais de maneira geral, visando sempre ao apoio mais qualificado possível às necessidades da classe trabalhadora.
 
-É por isso que disponibilizamos livremente (sob licença "creative commons") os vídeos de seminários, cursos, entrevistas e informativos que promovemos para nós, nossos clientes e parceiros. Confira em nosso canal no [Youtube](https://www.youtube.com/c/SLPGAdvogadosAssociados), e se ainda não é inscrito, se inscreva!
+É por isso que disponibilizamos publicamente (sob licença _"creative commons"_) os vídeos de seminários, cursos, entrevistas e informativos que promovemos para nós, nossos clientes e parceiros. Confira em nosso canal no [Youtube](https://www.youtube.com/c/SLPGAdvogadosAssociados), e se ainda não é inscrito, se inscreva!
