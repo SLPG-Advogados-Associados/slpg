@@ -23,8 +23,8 @@ Para enfrentar estes desafios, passados e futuros, temos investido fortemente na
 
 O próximo seminário que realizaremos será dia 6 de julho às 16h, sobre **Pandemia e crise capitalista: os desafios para a classe trabalhadora e os operadores do direito**, com **Alysson Mascaro** e **Mauricio Mulinari**. [**Saiba mais**.](https://www.slpgadvogados.adv.br/noticias/semin%C3%A1rio-pandemia-e-crise-capitalista-os-desafios-para-a-classe-trabalhadora-e-os-operadores-do-direito/)
 
-Por fim, confira o nosso [**canal no Youtube**](https://www.youtube.com/c/SLPGAdvogadosAssociados), e se ainda não está inscrito, inscreva-se!
-
 ```youtube
 https://www.youtube.com/watch?v=1NaHp4RHMGw
 ```
+
+Por fim, confira o nosso [**canal no Youtube**](https://www.youtube.com/c/SLPGAdvogadosAssociados), e se ainda não está inscrito, inscreva-se!
