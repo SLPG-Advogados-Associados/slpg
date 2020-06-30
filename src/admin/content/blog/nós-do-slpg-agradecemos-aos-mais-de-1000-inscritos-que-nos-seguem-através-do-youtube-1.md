@@ -19,4 +19,12 @@ Ao longo dos 23 anos de existência do SLPG, participamos ativamente de diversas
 
 Para enfrentar estes desafios, passados e futuros, temos investido fortemente na qualificação técnica e política dos componentes do Escritório, bem como na ampliação das nossas relações com outras organizações e movimentos sociais de maneira geral, visando sempre ao apoio mais qualificado possível às necessidades da classe trabalhadora.
 
-É por isso que disponibilizamos publicamente (sob licença _"creative commons"_) os vídeos de seminários, cursos, entrevistas e informativos que promovemos para nós, nossos clientes e parceiros. **Confira o nosso** [**canal no Youtube**](https://www.youtube.com/c/SLPGAdvogadosAssociados)**, e se ainda não é inscrito, inscreva-se!**
+É por isso que disponibilizamos publicamente (sob licença _"creative commons"_) os vídeos de seminários, cursos, entrevistas e informativos que promovemos para nós, nossos clientes e parceiros. 
+
+O próximo seminário que realizaremos será dia 6 de julho às 16h, sobre **Pandemia e crise capitalista: os desafios para a classe trabalhadora e os operadores do direito**, com **Alysson Mascaro** e **Mauricio Mulinari**. [**Saiba mais**.](https://www.slpgadvogados.adv.br/noticias/semin%C3%A1rio-pandemia-e-crise-capitalista-os-desafios-para-a-classe-trabalhadora-e-os-operadores-do-direito/)
+
+Por fim, confira o nosso [**canal no Youtube**](https://www.youtube.com/c/SLPGAdvogadosAssociados), e se ainda não está inscrito, inscreva-se!
+
+```youtube
+https://www.youtube.com/watch?v=1NaHp4RHMGw
+```
