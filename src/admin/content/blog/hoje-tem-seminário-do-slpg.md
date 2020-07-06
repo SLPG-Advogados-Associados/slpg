@@ -1,5 +1,5 @@
 ---
-title: Hoje tem seminário do SLPG!
+title: Hoje tem seminário do SLPG com Alysson Mascaro e Mauricio Mulinari!
 date: 2020-07-06T14:20:32.326Z
 image: /admin/content/media/whatsapp-image-2020-07-03-at-10.33.22.jpeg
 summary: >-
