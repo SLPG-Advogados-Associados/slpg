@@ -6,7 +6,7 @@ summary: >-
   Medida de Bolsonaro que supostamente visava combater a pandemia e proteger a
   economia caduca e abre espaço para a retomada de direitos mutilados
 ---
-**_Escrito por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG._**
+_**Escrito por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG.**_
 
 Infelizmente, desde que o estado de calamidade foi decretado no Brasil, e apesar das medidas anunciadas pelo governo Bolsonaro para, supostamente, combater a pandemia do coronavírus e proteger a economia, o que podemos constatar até o momento são resultados opostos aos que se almejavam, ao menos publicamente.
 
@@ -40,9 +40,9 @@ Nas atividades de saúde, devem ser restabelecidos os limites legais para imposi
 
 A todos os trabalhadores e trabalhadoras que se sentiram lesados por medidas tomadas pelo governo ou por seus patrões neste período de pandemia, recomendo que procurem por sindicatos e advogados de sua confiança e exijam de volta os seus direitos.
 
-___
+- - -
 
-Notícias relacionadas em nosso blogue:
+**Notícias relacionadas em nosso blogue:**
 
-* __[_MP 927 e 936: respostas ao Covid-19 ou ataques aos direitos fundamentais dos trabalhadores?_](https://www.slpgadvogados.adv.br/noticias/mp-927-e-936-respostas-ao-covid-19-ou-ataques-aos-direitos-fundamentais-dos-trabalhadores/)
-* __[_Advogados de diversos Estados apresentam Notícia-Crime contra Bolsonaro no STF_](https://www.slpgadvogados.adv.br/noticias/advogados-de-diversos-estados-apresentam-not%C3%ADcia-crime-contra-bolsonaro-no-stf/)
+* [MP 927 e 936: respostas ao Covid-19 ou ataques aos direitos fundamentais dos trabalhadores?](https://www.slpgadvogados.adv.br/noticias/mp-927-e-936-respostas-ao-covid-19-ou-ataques-aos-direitos-fundamentais-dos-trabalhadores/)
+* [CNASP: Advogados de diversos Estados apresentam Notícia-Crime contra Bolsonaro no STF](https://www.slpgadvogados.adv.br/noticias/advogados-de-diversos-estados-apresentam-not%C3%ADcia-crime-contra-bolsonaro-no-stf/)
