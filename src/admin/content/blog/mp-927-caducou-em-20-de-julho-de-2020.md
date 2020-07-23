@@ -6,7 +6,7 @@ summary: >-
   Medida de Bolsonaro que supostamente visava combater a pandemia e proteger a
   economia caduca e abre espaço para a retomada de direitos mutilados
 ---
-_**Escrito por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG.**_
+**_Escrito por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG._**
 
 Infelizmente, desde que o estado de calamidade foi decretado no Brasil, e apesar das medidas anunciadas pelo governo Bolsonaro para, supostamente, combater a pandemia do coronavírus e proteger a economia, o que podemos constatar até o momento são resultados opostos aos que se almejavam, ao menos publicamente.
 
@@ -14,7 +14,7 @@ Infelizmente, desde que o estado de calamidade foi decretado no Brasil, e apesar
 
 Apesar do governo Bolsonaro propagandear o slogan “O Brasil não pode parar”, no dia 30 de junho deste ano o [IBGE divulgou](https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/28111-pela-primeira-vez-menos-da-metade-das-pessoas-em-idade-de-trabalhar-esta-ocupada) que o nosso País atingiu o mais baixo nível de emprego desde 2012, e pela primeira vez o número de desempregados supera o número de empregados. Conforme a Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua), no primeiro trimestre de 2020 foram perdidos 2 milhões de empregos formais e 5,8 de ocupações informais, aquelas em que os trabalhadores não têm direitos trabalhistas. O Brasil chegou em junho ao número de 12,7 milhões de desempregados, aos quais devem ser somados 5,4 milhões de pessoas que desistiram de procurar ocupação, os chamados desalentados.
 
-As medidas provisórias MP 927 e 936 adotadas pelo governo Bolsonaro se demonstram incapazes de reduzir os impactos sociais e econômicos decorrentes da pandemia do coronavírus, e especialmente, não evitaram as demissões em massa que supostamente visavam evitar.
+As medidas provisórias MP 927 e 936 adotadas pelo governo Bolsonaro se comprovam incapazes de reduzir os impactos sociais e econômicos decorrentes da pandemia do coronavírus, e especialmente, não evitaram as demissões em massa que supostamente visavam evitar.
 
 Apesar da mutilação de direitos fundamentais dos trabalhadores nenhum dos objetivos das medidas provisórias MP 927 e 936 foram alcançados. E mesmo para quem está mais inclinado a se preocupar com os empresários do que com a classe trabalhadora, precisa constatar o fato de que a política de Bolsonaro também resultou numa situação desastrosa para as pequenas e médias empresas. De acordo com o IBGE, somente na segunda quinzena de junho 716.372 empresas fecharam as portas definitivamente no Brasil.
 
@@ -39,3 +39,10 @@ Urge sejam adotadas medidas de proteção das vidas, restabelecimento dos salár
 Nas atividades de saúde, devem ser restabelecidos os limites legais para imposição de horas extras de modo a ser protegida a saúde e condições de vida digna dos trabalhadores, eis que está afastada a aplicabilidade de acordos impostos sob a autorização do art. 26 da MP 927.
 
 A todos os trabalhadores e trabalhadoras que se sentiram lesados por medidas tomadas pelo governo ou por seus patrões neste período de pandemia, recomendo que procurem por sindicatos e advogados de sua confiança e exijam de volta os seus direitos.
+
+___
+
+Notícias relacionadas em nosso blogue:
+
+* __[_MP 927 e 936: respostas ao Covid-19 ou ataques aos direitos fundamentais dos trabalhadores?_](https://www.slpgadvogados.adv.br/noticias/mp-927-e-936-respostas-ao-covid-19-ou-ataques-aos-direitos-fundamentais-dos-trabalhadores/)
+* __[_Advogados de diversos Estados apresentam Notícia-Crime contra Bolsonaro no STF_](https://www.slpgadvogados.adv.br/noticias/advogados-de-diversos-estados-apresentam-not%C3%ADcia-crime-contra-bolsonaro-no-stf/)
