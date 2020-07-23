@@ -6,15 +6,17 @@ summary: >-
   Medida de Bolsonaro que supostamente visava combater a pandemia e proteger a
   economia caduca e abre espaço para a retomada de direitos mutilados
 ---
+_**Escrito por Rivera Vieira (OAB/SC 41213-A), advogado do SLPG.**_
+
 Infelizmente, desde que o estado de calamidade foi decretado no Brasil, e apesar das medidas anunciadas pelo governo Bolsonaro para, supostamente, combater a pandemia do coronavírus e proteger a economia, o que podemos constatar até o momento são resultados opostos aos que se almejavam, ao menos publicamente.
 
 É notório o desprezo do governo Bolsonaro pelas medidas recomendadas por especialistas e autoridades da área da saúde, sejam de organismos internacionais, como a Organização Mundial da Saúde, ou mesmo ministros da saúde de seu próprio governo. Com isso já são mais de 2 milhões de infectados pelo coronavírus no Brasil, e segundo as estimativas oficiais mais de 76 mil vidas foram perdidas.
 
 Apesar do governo Bolsonaro propagandear o slogan “O Brasil não pode parar”, no dia 30 de junho deste ano o [IBGE divulgou](https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/28111-pela-primeira-vez-menos-da-metade-das-pessoas-em-idade-de-trabalhar-esta-ocupada) que o nosso País atingiu o mais baixo nível de emprego desde 2012, e pela primeira vez o número de desempregados supera o número de empregados. Conforme a Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua), no primeiro trimestre de 2020 foram perdidos 2 milhões de empregos formais e 5,8 de ocupações informais, aquelas em que os trabalhadores não têm direitos trabalhistas. O Brasil chegou em junho ao número de 12,7 milhões de desempregados, aos quais devem ser somados 5,4 milhões de pessoas que desistiram de procurar ocupação, os chamados desalentados.
 
-Portanto, as medidas provisórias MP 927 e 936 adotadas pelo governo Bolsonaro se demonstram incapazes de reduzir os impactos sociais e econômicos decorrentes da pandemia do coronavírus, e especialmente, não evitaram as demissões em massa que supostamente visavam evitar.
+As medidas provisórias MP 927 e 936 adotadas pelo governo Bolsonaro se demonstram incapazes de reduzir os impactos sociais e econômicos decorrentes da pandemia do coronavírus, e especialmente, não evitaram as demissões em massa que supostamente visavam evitar.
 
-Apesar da mutilação de direitos fundamentais dos trabalhadores nenhum dos objetivos das medidas provisórias MP 927 e 936 foram alcançados. E mesmo para quem não enxerga as coisas pela perspectiva da classe trabalhadora, é preciso constatar o fato de que a política de Bolsonaro também resultou numa situação desastrosa para as pequenas e médias empresas: de acordo com o IBGE, somente na segunda quinzena de junho 716.372 empresas fecharam as portas definitivamente no Brasil.
+Apesar da mutilação de direitos fundamentais dos trabalhadores nenhum dos objetivos das medidas provisórias MP 927 e 936 foram alcançados. E mesmo para quem está mais inclinado a se preocupar com os empresários do que com a classe trabalhadora, precisa constatar o fato de que a política de Bolsonaro também resultou numa situação desastrosa para as pequenas e médias empresas. De acordo com o IBGE, somente na segunda quinzena de junho 716.372 empresas fecharam as portas definitivamente no Brasil.
 
 E eis agora a [notícia](http://www.congressonacional.leg.br/materias/medidas-provisorias/-/mpv/141145) de que o Senado retirou da pauta de votação a Medida Provisória 927/2020, ou seja, a MP 927 caducou em 20/07/2020.
 
