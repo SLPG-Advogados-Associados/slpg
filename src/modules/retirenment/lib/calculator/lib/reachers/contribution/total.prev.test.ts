@@ -1,31 +1,11 @@
 /* cspell: disable */
-import { Contribution, CalculatorInput } from '../../types'
-import { d, c } from '../test-utils'
-import { between, sum, normalize } from '../duration'
-import { NEVER, TODAY } from '../const'
-import { last, total, utils } from './contribution'
+import { Contribution, CalculatorInput } from '../../../types'
+import { d, c } from '../../test-utils'
+import { between, sum, normalize } from '../../duration'
+import { NEVER, TODAY } from '../../const'
+import { total, utils } from './total.prev'
 
 describe('retirement/calculator/lib/reachers/contribution', () => {
-  describe('last', () => {
-    const i = (...contributions: Contribution[]) =>
-      ({ contributions } as CalculatorInput)
-
-    it.each([
-      [10, i(c('80')), d('1989-12-29')],
-      [20, i(c('80')), d('1999-12-27')],
-      [20, i(c('50^75'), c('80')), d('1999-12-27')],
-      [10, i(c('70^90')), d('1979-12-30')],
-      [10, i(c('50^75'), c('70^90')), d('1979-12-30')],
-      [20, i(c('50^75'), c('70^90')), d('1989-12-27')],
-      [20, i(c('81')), d('2000-12-27')],
-      [20, i(c('50^75'), c('81')), d('2000-12-27')],
-      [20, i(c('80^90')), NEVER],
-      [20, i(c('50^75'), c('80^90')), NEVER],
-    ])('should correctly calculate reach', (years, input, expected) => {
-      expect(last({ years })(input)[0]).toEqual(expected)
-    })
-  })
-
   describe('utils', () => {
     describe('splitAt', () => {
       it.each([

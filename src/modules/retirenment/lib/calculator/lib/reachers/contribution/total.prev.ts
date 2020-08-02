@@ -4,10 +4,10 @@
  */
 
 /* cspell: disable */
-import { last as getLast, identity } from 'ramda'
-import { CalculatorInput, Contribution, Reacher } from '../../types'
-import { add, ceil, min, max } from '../date'
-import { TODAY, NEVER, NO_DURATION } from '../const'
+import { identity } from 'ramda'
+import { CalculatorInput, Contribution, Reacher } from '../../../types'
+import { ceil, min, max } from '../../date'
+import { TODAY, NEVER, NO_DURATION } from '../../const'
 import {
   compare,
   between,
@@ -19,7 +19,7 @@ import {
   subtract,
   negate,
   toDays,
-} from '../duration'
+} from '../../duration'
 
 const utils = {
   /**
@@ -36,29 +36,6 @@ const utils = {
 
     return [left, right]
   },
-}
-
-/**
- * Last contribution duration reacher.
- *
- * @todo consider the possibility that another post before the last
- * be the one that the retirement time was reached first.
- *
- * @param duration The expected duration of the last contribution by due date.
- */
-const last = (
-  expected: DurationInput,
-  config: { due?: Date } = {}
-): Reacher => input => {
-  const { start, end } = getLast(input.contributions)
-  const fromStart = add(start, expected)
-  const reached = !end || fromStart <= end ? fromStart : NEVER
-
-  const byDue = config.due
-    ? between(start, !end ? config.due : min([end, config.due]))
-    : null
-
-  return [!end || reached <= end ? reached : NEVER, { reachable: false, byDue }]
 }
 
 type ComputedDurations = {
@@ -176,4 +153,4 @@ const total = (
   return [reached || NEVER, context]
 }
 
-export { last, total, utils }
+export { total, utils }
