@@ -1,7 +1,7 @@
 import * as base from 'duration-fns'
 import * as lib from './duration'
 import { Duration } from './duration'
-import { d, p } from './test-utils'
+import { d, p, u } from './test-utils'
 
 const {
   normalize,
@@ -142,6 +142,17 @@ describe('retirement/calculator/lib/duration', () => {
         [{ years: 2, days: 2 }, { years: 2, days: 2 }, true, true],
       ])('should check shorter duration', (left, right, equality, expected) => {
         expect(compare.shorter(left, right, equality)).toBe(expected)
+      })
+    })
+
+    describe('equals', () => {
+      it.each([
+        [{ years: 1 }, { years: 1 }, u, true],
+        [{ years: 1 }, { days: 365 }, u, true],
+        [{ weeks: 1 }, { days: 7 }, u, true],
+        [{ seconds: 1 }, { milliseconds: 1000 }, u, true],
+      ])('should check shorter duration', (left, right, ref, expected) => {
+        expect(compare.equals(left, right, ref)).toBe(expected)
       })
     })
   })

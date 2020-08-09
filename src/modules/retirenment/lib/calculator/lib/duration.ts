@@ -184,6 +184,17 @@ const compare = {
    */
   shorter: (left: DurationInput, right: DurationInput, equality = false) =>
     compare.longer(right, left, equality),
+
+  /**
+   * Checks wheter left duration is same length as right one.
+   *
+   * @param left Duration
+   * @param right Duration
+   * @param ref? Date of reference.
+   */
+  equals: (left: DurationInput, right: DurationInput, ref?: Date) =>
+    toMilliseconds(normalize(left, ref)) ===
+    toMilliseconds(normalize(right, ref)),
 }
 
 export * from 'duration-fns'
