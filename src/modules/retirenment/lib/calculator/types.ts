@@ -1,4 +1,4 @@
-import { Duration } from 'date-fns'
+import { Engine } from './lib/engine'
 
 /**
  * Inputs and incoming types.
@@ -55,70 +55,14 @@ export interface CalculatorInput {
 }
 
 /**
- * Reachers are atomic reach date calculators.
- * -------------------------------------------
- */
-
-export type Reached = Date
-
-/**
- * Reacher execution result.
- */
-export type ReacherResult<Context = {}> = readonly [
-  Reached,
-  Context & { reachable: boolean; byDue?: Duration }
-]
-
-/**
- * Reacher functions.
- *
- * @return [0] The reaching date.
- * @return [1] The reaching context.
- */
-export type Reacher<Context = {}> = (
-  input: CalculatorInput
-) => ReacherResult<Context>
-
-export enum Operation {
-  OR = 'OR',
-  AND = 'AND',
-}
-
-/**
  * Rules
  * -----
  */
 
-export interface Condition {
-  description: string
-  execute: Reacher
-}
-
-// export type PossibilityResult = {
-//   op: Operation
-//   conditions: readonly (
-//     | PossibilityResult
-//     | readonly [Condition, ReacherResult]
-//   )[]
-// }
-
-export type ConditionResult = readonly [Condition, ReacherResult]
-
-export type PossibilityResult = {
-  op: Operation
-  conditions: readonly ConditionResult[]
-}
-
-export type PossibilityExecution = readonly [
-  boolean,
-  { reached: Date | null; result: PossibilityResult }
-]
-
-export interface Possibility<Conditions = readonly Condition[]> {
+export interface Possibility {
   title: string
   description: string
-  conditions: Conditions
-  execute: (input: CalculatorInput) => PossibilityExecution
+  requisites: Engine<CalculatorInput>
 }
 
 export interface Rule {
