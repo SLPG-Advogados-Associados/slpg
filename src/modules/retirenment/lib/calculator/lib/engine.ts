@@ -1,3 +1,5 @@
+import { get } from 'object-path-immutable'
+
 export type RequisiteResult<C = {}> = {
   /**
    * Wheter the requisite was satisfied.
@@ -35,6 +37,9 @@ export type RequisiteChain<I> = RequisiteGroup<I> | Requisite<I>
 
 type Partial<I extends {}> = [RequisiteChain<I>, RequisiteResult, I]
 
+const isSatisfied = ({ satisfied }: RequisiteResult) => satisfied
+const isSatisfiable = ({ satisfiable }: RequisiteResult) => satisfiable
+
 class Engine<I extends {}> {
   public chain: RequisiteChain<I>
 
@@ -49,6 +54,7 @@ class Engine<I extends {}> {
       const results = chain.any.map((item) => this.executeChain(item, input))
 
       const satisfiedAt = results
+        .filter(isSatisfied)
         .map(({ satisfiedAt }) => satisfiedAt)
         .filter(Boolean)
         .sort((a, b) => a.getTime() - b.getTime())[0]
@@ -59,10 +65,12 @@ class Engine<I extends {}> {
         )
       )
 
+      const someSatisfied = results.some(isSatisfied)
+
       return {
         context: results.map(({ context }, i) => [chain.any[i], context]),
-        satisfied: results.some(({ satisfied }) => satisfied),
-        satisfiable: results.some(({ satisfiable }) => satisfiable),
+        satisfied: someSatisfied,
+        satisfiable: results.some(isSatisfiable),
         satisfiedAt,
       }
     }
@@ -71,6 +79,7 @@ class Engine<I extends {}> {
       const results = chain.all.map((item) => this.executeChain(item, input))
 
       const satisfiedAt = results
+        .filter(isSatisfied)
         .map(({ satisfiedAt }) => satisfiedAt)
         .filter(Boolean)
         .sort((a, b) => a.getTime() - b.getTime())
@@ -82,11 +91,13 @@ class Engine<I extends {}> {
         )
       )
 
+      const everySatisfied = results.every(isSatisfied)
+
       return {
         context: results.map(({ context }, i) => [chain.all[i], context]),
-        satisfied: results.every(({ satisfied }) => satisfied),
-        satisfiable: results.every(({ satisfiable }) => satisfiable),
-        satisfiedAt,
+        satisfied: everySatisfied,
+        satisfiable: results.every(isSatisfiable),
+        satisfiedAt: everySatisfied ? satisfiedAt : undefined,
       }
     }
   }
@@ -104,6 +115,20 @@ class Engine<I extends {}> {
     this.partials.push([this.chain, result, input])
 
     return result
+  }
+
+  public getChain<Chain extends RequisiteChain<I>>(path?: string) {
+    const chain = path ? get(this.chain, path) : this.chain
+
+    if (!chain) {
+      throw new Error(`Could not find chain at "${path}"`)
+    }
+
+    if (!('any' in chain) && !('all' in chain) && !chain.executor) {
+      throw new Error(`Invalid chain found at "${path}"`)
+    }
+
+    return chain as Chain
   }
 }
 

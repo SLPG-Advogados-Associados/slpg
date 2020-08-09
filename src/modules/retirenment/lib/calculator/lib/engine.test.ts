@@ -1,4 +1,4 @@
-import { Engine, RequisiteGroup } from './engine'
+import { Engine, RequisiteGroup, RequisiteResult } from './engine'
 import { d } from './test-utils'
 
 const o = expect.objectContaining
@@ -11,8 +11,18 @@ describe('retirement/calculator/engine', () => {
     },
 
     falsy: {
-      title: 'Truthy',
+      title: 'Falsy',
       executor: jest.fn(() => ({ satisfied: false })),
+    },
+
+    truthyLate: {
+      title: 'Truthy late',
+      executor: jest.fn(() => ({ satisfied: true, satisfiedAt: d('2000') })),
+    },
+
+    falsyEarly: {
+      title: 'Truthy late',
+      executor: jest.fn(() => ({ satisfied: false, satisfiedAt: d('1990') })),
     },
   }
 
@@ -73,6 +83,21 @@ describe('retirement/calculator/engine', () => {
 
       req = { any: [{ any: [{ any: [{ all: [r.truthy, r.falsy] }] }] }] }
       expect(new Engine(req).execute({})).toEqual(o({ satisfied: false }))
+
+      req = { any: [{ all: [r.truthy] }] }
+    })
+
+    it('should correctly assamble result', () => {
+      let req: RequisiteGroup<{}>
+      let res: RequisiteResult
+
+      req = { any: [r.truthyLate, r.falsyEarly] }
+      res = { satisfied: true, satisfiedAt: d('2000') }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      req = { all: [r.truthyLate, r.falsyEarly] }
+      res = { satisfied: false, satisfiedAt: undefined }
+      expect(new Engine(req).execute({})).toMatchObject(res)
     })
   })
 
