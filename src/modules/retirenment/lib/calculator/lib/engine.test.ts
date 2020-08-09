@@ -144,6 +144,15 @@ describe('retirement/calculator/engine', () => {
       res = { satisfied: false, satisfiable: true, satisfiableAt: d('1990') }
       expect(new Engine(req).execute({})).toMatchObject(res)
 
+      req = { any: [r.truthyLate, r.satisfiableEarly] }
+      res = {
+        satisfied: true,
+        satisfiable: true,
+        satisfiedAt: d('2000'),
+        satisfiableAt: d('2000'),
+      }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
       req = { any: [r.truthy, r.truthyLate] }
       res = {
         satisfied: true,
@@ -161,6 +170,15 @@ describe('retirement/calculator/engine', () => {
 
       req = { all: [r.satisfiableLate, r.satisfiableEarly] }
       res = { satisfied: false, satisfiable: true, satisfiableAt: d('2000') }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      req = { all: [r.truthyLate, r.satisfiableEarly] }
+      res = {
+        satisfied: false,
+        satisfiable: true,
+        satisfiedAt: undefined,
+        satisfiableAt: d('2000'),
+      }
       expect(new Engine(req).execute({})).toMatchObject(res)
 
       req = { all: [r.truthy, r.truthyLate] }

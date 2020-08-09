@@ -1,5 +1,6 @@
 import { either } from 'ramda'
 import { get } from 'object-path-immutable'
+import { max } from './date'
 
 export type RequisiteResult<C = {}> = {
   /**
@@ -90,7 +91,10 @@ class Engine<I extends {}> {
         satisfied,
         satisfiable,
         satisfiedAt,
-        satisfiableAt,
+        satisfiableAt:
+          satisfiableAt && satisfiedAt
+            ? max([satisfiableAt, satisfiedAt])
+            : satisfiableAt,
       }
     }
 
@@ -107,14 +111,12 @@ class Engine<I extends {}> {
 
       const satisfied = results.every(isSatisfied)
 
-      const satisfiedAt = !satisfied
-        ? undefined
-        : results
-            .filter(isSatisfied)
-            .map(({ satisfiedAt }) => satisfiedAt)
-            .filter(Boolean)
-            .sort((a, b) => a.getTime() - b.getTime())
-            .reverse()[0]
+      const satisfiedAt = results
+        .filter(isSatisfied)
+        .map(({ satisfiedAt }) => satisfiedAt)
+        .filter(Boolean)
+        .sort((a, b) => a.getTime() - b.getTime())
+        .reverse()[0]
 
       const satisfiable = results.every(either(isSatisfied, isSatisfiable))
 
@@ -130,9 +132,12 @@ class Engine<I extends {}> {
       return {
         context,
         satisfied,
-        satisfiedAt,
+        satisfiedAt: satisfied ? satisfiedAt : undefined,
         satisfiable,
-        satisfiableAt,
+        satisfiableAt:
+          satisfiableAt && satisfiedAt
+            ? max([satisfiableAt, satisfiedAt])
+            : satisfiableAt,
       }
     }
   }
