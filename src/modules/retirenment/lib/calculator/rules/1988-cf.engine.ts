@@ -134,8 +134,12 @@ const possibilities = [
           any: [
             {
               all: [
-                { executor: sex(MALE) },
                 {
+                  description: 'Homem',
+                  executor: sex(MALE),
+                },
+                {
+                  description: '30 anos de serviço',
                   executor: contribution.total({
                     due,
                     expected: { years: 30 },
@@ -146,8 +150,12 @@ const possibilities = [
 
             {
               all: [
-                { executor: sex(FEMALE) },
                 {
+                  description: 'Mulher',
+                  executor: sex(FEMALE),
+                },
+                {
+                  description: '25 anos de serviço',
                   executor: contribution.total({
                     due,
                     expected: { years: 25 },
@@ -164,15 +172,27 @@ const possibilities = [
           any: [
             {
               all: [
-                { executor: sex(MALE) },
-                { executor: age({ due, expected: { years: 65 } }) },
+                {
+                  description: 'Homem',
+                  executor: sex(MALE),
+                },
+                {
+                  description: '65 anos de idade',
+                  executor: age({ due, expected: { years: 65 } }),
+                },
               ],
             },
 
             {
               all: [
-                { executor: sex(FEMALE) },
-                { executor: age({ due, expected: { years: 60 } }) },
+                {
+                  description: 'Mulher',
+                  executor: sex(FEMALE),
+                },
+                {
+                  description: '60 anos de idade',
+                  executor: age({ due, expected: { years: 60 } }),
+                },
               ],
             },
           ],
