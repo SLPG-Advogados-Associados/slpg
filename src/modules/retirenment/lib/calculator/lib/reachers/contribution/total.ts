@@ -101,23 +101,16 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
       const overlap = toDays(subtract(computed.processed, expected))
 
       // remove these extra days from end date.
-      reached = ceil(
-        'days',
-        apply(
-          end,
-          negate({
-            days: Math.round(overlap),
-          })
-        )
-      )
+      reached = ceil('days', apply(end, negate({ days: Math.round(overlap) })))
     }
   }
 
   return {
-    satisfied: Boolean(reached),
+    context: { computed },
+    satisfied: config.due ? reached && reached <= config.due : Boolean(reached),
     satisfiedAt: reached || NEVER,
     satisfiable: true,
-    context: { computed },
+    satisfiableAt: reached,
   }
 }
 
