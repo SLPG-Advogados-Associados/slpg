@@ -1,5 +1,5 @@
 /* eslint-disable no-sparse-arrays */
-import { Post, ServiceKind, Gender } from '../types'
+import { Post, ServiceKind, Sex } from '../types'
 import { NEVER } from './const'
 
 import {
@@ -15,7 +15,7 @@ import {
   input,
 } from './test-utils'
 
-const { MALE: M } = Gender
+const { MALE: M } = Sex
 const { OTHER, TEACHER: T } = Post
 const { PUBLIC, PRIVATE } = ServiceKind
 
@@ -120,14 +120,14 @@ describe('retirement/calculator/lib/test-utils', () => {
         [input(u, '80'), [, , date('80')]],
       ])('should generate valid inputs', (input, expected) => {
         expect(input).toEqual({
-          gender: expect.toBeOneOf(Object.values(Gender)),
+          sex: expect.toBeOneOf(Object.values(Sex)),
           birthDate: expect.toBeValidDate(),
           contributions: expect.toBeArray(),
         })
 
-        const [gender, contrib, birthDate] = expected || []
+        const [sex, contrib, birthDate] = expected || []
 
-        gender && expect(input.gender).toEqual(gender)
+        sex && expect(input.sex).toEqual(sex)
         contrib && expect(input.contributions).toMatchObject(contrib)
         birthDate && expect(input.birthDate).toEqual(birthDate)
       })

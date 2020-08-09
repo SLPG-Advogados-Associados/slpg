@@ -1,5 +1,5 @@
 import { isValid, sub } from './date'
-import { Post, ServiceKind, Gender, Contribution } from '../types'
+import { Post, ServiceKind, Sex, Contribution } from '../types'
 
 const { OTHER } = Post
 const { PUBLIC } = ServiceKind
@@ -58,7 +58,7 @@ const b = birth // alias
  *  - '2002^2004' = [2002, 2004]
  */
 const period = (span: string) => {
-  const result = span.split('^').map(side => date(side))
+  const result = span.split('^').map((side) => date(side))
 
   if (!result.length) {
     throw new Error(`Invalid time span: \`${span}\``)
@@ -115,11 +115,11 @@ const reachedAt = (input: string | number) => ({
 }) => eq.date(input)(reached)
 
 const input = (
-  gender?: Gender,
+  sex?: Sex,
   birthDate = '1940',
   contributions?: Contribution[]
 ) => ({
-  gender: gender || Gender.MALE,
+  sex: sex || Sex.MALE,
   birthDate: birth(birthDate),
   contributions: contributions || [],
 })

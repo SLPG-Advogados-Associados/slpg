@@ -8,7 +8,7 @@ import { Duration } from 'date-fns'
 /**
  * Classification used for retirement calc purposes.
  */
-export enum Gender {
+export enum Sex {
   MALE = 'MALE',
   FEMALE = 'FEMALE',
 }
@@ -49,7 +49,7 @@ export type Contribution = {
 }
 
 export interface CalculatorInput {
-  gender: Gender
+  sex: Sex
   birthDate: Date
   contributions: Contribution[]
 }
