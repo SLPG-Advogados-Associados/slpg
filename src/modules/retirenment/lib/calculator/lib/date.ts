@@ -1,6 +1,19 @@
 // @warn: this is a cyclic dependency.
+import { curry } from 'ramda'
+
 import { toDays, Duration, DurationInput } from './duration'
-import { add as _add, min, isAfter, Interval as _Interval, max } from 'date-fns'
+import {
+  add as _add,
+  min,
+  isAfter,
+  Interval as _Interval,
+  max,
+  minTime,
+  maxTime,
+} from 'date-fns'
+
+const MIN_DATE = new Date(minTime)
+const MAX_DATE = new Date(maxTime)
 
 // prevent dates as numbers for interval objects.
 export type Interval = {
@@ -135,6 +148,23 @@ const parseInterval = (notation: string): Interval => {
 }
 
 /**
+ * Verifies if an interval contains another.
+ */
+const isContained = curry(
+  (container: Interval, contained: Interval) =>
+    (!container.start ||
+      (contained.start && container.start <= contained.start)) &&
+    (!container.end || (contained.end && container.end >= contained.end))
+)
+
+/**
+ * Revese of isContained
+ */
+const contains = curry((contained: Interval, container: Interval) =>
+  isContained(container, contained)
+)
+
+/**
  * Count the amount of leap days (Feb 29) between two dates.
  *
  * @param _start Starting date.
@@ -175,4 +205,15 @@ const add = (date: Date, duration: DurationInput, ignoreLeap = false) =>
 
 export * from 'date-fns'
 
-export { floor, ceil, splitPeriod, leapsBetween, add, parseInterval }
+export {
+  floor,
+  ceil,
+  splitPeriod,
+  leapsBetween,
+  add,
+  parseInterval,
+  isContained,
+  contains,
+  MIN_DATE,
+  MAX_DATE,
+}

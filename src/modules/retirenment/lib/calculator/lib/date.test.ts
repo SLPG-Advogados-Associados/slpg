@@ -2,7 +2,16 @@ import * as base from 'date-fns'
 import * as lib from './date'
 import { i, d } from './test-utils'
 
-const { add, floor, ceil, splitPeriod, leapsBetween, parseInterval } = lib
+const {
+  add,
+  floor,
+  ceil,
+  splitPeriod,
+  leapsBetween,
+  parseInterval,
+  isContained,
+  contains,
+} = lib
 
 describe('retirement/calculator/lib/date', () => {
   it('should re-export everything available at base library', () => {
@@ -122,14 +131,74 @@ describe('retirement/calculator/lib/date', () => {
       ['2000^2010', { start: d('2000'), end: d('2010') }],
       // inverted:
       ['2010^2000', { start: d('2000'), end: d('2010') }],
+      // misc:
+      ['^2000', { start: null, end: d('2000') }],
+      ['2000^', { start: d('2000'), end: null }],
+      ['^', { start: null, end: null }],
     ])('should parse interval notations', (notation, interval) => {
       expect(parseInterval(notation)).toEqual(interval)
     })
 
     it.each(['', 'left^right', 'left^', '^right'])(
       'should throw for invalid interval notations',
-      notation => {
+      (notation) => {
         expect(() => parseInterval(notation)).toThrow('Invalid interval')
+      }
+    )
+  })
+
+  describe('isContained', () => {
+    it.each([
+      ['1950^1980', '1960^1970', true],
+      ['1950^1980', '1990^1995', false],
+      ['1950^1980', '1940^1990', false],
+      ['1950^1980', '1960^1990', false],
+      ['1950^1980', '1940^1970', false],
+      // inifinities
+      ['^1980', '1940^1970', true],
+      ['1950^', '1950^1970', true],
+      ['^', '1940^1970', true],
+
+      ['^1980', '^1970', true],
+      ['^1980', '^1990', false],
+
+      ['1970^', '1980^', true],
+      ['1980^', '1970^', false],
+
+      ['^', '^', true],
+    ])(
+      'should access interval containment',
+      (container, contained, expected) => {
+        const i = parseInterval
+        expect(isContained(i(container), i(contained))).toBe(expected)
+      }
+    )
+  })
+
+  describe('contains', () => {
+    it.each([
+      ['1950^1980', '1960^1970', true],
+      ['1950^1980', '1990^1995', false],
+      ['1950^1980', '1940^1990', false],
+      ['1950^1980', '1960^1990', false],
+      ['1950^1980', '1940^1970', false],
+      // inifinities
+      ['^1980', '1940^1970', true],
+      ['1950^', '1950^1970', true],
+      ['^', '1940^1970', true],
+
+      ['^1980', '^1970', true],
+      ['^1980', '^1990', false],
+
+      ['1970^', '1980^', true],
+      ['1980^', '1970^', false],
+
+      ['^', '^', true],
+    ])(
+      'should access interval containment',
+      (container, contained, expected) => {
+        const i = parseInterval
+        expect(contains(i(contained), i(container))).toBe(expected)
       }
     )
   })
