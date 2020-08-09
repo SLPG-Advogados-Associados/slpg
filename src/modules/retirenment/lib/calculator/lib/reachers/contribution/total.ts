@@ -1,8 +1,8 @@
 import { normalize } from 'duration-fns'
 
 import { CalculatorInput } from '../../../types'
-import { ceil, contains } from '../../date'
-import { TODAY, NO_DURATION, NEVER } from '../../const'
+import { ceil } from '../../date'
+import { TODAY, NO_DURATION } from '../../const'
 import { RequisiteExecutor } from '../../engine'
 import {
   compare,
@@ -15,7 +15,12 @@ import {
   DurationInput,
 } from '../../duration'
 
-import { Processors, parseProcessors, parseContributions } from './utils'
+import {
+  Processors,
+  parseProcessors,
+  parseContributions,
+  mergeProcessors,
+} from './utils'
 
 type Computed = {
   real: Duration
@@ -33,7 +38,7 @@ type Params = {
   processors?: Processors<{ computed: Computed }>
 }
 
-type Input = Pick<CalculatorInput, 'contributions'>
+type Input = CalculatorInput
 
 /**
  * Full contribution duration requisite factory.
@@ -59,6 +64,7 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
 ) => {
   // compute processors and interval they apply.
   const processors = parseProcessors(config.processors || {})
+  const processor = mergeProcessors(processors)
 
   // compute splitted contributions based on due date and processors.
   const contributions = parseContributions(input.contributions, processors)
@@ -75,14 +81,11 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
   let reached: Date
 
   for (const contribution of contributions) {
-    const context = { input, expected, contribution, computed }
     const { start, end = TODAY } = contribution
+    const context = { input, expected, contribution, computed }
 
     const real = between(start, end)
-
-    const processed = processors
-      .filter(contains({ start, end }))
-      .reduce((result, { processor }) => processor(result, context), real)
+    const processed = processor(real, context)
 
     // sum-up real time-based duration so far.
     computed.real = normalize(sum(computed.real, real))
@@ -105,10 +108,13 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
     }
   }
 
+  const satisfied =
+    config.due && reached ? reached <= config.due : Boolean(reached)
+
   return {
     context: { computed },
-    satisfied: config.due ? reached && reached <= config.due : Boolean(reached),
-    satisfiedAt: reached || NEVER,
+    satisfied,
+    satisfiedAt: (satisfied && reached) || undefined,
     satisfiable: true,
     satisfiableAt: reached,
   }
