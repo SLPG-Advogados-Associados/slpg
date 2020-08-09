@@ -17,6 +17,17 @@ import {
 
 export type DurationInput = Exclude<_DurationInput, number | string>
 
+const EMPTY_DURATION: Duration = Object.freeze({
+  years: 0,
+  months: 0,
+  weeks: 0,
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  milliseconds: 0,
+})
+
 const durationProps: Array<keyof Duration> = [
   'years',
   'months',
@@ -188,4 +199,5 @@ export {
   between,
   normalize,
   string,
+  EMPTY_DURATION,
 }
