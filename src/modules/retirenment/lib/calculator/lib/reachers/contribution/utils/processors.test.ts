@@ -7,6 +7,7 @@ import {
   parseProcessors,
   filter,
   multiply,
+  mergeProcessors,
 } from './processors'
 
 describe('retirement/calculator/lib/reachers/contribution/processors', () => {
@@ -56,6 +57,54 @@ describe('retirement/calculator/lib/reachers/contribution/processors', () => {
     it('should multiply resulting durations', () => {
       const result = multiply(2)(duration, context)
       expect(compare.equals(result, { years: 2 })).toBe(true)
+    })
+  })
+
+  describe('mergeProcessors', () => {
+    it('should be possible to merge empty processor list', () => {
+      const merged = mergeProcessors([])
+      expect(merged(duration, context)).toBe(duration)
+    })
+
+    it('should be possible to merge single processor', () => {
+      const fn = jest.fn(identity)
+
+      const merged = mergeProcessors([
+        { start: null, end: null, processor: fn },
+      ])
+
+      expect(merged(duration, context)).toBe(duration)
+      expect(fn).toHaveBeenCalled()
+    })
+
+    it('should apply multiple processors', () => {
+      const id = jest.fn(identity)
+      const multi = jest.fn(multiply(2))
+
+      const merged = mergeProcessors([
+        { start: null, end: null, processor: multi },
+        { start: null, end: null, processor: id },
+      ])
+
+      expect(merged(duration, context)).toMatchObject({ days: 730 })
+
+      expect(id).toHaveBeenCalled()
+      expect(multi).toHaveBeenCalled()
+    })
+
+    it('should selectively apply processors based on contribution start/end', () => {
+      const id = jest.fn(identity)
+      const multi = jest.fn(multiply(2))
+
+      const merged = mergeProcessors([
+        { start: null, end: d('1980'), processor: multi },
+        { start: null, end: null, processor: id },
+      ])
+
+      expect(merged(duration, context)).toBe(duration)
+
+      expect(id).toHaveBeenCalled()
+      expect(multi).not.toHaveBeenCalled()
     })
   })
 })

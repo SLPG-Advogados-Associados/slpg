@@ -1,5 +1,6 @@
 import { CalculatorInput, Contribution } from '../../../../types'
-import { parseInterval } from '../../../date'
+import { TODAY } from '../../../const'
+import { parseInterval, contains } from '../../../date'
 import {
   DurationInput,
   EMPTY_DURATION,
@@ -58,4 +59,18 @@ const filter = (
 const multiply = (by: number): Processor => (duration) =>
   multiplyDuration(by, duration)
 
-export { parseProcessors, filter, multiply }
+/**
+ * Merges multiple processors into one.
+ */
+const mergeProcessors = (processors: ParsedProcessor[]) => (
+  initial: Duration,
+  context: ProcessorContext
+) => {
+  const { start, end = TODAY } = context.contribution
+
+  return processors
+    .filter(contains({ start, end }))
+    .reduce((result, { processor }) => processor(result, context), initial)
+}
+
+export { parseProcessors, filter, multiply, mergeProcessors }
