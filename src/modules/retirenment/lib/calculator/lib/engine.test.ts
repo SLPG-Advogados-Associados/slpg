@@ -24,6 +24,24 @@ describe('retirement/calculator/engine', () => {
       title: 'Truthy late',
       executor: jest.fn(() => ({ satisfied: false, satisfiedAt: d('1990') })),
     },
+
+    satisfiableLate: {
+      title: 'Satisfiable',
+      executor: jest.fn(() => ({
+        satisfied: false,
+        satisfiable: true,
+        satisfiableAt: d('2000'),
+      })),
+    },
+
+    satisfiableEarly: {
+      title: 'Satisfiable',
+      executor: jest.fn(() => ({
+        satisfied: false,
+        satisfiable: true,
+        satisfiableAt: d('1990'),
+      })),
+    },
   }
 
   beforeEach(jest.clearAllMocks)
@@ -87,16 +105,53 @@ describe('retirement/calculator/engine', () => {
       req = { any: [{ all: [r.truthy] }] }
     })
 
-    it('should correctly assamble result', () => {
+    it('should evaluate satisfaction states', () => {
       let req: RequisiteGroup<{}>
       let res: RequisiteResult
+
+      // any
 
       req = { any: [r.truthyLate, r.falsyEarly] }
       res = { satisfied: true, satisfiedAt: d('2000') }
       expect(new Engine(req).execute({})).toMatchObject(res)
 
+      req = { any: [r.falsy, r.truthyLate] }
+      res = { satisfied: true, satisfiedAt: d('2000') }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      // all
+
       req = { all: [r.truthyLate, r.falsyEarly] }
       res = { satisfied: false, satisfiedAt: undefined }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      req = { all: [r.falsy, r.truthyLate] }
+      res = { satisfied: false, satisfiedAt: undefined }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+    })
+
+    it('should evaluate satisfiables', () => {
+      let req: RequisiteGroup<{}>
+      let res: RequisiteResult
+
+      // any
+
+      req = { any: [r.falsy, r.satisfiableEarly] }
+      res = { satisfied: false, satisfiable: true, satisfiableAt: d('1990') }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      req = { any: [r.satisfiableLate, r.satisfiableEarly] }
+      res = { satisfied: false, satisfiable: true, satisfiableAt: d('1990') }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      // all
+
+      req = { all: [r.falsy, r.satisfiableEarly] }
+      res = { satisfied: false, satisfiable: false, satisfiableAt: undefined }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      req = { all: [r.satisfiableLate, r.satisfiableEarly] }
+      res = { satisfied: false, satisfiable: true, satisfiableAt: d('2000') }
       expect(new Engine(req).execute({})).toMatchObject(res)
     })
   })

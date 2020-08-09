@@ -1,3 +1,4 @@
+import { either } from 'ramda'
 import { get } from 'object-path-immutable'
 
 export type RequisiteResult<C = {}> = {
@@ -15,6 +16,11 @@ export type RequisiteResult<C = {}> = {
    * Date when the requisite became satisfied.
    */
   satisfiedAt?: Date
+
+  /**
+   * Date when the requisite would became satisfied.
+   */
+  satisfiableAt?: Date
 
   /**
    * Extra context available.
@@ -53,37 +59,43 @@ class Engine<I extends {}> {
     if ('any' in chain) {
       const results = chain.any.map((item) => this.executeChain(item, input))
 
-      const satisfiedAt = results
-        .filter(isSatisfied)
-        .map(({ satisfiedAt }) => satisfiedAt)
-        .filter(Boolean)
-        .sort((a, b) => a.getTime() - b.getTime())[0]
-
       this.partials.push(
         ...results.map(
           (result, i) => [chain.any[i], result, input] as Partial<I>
         )
       )
 
-      const someSatisfied = results.some(isSatisfied)
+      const context = results.map(({ context }, i) => [chain.any[i], context])
 
-      return {
-        context: results.map(({ context }, i) => [chain.any[i], context]),
-        satisfied: someSatisfied,
-        satisfiable: results.some(isSatisfiable),
-        satisfiedAt,
-      }
-    }
-
-    if ('all' in chain) {
-      const results = chain.all.map((item) => this.executeChain(item, input))
+      const satisfied = results.some(isSatisfied)
 
       const satisfiedAt = results
         .filter(isSatisfied)
         .map(({ satisfiedAt }) => satisfiedAt)
         .filter(Boolean)
-        .sort((a, b) => a.getTime() - b.getTime())
-        .reverse()[0]
+        .sort((a, b) => a.getTime() - b.getTime())[0]
+
+      const satisfiable = results.some(isSatisfiable)
+
+      const satisfiableAt = !satisfiable
+        ? undefined
+        : results
+            .filter(isSatisfiable)
+            .map(({ satisfiableAt }) => satisfiableAt)
+            .filter(Boolean)
+            .sort((a, b) => a.getTime() - b.getTime())[0]
+
+      return {
+        context,
+        satisfied,
+        satisfiable,
+        satisfiedAt,
+        satisfiableAt,
+      }
+    }
+
+    if ('all' in chain) {
+      const results = chain.all.map((item) => this.executeChain(item, input))
 
       this.partials.push(
         ...results.map(
@@ -91,13 +103,36 @@ class Engine<I extends {}> {
         )
       )
 
-      const everySatisfied = results.every(isSatisfied)
+      const context = results.map(({ context }, i) => [chain.all[i], context])
+
+      const satisfied = results.every(isSatisfied)
+
+      const satisfiedAt = !satisfied
+        ? undefined
+        : results
+            .filter(isSatisfied)
+            .map(({ satisfiedAt }) => satisfiedAt)
+            .filter(Boolean)
+            .sort((a, b) => a.getTime() - b.getTime())
+            .reverse()[0]
+
+      const satisfiable = results.every(either(isSatisfied, isSatisfiable))
+
+      const satisfiableAt = !satisfiable
+        ? undefined
+        : results
+            .filter(isSatisfiable)
+            .map(({ satisfiableAt }) => satisfiableAt)
+            .filter(Boolean)
+            .sort((a, b) => a.getTime() - b.getTime())
+            .reverse()[0]
 
       return {
-        context: results.map(({ context }, i) => [chain.all[i], context]),
-        satisfied: everySatisfied,
-        satisfiable: results.every(isSatisfiable),
-        satisfiedAt: everySatisfied ? satisfiedAt : undefined,
+        context,
+        satisfied,
+        satisfiedAt,
+        satisfiable,
+        satisfiableAt,
       }
     }
   }
