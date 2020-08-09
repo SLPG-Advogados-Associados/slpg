@@ -21,12 +21,12 @@ describe('retirement/calculator/engine', () => {
     },
 
     falsyEarly: {
-      title: 'Truthy late',
+      title: 'Falsy early',
       executor: jest.fn(() => ({ satisfied: false, satisfiedAt: d('1990') })),
     },
 
     satisfiableLate: {
-      title: 'Satisfiable',
+      title: 'Satisfiable late',
       executor: jest.fn(() => ({
         satisfied: false,
         satisfiable: true,
@@ -35,7 +35,7 @@ describe('retirement/calculator/engine', () => {
     },
 
     satisfiableEarly: {
-      title: 'Satisfiable',
+      title: 'Satisfiable early',
       executor: jest.fn(() => ({
         satisfied: false,
         satisfiable: true,
@@ -144,6 +144,15 @@ describe('retirement/calculator/engine', () => {
       res = { satisfied: false, satisfiable: true, satisfiableAt: d('1990') }
       expect(new Engine(req).execute({})).toMatchObject(res)
 
+      req = { any: [r.truthy, r.truthyLate] }
+      res = {
+        satisfied: true,
+        satisfiedAt: d('2000'),
+        satisfiable: false,
+        satisfiableAt: undefined,
+      }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
       // all
 
       req = { all: [r.falsy, r.satisfiableEarly] }
@@ -152,6 +161,15 @@ describe('retirement/calculator/engine', () => {
 
       req = { all: [r.satisfiableLate, r.satisfiableEarly] }
       res = { satisfied: false, satisfiable: true, satisfiableAt: d('2000') }
+      expect(new Engine(req).execute({})).toMatchObject(res)
+
+      req = { all: [r.truthy, r.truthyLate] }
+      res = {
+        satisfied: true,
+        satisfiedAt: d('2000'),
+        satisfiable: true,
+        satisfiableAt: undefined,
+      }
       expect(new Engine(req).execute({})).toMatchObject(res)
     })
   })
