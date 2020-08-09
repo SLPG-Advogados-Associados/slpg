@@ -70,9 +70,11 @@ export type TotalReacherConfig = Partial<{
 const total = (
   _expected: DurationInput | ((input: CalculatorInput) => DurationInput),
   _config?: TotalReacherConfig
-): Reacher<{ computed: { real: Duration; processed: Duration } }> => input => {
+): Reacher<{ computed: { real: Duration; processed: Duration } }> => (
+  input
+) => {
   const config: TotalReacherConfig = {
-    split: contribution => [contribution],
+    split: (contribution) => [contribution],
     filter: () => true,
     process: identity,
     ..._config,
@@ -80,7 +82,7 @@ const total = (
 
   const dueSplit = config.due
     ? utils.splitAt(config.due)
-    : contribution => [contribution]
+    : (contribution) => [contribution]
 
   const expected = normalize({
     days: toDays(

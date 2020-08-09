@@ -1,6 +1,10 @@
 import { CalculatorInput, Contribution } from '../../../../types'
 import { parseInterval } from '../../../date'
-import { DurationInput, EMPTY_DURATION } from '../../../duration'
+import {
+  DurationInput,
+  EMPTY_DURATION,
+  multiply as multiplyDuration,
+} from '../../../duration'
 
 export type ProcessorContext<ExtraContext = {}> = ExtraContext & {
   input: CalculatorInput
@@ -48,4 +52,10 @@ const filter = (
 ): Processor => (duration, context) =>
   predicate(context.contribution, duration, context) ? duration : EMPTY_DURATION
 
-export { parseProcessors, filter }
+/**
+ * Specialized processor for applying multiplication to resulting durations.
+ */
+const multiply = (by: number): Processor => (duration) =>
+  multiplyDuration(by, duration)
+
+export { parseProcessors, filter, multiply }

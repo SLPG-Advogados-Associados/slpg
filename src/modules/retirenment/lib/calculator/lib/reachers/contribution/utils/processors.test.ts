@@ -1,10 +1,18 @@
 import { identity } from 'ramda'
 
 import { d, c } from '../../../test-utils'
-import { ProcessorContext, parseProcessors, filter } from './processors'
-import { EMPTY_DURATION } from '../../../duration'
+import { EMPTY_DURATION, compare } from '../../../duration'
+import {
+  ProcessorContext,
+  parseProcessors,
+  filter,
+  multiply,
+} from './processors'
 
 describe('retirement/calculator/lib/reachers/contribution/processors', () => {
+  const duration = { years: 1 }
+  const context = { contribution: c('1990^2000') } as ProcessorContext
+
   describe('parseProcessors', () => {
     it('should parse empty set of processors', () => {
       expect(parseProcessors({})).toEqual([])
@@ -33,9 +41,6 @@ describe('retirement/calculator/lib/reachers/contribution/processors', () => {
   })
 
   describe('filter', () => {
-    const duration = { years: 1 }
-    const context = { contribution: c('1990^2000') } as ProcessorContext
-
     it('should return original duration for truthy predicate', () => {
       const processor = filter(() => true)
       expect(processor(duration, context)).toBe(duration)
@@ -44,6 +49,13 @@ describe('retirement/calculator/lib/reachers/contribution/processors', () => {
     it('should return empty duration for falsy predicate', () => {
       const processor = filter(() => false)
       expect(processor(duration, context)).toBe(EMPTY_DURATION)
+    })
+  })
+
+  describe('multiply', () => {
+    it('should multiply resulting durations', () => {
+      const result = multiply(2)(duration, context)
+      expect(compare.equals(result, { years: 2 })).toBe(true)
     })
   })
 })
