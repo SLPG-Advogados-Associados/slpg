@@ -12,7 +12,9 @@ type Input = Pick<CalculatorInput, 'birthDate'>
  * @param expected Age required described as a duration object.
  * @param due Date by which the age must be achieved.
  */
-const age = ({ expected, due }: Params): RequisiteExecutor<Input> => input => {
+const age = ({ expected, due }: Params): RequisiteExecutor<Input> => (
+  input
+) => {
   const satisfiedAt = add(input.birthDate, expected, true)
 
   return {
