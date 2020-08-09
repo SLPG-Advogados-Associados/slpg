@@ -15,12 +15,15 @@ type Input = Pick<CalculatorInput, 'birthDate'>
 const age = ({ expected, due }: Params): RequisiteExecutor<Input> => (
   input
 ) => {
-  const satisfiedAt = add(input.birthDate, expected, true)
+  const reaches = add(input.birthDate, expected, true)
+  const satisfied = reaches <= due
+  const satisfiedAt = satisfied ? reaches : undefined
 
   return {
-    satisfied: satisfiedAt <= due,
-    satisfiable: false,
+    satisfied,
     satisfiedAt,
+    satisfiable: false,
+    satisfiableAt: undefined,
     context: { ageByDue: between(input.birthDate, due, true) },
   }
 }
