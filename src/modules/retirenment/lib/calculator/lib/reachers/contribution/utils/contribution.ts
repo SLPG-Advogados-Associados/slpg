@@ -29,6 +29,7 @@ const parseContributions = (
   processors
     // get every start/end date
     .reduce((carry, { start, end }) => [...carry, start, end], [] as Date[])
+    .filter(Boolean)
     // create splitters based on each date
     .map(split)
     .reduce(
