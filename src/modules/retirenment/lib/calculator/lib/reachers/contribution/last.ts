@@ -19,17 +19,34 @@ type Input = Pick<CalculatorInput, 'contributions'>
  * @param expected The expected duration of the last contribution time.
  * @param due Date by which the expected duration must be achieved.
  */
-const last = ({ expected, due }: Params): RequisiteExecutor<Input> => input => {
-  const { start, end } = getLast(input.contributions)
+const last = ({ expected, due }: Params): RequisiteExecutor<Input> => (
+  input
+) => {
+  const last = getLast(input.contributions)
+
+  if (!last) {
+    return {
+      satisfied: false,
+      satisfiedAt: undefined,
+      satisfiableAt: undefined,
+      satisfiable: false,
+    }
+  }
+
+  const { start, end } = last
 
   const satisfiedAt = add(start, expected)
   const satisfied = satisfiedAt <= min([due, end || TODAY])
 
+  // is satisfiable if it's still counting (no end) and will satisfy before due.
+  const satisfiable = satisfied || (satisfiedAt <= due && !end)
+  const satisfiableAt = satisfiable ? satisfiedAt : undefined
+
   return {
     satisfied,
-    satisfiedAt,
-    // is satisfiable if it's still counting (no end) and will satisfy before due.
-    satisfiable: satisfied || (satisfiedAt <= due && !end),
+    satisfiedAt: satisfied ? satisfiedAt : undefined,
+    satisfiable,
+    satisfiableAt,
     context: {
       durationByDue: between(start, end ? min([due, end]) : due, true),
     },
