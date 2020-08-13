@@ -172,4 +172,10 @@ class Engine<I extends {}> {
   }
 }
 
-export { Engine }
+/**
+ * Shortcut Engine creation/executor.
+ */
+const evaluate = <I extends {}>(input, chain: RequisiteChain<I>) =>
+  new Engine(chain).execute(input)
+
+export { Engine, evaluate }

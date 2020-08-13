@@ -250,4 +250,31 @@ describe('retirement/calculator/engine', () => {
       ])
     })
   })
+
+  describe('getChain', () => {
+    const engine = new Engine({
+      all: [r.truthy, { any: [r.falsy, { all: [r.satisfiableEarly] }] }],
+    })
+
+    it('should fetch first level nested chains', () => {
+      expect(engine.getChain('')).toHaveProperty('all')
+    })
+
+    it('should fetch nested chains', () => {
+      expect(engine.getChain('all.0')).toBe(r.truthy)
+      expect(engine.getChain('all.1.any.1.all.0')).toBe(r.satisfiableEarly)
+    })
+
+    it('should throw for missing chain paths', () => {
+      const err = 'Could not find chain'
+
+      expect(() => engine.getChain('all.2')).toThrow(err)
+      expect(() => engine.getChain('something.else')).toThrow(err)
+    })
+
+    it('should throw for invalid chain paths', () => {
+      const err = 'Invalid chain found at'
+      expect(() => engine.getChain('all.1.any')).toThrow(err)
+    })
+  })
 })
