@@ -10,7 +10,7 @@ summary: >-
   estatutário, de ganhos econômicos originalmente deferidos em ações
   trabalhistas.
 ---
-_**Por Luís Fernando Silva¹**_
+**_Por Luís Fernando Silva¹_**
 
 No último dia 21 de agosto o Supremo Tribunal Federal concluiu o julgamento do Recurso Extraordinário n 1.023.750, submetido à sistemática de Repercussão Geral (Tema nº 951), tendo sido aprovada a seguinte tese, aprovada por 9 dos 11 Ministros que compõem a Corte²:
 
@@ -43,8 +43,6 @@ Essa relevante questão jurídica foi contornada, no presente caso concreto, pel
 Assim, na medida em que estas novas ações (como a que deu ensejo ao Recurso Extraordinário em pauta) observaram o prazo de cinco anos, contados da data em que a Justiça do Trabalho deu pela limitação da sua competência, não haveria falar em prescrição, como acabou sendo reconhecido tanto pelo Tribunal Regional Federal da 4ª Região (com sede em Porto Alegre), como pelo Superior Tribunal de Justiça.
 
 Como se pode perceber, trata-se de um importante precedente, que pode auxiliar processos judiciais em curso ou a serem ajuizados, e que digam respeito aos reflexos, no regime estatutário, de ganhos econômicos originalmente deferidos em ações trabalhistas.
-
-Florianópolis, 26 de agosto de 2020.
 
 \_\_\_\_
 
