@@ -5,8 +5,10 @@ image: >-
   /admin/content/media/phone-chat-chataer-whatsapp-hand-with-cell-phone-5038760.jpg
 summary: >-
   Conheça 4 golpes muito comuns nos dias de hoje. aprenda a evitá-los e saiba o
-  que fazer no caso de ter caido em algum golpe.
+  que fazer no caso de ter caído em algum golpe.
 ---
+**_Por Ana Maria Rosa, advogada (OAB/SC 5984) e sócia do SLPG Advogados Associados e Marcos Vinicios Gonçalves, advogado (OAB/SC 10.239) também pelo mesmo escritório_**   
+
 Pode parecer incrível, mas ainda existem pessoas que caem no famoso golpe do bilhete premiado. Embora essas situações venham sendo noticiadas há muito tempo, os espertalhões continuam ludibriando suas vítimas, causando-lhes prejuízo financeiro, e por vezes arrasando suadas economias advindas de longa vida de trabalho.
 
 Enquanto a ingenuidade de alguns persiste, a ligeireza dos estelionatários segue a passos largos, e com uma criatividade digna de elogios, não fosse o potencial destruidor que os golpes causam às pessoas.  Essas tramas estão cada vez mais elaboradas, posto que agora atreladas ao uso da tecnologia.
