@@ -16,7 +16,7 @@ A Tese ao final aprovada pelo STF, e que deverá agora ser seguida por todas as 
 
 > Até a edição da Emenda Constitucional nº 103/2019, o direito à conversão, em tempo comum, do prestado sob condições especiais que prejudiquem a saúde ou a integridade física de servidor público decorre da previsão de adoção de requisitos e critérios diferenciados para a jubilação daquele enquadrado na hipótese prevista no então vigente inciso III do § 4º do art. 40 da Constituição da República, devendo ser aplicadas as normas do regime geral de previdência social relativas à aposentadoria especial contidas na Lei 8.213/1991 para viabilizar sua concretização enquanto não sobrevier lei complementar disciplinadora da matéria. Após a vigência da EC n.º 103/2019, o direito à conversão em tempo comum, do prestado sob condições especiais pelos servidores obedecerá à legislação complementar dos entes federados, nos termos da competência conferida pelo art. 40, § 4º-C, da Constituição da República.
 
-O [Escritório SLPG Advogados Associados](www.slpgadvogados.adv.br), que presta assessoria jurídica a diversas entidades sindicais e associativas de Santa Catarina, foi um dos escritórios atuantes no julgamento realizado pelo STF, inclusive com a apresentação de sustentação oral perante o Plenário do Tribunal.
+O Escritório SLPG Advogados Associados, que presta assessoria jurídica a diversas entidades sindicais e associativas de Santa Catarina, foi um dos escritórios atuantes no julgamento realizado pelo STF, inclusive com a apresentação de sustentação oral perante o Plenário do Tribunal.
 
 É importante destacar que esse direito já havia sido anteriormente reconhecido em relação aos períodos laborais anteriores à Lei nº 8.112, de 1990, de modo que o problema permanecia somente em relação ao período posterior a 1990, cujo reconhecimento, até aqui, vinha sofrendo sérias resistências no Poder Judiciário.
 
@@ -34,6 +34,6 @@ Parabéns a todos(as) que acreditaram que esta conquista era possível, e contin
 
 \_\_\_\_\
 \
-¹ Luís Fernando Silva é advogado (OAB/SC 9582) integrante do Escritório SLPG Advogados Associados, que faz parte do CNASP - Coletivo Nacional de Advogados de Servidores Públicos. É também integrante da Comissão de Direito Previdenciário do Conselho Federal da OAB e membro da Associação Americana de Juristas;
+¹ Luís Fernando Silva é advogado (OAB/SC 9582) integrante do Escritório [SLPG Advogados Associados](www.slpgadvogados.adv.br), que faz parte do CNASP - Coletivo Nacional de Advogados de Servidores Públicos. É também integrante da Comissão Especial de Direito Previdenciário do Conselho Federal da OAB e membro da Associação Americana de Juristas;
 
 ² Essa diferença decorre do fato da contagem especial de tempo de serviço se destinar complementação do tempo faltante para alcançar o período mínimo de trabalho para a aposentação, que é de 35 anos, para o homem, e de 30 anos, para a mulher, de modo que os acréscimos a serem observados acabam desiguais.
