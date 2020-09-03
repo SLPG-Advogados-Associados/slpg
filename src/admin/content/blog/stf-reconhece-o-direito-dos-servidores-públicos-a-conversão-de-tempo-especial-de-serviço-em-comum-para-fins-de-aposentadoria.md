@@ -8,6 +8,8 @@ summary: >-
   Servidores públicos têm direito à contagem especial de tempo de serviço
   prestado em condições nocivas à saúde
 ---
+Por Luis Fernando Silva¹
+
 O Supremo Tribunal Federal concluiu, no último dia 29 de agosto, o julgamento do Tema nº 942, de Repercussão Geral, que trata da possibilidade dos(as) servidores(as) públicos(as) fazerem uso das regras do Regime Geral de Previdência Social (INSS) para a averbação do tempo de serviço prestado em atividades exercidas sob condições especiais, nocivas à saúde ou à integridade física, mediante a conversão de tempo especial em comum, com vistas à aposentadoria voluntária ou à revisão de aposentadorias já concedidas.
 
 A Tese ao final aprovada pelo STF, e que deverá agora ser seguida por todas as instâncias do Poder Judiciário, traz a seguinte Ementa:
@@ -18,7 +20,7 @@ O [Escritório SLPG Advogados Associados](www.slpgadvogados.adv.br), que presta 
 
 É importante destacar que esse direito já havia sido anteriormente reconhecido em relação aos períodos laborais anteriores à Lei nº 8.112, de 1990, de modo que o problema permanecia somente em relação ao período posterior a 1990, cujo reconhecimento, até aqui, vinha sofrendo sérias resistências no Poder Judiciário.
 
-Em outras palavras, se entre 11 de dezembro de 1990 (data da edição do Regime Jurídico Único de que trata a Lei nº 8.112, de 1990), e 11 de novembro de 2019 (dia anterior ao da promulgação da Emenda Constitucional nº 103), um(a) servidor(a) público(a) exerceu o cargo público sob condições especiais, nocivas à saúde ou à integridade física, pode requerer do respectivo órgão público a averbação desse tempo de serviço com o acréscimo de 40% (quarenta por cento), no caso de homens, e de 20% (vinte por cento), no caso de mulheres¹, aumentando assim o seu tempo de serviço final, para fins de aposentadoria.
+Em outras palavras, se entre 11 de dezembro de 1990 (data da edição do Regime Jurídico Único de que trata a Lei nº 8.112, de 1990), e 11 de novembro de 2019 (dia anterior ao da promulgação da Emenda Constitucional nº 103), um(a) servidor(a) público(a) exerceu o cargo público sob condições especiais, nocivas à saúde ou à integridade física, pode requerer do respectivo órgão público a averbação desse tempo de serviço com o acréscimo de 40% (quarenta por cento), no caso de homens, e de 20% (vinte por cento), no caso de mulheres², aumentando assim o seu tempo de serviço final, para fins de aposentadoria.
 
 Para provar que o trabalho foi exercido sob condições especiais, o(a) servidor(a) terá que proceder segundo prevê a legislação previdenciária aplicável aos trabalhadores do setor privado, comprovando antes de mais nada a efetiva exposição aos agentes nocivos que permitem o enquadramento da atividade como especial, o que exigirá que siga rigorosamente as orientações que lhes serão repassadas pelas entidades sindicais ou associativas às quais encontram-se vinculados.
 
@@ -30,8 +32,8 @@ Demais disso, se o(a) servidor(a) obtiver a comprovação da sua efetiva exposi�
 
 Parabéns a todos(as) que acreditaram que esta conquista era possível, e continuaram perseverando na luta para alcançá-la, e mais uma vez obrigado pela confiança depositada em nosso trabalho.    
 
-\_\_\_\_
-
-Nota de rodapé:\
+\_\_\_\_\
 \
-¹ Essa diferença decorre do fato da contagem especial de tempo de serviço se destinar complementação do tempo faltante para alcançar o período mínimo de trabalho para a aposentação, que é de 35 anos, para o homem, e de 30 anos, para a mulher, de modo que os acréscimos a serem observados acabam desiguais.
+¹ Luís Fernando Silva é advogado (OAB/SC 9582) integrante do Escritório SLPG Advogados Associados, que faz parte do CNASP - Coletivo Nacional de Advogados de Servidores Públicos. É também integrante da Comissão de Direito Previdenciário do Conselho Federal da OAB e membro da Associação Americana de Juristas;
+
+² Essa diferença decorre do fato da contagem especial de tempo de serviço se destinar complementação do tempo faltante para alcançar o período mínimo de trabalho para a aposentação, que é de 35 anos, para o homem, e de 30 anos, para a mulher, de modo que os acréscimos a serem observados acabam desiguais.
