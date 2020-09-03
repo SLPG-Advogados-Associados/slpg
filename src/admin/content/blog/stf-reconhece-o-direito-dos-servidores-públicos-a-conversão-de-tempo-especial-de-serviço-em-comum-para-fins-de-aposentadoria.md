@@ -8,7 +8,7 @@ summary: >-
   Servidores públicos têm direito à contagem especial de tempo de serviço
   prestado em condições nocivas à saúde
 ---
-_**Por Luis Fernando Silva**_¹
+**_Por Luis Fernando Silva_**¹
 
 O Supremo Tribunal Federal concluiu, no último dia 29 de agosto, o julgamento do Tema nº 942, de Repercussão Geral, que trata da possibilidade dos(as) servidores(as) públicos(as) fazerem uso das regras do Regime Geral de Previdência Social (INSS) para a averbação do tempo de serviço prestado em atividades exercidas sob condições especiais, nocivas à saúde ou à integridade física, mediante a conversão de tempo especial em comum, com vistas à aposentadoria voluntária ou à revisão de aposentadorias já concedidas.
 
@@ -34,6 +34,6 @@ Parabéns a todos(as) que acreditaram que esta conquista era possível, e contin
 
 \_\_\_\_\
 \
-¹ Luís Fernando Silva é advogado (OAB/SC 9582) integrante do Escritório SLPG Advogados Associados, que faz parte do CNASP - Coletivo Nacional de Advogados de Servidores Públicos. É também integrante da Comissão de Direito Previdenciário do Conselho Federal da OAB e membro da Associação Americana de Juristas;
+¹ Luís Fernando Silva é advogado (OAB/SC 9582) integrante do Escritório SLPG Advogados Associados, que faz parte do CNASP - Coletivo Nacional de Advogados de Servidores Públicos. É também integrante da Comissão Especial de Direito Previdenciário do Conselho Federal da OAB e membro da Associação Americana de Juristas;
 
 ² Essa diferença decorre do fato da contagem especial de tempo de serviço se destinar complementação do tempo faltante para alcançar o período mínimo de trabalho para a aposentação, que é de 35 anos, para o homem, e de 30 anos, para a mulher, de modo que os acréscimos a serem observados acabam desiguais.
