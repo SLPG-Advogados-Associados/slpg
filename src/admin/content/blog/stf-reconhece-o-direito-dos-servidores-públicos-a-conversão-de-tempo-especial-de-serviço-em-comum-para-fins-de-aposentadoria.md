@@ -32,8 +32,8 @@ Demais disso, se o(a) servidor(a) obtiver a comprovação da sua efetiva exposi�
 
 Parabéns a todos(as) que acreditaram que esta conquista era possível, e continuaram perseverando na luta para alcançá-la, e mais uma vez obrigado pela confiança depositada em nosso trabalho.    
 
-\_\_\_\_\
-\
+__
+
 ¹ Luís Fernando Silva é advogado (OAB/SC 9582) integrante do Escritório [SLPG Advogados Associados](www.slpgadvogados.adv.br), que faz parte do CNASP - Coletivo Nacional de Advogados de Servidores Públicos. É também integrante da Comissão Especial de Direito Previdenciário do Conselho Federal da OAB e membro da Associação Americana de Juristas;
 
 ² Essa diferença decorre do fato da contagem especial de tempo de serviço se destinar complementação do tempo faltante para alcançar o período mínimo de trabalho para a aposentação, que é de 35 anos, para o homem, e de 30 anos, para a mulher, de modo que os acréscimos a serem observados acabam desiguais.
