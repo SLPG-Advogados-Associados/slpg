@@ -1,4 +1,3 @@
-import { last as getLast } from 'ramda'
 import { CalculatorInput } from '../../../types'
 import { add, min } from '../../date'
 import { TODAY } from '../../const'
@@ -22,7 +21,7 @@ type Input = Pick<CalculatorInput, 'contributions'>
 const last = ({ expected, due }: Params): RequisiteExecutor<Input> => (
   input
 ) => {
-  const last = getLast(input.contributions)
+  const last = input.contributions.reverse()[0]
 
   if (!last) {
     return {
