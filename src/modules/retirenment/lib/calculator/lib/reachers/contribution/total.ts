@@ -15,12 +15,13 @@ import {
   DurationInput,
 } from '../../duration'
 
+import { parseContributions } from './utils/contribution'
+
 import {
   Processors,
   parseProcessors,
-  parseContributions,
   mergeProcessors,
-} from './utils'
+} from './utils/processors'
 
 type Computed = {
   real: Duration
@@ -115,7 +116,7 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
     context: { computed },
     satisfied,
     satisfiedAt: (satisfied && reached) || undefined,
-    satisfiable: true,
+    satisfiable: Boolean(reached),
     satisfiableAt: reached,
   }
 }

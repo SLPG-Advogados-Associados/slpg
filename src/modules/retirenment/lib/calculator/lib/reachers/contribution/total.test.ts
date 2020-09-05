@@ -3,7 +3,7 @@ import { Contribution, CalculatorInput } from '../../../types'
 import { d, c } from '../../test-utils'
 import { sum, normalize } from '../../duration'
 import { total } from './total'
-import { filter } from './utils'
+import { filter } from './utils/processors'
 
 describe('retirement/calculator/lib/reachers/contribution/total', () => {
   const i = (...contributions: Contribution[]) =>
