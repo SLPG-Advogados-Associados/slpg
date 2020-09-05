@@ -22,7 +22,7 @@ export type Processors<ExtraContext = {}> = {
   [key: string]: Processor<ExtraContext>
 }
 
-type ParsedProcessor<ExtraContext = {}> = {
+export type ParsedProcessor<ExtraContext = {}> = {
   end?: Date | null
   start?: Date | null
   processor: Processor<ExtraContext>
