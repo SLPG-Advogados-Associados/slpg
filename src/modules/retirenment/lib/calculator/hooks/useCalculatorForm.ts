@@ -1,9 +1,9 @@
 import * as Yup from 'yup'
 import { useForm, schemas } from '~modules/form'
-import { Gender, Contribution } from '../types'
+import { Sex, Contribution } from '../types'
 
 type FormData = {
-  gender: Gender
+  sex: Sex
   birthDate: Date
   contributions: Contribution[]
 }
@@ -14,7 +14,7 @@ const date = schemas
   .typeError('"${originalValue}" não é uma data válida')
 
 const validationSchema = Yup.object().shape({
-  gender: Yup.string().required('Campo obrigatório'),
+  sex: Yup.string().required('Campo obrigatório'),
   birthDate: date,
   contributions: Yup.array().of(
     Yup.object().shape({
@@ -33,9 +33,9 @@ const useCalculatorForm = () => {
   const form = useForm<FormData>({ validationSchema })
 
   const fields = {
-    gender: form.useField('gender'),
+    sex: form.useField('sex'),
     birthDate: form.useField('birthDate'),
-    contributions: form.useFieldArray('contributions', path => ({
+    contributions: form.useFieldArray('contributions', (path) => ({
       start: form.useField(`${path}.start`, true),
       end: form.useField(`${path}.end`, true),
       salary: form.useField(`${path}.salary`, true),

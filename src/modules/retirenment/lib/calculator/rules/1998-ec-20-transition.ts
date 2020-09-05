@@ -2,9 +2,9 @@
 import { max, isEqual } from '../lib/date'
 import * as reachers from '../lib/reachers'
 import { multiply, subtract } from '../lib/duration'
-import { Rule, Possibility, Gender, Post, Operation } from '../types'
+import { Rule, Possibility, Sex, Post, Operation } from '../types'
 
-const { MALE, FEMALE } = Gender
+const { MALE, FEMALE } = Sex
 const { TEACHER } = Post
 
 // Date when this rule became active.
@@ -66,7 +66,7 @@ const processor = (
         {
           [MALE]: 1.17,
           [FEMALE]: 1.2,
-        }[input.gender],
+        }[input.sex],
         result
       )
     }
@@ -103,7 +103,7 @@ const possibilities: Possibility[] = [
       {
         description: 'Idade mínima',
         execute: reachers.age(
-          input => ({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
+          (input) => ({ years: { [MALE]: 53, [FEMALE]: 48 }[input.sex] }),
           { due }
         ),
       },
@@ -148,7 +148,7 @@ const possibilities: Possibility[] = [
       {
         description: 'Tempo total de contribuição',
         execute: reachers.contribution.total(
-          input => ({ years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] }),
+          (input) => ({ years: { [MALE]: 35, [FEMALE]: 30 }[input.gender] }),
           processor(true)
         ),
       },
@@ -203,7 +203,7 @@ const possibilities: Possibility[] = [
       {
         description: 'Idade mínima',
         execute: reachers.age(
-          input => ({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
+          (input) => ({ years: { [MALE]: 53, [FEMALE]: 48 }[input.gender] }),
           { due }
         ),
       },
@@ -248,7 +248,7 @@ const possibilities: Possibility[] = [
       {
         description: 'Tempo total de contribuição',
         execute: reachers.contribution.total(
-          input => ({ years: { [MALE]: 30, [FEMALE]: 25 }[input.gender] }),
+          (input) => ({ years: { [MALE]: 30, [FEMALE]: 25 }[input.sex] }),
           processor(false)
         ),
       },

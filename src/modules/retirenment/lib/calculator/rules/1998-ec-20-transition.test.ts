@@ -2,11 +2,11 @@
 import { d, c, u, I } from '../lib/test-utils'
 import { between, string } from '../lib/duration'
 import { NEVER } from '../lib/const'
-import { Gender, Post, ServiceKind, CalculatorInput } from '../types'
+import { Sex, Post, ServiceKind, CalculatorInput } from '../types'
 // @ts-ignore
 import { rule, __get__ } from './1998-ec-20-transition'
 
-const { MALE: M, FEMALE: F } = Gender
+const { MALE: M, FEMALE: F } = Sex
 const { TEACHER: T, OTHER: O } = Post
 
 describe('retirement/calculator/rules/1998-ec-20-transition', () => {
@@ -36,9 +36,9 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
       // after promulgation
       [c('2000^2010', [u, O]), M, 'P3653D'], // 3D = leap years
       [c('2000^2010', [u, T]), M, 'P3653D'], // 3D = leap years, after 1998 activation
-    ])('should process contributions', (contribution, gender, expected) => {
+    ])('should process contributions', (contribution, sex, expected) => {
       const { start, end } = contribution
-      const context = { contribution, input: { gender } }
+      const context = { contribution, input: { sex } }
       const duration = between(start, end)
 
       expect(string(process(duration, context))).toBe(expected)
@@ -74,8 +74,8 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         it.each([
           [d('1950'), M, d('2003')],
           [d('1950'), F, d('1998')],
-        ])('should reach by age', (birthDate, gender, expected) => {
-          const input = { birthDate, gender } as CalculatorInput
+        ])('should reach by age', (birthDate, sex, expected) => {
+          const input = { birthDate, sex } as CalculatorInput
           const [reached, context] = age.execute(input)
           expect(reached).toEqual(expected)
           expect(context).toMatchObject({ reachable: false })
@@ -133,14 +133,11 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [[c('2000', [u, T])], F, NEVER],
           [[c('1950', [u, T])], F, d('1970-03-11')],
           [[c('50^60'), c('70', [u, T])], F, d('1984-03-11')],
-        ])(
-          'should reach by contributions',
-          (contributions, gender, expected) => {
-            const input = { contributions, gender } as CalculatorInput
-            const [reached] = total.execute(input)
-            expect(reached).toEqual(expected)
-          }
-        )
+        ])('should reach by contributions', (contributions, sex, expected) => {
+          const input = { contributions, sex } as CalculatorInput
+          const [reached] = total.execute(input)
+          expect(reached).toEqual(expected)
+        })
       })
 
       it.each([
@@ -251,8 +248,8 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         it.each([
           [d('1950'), M, d('2003')],
           [d('1950'), F, d('1998')],
-        ])('should reach by age', (birthDate, gender, expected) => {
-          const input = { birthDate, gender } as CalculatorInput
+        ])('should reach by age', (birthDate, sex, expected) => {
+          const input = { birthDate, sex } as CalculatorInput
           const [reached, context] = age.execute(input)
           expect(reached).toEqual(expected)
           expect(context).toMatchObject({ reachable: false })
@@ -310,14 +307,11 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
           [[c('2000', [u, T])], F, NEVER],
           [[c('1950', [u, T])], F, d('1965-03-12')],
           [[c('50^60'), c('70', [u, T])], F, d('1979-03-13')],
-        ])(
-          'should reach by contributions',
-          (contributions, gender, expected) => {
-            const input = { contributions, gender } as CalculatorInput
-            const [reached] = total.execute(input)
-            expect(reached).toEqual(expected)
-          }
-        )
+        ])('should reach by contributions', (contributions, sex, expected) => {
+          const input = { contributions, sex } as CalculatorInput
+          const [reached] = total.execute(input)
+          expect(reached).toEqual(expected)
+        })
       })
 
       it.each([
