@@ -29,7 +29,11 @@ export type RequisiteResult<C = {}> = {
   context?: C
 }
 
-type Meta = { title?: string; description?: string }
+type Meta = {
+  title?: string
+  description?: string
+  debug?: ((...args: unknown[]) => void) | boolean
+}
 
 export type RequisiteExecutor<I extends {}, C = {}> = (
   input: I
@@ -118,7 +122,9 @@ class Engine<I extends {}> {
         .sort((a, b) => a.getTime() - b.getTime())
         .reverse()[0]
 
-      const satisfiable = results.every(either(isSatisfied, isSatisfiable))
+      const satisfiable =
+        results.every(either(isSatisfied, isSatisfiable)) &&
+        results.some(isSatisfiable)
 
       const satisfiableAt = !satisfiable
         ? undefined
@@ -143,9 +149,19 @@ class Engine<I extends {}> {
   }
 
   private executeChain(chain: RequisiteChain<I>, input: I): RequisiteResult {
-    return 'any' in chain || 'all' in chain
-      ? this.executeGroup(chain, input)
-      : chain.executor(input)
+    const result =
+      'any' in chain || 'all' in chain
+        ? this.executeGroup(chain, input)
+        : chain.executor(input)
+
+    if (chain.debug) {
+      typeof chain.debug === 'function'
+        ? chain.debug({ chain, result, input })
+        : // eslint-disable-next-line no-console
+          console.log({ chain, result, input })
+    }
+
+    return result
   }
 
   public execute(input: I) {
