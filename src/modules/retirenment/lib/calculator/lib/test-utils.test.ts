@@ -13,11 +13,14 @@ import {
   contribution,
   reachedAt,
   input,
+  parse,
+  d,
+  c,
 } from './test-utils'
 
-const { MALE: M } = Sex
+const { MALE: M, FEMALE: F } = Sex
 const { OTHER, TEACHER: T } = Post
-const { PUBLIC, PRIVATE } = ServiceKind
+const { PUBLIC: PU, PRIVATE: PR } = ServiceKind
 
 describe('retirement/calculator/lib/test-utils', () => {
   describe('eq', () => {
@@ -100,9 +103,9 @@ describe('retirement/calculator/lib/test-utils', () => {
         [['1950^2010'], { start: date('1950'), end: date('2010') }],
         [['1950'], { start: date('1950'), end: u }],
         // service.
-        [['2000'], { service: { kind: PUBLIC, post: OTHER } }],
-        [['2000', [PRIVATE, u]], { service: { kind: PRIVATE, post: OTHER } }],
-        [['2000', [u, T]], { service: { kind: PUBLIC, post: T } }],
+        [['2000'], { service: { kind: PU, post: OTHER } }],
+        [['2000', [PR, u]], { service: { kind: PR, post: OTHER } }],
+        [['2000', [u, T]], { service: { kind: PU, post: T } }],
       ])('should generate valid contributions', (input, expected) => {
         const [span, service] = input as [string, [ServiceKind, Post]]
         expect(contribution(span, service)).toMatchObject(expected)
@@ -131,6 +134,73 @@ describe('retirement/calculator/lib/test-utils', () => {
         contrib && expect(input.contributions).toMatchObject(contrib)
         birthDate && expect(input.birthDate).toEqual(birthDate)
       })
+    })
+
+    describe('parse', () => {
+      it.each([
+        ['homem', { sex: M }],
+        ['mulher', { sex: F }],
+      ])('should parse sex', (text, result) =>
+        expect(parse(text).sex).toEqual(result.sex)
+      )
+
+      it.each([
+        ['nascido em 49', { birthDate: d('1949-01-01') }],
+        ['nascido em 1950', { birthDate: d('1950-01-01') }],
+        ['nascido em 1950-01-02', { birthDate: d('1950-01-02') }],
+        ['nascido em 50@90', { birthDate: d('1940-01-01') }],
+      ])('should parse birthDate', (text, result) =>
+        expect(parse(text).birthDate).toMatchObject(result.birthDate)
+      )
+
+      it.each([
+        ['servidor de 60^65', { contributions: [c('60^65')] }],
+        ['servidor de 60', { contributions: [c('60')] }],
+        ['servidor de 60 em diante', { contributions: [c('60')] }],
+        ['contribuinte de 60 em diante', { contributions: [c('60', [PR])] }],
+        ['professor de 60 em diante', { contributions: [c('60', [PU, T])] }],
+        [
+          'professor privado de 60 em diante',
+          { contributions: [c('60', [PR, T])] },
+        ],
+
+        // multiple
+        [
+          'servidor de 60^65 | servidor de 70 em diante',
+          { contributions: [c('60^65'), c('70')] },
+        ],
+
+        [
+          'servidor de 60^65 | contribuinte de 70 em diante',
+          { contributions: [c('60^65'), c('70', [PR])] },
+        ],
+
+        [
+          'professor de 60^65 | contribuinte de 70 em diante',
+          { contributions: [c('60^65', [PU, T]), c('70', [PR])] },
+        ],
+      ])('should parse contributions', (text, result) =>
+        expect(parse(text).contributions).toEqual(result.contributions)
+      )
+
+      it.each([
+        ['homem | nascido em 49', { birthDate: d('1949-01-01'), sex: M }],
+
+        [
+          'nascido em 49 | servidor de 60^65',
+          { birthDate: d('1949-01-01'), contributions: [c('60^65')] },
+        ],
+
+        [
+          'homem | nascido em 60 | contribuinte de 60^65 | professor de 77 em diante',
+          {
+            birthDate: d('1960-01-01'),
+            contributions: [c('60^65', [PR]), c('77', [PU, T])],
+          },
+        ],
+      ])('should parse full inputs', (text, result) =>
+        expect(parse(text)).toMatchObject(result)
+      )
     })
   })
 

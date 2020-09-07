@@ -1,8 +1,8 @@
 import { isValid, sub } from './date'
-import { Post, ServiceKind, Sex, Contribution } from '../types'
+import { Post, ServiceKind, Sex, Contribution, CalculatorInput } from '../types'
 
-const { OTHER } = Post
-const { PUBLIC } = ServiceKind
+const { OTHER, TEACHER } = Post
+const { PUBLIC, PRIVATE } = ServiceKind
 
 export type DateParams = ConstructorParameters<typeof Date>
 
@@ -133,6 +133,69 @@ const I = input
 const und = undefined
 const u = und
 
+const parsers: Array<[
+  RegExp,
+  (matched: RegExpMatchArray, result: CalculatorInput) => unknown
+]> = [
+  [/homem/iu, (_, result) => (result.sex = Sex.MALE)],
+  [/mulher/iu, (_, result) => (result.sex = Sex.FEMALE)],
+
+  [
+    /nascid[oa] em (.+)/iu,
+    ([, date], result) => (result.birthDate = birth(date)),
+  ],
+
+  [
+    /servidora? de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    ([, date], result) => result.contributions.push(c(date)),
+  ],
+
+  [
+    /contribuinte de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    ([, date], result) => result.contributions.push(c(date, [PRIVATE])),
+  ],
+
+  [
+    /professora? de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    ([, date], result) => result.contributions.push(c(date, [u, TEACHER])),
+  ],
+
+  [
+    /professora? privad[oa] de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    ([, date], result) =>
+      result.contributions.push(c(date, [PRIVATE, TEACHER])),
+  ],
+]
+
+/**
+ * Input parser.
+ */
+const parse = (text: string) => {
+  const result = { contributions: [] } as CalculatorInput
+  const parts = text.split('|')
+
+  parts: for (const part of parts) {
+    for (const [regex, apply] of parsers) {
+      const matched = part.trim().match(regex)
+      if (matched) {
+        apply(matched, result)
+        // avoid double match
+        continue parts
+      }
+    }
+  }
+
+  return result
+}
+
+const result = ([satisfiedAt, satisfiableAt]: (null | string)[]) => ({
+  satisfied: Boolean(satisfiedAt),
+  satisfiedAt: satisfiedAt ? d(satisfiedAt) : u,
+  satisfiable: Boolean(satisfiableAt),
+  satisfiableAt: satisfiableAt ? d(satisfiableAt) : u,
+})
+const r = result
+
 export {
   eq,
   und,
@@ -150,4 +213,7 @@ export {
   reachedAt,
   input,
   I,
+  parse,
+  result,
+  r,
 }
