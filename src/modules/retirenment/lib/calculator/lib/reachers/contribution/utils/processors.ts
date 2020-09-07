@@ -2,6 +2,10 @@ import { CalculatorInput, Contribution } from '../../../../types'
 import { TODAY } from '../../../const'
 import { parseInterval, contains } from '../../../date'
 import {
+  sum,
+  toDays,
+  subtract,
+  normalize,
   DurationInput,
   EMPTY_DURATION,
   multiply as multiplyDuration,
@@ -60,6 +64,34 @@ const multiply = (by: number): Processor => (duration) =>
   multiplyDuration(by, duration)
 
 /**
+ * Augmented version of multiply that accounts for bonuses, but respects
+ * expectation reach (no more bonus implied).
+ */
+const bonus = (
+  by: number
+): Processor<{ computed: { processed: DurationInput } }> => (
+  duration,
+  context
+) => {
+  const processed = multiply(by)(duration, context)
+  const total = sum(processed, context.computed.processed)
+  const overlap = toDays(subtract(total, context.expected))
+
+  if (overlap > 0) {
+    const realOverlap = overlap / by
+
+    return subtract(
+      processed,
+      normalize({
+        days: Math.round(overlap - realOverlap),
+      })
+    )
+  }
+
+  return processed
+}
+
+/**
  * Merges multiple processors into one.
  */
 const mergeProcessors = (processors: ParsedProcessor[]) => (
@@ -73,4 +105,4 @@ const mergeProcessors = (processors: ParsedProcessor[]) => (
     .reduce((result, { processor }) => processor(result, context), initial)
 }
 
-export { parseProcessors, filter, multiply, mergeProcessors }
+export { parseProcessors, filter, multiply, bonus, mergeProcessors }
