@@ -21,7 +21,7 @@ type Input = Pick<CalculatorInput, 'contributions'>
 const last = ({ expected, due }: Params): RequisiteExecutor<Input> => (
   input
 ) => {
-  const last = input.contributions.reverse()[0]
+  const last = input.contributions[input.contributions.length - 1]
 
   if (!last) {
     return {
