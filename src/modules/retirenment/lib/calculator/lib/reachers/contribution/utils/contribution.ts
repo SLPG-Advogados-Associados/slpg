@@ -40,7 +40,7 @@ const parseContributions = (
         contributions.reduce(
           // split contributions, and assamble back into contributions array
           (carry, contribution) => [...carry, ...splitter(contribution)],
-          []
+          [] as Contribution[]
         ),
       original
     )

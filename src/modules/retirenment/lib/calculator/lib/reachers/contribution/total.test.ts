@@ -30,22 +30,23 @@ describe('retirement/calculator/lib/reachers/contribution/total', () => {
   })
 
   describe('with due', () => {
+    // prettier-ignore
     it.each([
       // reached
-      [20, i(c('70^90')), d('1989-12-27'), d('1989-12-27'), 7305],
-      [20, i(c('60^65'), c('70^85')), d('1984-12-26'), d('1984-12-26'), 7306],
-      [20, i(c('70')), d('1989-12-27'), d('1989-12-27'), 18262],
+      [20, i(c('70^90')), d('1989-12-27'), d('1989-12-27'), 7305, 7305],
+      [20, i(c('60^65'), c('70^85')), d('1984-12-26'), d('1984-12-26'), 7306, 7306],
+      [20, i(c('70')), d('1989-12-27'), d('1989-12-27'), 18262, 10957],
 
       // undereached, can't reach
-      [20, i(c('80^90')), undefined, undefined, 3653],
-      [20, i(c('60^65'), c('70^75')), undefined, undefined, 3653],
+      [20, i(c('80^90')), undefined, undefined, 3653, 3653],
+      [20, i(c('60^65'), c('70^75')), undefined, undefined, 3653, 3653],
 
       // unreached, can reach
-      [20, i(c('90')), undefined, d('2009-12-27'), 10957],
-      [20, i(c('90^95'), c('2000')), undefined, d('2014-12-27'), 9131],
+      [20, i(c('90')), undefined, d('2009-12-27'), 10957, 3652],
+      [20, i(c('90^95'), c('2000')), undefined, d('2014-12-27'), 9131, 1826],
     ])(
       'should correctly calculate reach',
-      (years, input, at, would, duration) => {
+      (years, input, at, would, duration, byDue) => {
         const result = total({ expected: { years }, due: d('2000') })(input)
 
         expect(result.satisfied).toBe(Boolean(at))
@@ -57,6 +58,8 @@ describe('retirement/calculator/lib/reachers/contribution/total', () => {
           'computed.processed.days',
           duration
         )
+
+        expect(result.context).toHaveProperty('computed.byDue.days', byDue)
       }
     )
   })
