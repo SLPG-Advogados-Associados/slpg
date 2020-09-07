@@ -84,7 +84,7 @@ const possibilities = [
                     due,
                     expected: { years: 30 },
                     processors: {
-                      '^': contribution.filter(isTeacher),
+                      '^': contribution.processors.filter(isTeacher),
                     },
                   }),
                 },
@@ -103,7 +103,7 @@ const possibilities = [
                     due,
                     expected: { years: 25 },
                     processors: {
-                      '^': contribution.filter(isTeacher),
+                      '^': contribution.processors.filter(isTeacher),
                     },
                   }),
                 },
