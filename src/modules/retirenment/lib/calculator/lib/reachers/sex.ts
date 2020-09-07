@@ -7,9 +7,10 @@ type Input = Pick<CalculatorInput, 'sex'>
 /**
  * Sex requisite factory.
  */
-const sex = (expected: Param): RequisiteExecutor<Input> => input => ({
+const sex = (expected: Param): RequisiteExecutor<Input> => (input) => ({
   satisfied: input.sex === expected,
   satisfiable: false,
+  satisfiableAt: undefined,
   satisfiedAt: null,
 })
 
