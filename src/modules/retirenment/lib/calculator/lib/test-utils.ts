@@ -1,4 +1,6 @@
+import { NEVER } from './const'
 import { isValid, sub } from './date'
+import { RequisiteChain, evaluate } from './engine'
 import { Post, ServiceKind, Sex, Contribution, CalculatorInput } from '../types'
 
 const { OTHER, TEACHER } = Post
@@ -146,22 +148,22 @@ const parsers: Array<[
   ],
 
   [
-    /servidora? de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    /servidora? (?:de(?:sde)?|entre) ([^ a-zA-Z]+)( em diante)?/,
     ([, date], result) => result.contributions.push(c(date)),
   ],
 
   [
-    /contribuinte de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    /contribuinte (?:de(?:sde)?|entre) ([^ a-zA-Z]+)( em diante)?/,
     ([, date], result) => result.contributions.push(c(date, [PRIVATE])),
   ],
 
   [
-    /professora? de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    /professora? (?:de(?:sde)?|entre) ([^ a-zA-Z]+)( em diante)?/,
     ([, date], result) => result.contributions.push(c(date, [u, TEACHER])),
   ],
 
   [
-    /professora? privad[oa] de(?:sde)? ([^ a-zA-Z]+)( em diante)?/,
+    /professora? privad[oa] (?:de(?:sde)?|entre) ([^ a-zA-Z]+)( em diante)?/,
     ([, date], result) =>
       result.contributions.push(c(date, [PRIVATE, TEACHER])),
   ],
@@ -188,12 +190,57 @@ const parse = (text: string) => {
   return result
 }
 
-const expected = ([satisfiedAt, satisfiableAt]: (null | string)[]) => ({
-  satisfied: Boolean(satisfiedAt),
-  satisfiedAt: satisfiedAt ? d(satisfiedAt) : u,
-  satisfiable: Boolean(satisfiableAt),
-  satisfiableAt: satisfiableAt ? d(satisfiableAt) : u,
-})
+const expected = ([satisfiedAt, satisfiableAt]: (null | string | Date)[]) => {
+  const parseDate = (value: null | string | Date) =>
+    typeof value === 'string'
+      ? d(value)
+      : value === NEVER || !value
+      ? undefined
+      : value
+
+  const parsed = {
+    satisfiedAt: parseDate(satisfiedAt),
+    satisfiableAt: parseDate(satisfiableAt),
+  }
+
+  return {
+    satisfied: Boolean(parsed.satisfiedAt),
+    satisfiedAt: parsed.satisfiedAt,
+    satisfiable: Boolean(parsed.satisfiableAt),
+    satisfiableAt: parsed.satisfiableAt,
+  }
+}
+
+/**
+ * Jest test generator for human-language parsed tests of requisite chains.
+ */
+/* eslint-disable no-undef */
+const testChain = (
+  title: string,
+  chain: RequisiteChain<CalculatorInput>,
+  items: Array<[string, (null | string | Date)[]]>,
+  _it: jest.It = it
+) => {
+  const register = () =>
+    _it.each(items)('%s: %s', (input, output) =>
+      expect(evaluate(parse(input), chain)).toMatchObject(expected(output))
+    )
+
+  return title ? describe(title, register) : register()
+}
+
+testChain.only = (
+  title: string,
+  chain: RequisiteChain<CalculatorInput>,
+  items: Array<[string, (null | string | Date)[]]>
+) => testChain(title, chain, items, it.only)
+
+testChain.skip = (
+  title: string,
+  chain: RequisiteChain<CalculatorInput>,
+  items: Array<[string, (null | string | Date)[]]>
+) => testChain(title, chain, items, it.skip)
+/* eslint-enable */
 
 export {
   eq,
@@ -214,4 +261,5 @@ export {
   I,
   parse,
   expected,
+  testChain,
 }
