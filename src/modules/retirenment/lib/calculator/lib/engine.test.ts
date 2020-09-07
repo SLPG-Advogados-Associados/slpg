@@ -185,7 +185,7 @@ describe('retirement/calculator/engine', () => {
       res = {
         satisfied: true,
         satisfiedAt: d('2000'),
-        satisfiable: true,
+        satisfiable: false,
         satisfiableAt: undefined,
       }
       expect(new Engine(req).execute({})).toMatchObject(res)
