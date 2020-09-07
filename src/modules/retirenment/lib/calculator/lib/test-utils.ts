@@ -188,13 +188,12 @@ const parse = (text: string) => {
   return result
 }
 
-const result = ([satisfiedAt, satisfiableAt]: (null | string)[]) => ({
+const expected = ([satisfiedAt, satisfiableAt]: (null | string)[]) => ({
   satisfied: Boolean(satisfiedAt),
   satisfiedAt: satisfiedAt ? d(satisfiedAt) : u,
   satisfiable: Boolean(satisfiableAt),
   satisfiableAt: satisfiableAt ? d(satisfiableAt) : u,
 })
-const r = result
 
 export {
   eq,
@@ -214,6 +213,5 @@ export {
   input,
   I,
   parse,
-  result,
-  r,
+  expected,
 }
