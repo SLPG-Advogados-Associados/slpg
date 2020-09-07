@@ -2,7 +2,7 @@ import { normalize } from 'duration-fns'
 
 import { CalculatorInput } from '../../../types'
 import { ceil } from '../../date'
-import { TODAY, NO_DURATION } from '../../const'
+import { FUTURE, NO_DURATION } from '../../const'
 import { RequisiteExecutor } from '../../engine'
 import {
   compare,
@@ -82,7 +82,7 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
   let reached: Date
 
   for (const contribution of contributions) {
-    const { start, end = TODAY } = contribution
+    const { start, end = FUTURE } = contribution
     const context = { input, expected, contribution, computed }
 
     const real = between(start, end)
