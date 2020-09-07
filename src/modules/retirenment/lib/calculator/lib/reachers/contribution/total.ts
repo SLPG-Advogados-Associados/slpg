@@ -68,7 +68,11 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
   const processor = mergeProcessors(processors)
 
   // compute splitted contributions based on due date and processors.
-  const contributions = parseContributions(input.contributions, processors)
+  const contributions = parseContributions(
+    input.contributions,
+    processors,
+    config.due
+  )
 
   // normalize expected duration to always calcualte based on days.
   const expected = normalize({ days: toDays(config.expected) })
@@ -95,7 +99,7 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
     computed.processed = normalize(sum(computed.processed, processed))
 
     // count duration for before-due computation, in case not reached due date.
-    if (config.due && contribution.end <= config.due) {
+    if (config.due && contribution.end && contribution.end <= config.due) {
       computed.byDue = normalize(sum(computed.byDue, processed))
     }
 
