@@ -39,7 +39,9 @@ export type RequisiteExecutor<I extends {}, C = {}> = (
   input: I
 ) => RequisiteResult<C>
 
-export type Requisite<I> = Meta & { executor: RequisiteExecutor<I> }
+type Executor<I> = RequisiteExecutor<I> | [Function, unknown[]]
+
+export type Requisite<I> = Meta & { executor: Executor<I> }
 export type RequisiteGroupAny<I> = Meta & { any: RequisiteChain<I>[] }
 export type RequisiteGroupAll<I> = Meta & { all: RequisiteChain<I>[] }
 
@@ -152,7 +154,10 @@ class Engine<I extends {}> {
     const result =
       'any' in chain || 'all' in chain
         ? this.executeGroup(chain, input)
-        : chain.executor(input)
+        : typeof chain.executor === 'function'
+        ? chain.executor(input)
+        : // lazy executor, for engine extending possible
+          chain.executor[0](...chain.executor[1])(input)
 
     if (chain.debug) {
       typeof chain.debug === 'function'

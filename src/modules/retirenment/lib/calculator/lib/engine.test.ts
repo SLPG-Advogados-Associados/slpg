@@ -200,6 +200,19 @@ describe('retirement/calculator/engine', () => {
     })
   })
 
+  describe('lazy executor', () => {
+    it('should be possible to define executors in lazy format', () => {
+      const fn = jest.fn()
+      const factory = jest.fn(() => fn)
+      const input = {}
+
+      new Engine({ executor: [factory, [1, 2, 3]] }).execute(input)
+
+      expect(factory).toHaveBeenCalledWith(1, 2, 3)
+      expect(fn).toHaveBeenCalledWith(input)
+    })
+  })
+
   describe('result', () => {
     const expected = {
       'at 1990': {
