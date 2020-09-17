@@ -2,21 +2,14 @@
 import * as reachers from '../lib/reachers'
 import { Engine } from '../lib/engine'
 import { Rule, Sex, Post, CalculatorInput, Contribution } from '../types'
+import { dates } from './dates'
 
 const { TEACHER } = Post
 const { MALE, FEMALE } = Sex
 
 const { sex, contribution, age } = reachers
 
-// Date when this rule became valid.
-const promulgation = new Date('1988-10-05')
-
-// Date when EC 20/1998 is approved, deprecating the below rules.
-const due = new Date('1998-12-16')
-
 const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
-
-export type Input = CalculatorInput
 
 const possibilities = [
   {
@@ -28,7 +21,7 @@ const possibilities = [
       b) aos trinta anos de efetivo exercício em funções de magistério, se professor, e vinte e cinco, se professora, com proventos integrais;
       (...)
     `,
-    requisites: new Engine<Input>({
+    requisites: new Engine<CalculatorInput>({
       any: [
         {
           title: 'Tempo total de contribuição',
@@ -43,7 +36,7 @@ const possibilities = [
                 {
                   description: '35 anos de serviço',
                   executor: contribution.total({
-                    due,
+                    due: dates.ec20,
                     expected: { years: 35 },
                   }),
                 },
@@ -59,7 +52,7 @@ const possibilities = [
                 {
                   description: '30 anos de serviço',
                   executor: contribution.total({
-                    due,
+                    due: dates.ec20,
                     expected: { years: 30 },
                   }),
                 },
@@ -81,7 +74,7 @@ const possibilities = [
                 {
                   description: '30 anos de serviço em funções de magistério',
                   executor: contribution.total({
-                    due,
+                    due: dates.ec20,
                     expected: { years: 30 },
                     processors: {
                       '^': contribution.processors.filter(isTeacher),
@@ -100,7 +93,7 @@ const possibilities = [
                 {
                   description: '25 anos de serviço em funções de magistério',
                   executor: contribution.total({
-                    due,
+                    due: dates.ec20,
                     expected: { years: 25 },
                     processors: {
                       '^': contribution.processors.filter(isTeacher),
@@ -126,7 +119,7 @@ const possibilities = [
       (...)
     `,
 
-    requisites: new Engine<Input>({
+    requisites: new Engine<CalculatorInput>({
       any: [
         {
           title: 'Tempo total de contribuição',
@@ -141,7 +134,7 @@ const possibilities = [
                 {
                   description: '30 anos de serviço',
                   executor: contribution.total({
-                    due,
+                    due: dates.ec20,
                     expected: { years: 30 },
                   }),
                 },
@@ -157,7 +150,7 @@ const possibilities = [
                 {
                   description: '25 anos de serviço',
                   executor: contribution.total({
-                    due,
+                    due: dates.ec20,
                     expected: { years: 25 },
                   }),
                 },
@@ -178,7 +171,7 @@ const possibilities = [
                 },
                 {
                   description: '65 anos de idade',
-                  executor: age({ due, expected: { years: 65 } }),
+                  executor: age({ due: dates.ec20, expected: { years: 65 } }),
                 },
               ],
             },
@@ -191,7 +184,7 @@ const possibilities = [
                 },
                 {
                   description: '60 anos de idade',
-                  executor: age({ due, expected: { years: 60 } }),
+                  executor: age({ due: dates.ec20, expected: { years: 60 } }),
                 },
               ],
             },
@@ -203,8 +196,8 @@ const possibilities = [
 ]
 
 const rule: Rule = {
-  due,
-  promulgation,
+  due: dates.ec20,
+  promulgation: dates.constitution,
   title: 'CF 1988',
   description:
     'Regra do art. 40 da Constituição Federal de 1988, texto original',

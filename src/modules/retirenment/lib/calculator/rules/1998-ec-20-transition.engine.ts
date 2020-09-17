@@ -11,18 +11,13 @@ import {
   Contribution,
 } from '../types'
 import { Engine } from '../lib/engine'
+import { dates } from './dates'
 
 const { MALE, FEMALE } = Sex
 const { TEACHER } = Post
 
 const { sex, contribution, age, after } = reachers
 const { processors, last, total } = contribution
-
-// Date when this rule became active.
-const promulgation = new Date('1998-12-16')
-
-// Date when EC 41/2003 is approved, deprecating the below rules.
-const due = new Date('2003-12-31')
 
 const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
 
@@ -39,7 +34,7 @@ const toll = (
     if (
       // ensure we only deduct toll once.
       !deducted.includes(computed) &&
-      isEqual(contribution.start, promulgation)
+      isEqual(contribution.start, dates.ec20)
     ) {
       // use "input" as ref for memoized context
       deducted.push(computed)
@@ -89,7 +84,7 @@ const possibilities: Possibility[] = [
     requisites: new Engine<Input>({
       all: [
         {
-          executor: after(promulgation),
+          executor: after(dates.ec20),
         },
 
         {
@@ -104,7 +99,7 @@ const possibilities: Possibility[] = [
                 },
                 {
                   description: '53 anos de idade',
-                  executor: age({ due, expected: { years: 53 } }),
+                  executor: age({ due: dates.ec41, expected: { years: 53 } }),
                 },
               ],
             },
@@ -117,7 +112,7 @@ const possibilities: Possibility[] = [
                 },
                 {
                   description: '48 anos de idade',
-                  executor: age({ due, expected: { years: 48 } }),
+                  executor: age({ due: dates.ec41, expected: { years: 48 } }),
                 },
               ],
             },
@@ -127,7 +122,7 @@ const possibilities: Possibility[] = [
         {
           title: 'Tempo no cargo de aposentadoria',
           description: `II - tiver cinco anos de efetivo exercício no cargo em que se dará a aposentadoria;`,
-          executor: last({ expected: { years: 5 }, due }),
+          executor: last({ expected: { years: 5 }, due: dates.ec41 }),
         },
 
         {
@@ -169,7 +164,7 @@ const possibilities: Possibility[] = [
                       //   console.log(JSON.stringify(args, null, 2)),
                       description: 'Geral',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 35 },
                         processors: {
                           '1998-12-16^': toll(0.2),
@@ -185,7 +180,7 @@ const possibilities: Possibility[] = [
                     {
                       description: 'Magistério',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 35 },
                         processors: {
                           '^': processors.filter(isTeacher),
@@ -211,7 +206,7 @@ const possibilities: Possibility[] = [
                     {
                       description: 'Geral',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 30 },
                         processors: {
                           '1998-12-16^': toll(0.2),
@@ -227,7 +222,7 @@ const possibilities: Possibility[] = [
                     {
                       description: 'Magistério',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 30 },
                         processors: {
                           '^': processors.filter(isTeacher),
@@ -284,7 +279,7 @@ const possibilities: Possibility[] = [
     requisites: new Engine<Input>({
       all: [
         {
-          executor: after(promulgation),
+          executor: after(dates.ec20),
         },
 
         {
@@ -299,7 +294,7 @@ const possibilities: Possibility[] = [
                 },
                 {
                   description: '53 anos de idade',
-                  executor: age({ due, expected: { years: 53 } }),
+                  executor: age({ due: dates.ec41, expected: { years: 53 } }),
                 },
               ],
             },
@@ -312,7 +307,7 @@ const possibilities: Possibility[] = [
                 },
                 {
                   description: '48 anos de idade',
-                  executor: age({ due, expected: { years: 48 } }),
+                  executor: age({ due: dates.ec41, expected: { years: 48 } }),
                 },
               ],
             },
@@ -322,7 +317,7 @@ const possibilities: Possibility[] = [
         {
           title: 'Tempo no cargo de aposentadoria',
           description: `II - tiver cinco anos de efetivo exercício no cargo em que se dará a aposentadoria;`,
-          executor: last({ expected: { years: 5 }, due }),
+          executor: last({ expected: { years: 5 }, due: dates.ec41 }),
         },
 
         {
@@ -362,7 +357,7 @@ const possibilities: Possibility[] = [
                     {
                       description: 'Geral',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 30 },
                         processors: {
                           '1998-12-16^': toll(0.4),
@@ -373,7 +368,7 @@ const possibilities: Possibility[] = [
                     // {
                     //   description: 'Magistrado',
                     //   executor: total({
-                    //     due,
+                    //     due: dates.ec41,
                     //     expected: { years: 30 },
                     //   }),
                     // },
@@ -381,7 +376,7 @@ const possibilities: Possibility[] = [
                     {
                       description: 'Magistério',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 30 },
                         processors: {
                           '^': processors.filter(isTeacher),
@@ -407,7 +402,7 @@ const possibilities: Possibility[] = [
                     {
                       description: 'Geral',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 25 },
                         processors: {
                           '1998-12-16^': toll(0.4),
@@ -418,7 +413,7 @@ const possibilities: Possibility[] = [
                     // {
                     //   description: 'Magistrado',
                     //   executor: total({
-                    //     due,
+                    //     due: dates.ec41,
                     //     expected: { years: 25 },
                     //   }),
                     // },
@@ -426,7 +421,7 @@ const possibilities: Possibility[] = [
                     {
                       description: 'Magistério',
                       executor: total({
-                        due,
+                        due: dates.ec41,
                         expected: { years: 25 },
                         processors: {
                           '^': processors.filter(isTeacher),
@@ -447,8 +442,8 @@ const possibilities: Possibility[] = [
 ]
 
 const rule: Rule = {
-  promulgation,
-  due,
+  promulgation: dates.ec20,
+  due: dates.ec41,
   title: 'EC nº 20 - Regra de Transição',
   description: 'Regra de transição como descrita na EC nº 20, de 1998',
   possibilities,
