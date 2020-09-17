@@ -2,7 +2,7 @@
 import { testChain } from '../lib/test-utils'
 import { NEVER } from '../lib/const'
 // @ts-ignore
-import { rule } from './1998-ec-20.engine'
+import { rule } from './1998-ec-20-permanent.engine'
 
 const { promulgation } = rule
 
