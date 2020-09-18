@@ -199,4 +199,12 @@ class Engine<I extends {}> {
 const evaluate = <I extends {}>(input, chain: RequisiteChain<I>) =>
   new Engine(chain).execute(input)
 
-export { Engine, evaluate }
+/**
+ * Typing helper for generating a lazy executor tuple.
+ */
+const lazy = <F extends (...args: unknown[]) => RequisiteExecutor<unknown>>(
+  fn: F,
+  ...args: Parameters<F>
+) => [fn, args] as [F, Parameters<F>]
+
+export { Engine, evaluate, lazy }
