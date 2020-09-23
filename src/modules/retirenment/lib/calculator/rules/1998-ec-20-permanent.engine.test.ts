@@ -52,8 +52,8 @@ describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
           ['mulher | nascida em 40 | contribuinte desde 50', [null, NEVER]],
           ['homem | nascido em 40 | servidor desde 50', ['1959-12-30', '1959-12-30']],
           ['mulher | nascida em 40 | servidora desde 50', ['1959-12-30', '1959-12-30']],
-          ['homem | nascido em 40 | contribuinte desde 2000', [null, NEVER]],
-          ['mulher | nascida em 40 | contribuinte desde 2000', [null, NEVER]],
+          ['homem | nascido em 40 | servidor desde 2000', [null, '2009-12-29']],
+          ['mulher | nascida em 40 | servidora desde 2000', [null, '2009-12-29']],
         ])
 
         // prettier-ignore
@@ -216,8 +216,8 @@ describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
           ['mulher | nascida em 40 | contribuinte desde 50', [null, NEVER]],
           ['homem | nascido em 40 | servidor desde 50', ['1959-12-30', '1959-12-30']],
           ['mulher | nascida em 40 | servidora desde 50', ['1959-12-30', '1959-12-30']],
-          ['homem | nascido em 40 | contribuinte desde 2000', [null, NEVER]],
-          ['mulher | nascida em 40 | contribuinte desde 2000', [null, NEVER]],
+          ['homem | nascido em 40 | servidor desde 2000', [null, '2009-12-29']],
+          ['mulher | nascida em 40 | servidora desde 2000', [null, '2009-12-29']],
         ])
 
         // prettier-ignore
