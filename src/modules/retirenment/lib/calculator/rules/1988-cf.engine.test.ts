@@ -2,10 +2,10 @@ import { expected, parse } from '../lib/test-utils'
 import { rule } from './1988-cf.engine'
 
 describe('retirement/calculator/rules/cf-1988.engine', () => {
-  describe('possibilities', () => {
+  describe('Possibilidades', () => {
     const [integral, proportional] = rule.possibilities
 
-    describe('integral', () => {
+    describe('Integral', () => {
       it.each([
         // male
         ['homem | contribuinte desde 60', ['1994-12-23', '1994-12-23']], //  38/00, general ✅, teacher ❌ (in valid period)
@@ -28,7 +28,7 @@ describe('retirement/calculator/rules/cf-1988.engine', () => {
       })
     })
 
-    describe('proportional', () => {
+    describe('Proporcional', () => {
       // prettier-ignore
       it.each([
         ['homem | nascido em 50 | contribuinte desde 65', ['1994-12-25', '1994-12-25']], //   30/48, general ✅, age ❌ (in valid period)

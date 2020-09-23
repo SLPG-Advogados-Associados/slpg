@@ -6,7 +6,7 @@ import { rule } from './1998-ec-20-permanent.engine'
 
 const { promulgation } = rule
 
-describe('retirement/calculator/rules/1998-ec-20.engine', () => {
+describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
   describe('possibilities', () => {
     const [integral, proportional] = rule.possibilities
 
