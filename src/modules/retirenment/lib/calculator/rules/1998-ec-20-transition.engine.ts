@@ -92,11 +92,9 @@ const possibilities: Possibility[] = [
           description: `I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos de idade, se mulher;`,
           any: [
             {
+              title: 'Homem',
               all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
+                { executor: sex(MALE) },
                 {
                   description: '53 anos de idade',
                   executor: age({ due: dates.ec41, expected: { years: 53 } }),
@@ -105,11 +103,9 @@ const possibilities: Possibility[] = [
             },
 
             {
+              title: 'Mulher',
               all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
+                { executor: sex(FEMALE) },
                 {
                   description: '48 anos de idade',
                   executor: age({ due: dates.ec41, expected: { years: 48 } }),
@@ -151,18 +147,16 @@ const possibilities: Possibility[] = [
             `,
           any: [
             {
+              title: 'Homem',
+              description: '35 anos de serviço',
               all: [
+                { executor: sex(MALE) },
                 {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-                {
-                  description: '35 anos de serviço',
                   any: [
                     {
                       // debug: (args) =>
                       //   console.log(JSON.stringify(args, null, 2)),
-                      description: 'Geral',
+                      title: 'Geral',
                       executor: total({
                         due: dates.ec41,
                         expected: { years: 35 },
@@ -173,12 +167,12 @@ const possibilities: Possibility[] = [
                     },
 
                     // {
-                    //   description: 'Magistrado',
+                    //   title: 'Magistrado',
                     //   executor: ...
                     // },
 
                     {
-                      description: 'Magistério',
+                      title: 'Professor',
                       executor: total({
                         due: dates.ec41,
                         expected: { years: 35 },
@@ -195,13 +189,11 @@ const possibilities: Possibility[] = [
             },
 
             {
+              title: 'Mulher',
+              description: '30 anos de serviço',
               all: [
+                { executor: sex(FEMALE) },
                 {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
-                {
-                  description: '30 anos de serviço',
                   any: [
                     {
                       description: 'Geral',
@@ -220,7 +212,7 @@ const possibilities: Possibility[] = [
                     // },
 
                     {
-                      description: 'Magistério',
+                      description: 'Professora',
                       executor: total({
                         due: dates.ec41,
                         expected: { years: 30 },
@@ -287,11 +279,9 @@ const possibilities: Possibility[] = [
           description: `I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos de idade, se mulher;`,
           any: [
             {
+              description: 'Homem',
               all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
+                { executor: sex(MALE) },
                 {
                   description: '53 anos de idade',
                   executor: age({ due: dates.ec41, expected: { years: 53 } }),
@@ -300,11 +290,9 @@ const possibilities: Possibility[] = [
             },
 
             {
+              description: 'Mulher',
               all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
+                { executor: sex(FEMALE) },
                 {
                   description: '48 anos de idade',
                   executor: age({ due: dates.ec41, expected: { years: 48 } }),
@@ -346,16 +334,14 @@ const possibilities: Possibility[] = [
             `,
           any: [
             {
+              title: 'Homem',
+              description: '30 anos de serviço',
               all: [
+                { executor: sex(MALE) },
                 {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-                {
-                  description: '30 anos de serviço',
                   any: [
                     {
-                      description: 'Geral',
+                      title: 'Geral',
                       executor: total({
                         due: dates.ec41,
                         expected: { years: 30 },
@@ -374,7 +360,7 @@ const possibilities: Possibility[] = [
                     // },
 
                     {
-                      description: 'Magistério',
+                      title: 'Professor',
                       executor: total({
                         due: dates.ec41,
                         expected: { years: 30 },
@@ -391,16 +377,14 @@ const possibilities: Possibility[] = [
             },
 
             {
+              title: 'Mulher',
+              description: '25 anos de serviço',
               all: [
+                { executor: sex(FEMALE) },
                 {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
-                {
-                  description: '25 anos de serviço',
                   any: [
                     {
-                      description: 'Geral',
+                      title: 'Geral',
                       executor: total({
                         due: dates.ec41,
                         expected: { years: 25 },
@@ -419,7 +403,7 @@ const possibilities: Possibility[] = [
                     // },
 
                     {
-                      description: 'Magistério',
+                      title: 'Professora',
                       executor: total({
                         due: dates.ec41,
                         expected: { years: 25 },

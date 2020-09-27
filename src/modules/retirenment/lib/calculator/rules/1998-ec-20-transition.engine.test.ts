@@ -40,17 +40,20 @@ describe('retirement/calculator/rules/1998-ec-20-transition.engine', () => {
      */
     describe('Integral', () => {
       describe('Requisitos', () => {
+        const get = integral.requisites.find.bind(integral.requisites)
+
         const requisites = {
-          age: integral.requisites.getChain('all.1'),
-          last: integral.requisites.getChain('all.2'),
+          age: get('Idade'),
+          last: get('Tempo no cargo de aposentadoria'),
           total: {
             general: {
-              male: integral.requisites.getChain('all.3.any.0.all.1.any.0'),
-              female: integral.requisites.getChain('all.3.any.1.all.1.any.0'),
+              male: get('Tempo total de contribuição', 'Homem', 'Geral'),
+              female: get('Tempo total de contribuição', 'Mulher', 'Geral'),
             },
             teacher: {
-              male: integral.requisites.getChain('all.3.any.0.all.1.any.1'),
-              female: integral.requisites.getChain('all.3.any.1.all.1.any.1'),
+              male: get('Tempo total de contribuição', 'Homem', 'Professor'),
+              // prettier-ignore
+              female: get('Tempo total de contribuição', 'Mulher', 'Professora')
             },
           },
         }
@@ -246,18 +249,20 @@ describe('retirement/calculator/rules/1998-ec-20-transition.engine', () => {
      */
     describe('Proporcional', () => {
       describe('Requisitos', () => {
-        // prettier-ignore
+        const get = proportional.requisites.find.bind(proportional.requisites)
+
         const requisites = {
-          age: proportional.requisites.getChain('all.1'),
-          last: proportional.requisites.getChain('all.2'),
+          age: get('Idade'),
+          last: get('Tempo no cargo de aposentadoria'),
           total: {
             general: {
-              male: proportional.requisites.getChain('all.3.any.0.all.1.any.0'),
-              female: proportional.requisites.getChain('all.3.any.1.all.1.any.0'),
+              male: get('Tempo total de contribuição', 'Homem', 'Geral'),
+              female: get('Tempo total de contribuição', 'Mulher', 'Geral'),
             },
             teacher: {
-              male: proportional.requisites.getChain('all.3.any.0.all.1.any.1'),
-              female: proportional.requisites.getChain('all.3.any.1.all.1.any.1'),
+              male: get('Tempo total de contribuição', 'Homem', 'Professor'),
+              // prettier-ignore
+              female: get('Tempo total de contribuição', 'Mulher', 'Professora')
             },
           },
         }
@@ -351,7 +356,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition.engine', () => {
       })
 
       // prettier-ignore
-      testChain.only(null, proportional.requisites.chain, [        
+      testChain(null, proportional.requisites.chain, [
         // reached before promulgation:
         ['homem | nascido em 45 | contribuinte desde 50', [promulgation, promulgation]], //                             53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
         ['mulher | nascida em 50 | contribuinte desde 50', [promulgation, promulgation]], //                            48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅

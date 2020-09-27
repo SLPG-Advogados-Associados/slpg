@@ -40,7 +40,7 @@ const possibilities: Possibility[] = [
       a) sessenta anos de idade e trinta e cinco de contribuição, se homem, e
       cinqüenta e cinco anos de idade e trinta de contribuição, se mulher;
 
-T      (...)
+      (...)
 
       § 5º - Os requisitos de idade e de tempo de contribuição serão reduzidos em
       cinco anos, em relação ao disposto no § 1º, III, "a", para o professor que

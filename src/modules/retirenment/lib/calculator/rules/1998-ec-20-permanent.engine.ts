@@ -81,7 +81,7 @@ const possibilities: Possibility[] = [
                 {
                   any: [
                     {
-                      description: 'Geral',
+                      title: 'Geral',
                       all: [
                         {
                           description: '60 anos de idade',
@@ -102,7 +102,7 @@ const possibilities: Possibility[] = [
                     },
 
                     {
-                      description: 'Professor',
+                      title: 'Professor',
                       all: [
                         {
                           description: '55 anos de idade',
@@ -138,7 +138,7 @@ const possibilities: Possibility[] = [
                 {
                   any: [
                     {
-                      description: 'Geral',
+                      title: 'Geral',
                       all: [
                         {
                           description: '55 anos de idade',
@@ -159,7 +159,7 @@ const possibilities: Possibility[] = [
                     },
 
                     {
-                      description: 'Professora',
+                      title: 'Professora',
                       all: [
                         {
                           description: '50 anos de idade',
