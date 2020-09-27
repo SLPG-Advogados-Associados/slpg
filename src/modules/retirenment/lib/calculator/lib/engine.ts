@@ -62,7 +62,18 @@ class Engine<I extends {}> {
   private references: Reference<I>[]
 
   constructor(chain: RequisiteChain<I>) {
+    if (!Engine.validChain(chain)) {
+      throw new Error('Provided requisite chain is invalid')
+    }
+
     this.chain = chain
+  }
+
+  /**
+   * Verifies if a provided chain is valid.
+   */
+  private static validChain(chain: RequisiteChain<I>) {
+    return chain && ('executor' in chain || 'all' in chain || 'any' in chain)
   }
 
   private executeGroup(chain: RequisiteGroup<I>, input: I) {
@@ -224,7 +235,7 @@ class Engine<I extends {}> {
   /**
    * Assessor for requisite chain items based on comparision of composed references.
    */
-  public find(...refs: string[]) {
+  public find(...refs: string[]): RequisiteChain<I> | null {
     if (typeof this.references === 'undefined') {
       this.references = []
       this.processReferences(this.chain, [])
