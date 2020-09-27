@@ -70,15 +70,13 @@ const possibilities: Possibility[] = [
         },
 
         {
+          title: 'Idade e tempo de contribuição',
           any: [
             {
-              title: 'Idade e tempo de contribuição (homem)',
+              title: 'Homem',
               description: `sessenta anos de idade e trinta e cinco de contribuição, se homem`,
               all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
+                { executor: sex(MALE) },
 
                 {
                   any: [
@@ -132,17 +130,15 @@ const possibilities: Possibility[] = [
             },
 
             {
-              title: 'Idade e tempo de contribuição (mulher)',
+              title: 'Mulher',
               description: `cinqüenta e cinco anos de idade e trinta de contribuição, se mulher;`,
               all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
+                { executor: sex(FEMALE) },
 
                 {
                   any: [
                     {
+                      description: 'Geral',
                       all: [
                         {
                           description: '55 anos de idade',
@@ -242,12 +238,10 @@ const possibilities: Possibility[] = [
           title: 'Idade',
           any: [
             {
+              title: 'Homem',
               description: `sessenta e cinco anos de idade, se homem`,
               all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
+                { executor: sex(MALE) },
 
                 {
                   description: '65 anos de idade',
@@ -257,12 +251,10 @@ const possibilities: Possibility[] = [
             },
 
             {
+              title: 'Mulher',
               description: `sessenta anos de idade, se mulher`,
               all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
+                { executor: sex(FEMALE) },
 
                 {
                   description: '60 anos de idade',

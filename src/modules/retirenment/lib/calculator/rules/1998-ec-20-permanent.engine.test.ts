@@ -29,17 +29,20 @@ describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
      */
     describe('Integral', () => {
       describe('Requisitos', () => {
+        const get = integral.requisites.find.bind(integral.requisites)
+
         const requisites = {
-          public: integral.requisites.getChain('all.1'),
-          last: integral.requisites.getChain('all.2'),
+          public: get('Tempo de serviço público'),
+          last: get('Tempo no cargo de aposentadoria'),
           total: {
             general: {
-              male: integral.requisites.getChain('all.3.any.0.all.1.any.0'),
-              female: integral.requisites.getChain('all.3.any.1.all.1.any.0'),
+              male: get('Idade e tempo de contribuição', 'Homem', 'Geral'),
+              female: get('Idade e tempo de contribuição', 'Mulher', 'Geral'),
             },
             teacher: {
-              male: integral.requisites.getChain('all.3.any.0.all.1.any.1'),
-              female: integral.requisites.getChain('all.3.any.1.all.1.any.1'),
+              male: get('Idade e tempo de contribuição', 'Homem', 'Professor'),
+              // prettier-ignore
+              female: get('Idade e tempo de contribuição', 'Mulher', 'Professora')
             },
           },
         }
@@ -199,12 +202,14 @@ describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
      */
     describe('Proporcional', () => {
       describe('Requisitos', () => {
+        const get = proportional.requisites.find.bind(proportional.requisites)
+
         const requisites = {
-          public: proportional.requisites.getChain('all.1'),
-          last: proportional.requisites.getChain('all.2'),
+          public: get('Tempo de serviço público'),
+          last: get('Tempo no cargo de aposentadoria'),
           age: {
-            male: proportional.requisites.getChain('all.3.any.0'),
-            female: proportional.requisites.getChain('all.3.any.1'),
+            male: get('Idade', 'Homem'),
+            female: get('Idade', 'Mulher'),
           },
         }
 
