@@ -230,9 +230,11 @@ class Engine<I extends {}> {
       this.processReferences(this.chain, [])
     }
 
-    const found = this.references.find(([path]) =>
-      path.every((options, i) => options.some((option) => option === refs[i]))
-    )
+    const found = this.references
+      .filter(([path]) => path.length === refs.length)
+      .find(([path]) =>
+        path.every((options, i) => options.some((option) => option === refs[i]))
+      )
 
     return found ? found[1] : null
   }

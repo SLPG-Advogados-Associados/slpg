@@ -320,5 +320,9 @@ describe('retirement/calculator/engine', () => {
     it('should find based on description also', () => {
       expect(engine.find('A simple default satisfiable rule')).toBe(r.truthy)
     })
+
+    it('should not find when partially fit', () => {
+      expect(engine.find('Second', 'Unexisting')).toBeNull()
+    })
   })
 })
