@@ -53,10 +53,13 @@ type Partial<I extends {}> = [RequisiteChain<I>, RequisiteResult, I]
 const isSatisfied = ({ satisfied }: RequisiteResult) => satisfied
 const isSatisfiable = ({ satisfiable }: RequisiteResult) => satisfiable
 
+type Reference<I extends {}> = [string[][], RequisiteChain<I>]
+
 class Engine<I extends {}> {
   public chain: RequisiteChain<I>
 
   public partials: Partial<I>[] = []
+  private references: Reference<I>[]
 
   constructor(chain: RequisiteChain<I>) {
     this.chain = chain
@@ -178,6 +181,9 @@ class Engine<I extends {}> {
     return result
   }
 
+  /**
+   * Assessor for a given requisite chain item.
+   */
   public getChain<Chain extends RequisiteChain<I>>(path?: string) {
     const chain = path ? get(this.chain, path) : this.chain
 
@@ -191,6 +197,45 @@ class Engine<I extends {}> {
 
     return chain as Chain
   }
+
+  /**
+   * Build up human references.
+   */
+  private processReferences(chain: RequisiteChain<I>, paths: string[][]) {
+    const ref = []
+
+    if ('title' in chain) ref.push(chain.title)
+    if ('description' in chain) ref.push(chain.description)
+
+    // register only references to referencible chains.
+    if (ref.length) {
+      // alter paths for posterior use.
+      paths.push(ref)
+      this.references.unshift([paths, chain])
+    }
+
+    const childs = 'all' in chain ? chain.all : 'any' in chain ? chain.any : []
+
+    for (const child of childs) {
+      this.processReferences(child, [...paths])
+    }
+  }
+
+  /**
+   * Assessor for requisite chain items based on comparision of composed references.
+   */
+  public find(...refs: string[]) {
+    if (typeof this.references === 'undefined') {
+      this.references = []
+      this.processReferences(this.chain, [])
+    }
+
+    const found = this.references.find(([path]) =>
+      path.every((options, i) => options.some((option) => option === refs[i]))
+    )
+
+    return found ? found[1] : null
+  }
 }
 
 /**
@@ -202,6 +247,7 @@ const evaluate = <I extends {}>(input, chain: RequisiteChain<I>) =>
 /**
  * Typing helper for generating a lazy executor tuple.
  */
+
 const lazy = <F extends (...args: unknown[]) => RequisiteExecutor<unknown>>(
   fn: F,
   ...args: Parameters<F>

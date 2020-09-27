@@ -7,6 +7,7 @@ describe('retirement/calculator/engine', () => {
   const r = {
     truthy: {
       title: 'Truthy',
+      description: 'A simple default satisfiable rule',
       executor: jest.fn(() => ({ satisfied: true })),
     },
 
@@ -288,6 +289,36 @@ describe('retirement/calculator/engine', () => {
     it('should throw for invalid chain paths', () => {
       const err = 'Invalid chain found at'
       expect(() => engine.getChain('all.1.any')).toThrow(err)
+    })
+  })
+
+  describe('findChain', () => {
+    const engine = new Engine({
+      all: [
+        r.truthy,
+        { title: 'Second', any: [r.falsy, { all: [r.satisfiableEarly] }] },
+        { any: [{ all: [r.truthyLate] }] },
+      ],
+    })
+
+    it('should not find unexisting reference', () => {
+      expect(engine.find('Unexisting')).toBeNull()
+    })
+
+    it('should find direct reference', () => {
+      expect(engine.find('Truthy')).toBe(r.truthy)
+    })
+
+    it('should find nested references', () => {
+      expect(engine.find('Second', 'Falsy')).toBe(r.falsy)
+    })
+
+    it('should find nested references with skipping steps', () => {
+      expect(engine.find('Truthy late')).toBe(r.truthyLate)
+    })
+
+    it('should find based on description also', () => {
+      expect(engine.find('A simple default satisfiable rule')).toBe(r.truthy)
     })
   })
 })
