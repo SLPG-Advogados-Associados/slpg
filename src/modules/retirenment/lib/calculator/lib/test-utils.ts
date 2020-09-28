@@ -1,7 +1,14 @@
 import { NEVER } from './const'
 import { isValid, sub } from './date'
 import { RequisiteChain, evaluate } from './engine'
-import { Post, ServiceKind, Sex, Contribution, CalculatorInput } from '../types'
+import {
+  Post,
+  Service,
+  ServiceKind,
+  Sex,
+  Contribution,
+  CalculatorInput,
+} from '../types'
 
 const { OTHER, TEACHER } = Post
 const { PUBLIC, PRIVATE } = ServiceKind
@@ -83,20 +90,26 @@ const interval = (span: string) => {
 }
 const i = interval
 
+let careerCount = 1
+
 /**
  * Constructs a service object.
  */
-const service = (kind = PUBLIC, post = OTHER) => ({ kind, post })
+const service = (
+  kind = PUBLIC,
+  post = OTHER,
+  career = careerCount++
+): Service => ({ kind, post, career })
 
 /**
  * Constructs a single contribution object.
  */
 const contribution = (
   span: string,
-  [kind, post]: [ServiceKind?, Post?] = []
+  [kind, post, career]: [ServiceKind?, Post?, number?] = []
 ) => {
   const [start, end] = period(span)
-  return { start, end, salary: 1000, service: service(kind, post) }
+  return { start, end, salary: 1000, service: service(kind, post, career) }
 }
 const c = contribution
 

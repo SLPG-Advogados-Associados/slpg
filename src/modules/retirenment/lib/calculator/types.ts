@@ -36,6 +36,7 @@ export type Service = {
   title?: string
   kind: ServiceKind
   post: Post
+  career: number // random incremental number based on used input of career continuity
 }
 
 /**
