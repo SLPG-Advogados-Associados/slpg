@@ -20,31 +20,31 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
      * b) um período adicional de contribuição equivalente a vinte por cento do tempo que, na data da publicação desta Emenda, faltaria para atingir o limite de tempo constante da alínea anterior.
      *
      * § 1 º O servidor de que trata este artigo que cumprir as exigências para
-     * aposentadoria na forma do caput terá os seus proventos de inatividade
+     * aposentadoria na forma do caput terá os seus proventos de inatividade
      * reduzidos para cada ano antecipado em relação aos limites de idade
-     * estabelecidos pelo art. 40, § 1º, III, a, e § 5º da Constituição Federal, na
+     * estabelecidos pelo art. 40, § 1º, III, a, e § 5º da Constituição Federal, na
      * seguinte proporção:
      *
      * I - três inteiros e cinco décimos por cento, para aquele que completar as
-     * exigências para aposentadoria na forma do caput até 31 de dezembro de 2005;
+     * exigências para aposentadoria na forma do caput até 31 de dezembro de 2005;
      *
      * II - cinco por cento, para aquele que completar as exigências para
-     * aposentadoria na forma do caput a partir de 1º de janeiro de 2006.
+     * aposentadoria na forma do caput a partir de 1º de janeiro de 2006.
      *
      * § 2º Aplica-se ao magistrado e ao membro do Ministério Público e de Tribunal
      * de Contas o disposto neste artigo.
      *
      * § 3º Na aplicação do disposto no § 2º deste artigo, o magistrado ou o membro
      * do Ministério Público ou de Tribunal de Contas, se homem, terá o tempo de
-     * serviço exercido até a data de publicação da Emenda Constitucional nº 20, de
+     * serviço exercido até a data de publicação da Emenda Constitucional nº 20, de
      * 15 de dezembro de 1998, contado com acréscimo de dezessete por cento,
      * observado o disposto no § 1º deste artigo.
      *
      * § 4º O professor, servidor da União, dos Estados, do Distrito Federal e dos
      * Municípios, incluídas suas autarquias e fundações, que, até a data de
-     * publicação da Emenda Constitucional nº 20, de 15 de dezembro de 1998,
+     * publicação da Emenda Constitucional nº 20, de 15 de dezembro de 1998,
      * tenha ingressado, regularmente, em cargo efetivo de magistério e que opte
-     * por aposentar-se na forma do disposto no caput, terá o tempo de serviço
+     * por aposentar-se na forma do disposto no caput, terá o tempo de serviço
      * exercido até a publicação daquela Emenda contado com o acréscimo de
      * dezessete por cento, se homem, e de vinte por cento, se mulher, desde que
      * se aposente, exclusivamente, com tempo de efetivo exercício nas funções de
@@ -52,7 +52,7 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
      *
      * (...)
      */
-    describe('Ingresso até 16.12.1998', () => {
+    describe('Art. 2º', () => {
       describe('Requisitos', () => {
         const get = first.requisites.find.bind(first.requisites)
 
