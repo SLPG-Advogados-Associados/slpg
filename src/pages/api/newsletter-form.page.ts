@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import md5 from 'md5'
 
+import { adaptor } from '~app/lib/lambda'
 import { mailchimp, info } from '~app/modules/newsletter/lib/mailchimp'
-
-import { adaptor } from './adaptor'
 
 interface ParsedBody {
   email: string

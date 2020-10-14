@@ -3,10 +3,9 @@
  */
 import express, { RequestHandler } from 'express'
 import parser from 'body-parser'
-// import { createServer, proxy } from 'aws-serverless-express'
 import adapter from 'lambda-router-adapter'
 
-const adaptor = <Handler extends RequestHandler>(handler: Handler) => {
+const adaptor = <R extends RequestHandler>(handler: R) => {
   // Next.js is express compatible already.
   const next = handler
 
