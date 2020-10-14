@@ -1,4 +1,4 @@
 [build]
   command = "yarn netlify-build"
-  functions = "lambda"
   publish = "out"
+  functions = ".next/server/pages/api"
