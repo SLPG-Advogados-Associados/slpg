@@ -15,6 +15,7 @@ const Mutation: GT.MutationResolvers = {
     return fetch('/.netlify/functions/newsletter-form', {
       method: 'POST',
       body: JSON.stringify(args),
+      headers: { 'Content-Type': 'application/json' },
     })
       .then(res => res.status === 200 || onFail())
       .catch(() => onFail)
