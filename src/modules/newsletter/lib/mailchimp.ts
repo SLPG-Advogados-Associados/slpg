@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
   if (!process.env.MAILCHIMP_API_KEY) throw new Error('MAILCHIMP_API_KEY is required on production')
 }
 
-const config = {
+const info = {
   // @see: https://mailchimp.com/pt/help/find-audience-id/
   audience: process.env.MAILCHIMP_AUDIENCE,
   // the category can be figured out by hitting Mailchimp API at the following:
@@ -17,4 +17,4 @@ const config = {
 
 const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY)
 
-export { mailchimp, config }
+export { mailchimp, info }
