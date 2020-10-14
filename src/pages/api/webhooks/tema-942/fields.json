@@ -1,0 +1,499 @@
+[
+  {
+    "typeForm": {
+      "id": "3WN0uYnrFU1V",
+      "title": "Nome do servidor",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fldUpGXgnFY2JUSiW",
+      "name": "Nome do servidor",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "T1S67KM0k7aB",
+      "title": "CPF",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fldY8MBRti5dFH5Is",
+      "name": "CPF do servidor",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "s2YGE11IA4b8",
+      "title": "Sexo",
+      "type": "multiple_choice",
+      "allow_multiple_selections": false
+    },
+    "airtable": {
+      "id": "fldZJ8HrOGaHVCi7R",
+      "name": "Sexo",
+      "type": "singleSelect"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "yOHPQgh1By0N",
+      "title": "Matrícula SIAPE",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fldXK4x1wEoUCHzMj",
+      "name": "Matricula SIAPE do servidor",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "eL9oPjQVA2q6",
+      "title": "Situação funcional *atual*",
+      "type": "multiple_choice",
+      "allow_multiple_selections": false
+    },
+    "airtable": {
+      "id": "fldGU4NLmkU93nZcN",
+      "name": "Situação funcional atual",
+      "type": "singleSelect"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "KgwZSNWp0SQr",
+      "title": "Nome do pensionista",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fld2UCgglSu50EVtV",
+      "name": "Nome do pensionista",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "fUZfI1xwXMfz",
+      "title": "CPF do pensionista",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fldmnQufydtt7laAW",
+      "name": "CPF do pensionista",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "M2vUEaHEq8Gk",
+      "title": "Matrícula SIAPE",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fldDzonksUknJOQFQ",
+      "name": "Matrícula SIAPE do pensionista",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "covEWA7lt20k",
+      "title": "Entidade a qual o servidor ou pensionista é associado",
+      "type": "dropdown"
+    },
+    "airtable": {
+      "id": "fldbWHPkC2uzWc2H4",
+      "name": "Entidade a qual o servidor ou pensionista é associado",
+      "type": "singleSelect"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "hlh7JjjmNn3V",
+      "title": "Número da pasta",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fld6KcPHidHU7LqvA",
+      "name": "Número da pasta",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "uBOQrNKpmPkM",
+      "title": "Possui certidão ou espelho do tempo de serviço/contribuição atual?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldLb6yzXsYgWeSVu",
+      "name": "Possui certidão ou espelho do tempo de serviço/contribuição atual?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "NeLIECp0L272",
+      "title": "Possui comprovante de exposição?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldQXiEKgd2wdpT1O",
+      "name": "Possui comprovante de exposição?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "q8HmyyttV8TE",
+      "title": "Tipo de comprovante de exposição:",
+      "type": "multiple_choice",
+      "allow_multiple_selections": true
+    },
+    "airtable": {
+      "id": "fldzN10S3scmWxltN",
+      "name": "Tipo de comprovante de exposição",
+      "type": "multipleSelects"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "1ZB8TGd1m0Jp",
+      "title": "Chegou a requerer o SB-40, PPP, ou similar?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fld4aPbsU63B19vKW",
+      "name": "Chegou a requerer o SB-40, PPP, ou similar?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "lOd9iB8ByElC",
+      "title": "Possui cópia do requerimento de fornecimento do SB-40, PPP, ou similar?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldPkpUpCbRd7huJ9",
+      "name": "Possui cópia do requerimento de fornecimento do SB-40, PPP, ou similar?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "CQtxz9UQjbPJ",
+      "title": "Tempo de atividade especial total:",
+      "type": "number"
+    },
+    "airtable": {
+      "id": "fldboivW1KUBSovfs",
+      "name": "Tempo de atividade especial total",
+      "type": "number"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "RvLI0ySOfuou",
+      "title": "Possui licença-prêmio averbada em dobro?",
+      "type": "dropdown"
+    },
+    "airtable": {
+      "id": "fldMpp39wbLDq5wfx",
+      "name": "Possui licença-prêmio averbada em dobro?",
+      "type": "singleSelect"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "MD1wXw7ENJxj",
+      "title": "Qual o tempo total de licença-prêmio:",
+      "type": "number"
+    },
+    "airtable": {
+      "id": "fldrg17TlRLq0CWex",
+      "name": "Tempo de licença-prêmio",
+      "type": "number"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "QHlL24prQ007",
+      "title": "Chegou a requerer a averbação do tempo especial pós-90?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldFDTABLHOxIEmrC",
+      "name": "Chegou a requerer a averbação do tempo especial pós-90?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "pbzDgmy2Y32D",
+      "title": "Obteve resposta ao requerimento de averbação?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldWXqwatsdaN9xUA",
+      "name": "Obteve resposta ao requerimento de averbação?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "lAhosj1GmQXq",
+      "title": "Possui cópia do requerimento de averbação do tempo especial?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldUeYqjanx6kJUva",
+      "name": "Possui cópia do requerimento de averbação do tempo especial?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "HRd4DmeXZZfg",
+      "title": "Data da resposta ao requerimento de averbação:",
+      "type": "date"
+    },
+    "airtable": {
+      "id": "fld7dBC08ES1bjtlH",
+      "name": "Data da resposta ao requerimento de averbação",
+      "type": "date"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "qNxRTzwnWNhm",
+      "title": "Possui cópia do processo de averbação do tempo especial?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldx45Dijiddzfyq7",
+      "name": "Possui cópia do processo de averbação do tempo especial?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "hRn6iHFZCJ3M",
+      "title": "O tempo especial averbado foi posteriormente desaverbado por ato administrativo?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldP8Qg2KrHF0B89E",
+      "name": "O tempo especial averbado foi posteriormente desaverbado por ato administrativo?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "f270wF9ozypb",
+      "title": "Data da desaverbação:",
+      "type": "date"
+    },
+    "airtable": {
+      "id": "fldvKvMjlbV7qvhVA",
+      "name": "Data da desaverbação",
+      "type": "date"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "aDdxnyB2Hnws",
+      "title": "Possui cópia da decisão administrativa de desaverbação?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldg3JYLjgLig27AS",
+      "name": "Possui cópia da decisão administrativa de desaverbação?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "PC09qQLWovo5",
+      "title": "Chegou a requerer a aposentadoria em decorrência da averbação de tempo especial?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldKtJ5Km4hXDLizk",
+      "name": "Chegou a requerer a aposentadoria em decorrência da averbação de tempo especial?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "Bk9XPNCIXUb9",
+      "title": "O requerimento de aposentadoria com contagem de tempo especial obteve resposta?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldVSbUgyMShlpxVv",
+      "name": "O requerimento de aposentadoria com contagem de tempo especial obteve resposta?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "NP4bYazB8m8O",
+      "title": "Possui cópia do requerimento de aposentadoria com contagem de tempo especial?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldgJyB54DP218Sjq",
+      "name": "Possui cópia do requerimento de aposentadoria com contagem de tempo especial?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "WZT1MTNi2Jsw",
+      "title": "A aposentadoria foi por tempo integral ou proporcional?",
+      "type": "multiple_choice",
+      "allow_multiple_selections": false
+    },
+    "airtable": {
+      "id": "fld95wR03lCeJtPT5",
+      "name": "A aposentadoria foi por tempo integral ou proporcional?",
+      "type": "singleSelect"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "oeVbffJISJ2r",
+      "title": "Qual a proporção?",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fldMcDyqT8aITWQL2",
+      "name": "Qual a proporção?",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "emGyXGtteZGA",
+      "title": "Data da aposentadoria com contagem de tempo especial",
+      "type": "date"
+    },
+    "airtable": {
+      "id": "fldHlOZqguHfHGx2T",
+      "name": "Data da aposentadoria com contagem de tempo especial",
+      "type": "date"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "nAiGSHjtv4DU",
+      "title": "Possui cópia do processo de aposentadoria com contagem de tempo especial?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldxIAn67ksDkaVjm",
+      "name": "Possui cópia do processo de aposentadoria com contagem de tempo especial?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "n9EMWp5xh7ij",
+      "title": "A aposentadoria concedida com contagem de tempo especial foi posteriormente revista?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldR41kcB2aqypOIe",
+      "name": "A aposentadoria concedida com contagem de tempo especial foi posteriormente revista?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "5JMIW4lPJxA2",
+      "title": "A aposentadoria foi proporcionalizada, ou revogada?",
+      "type": "multiple_choice",
+      "allow_multiple_selections": false
+    },
+    "airtable": {
+      "id": "fldSBpZufV0lune0m",
+      "name": "A aposentadoria foi proporcionalizada, ou revogada?",
+      "type": "singleSelect"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "Ho6e7xFfqCrm",
+      "title": "Para qual proporção?",
+      "type": "short_text"
+    },
+    "airtable": {
+      "id": "fldekC16GXBEV3fZl",
+      "name": "Para qual proporção?",
+      "type": "singleLineText"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "W7qNwrXWROwU",
+      "title": "Data da revisão da aposentadoria:",
+      "type": "date"
+    },
+    "airtable": {
+      "id": "fldUcqodQ3E6QqqLw",
+      "name": "Data da revisão da aposentadoria",
+      "type": "date"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "d7UsR2M6tHMD",
+      "title": "Possui cópia do ato de revisão da aposentadoria?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldJlm5Nse0t91hp8",
+      "name": "Possui cópia do ato de revisão da aposentadoria?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "0FjljGpYTvxd",
+      "title": "Há aposentadoria atual, concedida sem contagem de tempo especial?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldujnCSUxKnepX1I",
+      "name": "Há aposentadoria atual, concedida sem contagem de tempo especial?",
+      "type": "checkbox"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "4epMISgdEzUb",
+      "title": "Data da aposentadoria sem contagem de tempo especial",
+      "type": "date"
+    },
+    "airtable": {
+      "id": "fldSH5aztjDivzhe2",
+      "name": "Data da aposentadoria sem contagem de tempo especial",
+      "type": "date"
+    }
+  },
+  {
+    "typeForm": {
+      "id": "rfmVBvWNfejc",
+      "title": "Possui cópia do processo de aposentadoria sem contagem de tempo especial?",
+      "type": "yes_no"
+    },
+    "airtable": {
+      "id": "fldN1eEKBxq3G8Fud",
+      "name": "Possui cópia do processo de aposentadoria sem contagem de tempo especial?",
+      "type": "checkbox"
+    }
+  }
+]
