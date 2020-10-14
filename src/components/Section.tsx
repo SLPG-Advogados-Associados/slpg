@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Title, TextualTitle, classed } from '~design'
+
+import { Container, Title, TextualTitle, styled, classed } from '~design'
 
 type HTMLProps = React.HTMLAttributes<HTMLElement>
 
@@ -24,6 +25,8 @@ const SectionRaw: React.FC<Omit<HTMLProps, 'title'> & {
   </section>
 )
 
-const Section = classed(SectionRaw)`py-12 border-b border-divisor`
+const Section = styled(SectionRaw).attrs(
+  classed('py-12 border-b border-divisor')
+)``
 
 export { Section }
