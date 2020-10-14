@@ -11,7 +11,7 @@ const plugins = [[withNextEnv], [withImages], [withCSS]]
 
 const config = {
   exportPathMap,
-  exportTrailingSlash: true,
+  trailingSlash: true,
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'].map(ext => `page.${ext}`),
   webpack: config => {
     // disable TypeScript checks (use `yarn type-check` and editor plugins instead)
