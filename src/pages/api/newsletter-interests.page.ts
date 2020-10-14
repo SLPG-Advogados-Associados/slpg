@@ -15,4 +15,5 @@ const handler: NextApiHandler = async (_req, res) => {
   }
 }
 
+export { handler } // for Netlify
 export default handler // for Next.js
