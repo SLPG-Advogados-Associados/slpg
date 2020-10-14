@@ -1,10 +1,10 @@
-import { NextApiHandler } from 'next'
-
 import { mailchimp, info } from '~app/modules/newsletter/lib/mailchimp'
+
+import { adaptor } from './adaptor'
 
 const link = `/lists/${info.audience}/interest-categories/${info.interestsCategory}/interests`
 
-const handler: NextApiHandler = async (_req, res) => {
+const { netlify, next } = adaptor(async (_req, res) => {
   try {
     const { interests } = await mailchimp.get(link)
     res.status(200).json(interests)
@@ -13,7 +13,7 @@ const handler: NextApiHandler = async (_req, res) => {
     console.error(error)
     res.status(500).send('failed')
   }
-}
+})
 
-export { handler } // for Netlify
-export default handler // for Next.js
+export const handler = netlify // for Netlify
+export default next // for Next.js
