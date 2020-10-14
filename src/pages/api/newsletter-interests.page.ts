@@ -1,6 +1,5 @@
+import { adaptor } from '~app/lib/lambda'
 import { mailchimp, info } from '~app/modules/newsletter/lib/mailchimp'
-
-import { adaptor } from './adaptor'
 
 const link = `/lists/${info.audience}/interest-categories/${info.interestsCategory}/interests`
 

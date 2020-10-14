@@ -2,7 +2,7 @@
 import nodemailer from 'nodemailer'
 import { google } from 'googleapis'
 
-import { adaptor } from './adaptor'
+import { adaptor } from '~app/lib/lambda'
 
 interface ParsedBody {
   name: string
