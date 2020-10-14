@@ -4,8 +4,8 @@ date: 2020-09-01T13:32:20.115Z
 image: >-
   /admin/content/media/phone-chat-chataer-whatsapp-hand-with-cell-phone-5038760.jpg
 summary: >-
-  Conheça 4 golpes muito comuns nos dias de hoje. aprenda a evitá-los e saiba o
-  que fazer no caso de ter caído em algum golpe.
+  Conheça 4 golpes muito comuns nos dias de hoje, aprenda a evitá-los e saiba o
+  que fazer no caso de ter caído em algum deles
 ---
 _**Por Ana Maria Rosa, advogada (OAB/SC 5984) e sócia do SLPG Advogados Associados e Marcos Vinicios Gonçalves, advogado (OAB/SC 50239) também pelo mesmo escritório**_   
 
