@@ -42,6 +42,7 @@
     "dayjs": "^1.8.17",
     "formik": "^2.0.6",
     "googleapis": "^45.0.0",
+    "got": "^11.7.0",
     "graphql": "^14.5.8",
     "graphql-playground-react": "^1.7.20",
     "graphql-type-json": "^0.3.1",
