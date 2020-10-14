@@ -1,6 +1,7 @@
 import React from 'react'
-import { styled, css, t } from '../lib/styled'
+
 import { classed } from '../lib/classed'
+import { styled, css, t } from '../lib/styled'
 
 type Props = React.ButtonHTMLAttributes<'button'> & {
   rel?: string
@@ -70,11 +71,11 @@ const variants = {
   `,
 }
 
-const Button = styled(
-  classed.button<
-    Props
-  >`text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button`
-)`
+const withClasses = classed(
+  'text-button bg-button hover:bg-button--active hover:text-button focus:bg-button--active focus:text-button'
+)
+
+const Button = styled.button.attrs(withClasses)<Props>`
   display: inline-flex;
   padding: 1.175em 1.875em 1.05em;
   align-items: center;

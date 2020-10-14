@@ -9,13 +9,13 @@ import {
   Icons,
   Modal,
   ModalClose,
-  classed,
   useModal,
+  classed,
 } from '~design'
 import { list as expertises } from '~modules/expertise'
 import { NewsletterForm } from '~modules/newsletter'
 
-const FooterColumn = styled(classed.div`px-md`)`
+const FooterColumn = styled.div.attrs(classed('px-md'))`
   flex-grow: 1;
   flex-basis: 0;
   margin-bottom: 2rem;

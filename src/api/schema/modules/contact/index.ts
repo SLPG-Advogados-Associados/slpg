@@ -8,6 +8,7 @@ const Mutation: GT.MutationResolvers = {
     fetch('/.netlify/functions/contact-form', {
       method: 'POST',
       body: JSON.stringify(args),
+      headers: { 'Content-Type': 'application/json' },
     })
       .then(response => {
         if (response.status !== 200) throw contactError

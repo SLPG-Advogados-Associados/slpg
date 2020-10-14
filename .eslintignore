@@ -7,4 +7,5 @@ site-map.js
 graphql-codegen.js
 babel-plugin-macros.config.js
 src/**/generated/**/*
+@types
 tmp

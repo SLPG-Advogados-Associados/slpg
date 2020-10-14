@@ -11,7 +11,7 @@ const fullOnMobile = css`
   }
 `
 
-const Container = styled(classed.div`container mx-auto`)<{
+const Container = styled.div.attrs(classed('container mx-auto'))<{
   fullOnMobile?: boolean
 }>`
   padding-left: ${t.theme('spacing.8')};
