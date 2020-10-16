@@ -54,6 +54,7 @@
     "md5": "^2.2.1",
     "mobile-detect": "^1.4.4",
     "next": "^9.5.5",
+    "next-to-netlify": "^0.1.9",
     "nodemailer": "^6.4.1",
     "querystring": "^0.2.0",
     "ramda": "^0.26.1",

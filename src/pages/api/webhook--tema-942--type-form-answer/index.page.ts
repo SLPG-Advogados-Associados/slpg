@@ -1,6 +1,6 @@
 import { Typeform } from '@typeform/api-client'
+import { adaptor } from 'next-to-netlify/adaptor'
 
-import { adaptor } from '~app/lib/lambda'
 import { airtable } from '~app/lib/airtable'
 
 import fields from './fields.json'
@@ -51,7 +51,7 @@ const toAirtable = async (payload: Payload) => {
   await table.create([record])
 }
 
-const { netlify, next } = adaptor(async (req, res) => {
+const handler = adaptor(async (req, res) => {
   try {
     await toAirtable(req.body)
     res.status(200).send('ok')
@@ -62,5 +62,5 @@ const { netlify, next } = adaptor(async (req, res) => {
   }
 })
 
-export const handler = netlify // for Netlify
-export default next // for Next.js
+export { handler } // for Netlify
+export default handler // for Next.js

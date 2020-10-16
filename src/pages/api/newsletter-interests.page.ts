@@ -1,9 +1,10 @@
-import { adaptor } from '~app/lib/lambda'
+import { adaptor } from 'next-to-netlify/adaptor'
+
 import { mailchimp, info } from '~app/modules/newsletter/lib/mailchimp'
 
 const link = `/lists/${info.audience}/interest-categories/${info.interestsCategory}/interests`
 
-const { netlify, next } = adaptor(async (_req, res) => {
+const handler = adaptor(async (_req, res) => {
   try {
     const { interests } = await mailchimp.get(link)
     res.status(200).json(interests)
@@ -14,5 +15,5 @@ const { netlify, next } = adaptor(async (_req, res) => {
   }
 })
 
-export const handler = netlify // for Netlify
-export default next // for Next.js
+export { handler } // for Netlify
+export default handler // for Next.js
