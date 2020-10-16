@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import md5 from 'md5'
+import { adaptor } from 'next-to-netlify/adaptor'
 
-import { adaptor } from '~app/lib/lambda'
 import { mailchimp, info } from '~app/modules/newsletter/lib/mailchimp'
 
 interface ParsedBody {
@@ -39,7 +39,7 @@ const register = async ({ email, interests, name }: ParsedBody) => {
   }
 }
 
-const { netlify, next } = adaptor(async (req, res) => {
+const handler = adaptor(async (req, res) => {
   try {
     if (req.method !== 'POST') {
       throw new Error('Only POST requests are allowed')
@@ -57,5 +57,5 @@ const { netlify, next } = adaptor(async (req, res) => {
   }
 })
 
-export const handler = netlify // for Netlify
-export default next // for Next.js
+export { handler } // for Netlify
+export default handler // for Next.js
