@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import nodemailer from 'nodemailer'
 import { google } from 'googleapis'
-import { adaptor } from 'next-to-netlify/adaptor'
 
 interface ParsedBody {
   name: string
@@ -98,7 +97,7 @@ const contact = async ({ name, message, phone, email }: ParsedBody) => {
   })
 }
 
-const handler = adaptor(async (req, res) => {
+export default async (req, res) => {
   try {
     if (req.method !== 'POST') {
       throw new Error('Only POST requests are allowed')
@@ -114,7 +113,4 @@ const handler = adaptor(async (req, res) => {
     console.error(error)
     res.status(400).send('failed')
   }
-})
-
-export { handler } // for Netlify
-export default handler // for Next.js
+}

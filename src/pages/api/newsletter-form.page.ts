@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import md5 from 'md5'
-import { adaptor } from 'next-to-netlify/adaptor'
 
 import { mailchimp, info } from '~app/modules/newsletter/lib/mailchimp'
 
@@ -39,7 +38,7 @@ const register = async ({ email, interests, name }: ParsedBody) => {
   }
 }
 
-const handler = adaptor(async (req, res) => {
+export default async (req, res) => {
   try {
     if (req.method !== 'POST') {
       throw new Error('Only POST requests are allowed')
@@ -55,7 +54,4 @@ const handler = adaptor(async (req, res) => {
     console.error(error)
     res.status(400).send('failed')
   }
-})
-
-export { handler } // for Netlify
-export default handler // for Next.js
+}
