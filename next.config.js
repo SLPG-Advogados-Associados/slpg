@@ -13,9 +13,6 @@ const config = {
   exportPathMap,
   target: 'serverless',
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'].map(ext => `page.${ext}`),
-  rewrites: () => [
-    { source: '/.netlify/functions/:path*', destination: '/api/:path*' },
-  ],
   webpack: config => {
     // disable TypeScript checks (use `yarn type-check` and editor plugins instead)
     config.plugins = config.plugins.filter(
