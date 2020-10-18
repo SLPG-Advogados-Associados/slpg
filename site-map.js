@@ -7,7 +7,7 @@ const { getDynamicPages } = require('./next.export')
 const paths = {
   admin: path.resolve(__dirname, 'src/admin'),
   pages: path.resolve(__dirname, 'src/pages'),
-  dest: path.resolve(__dirname, 'out/sitemap.xml')
+  dest: path.resolve(__dirname, 'out_publish/sitemap.xml')
 }
 
 ;(async () => {

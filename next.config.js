@@ -11,6 +11,7 @@ const plugins = [[withNextEnv], [withImages], [withCSS]]
 
 const config = {
   exportPathMap,
+  target: 'serverless',
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'].map(ext => `page.${ext}`),
   rewrites: () => [
     { source: '/.netlify/functions/:path*', destination: '/api/:path*' },
