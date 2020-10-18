@@ -2,8 +2,7 @@ import { GT } from '~api'
 import typeDefs from './newsletter.graphql'
 
 const Query: GT.QueryResolvers = {
-  interests: () =>
-    fetch('/.netlify/functions/newsletter-interests').then(res => res.json()),
+  interests: () => fetch('/api/newsletter-interests').then(res => res.json()),
 }
 
 const Mutation: GT.MutationResolvers = {
@@ -12,7 +11,7 @@ const Mutation: GT.MutationResolvers = {
       throw new Error('Could not subscribe')
     }
 
-    return fetch('/.netlify/functions/newsletter-form', {
+    return fetch('/api/newsletter-form', {
       method: 'POST',
       body: JSON.stringify(args),
       headers: { 'Content-Type': 'application/json' },

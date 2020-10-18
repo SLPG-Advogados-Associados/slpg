@@ -5,7 +5,7 @@ const contactError = new Error('Could not send contact information')
 
 const Mutation: GT.MutationResolvers = {
   contact: (_root, args) =>
-    fetch('/.netlify/functions/contact-form', {
+    fetch('/api/contact-form', {
       method: 'POST',
       body: JSON.stringify(args),
       headers: { 'Content-Type': 'application/json' },
