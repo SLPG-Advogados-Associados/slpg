@@ -2926,11 +2926,6 @@
   dependencies:
     axios "^0.19.0"
 
-"@types/aws-lambda@^8.10.56":
-  version "8.10.64"
-  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.64.tgz#4bdcb725aef96bef0cb1decf19c7efff1df22fe7"
-  integrity sha512-LRKk2UQCSi7BsO5TlfSI8cTNpOGz+MH6+RXEWtuZmxJficQgxwEYJDiKVirzgyiHce0L0F4CqCVvKTwblAeOUw==
-
 "@types/body-parser@*":
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.19.0.tgz#0685b3c47eb3006ffed117cdd55164b61f80538f"
@@ -6243,7 +6238,7 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-express@^4.16.2, express@^4.17.1:
+express@^4.16.2:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
   integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
@@ -9220,15 +9215,6 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next-to-netlify@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/next-to-netlify/-/next-to-netlify-0.1.9.tgz#5e42f7f15a1e9c3852437c5964dba31efaa64969"
-  integrity sha512-ZwfrFi3S2Q/4wXOSmXAhK6dRDVzBjbW4c2Lxky+81R7jLXlcStLT+dQlyPrFsqS0x+ANt63n38xjupMRgQcMPw==
-  dependencies:
-    body-parser "^1.19.0"
-    express "^4.17.1"
-    serverless-http "^2.6.0"
-
 next@^9.5.5:
   version "9.5.5"
   resolved "https://registry.yarnpkg.com/next/-/next-9.5.5.tgz#37a37095e7c877ed6c94ba82e34ab9ed02b4eb33"
@@ -11566,13 +11552,6 @@ serve-static@1.14.1:
     escape-html "~1.0.3"
     parseurl "~1.3.3"
     send "0.17.1"
-
-serverless-http@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/serverless-http/-/serverless-http-2.6.0.tgz#8c4633634e00b9d75bf757558b5630fbe6527a8b"
-  integrity sha512-2mBz+MO+JXgC8PDHIZi/Ytsa65v78fc+7cFeXqcYM5laGQS/GEX9Cq+72WOaIGqPJia5JLADqjhdTBI5/iLcHQ==
-  optionalDependencies:
-    "@types/aws-lambda" "^8.10.56"
 
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
