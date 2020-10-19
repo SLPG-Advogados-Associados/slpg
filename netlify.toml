@@ -1,9 +1,4 @@
 [build]
   command = "yarn netlify-build"
-  publish = "out_publish"
-  functions = "out_functions"
-
-[dev]
-  functions = "out_functions"
-  publish   = "out_publish"
-  framework = "#static"
+  publish = "out"
+  functions = "out/api"
