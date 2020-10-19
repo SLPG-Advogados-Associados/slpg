@@ -2,27 +2,18 @@
 import { isEqual } from '../lib/date'
 import * as reachers from '../lib/reachers'
 import { multiply, subtract } from '../lib/duration'
-import {
-  Rule,
-  Possibility,
-  Sex,
-  Post,
-  CalculatorInput,
-  Contribution,
-} from '../types'
 import { Engine } from '../lib/engine'
+import { isTeacher, isPublic } from '../lib/predicates'
+import { Rule, Possibility, Sex, CalculatorInput } from '../types'
 import { dates } from './dates'
 
 const { MALE, FEMALE } = Sex
-const { TEACHER } = Post
 
 const { sex, contribution, age, after } = reachers
-const { processors, last, total } = contribution
+const { processors, last, total, career } = contribution
 
 const promulgation = dates.ec41
 const due = dates.ec103
-
-const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
 
 /**
  * Processor factory for deducting a toll after prommulgation.
@@ -56,7 +47,7 @@ type Input = CalculatorInput
 
 const possibilities: Possibility[] = [
   {
-    title: 'Ingresso até 16.12.1998',
+    title: 'Art. 2º (ingresso até 16.12.1998)',
     description: `
       (...)
       I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos de idade, se mulher;
@@ -67,31 +58,31 @@ const possibilities: Possibility[] = [
         b) um período adicional de contribuição equivalente a vinte por cento do tempo que, na data da publicação desta Emenda, faltaria para atingir o limite de tempo constante da alínea anterior.
 
       § 1 º O servidor de que trata este artigo que cumprir as exigências para
-      aposentadoria na forma do caput terá os seus proventos de inatividade
+      aposentadoria na forma do caput terá os seus proventos de inatividade
       reduzidos para cada ano antecipado em relação aos limites de idade
-      estabelecidos pelo art. 40, § 1º, III, a, e § 5º da Constituição Federal, na
+      estabelecidos pelo art. 40, § 1º, III, a, e § 5º da Constituição Federal, na
       seguinte proporção:
 
         I - três inteiros e cinco décimos por cento, para aquele que completar as
-        exigências para aposentadoria na forma do caput até 31 de dezembro de 2005;
+        exigências para aposentadoria na forma do caput até 31 de dezembro de 2005;
 
         II - cinco por cento, para aquele que completar as exigências para
-        aposentadoria na forma do caput a partir de 1º de janeiro de 2006.
+        aposentadoria na forma do caput a partir de 1º de janeiro de 2006.
 
       § 2º Aplica-se ao magistrado e ao membro do Ministério Público e de Tribunal
       de Contas o disposto neste artigo.
 
       § 3º Na aplicação do disposto no § 2º deste artigo, o magistrado ou o membro
       do Ministério Público ou de Tribunal de Contas, se homem, terá o tempo de
-      serviço exercido até a data de publicação da Emenda Constitucional nº 20, de
+      serviço exercido até a data de publicação da Emenda Constitucional nº 20, de
       15 de dezembro de 1998, contado com acréscimo de dezessete por cento,
       observado o disposto no § 1º deste artigo.
             
       § 4º O professor, servidor da União, dos Estados, do Distrito Federal e dos
       Municípios, incluídas suas autarquias e fundações, que, até a data de
-      publicação da Emenda Constitucional nº 20, de 15 de dezembro de 1998,
+      publicação da Emenda Constitucional nº 20, de 15 de dezembro de 1998,
       tenha ingressado, regularmente, em cargo efetivo de magistério e que opte
-      por aposentar-se na forma do disposto no caput, terá o tempo de serviço
+      por aposentar-se na forma do disposto no caput, terá o tempo de serviço
       exercido até a publicação daquela Emenda contado com o acréscimo de
       dezessete por cento, se homem, e de vinte por cento, se mulher, desde que
       se aposente, exclusivamente, com tempo de efetivo exercício nas funções de
@@ -153,15 +144,15 @@ const possibilities: Possibility[] = [
 
               § 3º Na aplicação do disposto no § 2º deste artigo, o magistrado ou o membro
               do Ministério Público ou de Tribunal de Contas, se homem, terá o tempo de
-              serviço exercido até a data de publicação da Emenda Constitucional nº 20, de
+              serviço exercido até a data de publicação da Emenda Constitucional nº 20, de
               15 de dezembro de 1998, contado com acréscimo de dezessete por cento,
               observado o disposto no § 1º deste artigo.
 
               § 4º O professor, servidor da União, dos Estados, do Distrito Federal e dos
               Municípios, incluídas suas autarquias e fundações, que, até a data de
-              publicação da Emenda Constitucional nº 20, de 15 de dezembro de 1998,
+              publicação da Emenda Constitucional nº 20, de 15 de dezembro de 1998,
               tenha ingressado, regularmente, em cargo efetivo de magistério e que opte
-              por aposentar-se na forma do disposto no caput, terá o tempo de serviço
+              por aposentar-se na forma do disposto no caput, terá o tempo de serviço
               exercido até a publicação daquela Emenda contado com o acréscimo de
               dezessete por cento, se homem, e de vinte por cento, se mulher, desde que
               se aposente, exclusivamente, com tempo de efetivo exercício nas funções de
@@ -252,6 +243,181 @@ const possibilities: Possibility[] = [
               ],
             },
           ],
+        },
+      ],
+    }),
+  },
+
+  {
+    title: 'Art. 6º (ingresso até 31.12.2003)',
+    description: `
+      (...)
+      Art. 6º Ressalvado o direito de opção à aposentadoria pelas normas
+      estabelecidas pelo art. 40 da Constituição Federal ou pelas regras
+      estabelecidas pelo art. 2º desta Emenda, o servidor da União, dos Estados,
+      do Distrito Federal e dos Municípios, incluídas suas autarquias e fundações,
+      que tenha ingressado no serviço público até a data de publicação desta
+      Emenda poderá aposentar-se com proventos integrais, que corresponderão à
+      totalidade da remuneração do servidor no cargo efetivo em que se der a
+      aposentadoria, na forma da lei, quando, observadas as reduções de idade e
+      tempo de contribuição contidas no § 5º do art. 40 da Constituição Federal,
+      vier a preencher, cumulativamente, as seguintes condições:
+
+        I - sessenta anos de idade, se homem, e cinqüenta e cinco anos de idade, se
+        mulher;
+        
+        II - trinta e cinco anos de contribuição, se homem, e trinta anos de
+        contribuição, se mulher;
+        
+        III - vinte anos de efetivo exercício no serviço público; e
+        
+        IV - dez anos de carreira e cinco anos de efetivo exercício no cargo em que
+        se der a aposentadoria.
+      (...)
+    `,
+    requisites: new Engine<Input>({
+      all: [
+        { executor: after(promulgation) },
+
+        {
+          title: 'Idade e tempo de contribuição',
+          any: [
+            {
+              title: 'Homem',
+              all: [
+                { executor: sex(MALE) },
+
+                {
+                  any: [
+                    {
+                      title: 'Geral',
+                      all: [
+                        {
+                          description: '60 anos de idade',
+                          executor: age({
+                            due,
+                            expected: { years: 60 },
+                          }),
+                        },
+
+                        {
+                          description: '35 anos de contribuição',
+                          executor: total({
+                            due,
+                            expected: { years: 35 },
+                          }),
+                        },
+                      ],
+                    },
+
+                    {
+                      title: 'Professor',
+                      all: [
+                        {
+                          description: '55 anos de idade',
+                          executor: age({
+                            due,
+                            expected: { years: 55 },
+                          }),
+                        },
+
+                        {
+                          description: '30 anos de contribuição',
+                          executor: total({
+                            due,
+                            expected: { years: 30 },
+                            processors: {
+                              '^': processors.filter(isTeacher),
+                            },
+                          }),
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+
+            {
+              title: 'Mulher',
+              all: [
+                { executor: sex(FEMALE) },
+
+                {
+                  any: [
+                    {
+                      title: 'Geral',
+                      all: [
+                        {
+                          description: '55 anos de idade',
+                          executor: age({
+                            due,
+                            expected: { years: 55 },
+                          }),
+                        },
+
+                        {
+                          description: '30 anos de contribuição',
+                          executor: total({
+                            due,
+                            expected: { years: 30 },
+                          }),
+                        },
+                      ],
+                    },
+
+                    {
+                      title: 'Professora',
+                      all: [
+                        {
+                          description: '50 anos de idade',
+                          executor: age({
+                            due,
+                            expected: { years: 50 },
+                          }),
+                        },
+
+                        {
+                          description: '25 anos de contribuição',
+                          executor: total({
+                            due,
+                            expected: { years: 25 },
+                            processors: {
+                              '^': processors.filter(isTeacher),
+                            },
+                          }),
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
+        {
+          title: 'Tempo de serviço público',
+          description: `III - vinte anos de efetivo exercício no serviço público;`,
+          executor: total({
+            due,
+            expected: { years: 20 },
+            processors: {
+              '^': processors.filter(isPublic),
+            },
+          }),
+        },
+
+        {
+          title: 'Tempo de carreira',
+          description: `IV - dez anos de carreira (...)`,
+          executor: career({ expected: { years: 10 }, due }),
+        },
+
+        {
+          title: 'Tempo no cargo de aposentadoria',
+          description: `IV - (...) cinco anos de efetivo exercício no cargo em que se der a aposentadoria.`,
+          executor: last({ expected: { years: 5 }, due }),
         },
       ],
     }),
