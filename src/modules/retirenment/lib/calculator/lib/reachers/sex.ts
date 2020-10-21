@@ -1,17 +1,12 @@
-import { CalculatorInput } from '../../types'
-import { RequisiteExecutor } from '../engine'
+import { RequisiteResults, CalculatorInput, Sex } from '../../types'
+import { ALWAYS } from '../const'
 
-type Param = CalculatorInput['sex']
 type Input = Pick<CalculatorInput, 'sex'>
 
 /**
  * Sex requisite factory.
  */
-const sex = (expected: Param): RequisiteExecutor<Input> => (input) => ({
-  satisfied: input.sex === expected,
-  satisfiable: false,
-  satisfiableAt: undefined,
-  satisfiedAt: null,
-})
+const sex = (expected: Sex) => (input: Input): RequisiteResults =>
+  input.sex === expected ? [ALWAYS] : []
 
 export { sex }
