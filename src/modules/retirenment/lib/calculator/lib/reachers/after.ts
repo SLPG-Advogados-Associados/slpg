@@ -1,18 +1,8 @@
-import { TODAY } from '../const'
-import { RequisiteExecutor } from '../engine'
+import { RequisiteResults } from '../../types'
 
 /**
  * After date requisite factory.
  */
-const after = (date: Date): RequisiteExecutor<{}> => () => {
-  const satisfied = date <= TODAY
-
-  return {
-    satisfied,
-    satisfiedAt: satisfied ? date : undefined,
-    satisfiable: true,
-    satisfiableAt: date,
-  }
-}
+const after = (date: Date) => (): RequisiteResults => [{ from: date }]
 
 export { after }
