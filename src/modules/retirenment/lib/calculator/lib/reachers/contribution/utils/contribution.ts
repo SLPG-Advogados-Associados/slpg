@@ -24,8 +24,7 @@ const split = (date: Date) => (contribution: Contribution) => {
  */
 const parseContributions = (
   original: Contribution[],
-  processors: ParsedProcessors,
-  due?: Date
+  processors: ParsedProcessors
 ) =>
   processors
     // get every start/end date
@@ -33,7 +32,6 @@ const parseContributions = (
     .filter(Boolean)
     // create splitters based on each date
     .map(split)
-    .concat(due ? [split(due)] : [])
     .reduce(
       // apply each splitter to all contributions
       (contributions, splitter) =>

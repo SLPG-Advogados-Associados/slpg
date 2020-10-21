@@ -1,9 +1,8 @@
 import { normalize } from 'duration-fns'
 
-import { CalculatorInput } from '../../../types'
-import { ceil } from '../../date'
+import { CalculatorInput, RequisiteResults } from '../../../types'
+import { ceil, max } from '../../date'
 import { FUTURE, NO_DURATION } from '../../const'
-import { RequisiteExecutor } from '../../engine'
 import {
   compare,
   subtract,
@@ -26,15 +25,9 @@ import {
 type Computed = {
   real: Duration
   processed: Duration
-  byDue: Duration
-}
-
-type ResultContext = {
-  computed: Computed
 }
 
 type Params = {
-  due?: Date
   expected: DurationInput
   processors?: Processors<{ computed: Computed }>
 }
@@ -43,8 +36,6 @@ type Input = CalculatorInput
 
 /**
  * Full contribution duration requisite factory.
- *
- * @todo make reached be (reached || TODAY) + remaining duration?
  *
  * @param expected The expected combined duration of all contributions.
  * @param due Date by which the expected duration must be achieved.
@@ -60,19 +51,13 @@ type Input = CalculatorInput
  *    }
  *  }
  */
-const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
-  input
-) => {
+const total = (config: Params) => (input: Input): RequisiteResults => {
   // compute processors and interval they apply.
   const processors = parseProcessors(config.processors || {})
   const processor = mergeProcessors(processors)
 
   // compute splitted contributions based on due date and processors.
-  const contributions = parseContributions(
-    input.contributions,
-    processors,
-    config.due
-  )
+  const contributions = parseContributions(input.contributions, processors)
 
   // normalize expected duration to always calcualte based on days.
   const expected = normalize({ days: toDays(config.expected) })
@@ -80,10 +65,10 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
   const computed = {
     real: NO_DURATION,
     processed: NO_DURATION,
-    byDue: NO_DURATION,
   }
 
-  let reached: Date
+  let from: Date
+  let to: Date
 
   for (const contribution of contributions) {
     const { start, end = FUTURE } = contribution
@@ -98,31 +83,22 @@ const total = (config: Params): RequisiteExecutor<Input, ResultContext> => (
     // sum-up processed calculation purposed duration so far.
     computed.processed = normalize(sum(computed.processed, processed))
 
-    // count duration for before-due computation, in case not reached due date.
-    if (config.due && contribution.end && contribution.end <= config.due) {
-      computed.byDue = normalize(sum(computed.byDue, processed))
-    }
-
     // calculate reaching date, when it happens.
-    if (!reached && compare.longer(computed.processed, expected, true)) {
+    if (!from && compare.longer(computed.processed, expected, true)) {
       // find amount of extra days processed, unconsidering leap year days.
       const overlap = toDays(subtract(computed.processed, expected))
 
       // remove these extra days from end date.
-      reached = ceil('days', apply(end, negate({ days: Math.round(overlap) })))
+      from = ceil('days', apply(end, negate({ days: Math.round(overlap) })))
+    }
+
+    // push end to as far as possible, once we have a satisfying start
+    if (from && contribution.end && toDays(processed) > 0) {
+      to = max([from, contribution.end])
     }
   }
 
-  const satisfied =
-    config.due && reached ? reached <= config.due : Boolean(reached)
-
-  return {
-    context: { computed },
-    satisfied,
-    satisfiedAt: (satisfied && reached) || undefined,
-    satisfiable: Boolean(reached),
-    satisfiableAt: reached,
-  }
+  return from ? [{ from, to }] : []
 }
 
 export { total }

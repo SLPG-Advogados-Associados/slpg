@@ -55,40 +55,5 @@ describe('retirement/calculator/lib/reachers/contribution/utils/contribution', (
         parseContributions([c('70^90')], [p('1960^1985'), p('1975^2000')])
       ).toEqual([c('70^75'), c('75^85'), c('85^90')])
     })
-
-    describe('due date', () => {
-      it('should split based on due date', () => {
-        expect(parseContributions([c('70^90')], [], d('1980'))).toEqual([
-          c('70^80'),
-          c('80^90'),
-        ])
-      })
-
-      it('should split based on single processor and due date', () => {
-        expect(
-          parseContributions([c('70^90')], [p('1980^2000')], d('1975'))
-        ).toEqual([c('70^75'), c('75^80'), c('80^90')])
-      })
-
-      it('should split based on multiple processors and due date', () => {
-        expect(
-          parseContributions(
-            [c('70^90')],
-            [p('1960^1980'), p('1980^2000')],
-            d('1975')
-          )
-        ).toEqual([c('70^75'), c('75^80'), c('80^90')])
-      })
-
-      it('should split based on overlaping processors and due date', () => {
-        expect(
-          parseContributions(
-            [c('70^90')],
-            [p('1960^1985'), p('1975^2000')],
-            d('1980')
-          )
-        ).toEqual([c('70^75'), c('75^80'), c('80^85'), c('85^90')])
-      })
-    })
   })
 })
