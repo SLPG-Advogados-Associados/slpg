@@ -92,6 +92,31 @@ const bonus = (
 }
 
 /**
+ * Processor factory for deducting a toll after prommulgation.
+ */
+const toll = (
+  perc: number
+): Processor<{ computed: { processed: DurationInput } }> => {
+  // use "input" as ref for memoized context
+  const deducted = []
+
+  return (duration, { expected, computed }) => {
+    // ensure we only deduct toll once.
+    if (!deducted.includes(computed)) {
+      // use "input" as ref for memoized context
+      deducted.push(computed)
+
+      const missing = subtract(expected, computed.processed)
+      const toll = multiplyDuration(perc, missing)
+
+      return subtract(duration, toll)
+    }
+
+    return duration
+  }
+}
+
+/**
  * Merges multiple processors into one.
  */
 const mergeProcessors = (processors: ParsedProcessor[]) => (
@@ -105,4 +130,4 @@ const mergeProcessors = (processors: ParsedProcessor[]) => (
     .reduce((result, { processor }) => processor(result, context), initial)
 }
 
-export { parseProcessors, filter, multiply, bonus, mergeProcessors }
+export { parseProcessors, filter, multiply, bonus, toll, mergeProcessors }
