@@ -67,7 +67,7 @@ const b = birth // alias
  *  - '2002^2004' = [2002, 2004]
  */
 const period = (span: string) => {
-  const result = span.split('^').map((side) => date(side))
+  const result = span.split('^').map((side) => (side ? date(side) : void 0))
 
   if (!result.length) {
     throw new Error(`Invalid time span: \`${span}\``)
@@ -90,16 +90,14 @@ const interval = (span: string) => {
 }
 const i = interval
 
-let careerCount = 1
-
 /**
  * Constructs a service object.
  */
-const service = (
-  kind = PUBLIC,
-  post = OTHER,
-  career = careerCount++
-): Service => ({ kind, post, career })
+const service = (kind = PUBLIC, post = OTHER, career = 1): Service => ({
+  kind,
+  post,
+  career,
+})
 
 /**
  * Constructs a single contribution object.
