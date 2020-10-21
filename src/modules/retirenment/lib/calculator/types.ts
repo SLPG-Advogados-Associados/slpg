@@ -56,6 +56,14 @@ export interface CalculatorInput {
 }
 
 /**
+ * Requisites
+ * ----------
+ */
+
+export type RequisiteResult = { from: Date; to?: Date }
+export type RequisiteResults = RequisiteResult[]
+
+/**
  * Rules
  * -----
  */
