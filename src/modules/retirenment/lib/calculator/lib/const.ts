@@ -6,6 +6,5 @@ const NEVER = new Date(NaN)
 const PAST = sub(TODAY, { years: 100 })
 const FUTURE = add(TODAY, { years: 100 })
 const NO_DURATION = parse('PT0S')
-const ALWAYS = { from: PAST, to: FUTURE }
 
-export { TODAY, PAST, FUTURE, NEVER, NO_DURATION, ALWAYS }
+export { TODAY, PAST, FUTURE, NEVER, NO_DURATION }
