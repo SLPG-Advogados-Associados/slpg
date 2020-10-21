@@ -7,6 +7,7 @@ import {
   parseProcessors,
   filter,
   multiply,
+  toll,
   mergeProcessors,
 } from './processors'
 
@@ -57,6 +58,26 @@ describe('retirement/calculator/lib/reachers/contribution/processors', () => {
     it('should multiply resulting durations', () => {
       const result = multiply(2)(duration, context)
       expect(compare.equals(result, { years: 2 })).toBe(true)
+    })
+  })
+
+  describe('toll', () => {
+    it('should apply toll to durations', () => {
+      // expected 15
+      // has already 10
+      // is processing 5
+      // toll of 1 year (20%)
+      const result = toll(0.2)(
+        { years: 5 },
+        {
+          ...context,
+          expected: { years: 15 },
+          computed: { processed: { years: 10 } },
+        }
+      )
+
+      // 5 - 1
+      expect(compare.equals(result, { years: 4 })).toBe(true)
     })
   })
 

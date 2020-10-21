@@ -109,7 +109,7 @@ const toll = (
       const missing = subtract(expected, computed.processed)
       const toll = multiplyDuration(perc, missing)
 
-      return subtract(duration, toll)
+      return normalize(subtract(duration, toll))
     }
 
     return duration
