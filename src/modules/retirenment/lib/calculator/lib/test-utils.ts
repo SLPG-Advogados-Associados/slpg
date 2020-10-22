@@ -73,7 +73,7 @@ const period = (span: string) => {
     throw new Error(`Invalid time span: \`${span}\``)
   }
 
-  return result as [Date, Date?]
+  return result as [Date?, Date?]
 }
 const p = period
 
