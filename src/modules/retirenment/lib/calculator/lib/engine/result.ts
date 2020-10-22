@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import { RequisiteResult } from '../../types'
 import * as date from '../date'
 
@@ -109,4 +110,27 @@ const all = (input: RequisiteResult[][]): RequisiteResult[] =>
     })
   )
 
-export { union, intersection, before, after, overlaps, flatten, any, all }
+/**
+ * Helper to get a textual description of results.
+ */
+const toText = (results: RequisiteResult[]) =>
+  results
+    .map(
+      ({ from, to }: RequisiteResult) =>
+        `${from ? format(from, 'yyyy-MM-dd') : ''}^${
+          to ? format(to, 'yyyy-MM-dd') : ''
+        }`
+    )
+    .join(', ')
+
+export {
+  union,
+  intersection,
+  before,
+  after,
+  overlaps,
+  flatten,
+  any,
+  all,
+  toText,
+}

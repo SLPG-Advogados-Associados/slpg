@@ -1,12 +1,14 @@
 import { get } from 'object-path-immutable'
+import { asTree } from 'treeify'
 
 import { RequisiteResult } from '../../types'
-import { union, any, all } from './result'
+import { union, any, all, toText } from './result'
 
 type Meta = {
   title?: string
   description?: string
   debug?: ((...args: unknown[]) => void) | boolean
+  lastResult?: RequisiteResult[]
 }
 
 export type RequisiteExecutor<I extends {}> = (input: I) => RequisiteResult[]
@@ -77,6 +79,7 @@ class Engine<I extends {}> {
     }
 
     // save partials for posterior usage.
+    chain.lastResult = result
     this.partials.push([chain, result, input])
 
     return union(result)
@@ -140,6 +143,37 @@ class Engine<I extends {}> {
       )
 
     return found ? found[1] : null
+  }
+
+  /**
+   * Builds a human-readable result tree in JSON format.
+   */
+  public resultTree(chain: RequisiteChain<I>) {
+    const group = 'any' in chain ? 'any' : 'all' in chain ? 'all' : null
+    const executor = 'any' in chain || 'all' in chain ? null : chain.executor
+    const prefix = group ? `[${group}] ` : ''
+    const name = chain.title ?? chain.description ?? executor?.toString() ?? ''
+    const title = `${(prefix + name).trim()}: ${
+      toText(chain.lastResult || []) || 'N'
+    }`
+
+    const tree = {}
+
+    for (const child of chain[group] || []) {
+      const [title, subtree] = this.resultTree(child)
+      tree[title] = subtree
+    }
+
+    return [title, tree] as const
+  }
+
+  /**
+   * Prints the result tree for debugging.
+   */
+  public printResults() {
+    const [name, tree] = this.resultTree(this.chain)
+    // eslint-disable-next-line no-console
+    console.log(asTree({ [name]: tree }, true, true))
   }
 }
 

@@ -1,13 +1,8 @@
 import { Engine, RequisiteGroup } from '.'
-import { d, period } from '../test-utils'
+import { d, r } from '../test-utils'
 
 describe('retirement/calculator/engine', () => {
-  const res = (span: string) => {
-    const [from, to] = period(span)
-    return { from, to }
-  }
-
-  const r = {
+  const rules = {
     always: {
       title: 'Always',
       description: 'A requisite which is always true',
@@ -33,40 +28,40 @@ describe('retirement/calculator/engine', () => {
   beforeEach(jest.clearAllMocks)
 
   it('should instantiate an engine', () => {
-    const engine = new Engine(r.always)
+    const engine = new Engine(rules.always)
     expect(engine).toBeInstanceOf(Engine)
   })
 
   it('should evaluate single requisites', () => {
-    expect(new Engine(r.always).execute({})).toEqual([{}])
-    expect(new Engine(r.never).execute({})).toEqual([])
+    expect(new Engine(rules.always).execute({})).toEqual([{}])
+    expect(new Engine(rules.never).execute({})).toEqual([])
   })
 
   describe('any', () => {
     it('should evaluate ANY requisites list with single requisite', () => {
-      const engine = new Engine({ any: [r.always] })
+      const engine = new Engine({ any: [rules.always] })
       expect(engine.execute({})).toEqual([{}])
     })
 
     it('should evaluate ANY requisites list with multiple requisites', () => {
-      const engine = new Engine({ any: [r.always, r.never] })
+      const engine = new Engine({ any: [rules.always, rules.never] })
       expect(engine.execute({})).toEqual([{}])
     })
 
     it('should evaluate ANY requisites list with single unsatisfied', () => {
-      const engine = new Engine({ any: [r.never] })
+      const engine = new Engine({ any: [rules.never] })
       expect(engine.execute({})).toEqual([])
     })
   })
 
   describe('all', () => {
     it('should evaluate ALL requisites list with single requisite', () => {
-      const engine = new Engine({ all: [r.always] })
+      const engine = new Engine({ all: [rules.always] })
       expect(engine.execute({})).toEqual([{}])
     })
 
     it('should evaluate ALL requisites list with multiple requisites', () => {
-      const engine = new Engine({ all: [r.always, r.never] })
+      const engine = new Engine({ all: [rules.always, rules.never] })
       expect(engine.execute({})).toEqual([])
     })
   })
@@ -75,22 +70,24 @@ describe('retirement/calculator/engine', () => {
     it('should evaluate nested requisites', () => {
       let req: RequisiteGroup<{}>
 
-      req = { all: [r.always, { any: [r.never] }] }
+      req = { all: [rules.always, { any: [rules.never] }] }
       expect(new Engine(req).execute({})).toEqual([])
 
-      req = { any: [r.always, { all: [r.never] }] }
+      req = { any: [rules.always, { all: [rules.never] }] }
       expect(new Engine(req).execute({})).toEqual([{}])
 
-      req = { all: [r.always, { any: [r.never, r.always] }] }
+      req = { all: [rules.always, { any: [rules.never, rules.always] }] }
       expect(new Engine(req).execute({})).toEqual([{}])
 
-      req = { all: [r.always, { all: [r.never, r.always] }] }
+      req = { all: [rules.always, { all: [rules.never, rules.always] }] }
       expect(new Engine(req).execute({})).toEqual([])
 
-      req = { any: [r.never, { all: [r.always] }] }
+      req = { any: [rules.never, { all: [rules.always] }] }
       expect(new Engine(req).execute({})).toEqual([{}])
 
-      req = { any: [{ any: [{ any: [{ all: [r.always, r.never] }] }] }] }
+      req = {
+        any: [{ any: [{ any: [{ all: [rules.always, rules.never] }] }] }],
+      }
       expect(new Engine(req).execute({})).toEqual([])
     })
 
@@ -99,55 +96,55 @@ describe('retirement/calculator/engine', () => {
 
       // any
 
-      req = { any: [r.withStart, r.never] }
-      expect(new Engine(req).execute({})).toEqual([res('80^')])
+      req = { any: [rules.withStart, rules.never] }
+      expect(new Engine(req).execute({})).toEqual([r('80^')])
 
-      req = { any: [r.never, r.withEnd] }
+      req = { any: [rules.never, rules.withEnd] }
       // res = { satisfied: true, satisfiedAt: d('2000') }
-      expect(new Engine(req).execute({})).toEqual([res('^90')])
+      expect(new Engine(req).execute({})).toEqual([r('^90')])
 
-      req = { any: [r.withStart, r.withEnd] }
+      req = { any: [rules.withStart, rules.withEnd] }
       // res = { satisfied: true, satisfiedAt: d('2000') }
-      expect(new Engine(req).execute({})).toEqual([res('^')])
+      expect(new Engine(req).execute({})).toEqual([r('^')])
 
       // all
 
-      req = { all: [r.withStart, r.always] }
-      expect(new Engine(req).execute({})).toEqual([res('80^')])
+      req = { all: [rules.withStart, rules.always] }
+      expect(new Engine(req).execute({})).toEqual([r('80^')])
 
-      req = { all: [r.always, r.withEnd] }
-      expect(new Engine(req).execute({})).toEqual([res('^90')])
+      req = { all: [rules.always, rules.withEnd] }
+      expect(new Engine(req).execute({})).toEqual([r('^90')])
 
-      req = { all: [r.withStart, r.withEnd] }
+      req = { all: [rules.withStart, rules.withEnd] }
       // res = { satisfied: true, satisfiedAt: d('2000') }
-      expect(new Engine(req).execute({})).toEqual([res('80^90')])
+      expect(new Engine(req).execute({})).toEqual([r('80^90')])
     })
   })
 
   describe('input & params', () => {
     it('should provide any execution input to requisites', () => {
       const input = {}
-      new Engine(r.always).execute(input)
-      expect(r.always.executor).toHaveBeenCalledWith(input)
+      new Engine(rules.always).execute(input)
+      expect(rules.always.executor).toHaveBeenCalledWith(input)
     })
   })
 
   describe('result', () => {
     it('should save flat partial results for root chain', () => {
-      const engine = new Engine(r.always)
+      const engine = new Engine(rules.always)
       engine.execute({})
-      expect(engine.partials).toMatchObject([[r.always, [{}], {}]])
+      expect(engine.partials).toMatchObject([[rules.always, [{}], {}]])
     })
 
     it('should save flat partial results when nested chain', () => {
-      const chain = { any: [r.always, r.never] }
+      const chain = { any: [rules.always, rules.never] }
       const engine = new Engine(chain)
 
       engine.execute({})
 
       expect(engine.partials).toMatchObject([
-        [r.always, [{}], {}],
-        [r.never, [], {}],
+        [rules.always, [{}], {}],
+        [rules.never, [], {}],
         [chain, [{}], {}],
       ])
     })
@@ -155,7 +152,10 @@ describe('retirement/calculator/engine', () => {
 
   describe('getChain', () => {
     const chain = {
-      all: [r.always, { any: [r.never, { all: [r.withStart, r.withEnd] }] }],
+      all: [
+        rules.always,
+        { any: [rules.never, { all: [rules.withStart, rules.withEnd] }] },
+      ],
     }
 
     const engine = new Engine(chain)
@@ -165,8 +165,8 @@ describe('retirement/calculator/engine', () => {
     })
 
     it('should fetch nested chains', () => {
-      expect(engine.getChain('all.0')).toBe(r.always)
-      expect(engine.getChain('all.1.any.1.all.0')).toBe(r.withStart)
+      expect(engine.getChain('all.0')).toBe(rules.always)
+      expect(engine.getChain('all.1.any.1.all.0')).toBe(rules.withStart)
     })
 
     it('should throw for missing chain paths', () => {
@@ -185,9 +185,9 @@ describe('retirement/calculator/engine', () => {
   describe('findChain', () => {
     const engine = new Engine({
       all: [
-        r.always,
-        { title: 'Second', any: [r.never, { all: [r.withStart] }] },
-        { any: [{ all: [r.withEnd] }] },
+        rules.always,
+        { title: 'Second', any: [rules.never, { all: [rules.withStart] }] },
+        { any: [{ all: [rules.withEnd] }] },
       ],
     })
 
@@ -196,19 +196,19 @@ describe('retirement/calculator/engine', () => {
     })
 
     it('should find direct reference', () => {
-      expect(engine.find('Always')).toBe(r.always)
+      expect(engine.find('Always')).toBe(rules.always)
     })
 
     it('should find nested references', () => {
-      expect(engine.find('Second', 'Never')).toBe(r.never)
+      expect(engine.find('Second', 'Never')).toBe(rules.never)
     })
 
     it('should find nested references with skipping steps', () => {
-      expect(engine.find('Second', 'With start')).toBe(r.withStart)
+      expect(engine.find('Second', 'With start')).toBe(rules.withStart)
     })
 
     it('should find based on description also', () => {
-      expect(engine.find('A requisite which is always true')).toBe(r.always)
+      expect(engine.find('A requisite which is always true')).toBe(rules.always)
     })
 
     it('should not find when partially fit', () => {
