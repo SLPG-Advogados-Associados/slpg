@@ -1,12 +1,6 @@
 import { RequisiteResult } from '../../types'
 import * as date from '../date'
 
-type Meta = {
-  title?: string
-  description?: string
-  debug?: ((...args: unknown[]) => void) | boolean
-}
-
 /*
  * Date comparisons with null-as-infinity accounting.
  */
@@ -39,7 +33,7 @@ const overlaps = (a: RequisiteResult, b: RequisiteResult) =>
 const union = (input: RequisiteResult[]): RequisiteResult[] => {
   const results: RequisiteResult[] = []
 
-  next: for (const next of input) {
+  next: for (const next of input.sort(byFrom)) {
     // try to merge with current intervals
     for (const curr of results) {
       // time overlap
@@ -51,10 +45,10 @@ const union = (input: RequisiteResult[]): RequisiteResult[] => {
     }
 
     // no overlap, add new
-    results.push(next)
+    results.push({ ...next })
   }
 
-  return results.sort(byFrom)
+  return results
 }
 
 /**
@@ -63,7 +57,7 @@ const union = (input: RequisiteResult[]): RequisiteResult[] => {
 const intersection = (input: RequisiteResult[]): RequisiteResult[] => {
   const results: RequisiteResult[] = []
 
-  next: for (const next of input) {
+  next: for (const next of input.sort(byFrom)) {
     // try to merge with current intervals
     for (const curr of results) {
       // time overlap
@@ -78,10 +72,41 @@ const intersection = (input: RequisiteResult[]): RequisiteResult[] => {
     if (results.length) return []
 
     // no overlap, no result yet, add initial
-    results.push(next)
+    results.push({ ...next })
   }
 
-  return results.sort(byFrom)
+  return results
 }
 
-export { union, intersection, before, after, overlaps }
+const flatten = (results: RequisiteResult[][]) =>
+  results.reduce((c, result) => [...c, ...result], [])
+
+/**
+ * Processes possible results using ANY logic.
+ *
+ * Basically, combine all periods, and perform a union.
+ */
+const any = (input: RequisiteResult[][]): RequisiteResult[] =>
+  union(flatten(input))
+
+/**
+ * Processes possible results using ALL logic.
+ *
+ * Perform chained intersection.
+ */
+const all = (input: RequisiteResult[][]): RequisiteResult[] =>
+  union(
+    input.reduce((curr, next) => {
+      const partials: RequisiteResult[] = []
+
+      for (const a of curr) {
+        for (const b of next) {
+          partials.push(...intersection([a, b]))
+        }
+      }
+
+      return partials
+    })
+  )
+
+export { union, intersection, before, after, overlaps, flatten, any, all }
