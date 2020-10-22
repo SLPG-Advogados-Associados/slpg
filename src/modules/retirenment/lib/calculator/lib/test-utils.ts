@@ -91,6 +91,19 @@ const interval = (span: string) => {
 const i = interval
 
 /**
+ * Constructs a require result.
+ *
+ * @param span Span in string format. i.e.:
+ *  - '2002' = [2002, today]
+ *  - '2002^2004' = [2002, 2004]
+ */
+const result = (span: string) => {
+  const [from, to] = period(span)
+  return { from, to }
+}
+const r = result
+
+/**
  * Constructs a service object.
  */
 const service = (kind = PUBLIC, post = OTHER, career = 1): Service => ({
@@ -267,6 +280,8 @@ export {
   p,
   interval,
   i,
+  result,
+  r,
   reachedAt,
   input,
   I,
