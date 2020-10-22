@@ -7,13 +7,16 @@ import { dates } from './dates'
 const { TEACHER } = Post
 const { MALE, FEMALE } = Sex
 
-const { sex, contribution, age } = reachers
+const { sex, contribution, age, after, before } = reachers
 
 const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
 
+const due = dates.ec20
+const promulgation = dates.constitution
+
 const possibilities = [
   {
-    title: 'Integral',
+    title: 'Art. 40. - Integral',
     description: `
       (...)
       III - voluntariamente:
@@ -22,83 +25,74 @@ const possibilities = [
       (...)
     `,
     requisites: new Engine<CalculatorInput>({
-      any: [
+      all: [
+        { executor: after(promulgation) },
+        { executor: before(due) },
         {
-          title: 'Tempo total de contribuição',
-          description: `a) aos trinta e cinco anos de serviço, se homem, e aos trinta, se mulher, com proventos integrais;`,
+          title: 'Tempo de Contribuição',
           any: [
             {
-              all: [
+              title: 'Geral',
+              description: `a) aos trinta e cinco anos de serviço, se homem, e aos trinta, se mulher, com proventos integrais;`,
+              any: [
                 {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-                {
+                  title: 'Homem',
                   description: '35 anos de serviço',
-                  executor: contribution.total({
-                    due: dates.ec20,
-                    expected: { years: 35 },
-                  }),
+                  all: [
+                    { executor: sex(MALE) },
+                    {
+                      executor: contribution.total({ expected: { years: 35 } }),
+                    },
+                  ],
                 },
-              ],
-            },
 
-            {
-              all: [
                 {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
-                {
+                  title: 'Mulher',
                   description: '30 anos de serviço',
-                  executor: contribution.total({
-                    due: dates.ec20,
-                    expected: { years: 30 },
-                  }),
-                },
-              ],
-            },
-          ],
-        },
-
-        {
-          title: 'Tempo total de contribuição (magistério)',
-          description: `b) aos trinta anos de efetivo exercício em funções de magistério, se professor, e vinte e cinco, se professora, com proventos integrais;`,
-          any: [
-            {
-              all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-                {
-                  description: '30 anos de serviço em funções de magistério',
-                  executor: contribution.total({
-                    due: dates.ec20,
-                    expected: { years: 30 },
-                    processors: {
-                      '^': contribution.processors.filter(isTeacher),
+                  all: [
+                    { executor: sex(FEMALE) },
+                    {
+                      executor: contribution.total({ expected: { years: 30 } }),
                     },
-                  }),
+                  ],
                 },
               ],
             },
 
             {
-              all: [
+              title: 'Magistério',
+              description: `b) aos trinta anos de efetivo exercício em funções de magistério, se professor, e vinte e cinco, se professora, com proventos integrais;`,
+              any: [
                 {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
-                {
-                  description: '25 anos de serviço em funções de magistério',
-                  executor: contribution.total({
-                    due: dates.ec20,
-                    expected: { years: 25 },
-                    processors: {
-                      '^': contribution.processors.filter(isTeacher),
+                  title: 'Homem',
+                  description: `30 anos de serviço em funções de magistério`,
+                  all: [
+                    { executor: sex(MALE) },
+                    {
+                      executor: contribution.total({
+                        expected: { years: 30 },
+                        processors: {
+                          '^': contribution.processors.filter(isTeacher),
+                        },
+                      }),
                     },
-                  }),
+                  ],
+                },
+
+                {
+                  title: 'Mulher',
+                  description: `25 anos de serviço em funções de magistério`,
+                  all: [
+                    { executor: sex(FEMALE) },
+                    {
+                      executor: contribution.total({
+                        expected: { years: 25 },
+                        processors: {
+                          '^': contribution.processors.filter(isTeacher),
+                        },
+                      }),
+                    },
+                  ],
                 },
               ],
             },
@@ -109,7 +103,7 @@ const possibilities = [
   },
 
   {
-    title: 'Proporcional',
+    title: 'Art. 40. - Proporcional',
     description: `
       (...)
       III - voluntariamente:
@@ -120,71 +114,75 @@ const possibilities = [
     `,
 
     requisites: new Engine<CalculatorInput>({
-      any: [
+      all: [
+        { executor: after(promulgation) },
+        { executor: before(due) },
         {
-          title: 'Tempo total de contribuição',
-          description: `c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher, com proventos proporcionais a esse tempo;`,
           any: [
             {
-              all: [
+              title: 'Tempo total de contribuição',
+              description: `c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher, com proventos proporcionais a esse tempo;`,
+              any: [
                 {
-                  description: 'Homem',
-                  executor: sex(MALE),
+                  all: [
+                    {
+                      description: 'Homem',
+                      executor: sex(MALE),
+                    },
+                    {
+                      description: '30 anos de serviço',
+                      executor: contribution.total({
+                        expected: { years: 30 },
+                      }),
+                    },
+                  ],
                 },
+
                 {
-                  description: '30 anos de serviço',
-                  executor: contribution.total({
-                    due: dates.ec20,
-                    expected: { years: 30 },
-                  }),
+                  all: [
+                    {
+                      description: 'Mulher',
+                      executor: sex(FEMALE),
+                    },
+                    {
+                      description: '25 anos de serviço',
+                      executor: contribution.total({
+                        expected: { years: 25 },
+                      }),
+                    },
+                  ],
                 },
               ],
             },
 
             {
-              all: [
+              title: 'Idade',
+              description: `d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher, com proventos proporcionais ao tempo de serviço.`,
+              any: [
                 {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
+                  all: [
+                    {
+                      description: 'Homem',
+                      executor: sex(MALE),
+                    },
+                    {
+                      description: '65 anos de idade',
+                      executor: age({ expected: { years: 65 } }),
+                    },
+                  ],
                 },
-                {
-                  description: '25 anos de serviço',
-                  executor: contribution.total({
-                    due: dates.ec20,
-                    expected: { years: 25 },
-                  }),
-                },
-              ],
-            },
-          ],
-        },
 
-        {
-          title: 'Idade',
-          description: `d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher, com proventos proporcionais ao tempo de serviço.`,
-          any: [
-            {
-              all: [
                 {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-                {
-                  description: '65 anos de idade',
-                  executor: age({ due: dates.ec20, expected: { years: 65 } }),
-                },
-              ],
-            },
-
-            {
-              all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
-                {
-                  description: '60 anos de idade',
-                  executor: age({ due: dates.ec20, expected: { years: 60 } }),
+                  all: [
+                    {
+                      description: 'Mulher',
+                      executor: sex(FEMALE),
+                    },
+                    {
+                      description: '60 anos de idade',
+                      executor: age({ expected: { years: 60 } }),
+                    },
+                  ],
                 },
               ],
             },
@@ -196,8 +194,8 @@ const possibilities = [
 ]
 
 const rule: Rule = {
-  due: dates.ec20,
-  promulgation: dates.constitution,
+  due,
+  promulgation,
   title: 'CF 1988',
   description:
     'Regra do art. 40 da Constituição Federal de 1988, texto original',
