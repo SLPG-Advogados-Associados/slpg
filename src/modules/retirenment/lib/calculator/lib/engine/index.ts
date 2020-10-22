@@ -1,8 +1,7 @@
 import { get } from 'object-path-immutable'
-import { asTree } from 'treeify'
 
-import { RequisiteResult } from '../../types'
-import { union, any, all, toText } from './result'
+import { str } from '../debug'
+import { union, any, all } from './result'
 
 type Meta = {
   title?: string
@@ -11,6 +10,7 @@ type Meta = {
   lastResult?: RequisiteResult[]
 }
 
+export type RequisiteResult = { from?: Date; to?: Date }
 export type RequisiteExecutor<I extends {}> = (input: I) => RequisiteResult[]
 
 // @todo: replace as it is deprecated
@@ -149,19 +149,14 @@ class Engine<I extends {}> {
    * Builds a human-readable result tree in JSON format.
    */
   public resultTree(chain: RequisiteChain<I>) {
-    const group = 'any' in chain ? 'any' : 'all' in chain ? 'all' : null
-    const executor = 'any' in chain || 'all' in chain ? null : chain.executor
-    const prefix = group ? `[${group}] ` : ''
-    const name = chain.title ?? chain.description ?? executor?.toString() ?? ''
-    const title = `${(prefix + name).trim()}: ${
-      toText(chain.lastResult || []) || 'N'
-    }`
-
     const tree = {}
+    const title = str.chain(chain)
+    const children =
+      'any' in chain ? chain.any : 'all' in chain ? chain.all : []
 
-    for (const child of chain[group] || []) {
-      const [title, subtree] = this.resultTree(child)
-      tree[title] = subtree
+    for (const child of children) {
+      const [subtitle, subtree] = this.resultTree(child)
+      tree[subtitle] = subtree
     }
 
     return [title, tree] as const
@@ -173,7 +168,7 @@ class Engine<I extends {}> {
   public printResults() {
     const [name, tree] = this.resultTree(this.chain)
     // eslint-disable-next-line no-console
-    console.log(asTree({ [name]: tree }, true, true))
+    console.log(str.tree({ [name]: tree }))
   }
 }
 
