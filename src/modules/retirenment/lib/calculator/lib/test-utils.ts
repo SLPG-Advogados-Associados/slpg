@@ -1,14 +1,6 @@
-import { NEVER } from './const'
 import { isValid, sub } from './date'
 import { RequisiteChain, evaluate } from './engine'
-import {
-  Post,
-  Service,
-  ServiceKind,
-  Sex,
-  Contribution,
-  CalculatorInput,
-} from '../types'
+import { Post, Service, ServiceKind, Sex, CalculatorInput } from '../types'
 
 const { OTHER, TEACHER } = Post
 const { PUBLIC, PRIVATE } = ServiceKind
@@ -24,9 +16,9 @@ const eq = {
    *
    * @param input Date in (possibly partial) ISO format.
    */
-  date: (input: string | number) => (date: Date) => {
+  date: (input: string | number) => (date: Date | number) => {
     if (!isValid(date)) return isNaN(Number(input))
-    return date.toISOString().indexOf(input + '') === 0
+    return new Date(date).toISOString().indexOf(input + '') === 0
   },
 }
 
@@ -125,33 +117,6 @@ const contribution = (
 const c = contribution
 
 /*
- * Jest satisfaction predicates.
- * -----------------------------
- */
-
-/**
- * Compares the given date with context.reached.
- *
- * @param input Date in (possibly partial) ISO format.
- */
-const reachedAt = (input: string | number) => ({
-  reached,
-}: {
-  reached: Date
-}) => eq.date(input)(reached)
-
-const input = (
-  sex?: Sex,
-  birthDate = '1940',
-  contributions?: Contribution[]
-) => ({
-  sex: sex || Sex.MALE,
-  birthDate: birth(birthDate),
-  contributions: contributions || [],
-})
-const I = input
-
-/*
  * Aliases and short vars.
  * -----------------------
  */
@@ -214,27 +179,6 @@ const parse = (text: string) => {
   return result
 }
 
-const expected = ([satisfiedAt, satisfiableAt]: (null | string | Date)[]) => {
-  const parseDate = (value: null | string | Date) =>
-    typeof value === 'string'
-      ? d(value)
-      : value === NEVER || !value
-      ? undefined
-      : value
-
-  const parsed = {
-    satisfiedAt: parseDate(satisfiedAt),
-    satisfiableAt: parseDate(satisfiableAt),
-  }
-
-  return {
-    satisfied: Boolean(parsed.satisfiedAt),
-    satisfiedAt: parsed.satisfiedAt,
-    satisfiable: Boolean(parsed.satisfiableAt),
-    satisfiableAt: parsed.satisfiableAt,
-  }
-}
-
 /**
  * Jest test generator for human-language parsed tests of requisite chains.
  */
@@ -282,10 +226,6 @@ export {
   i,
   result,
   r,
-  reachedAt,
-  input,
-  I,
   parse,
-  expected,
   testChain,
 }

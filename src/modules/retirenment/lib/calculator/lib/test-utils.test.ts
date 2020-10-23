@@ -1,6 +1,5 @@
 /* eslint-disable no-sparse-arrays */
 import { Post, ServiceKind, Sex } from '../types'
-import { NEVER } from './const'
 
 import {
   DateParams,
@@ -11,8 +10,6 @@ import {
   period,
   interval,
   contribution,
-  reachedAt,
-  input,
   parse,
   d,
   c,
@@ -30,8 +27,8 @@ describe('retirement/calculator/lib/test-utils', () => {
         ['2011', new Date('2010'), false],
         ['2010-10-10', new Date('2010'), false],
         ['2010-10-10', new Date('2010-10-10'), true],
-        ['2010', NEVER, false],
-        [NaN, NEVER, true],
+        ['2010', NaN, false],
+        [NaN, NaN, true],
         [NaN, new Date('2010'), false],
       ])('should check date equality', (input, date, expected) => {
         expect(eq.date(input)(date)).toBe(expected)
@@ -112,30 +109,6 @@ describe('retirement/calculator/lib/test-utils', () => {
       })
     })
 
-    describe('input', () => {
-      it.each([
-        [input(), u],
-        [input(u, u, u), u],
-
-        [input(M), [M]],
-        [input(u, u, [contribution('50^60')]), [, [{ start: date('50') }]]],
-        [input(u, u, [contribution('50^60')]), [, [{ end: date('60') }]]],
-        [input(u, '80'), [, , date('80')]],
-      ])('should generate valid inputs', (input, expected) => {
-        expect(input).toEqual({
-          sex: expect.toBeOneOf(Object.values(Sex)),
-          birthDate: expect.toBeValidDate(),
-          contributions: expect.toBeArray(),
-        })
-
-        const [sex, contrib, birthDate] = expected || []
-
-        sex && expect(input.sex).toEqual(sex)
-        contrib && expect(input.contributions).toMatchObject(contrib)
-        birthDate && expect(input.birthDate).toEqual(birthDate)
-      })
-    })
-
     describe('parse', () => {
       it.each([
         ['homem', { sex: M }],
@@ -201,27 +174,6 @@ describe('retirement/calculator/lib/test-utils', () => {
       ])('should parse full inputs', (text, result) =>
         expect(parse(text)).toMatchObject(result)
       )
-    })
-  })
-
-  describe('predicates', () => {
-    describe('reachedAt', () => {
-      it.each([
-        // correct
-        [2000, new Date('2000'), true],
-        ['2000', new Date('2000'), true],
-        ['2000-01-01', new Date('2000'), true],
-        // wrong
-        [2001, new Date('2000'), false],
-        ['2001', new Date('2000'), false],
-        ['2001-01-01', new Date('2000'), false],
-      ])('should correctly check reached date', (input, reached, expected) => {
-        expect(reachedAt(input)({ reached })).toBe(expected)
-
-        expected
-          ? expect({ reached }).toSatisfy(reachedAt(input))
-          : expect({ reached }).not.toSatisfy(reachedAt(input))
-      })
     })
   })
 })
