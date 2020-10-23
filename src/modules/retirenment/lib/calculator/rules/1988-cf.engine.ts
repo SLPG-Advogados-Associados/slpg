@@ -197,8 +197,7 @@ const rule: Rule = {
   due,
   promulgation,
   title: 'CF 1988',
-  description:
-    'Regra do art. 40 da Constituição Federal de 1988, texto original',
+  description: `Regra do art. 40 da Constituição Federal de 1988, texto original`,
   possibilities,
 }
 
