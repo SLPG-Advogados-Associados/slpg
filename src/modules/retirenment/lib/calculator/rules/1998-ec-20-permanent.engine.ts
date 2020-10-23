@@ -15,7 +15,7 @@ import { dates } from './dates'
 const { MALE, FEMALE } = Sex
 const { TEACHER } = Post
 
-const { sex, contribution, age, after } = reachers
+const { sex, contribution, age, after, before } = reachers
 const { processors, last, total } = contribution
 
 const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
@@ -24,6 +24,9 @@ const isPublic = ({ service }: Contribution) =>
   service.kind === ServiceKind.PUBLIC
 
 type Input = CalculatorInput
+
+const promulgation = dates.ec20
+const due = dates.ec41
 
 const possibilities: Possibility[] = [
   {
@@ -47,15 +50,13 @@ const possibilities: Possibility[] = [
     `,
     requisites: new Engine<Input>({
       all: [
-        {
-          executor: after(dates.ec20),
-        },
+        { executor: after(promulgation) },
+        { executor: before(due) },
 
         {
           title: 'Tempo de serviço público',
           description: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
           executor: total({
-            due: dates.ec41,
             expected: { years: 10 },
             processors: {
               '^': processors.filter(isPublic),
@@ -66,7 +67,7 @@ const possibilities: Possibility[] = [
         {
           title: 'Tempo no cargo de aposentadoria',
           description: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
-          executor: last({ expected: { years: 5 }, due: dates.ec41 }),
+          executor: last({ expected: { years: 5 } }),
         },
 
         {
@@ -85,18 +86,12 @@ const possibilities: Possibility[] = [
                       all: [
                         {
                           description: '60 anos de idade',
-                          executor: age({
-                            due: dates.ec41,
-                            expected: { years: 60 },
-                          }),
+                          executor: age({ expected: { years: 60 } }),
                         },
 
                         {
                           description: '35 anos de contribuição',
-                          executor: total({
-                            due: dates.ec41,
-                            expected: { years: 35 },
-                          }),
+                          executor: total({ expected: { years: 35 } }),
                         },
                       ],
                     },
@@ -106,16 +101,12 @@ const possibilities: Possibility[] = [
                       all: [
                         {
                           description: '55 anos de idade',
-                          executor: age({
-                            due: dates.ec41,
-                            expected: { years: 55 },
-                          }),
+                          executor: age({ expected: { years: 55 } }),
                         },
 
                         {
                           description: '30 anos de contribuição',
                           executor: total({
-                            due: dates.ec41,
                             expected: { years: 30 },
                             processors: {
                               '^': processors.filter(isTeacher),
@@ -142,18 +133,12 @@ const possibilities: Possibility[] = [
                       all: [
                         {
                           description: '55 anos de idade',
-                          executor: age({
-                            due: dates.ec41,
-                            expected: { years: 55 },
-                          }),
+                          executor: age({ expected: { years: 55 } }),
                         },
 
                         {
                           description: '30 anos de contribuição',
-                          executor: total({
-                            due: dates.ec41,
-                            expected: { years: 30 },
-                          }),
+                          executor: total({ expected: { years: 30 } }),
                         },
                       ],
                     },
@@ -163,16 +148,12 @@ const possibilities: Possibility[] = [
                       all: [
                         {
                           description: '50 anos de idade',
-                          executor: age({
-                            due: dates.ec41,
-                            expected: { years: 50 },
-                          }),
+                          executor: age({ expected: { years: 50 } }),
                         },
 
                         {
                           description: '25 anos de contribuição',
                           executor: total({
-                            due: dates.ec41,
                             expected: { years: 25 },
                             processors: {
                               '^': processors.filter(isTeacher),
@@ -212,15 +193,13 @@ const possibilities: Possibility[] = [
     `,
     requisites: new Engine<Input>({
       all: [
-        {
-          executor: after(dates.ec20),
-        },
+        { executor: after(promulgation) },
+        { executor: before(due) },
 
         {
           title: 'Tempo de serviço público',
           description: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
           executor: total({
-            due: dates.ec41,
             expected: { years: 10 },
             processors: {
               '^': processors.filter(isPublic),
@@ -231,7 +210,7 @@ const possibilities: Possibility[] = [
         {
           title: 'Tempo no cargo de aposentadoria',
           description: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
-          executor: last({ expected: { years: 5 }, due: dates.ec41 }),
+          executor: last({ expected: { years: 5 } }),
         },
 
         {
@@ -245,7 +224,7 @@ const possibilities: Possibility[] = [
 
                 {
                   description: '65 anos de idade',
-                  executor: age({ due: dates.ec41, expected: { years: 65 } }),
+                  executor: age({ expected: { years: 65 } }),
                 },
               ],
             },
@@ -258,7 +237,7 @@ const possibilities: Possibility[] = [
 
                 {
                   description: '60 anos de idade',
-                  executor: age({ due: dates.ec41, expected: { years: 60 } }),
+                  executor: age({ expected: { years: 60 } }),
                 },
               ],
             },
