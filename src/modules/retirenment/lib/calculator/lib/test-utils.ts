@@ -242,12 +242,12 @@ const expected = ([satisfiedAt, satisfiableAt]: (null | string | Date)[]) => {
 const testChain = (
   title: string,
   chain: RequisiteChain<CalculatorInput>,
-  items: Array<[string, (null | string | Date)[]]>,
+  items: Array<[string, string[]]>,
   _it: jest.It = it
 ) => {
   const register = () =>
     _it.each(items)('%s: %s', (input, output) =>
-      expect(evaluate(parse(input), chain)).toMatchObject(expected(output))
+      expect(evaluate(parse(input), chain)).toEqual(output.map(result))
     )
 
   return title ? describe(title, register) : register()
@@ -256,13 +256,13 @@ const testChain = (
 testChain.only = (
   title: string,
   chain: RequisiteChain<CalculatorInput>,
-  items: Array<[string, (null | string | Date)[]]>
+  items: Array<[string, string[]]>
 ) => testChain(title, chain, items, it.only)
 
 testChain.skip = (
   title: string,
   chain: RequisiteChain<CalculatorInput>,
-  items: Array<[string, (null | string | Date)[]]>
+  items: Array<[string, string[]]>
 ) => testChain(title, chain, items, it.skip)
 /* eslint-enable */
 
