@@ -36,8 +36,7 @@
     "setupFilesAfterEnv": [
       "jest-extended",
       "jest-expect-message",
-      "@testing-library/jest-dom",
-      "./jest.setup.js"
+      "@testing-library/jest-dom"
     ],
     "transform": {
       "^.+\\.[jt]sx?$": "babel-jest"
