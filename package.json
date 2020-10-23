@@ -94,6 +94,7 @@
     "tailwind.macro": "^1.0.0-alpha.10",
     "tailwindcss": "^1.1.3",
     "tinycolor2": "^1.4.1",
+    "treeify": "^1.1.0",
     "url-parse": "^1.4.7",
     "yup": "^0.27.0"
   },
@@ -117,6 +118,7 @@
     "@types/react": "^16.9.11",
     "@types/react-alert": "^5.2.0",
     "@types/styled-components": "^5.0.1",
+    "@types/treeify": "^1.0.0",
     "@types/yup": "^0.26.35",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^3.7.1",
