@@ -97,8 +97,9 @@ const total = (config: Params) =>
       }
 
       // push end to as far as possible, once we have a satisfying start
-      if (from && contribution.end && toDays(processed) > 0) {
-        to = max([from, contribution.end])
+      if (from && toDays(processed) > 0) {
+        // if contribution is "endless", push future day forever
+        to = contribution.end ? max([from, contribution.end]) : contribution.end
       }
     }
 

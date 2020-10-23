@@ -1,5 +1,6 @@
 import { groupWith } from 'ramda'
-import { CalculatorInput, Contribution, RequisiteResults } from '../../../types'
+import type { RequisiteResult } from '../../engine'
+import { CalculatorInput, Contribution } from '../../../types'
 import { add } from '../../date'
 import { DurationInput } from '../../duration'
 
@@ -18,11 +19,10 @@ const groupCareers = groupWith<Contribution>(
  * Career duration requisite factory.
  *
  * @param expected The expected duration of the last contribution time.
- * @param due Date by which the expected duration must be achieved.
  */
 const career = ({ expected, filter = () => true }: Params) => (
   input: Input
-): RequisiteResults =>
+): RequisiteResult[] =>
   groupCareers(input.contributions.filter(filter))
     // get first and last from career, they are all that matters here
     // last might be same as first, and it's ok
