@@ -67,7 +67,7 @@ describe('form/useForm', () => {
       )
     })
 
-    it('should retrieve nested meta', () => {
+    it.skip('should retrieve nested meta', () => {
       const form = renderHook(() => useForm())
       let field = renderHook(() => form.result.current.useField('foo.bar'))
 
@@ -105,7 +105,7 @@ describe('form/useForm', () => {
       expect(form.result.current.getValues()).toEqual({ foo: 1 })
     })
 
-    it('should re-render only when acessing a field value', () => {
+    it.skip('should re-render only when acessing a field value', () => {
       let rendered = 0
 
       const form = renderHook(() => {
@@ -219,7 +219,7 @@ describe('form/useForm', () => {
       )
 
       const field = renderHook(() =>
-        form.result.current.useFieldArray('field-name', path => ({
+        form.result.current.useFieldArray('field-name', (path) => ({
           a: form.result.current.useField(`${path}.a`),
           b: form.result.current.useField(`${path}.b`),
         }))

@@ -70,7 +70,7 @@ const useForm = <
       item: Partial<ArrayField<FormValues[Name][number], 'id'>>
     ) => //
     // @ts-ignore
-    Mapped = path => useField(path, true)
+    Mapped = (path) => useField(path, true)
   ) => {
     const api = _useFieldArray<FormValues[Name][number]>({
       name: name as string,
