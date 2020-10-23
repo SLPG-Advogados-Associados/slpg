@@ -90,6 +90,12 @@ describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
         // by age:
         ['mulher | nascida em 53 | professora desde 50', [`2003-01-01^${due}`]], //                           50 anos ✅, contribuindo 25 ✅, servidora por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 54 | professora desde 50', []], //                                              49 anos ❌, contribuindo 25 ✅, servidora por >10 ✅, >5 anos no último ✅
+
+        /**
+         * Customn
+         */
+        // has multiple resolution periods
+        ['homem | nascido em 30 | servidor entre 50^1998-12-20 | servidor desde 1998-12-25', [`${promulgation}^1998-12-20`, `2003-12-24^${due}`]]
       ])
     })
 
