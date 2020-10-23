@@ -6,7 +6,7 @@ import { DurationInput } from '../../duration'
 
 type Params = {
   expected: DurationInput
-  filter: (contribution: Contribution) => boolean
+  filter?: (contribution: Contribution) => boolean
 }
 
 type Input = Pick<CalculatorInput, 'contributions'>
