@@ -29,7 +29,7 @@ const career = ({ expected, filter = () => true }: Params) => (
     .map((career) => [career[0], career[career.length - 1]])
     // get start of first, and end of last
     .map(([{ start }, { end }]) => ({
-      from: add(start, expected, true),
+      from: add(start, expected),
       to: end,
     }))
     // it's only satisfiable if "from" ("start" of first) date happens before

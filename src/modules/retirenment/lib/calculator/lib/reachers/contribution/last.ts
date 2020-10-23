@@ -20,7 +20,7 @@ const last = ({ expected, filter = () => true }: Params) => (
 ): RequisiteResult[] =>
   input.contributions
     .filter(filter)
-    .map(({ start, end }) => ({ from: add(start, expected, true), to: end }))
+    .map(({ start, end }) => ({ from: add(start, expected), to: end }))
     // it's only satisfiable if "from" date happens before "to" ("end") of this contribution.
     .filter(({ from, to }) => !to || from <= to)
 
