@@ -48,6 +48,14 @@ class Engine<I extends {}> {
     return chain && ('executor' in chain || 'all' in chain || 'any' in chain)
   }
 
+  public static getName(chain: RequisiteChain<unknown>) {
+    return chain.title ?? chain.description ?? null
+  }
+
+  public static getChildren(chain: RequisiteChain<unknown>) {
+    return 'all' in chain ? chain.all : 'any' in chain ? chain.any : []
+  }
+
   /**
    * Execute an ANY group using union logic.
    */
@@ -120,9 +128,7 @@ class Engine<I extends {}> {
       this.references.unshift([paths, chain])
     }
 
-    const childs = 'all' in chain ? chain.all : 'any' in chain ? chain.any : []
-
-    for (const child of childs) {
+    for (const child of Engine.getChildren(chain)) {
       this.processReferences(child, [...paths])
     }
   }
@@ -151,10 +157,8 @@ class Engine<I extends {}> {
   public resultTree(chain: RequisiteChain<I>) {
     const tree = {}
     const title = str.chain(chain)
-    const children =
-      'any' in chain ? chain.any : 'all' in chain ? chain.all : []
 
-    for (const child of children) {
+    for (const child of Engine.getChildren(chain)) {
       const [subtitle, subtree] = this.resultTree(child)
       tree[subtitle] = subtree
     }
