@@ -1,17 +1,18 @@
 import React from 'react'
+import { ErrorMessage } from '@hookform/error-message'
 import classnames from 'classnames'
-import { ErrorMessage } from './ErrorMessage'
+import { ErrorMessage as RenderError } from './ErrorMessage'
 
 const FieldWrapper = <
   C extends keyof JSX.IntrinsicElements | React.ComponentType<any>
 >({
-  error,
+  name,
   className,
   children,
   wrapper,
   label,
 }: {
-  error?: React.ReactNode
+  name?: string
   className?: string
   children: React.ReactNode
   wrapper?: C
@@ -23,7 +24,7 @@ const FieldWrapper = <
     <Wrapper className={classnames('mb-4 block', className)}>
       {label ? <strong className="mb-1 block">{label}</strong> : null}
       {children}
-      <ErrorMessage error={error} />
+      {name ? <ErrorMessage name={name} render={RenderError} /> : null}
     </Wrapper>
   )
 }

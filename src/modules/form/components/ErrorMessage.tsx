@@ -1,10 +1,10 @@
 import React from 'react'
 
 const ErrorMessage: React.FC<{
-  error?: React.ReactNode
-}> = ({ error }) =>
-  error ? (
-    <span className="text-meta text-danger block p-2">{error}</span>
+  message?: React.ReactNode
+}> = ({ message }) =>
+  message ? (
+    <span className="text-meta text-danger block p-2">{message}</span>
   ) : null
 
 export { ErrorMessage }
