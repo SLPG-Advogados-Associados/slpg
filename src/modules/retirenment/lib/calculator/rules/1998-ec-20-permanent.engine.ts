@@ -1,27 +1,15 @@
 /* cspell: disable */
+import { Rule, Possibility, Sex, CalculatorInput } from '../types'
 import * as reachers from '../lib/reachers'
-import {
-  Rule,
-  Possibility,
-  Sex,
-  Post,
-  ServiceKind,
-  CalculatorInput,
-  Contribution,
-} from '../types'
 import { Engine } from '../lib/engine'
+import { isTeacher, isPublic } from '../lib/predicates'
 import { dates } from './dates'
 
 const { MALE, FEMALE } = Sex
-const { TEACHER } = Post
-
 const { sex, contribution, age, after, before } = reachers
 const { processors, last, total } = contribution
-
-const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
-
-const isPublic = ({ service }: Contribution) =>
-  service.kind === ServiceKind.PUBLIC
+const { filter } = processors
+const { startBefore } = Engine.satisfy
 
 type Input = CalculatorInput
 
@@ -55,18 +43,20 @@ const possibilities: Possibility[] = [
 
         {
           title: 'Tempo de serviço público',
-          description: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
+          description: '10 anos',
+          details: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
           executor: total({
             expected: { years: 10 },
             processors: {
-              '^': processors.filter(isPublic),
+              '^': filter(isPublic),
             },
           }),
         },
 
         {
-          title: 'Tempo no cargo de aposentadoria',
-          description: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
+          title: 'Tempo no cargo',
+          description: '5 anos',
+          details: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
           executor: last({ expected: { years: 5 } }),
         },
 
@@ -74,46 +64,38 @@ const possibilities: Possibility[] = [
           title: 'Idade e tempo de contribuição',
           any: [
             {
-              title: 'Homem',
-              description: `sessenta anos de idade e trinta e cinco de contribuição, se homem`,
-              all: [
-                { executor: sex(MALE) },
+              title: 'Geral',
+              details: `a) sessenta anos de idade e trinta e cinco de contribuição, se homem, e cinqüenta e cinco anos de idade e trinta de contribuição, se mulher;`,
+              any: [
+                {
+                  title: 'Homem',
+                  all: [
+                    { executor: sex(MALE) },
+                    {
+                      description: '60 anos de idade',
+                      executor: age({ expected: { years: 60 } }),
+                    },
+                    {
+                      description: '35 anos de contribuição',
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 35 } }),
+                    },
+                  ],
+                },
 
                 {
-                  any: [
+                  title: 'Mulher',
+                  all: [
+                    { executor: sex(FEMALE) },
                     {
-                      title: 'Geral',
-                      all: [
-                        {
-                          description: '60 anos de idade',
-                          executor: age({ expected: { years: 60 } }),
-                        },
-
-                        {
-                          description: '35 anos de contribuição',
-                          executor: total({ expected: { years: 35 } }),
-                        },
-                      ],
+                      description: '55 anos de idade',
+                      executor: age({ expected: { years: 55 } }),
                     },
 
                     {
-                      title: 'Professor',
-                      all: [
-                        {
-                          description: '55 anos de idade',
-                          executor: age({ expected: { years: 55 } }),
-                        },
-
-                        {
-                          description: '30 anos de contribuição',
-                          executor: total({
-                            expected: { years: 30 },
-                            processors: {
-                              '^': processors.filter(isTeacher),
-                            },
-                          }),
-                        },
-                      ],
+                      description: '30 anos de contribuição',
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 30 } }),
                     },
                   ],
                 },
@@ -121,46 +103,50 @@ const possibilities: Possibility[] = [
             },
 
             {
-              title: 'Mulher',
-              description: `cinqüenta e cinco anos de idade e trinta de contribuição, se mulher;`,
-              all: [
-                { executor: sex(FEMALE) },
-
+              title: 'Magistério',
+              details: `
+                § 5º - Os requisitos de idade e de tempo de contribuição serão reduzidos em
+                cinco anos, em relação ao disposto no § 1º, III, "a", para o professor que
+                comprove exclusivamente tempo de efetivo exercício das funções de
+                magistério na educação infantil e no ensino fundamental e médio.
+              `,
+              any: [
                 {
-                  any: [
+                  title: 'Homem',
+                  all: [
+                    { executor: sex(MALE) },
                     {
-                      title: 'Geral',
-                      all: [
-                        {
-                          description: '55 anos de idade',
-                          executor: age({ expected: { years: 55 } }),
-                        },
-
-                        {
-                          description: '30 anos de contribuição',
-                          executor: total({ expected: { years: 30 } }),
-                        },
-                      ],
+                      description: '55 anos de idade',
+                      executor: age({ expected: { years: 55 } }),
                     },
 
                     {
-                      title: 'Professora',
-                      all: [
-                        {
-                          description: '50 anos de idade',
-                          executor: age({ expected: { years: 50 } }),
-                        },
+                      description: '30 anos de contribuição',
+                      satisfiable: startBefore(due),
+                      executor: total({
+                        expected: { years: 30 },
+                        processors: { '^': filter(isTeacher) },
+                      }),
+                    },
+                  ],
+                },
 
-                        {
-                          description: '25 anos de contribuição',
-                          executor: total({
-                            expected: { years: 25 },
-                            processors: {
-                              '^': processors.filter(isTeacher),
-                            },
-                          }),
-                        },
-                      ],
+                {
+                  title: 'Mulher',
+                  all: [
+                    { executor: sex(FEMALE) },
+                    {
+                      description: '50 anos de idade',
+                      executor: age({ expected: { years: 50 } }),
+                    },
+
+                    {
+                      description: '25 anos de contribuição',
+                      satisfiable: startBefore(due),
+                      executor: total({
+                        expected: { years: 25 },
+                        processors: { '^': filter(isTeacher) },
+                      }),
                     },
                   ],
                 },
@@ -184,11 +170,6 @@ const possibilities: Possibility[] = [
 
       b) sessenta e cinco anos de idade, se homem, e sessenta anos de idade, se
       mulher, com proventos proporcionais ao tempo de contribuição.
-
-      § 5º - Os requisitos de idade e de tempo de contribuição serão reduzidos em
-      cinco anos, em relação ao disposto no § 1º, III, "a", para o professor que
-      comprove exclusivamente tempo de efetivo exercício das funções de
-      magistério na educação infantil e no ensino fundamental e médio.
       (...)
     `,
     requisites: new Engine<Input>({
@@ -198,18 +179,18 @@ const possibilities: Possibility[] = [
 
         {
           title: 'Tempo de serviço público',
-          description: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
+          details: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
           executor: total({
             expected: { years: 10 },
             processors: {
-              '^': processors.filter(isPublic),
+              '^': filter(isPublic),
             },
           }),
         },
 
         {
           title: 'Tempo no cargo de aposentadoria',
-          description: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
+          details: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
           executor: last({ expected: { years: 5 } }),
         },
 
@@ -218,27 +199,19 @@ const possibilities: Possibility[] = [
           any: [
             {
               title: 'Homem',
-              description: `sessenta e cinco anos de idade, se homem`,
+              description: '65 anos',
               all: [
                 { executor: sex(MALE) },
-
-                {
-                  description: '65 anos de idade',
-                  executor: age({ expected: { years: 65 } }),
-                },
+                { executor: age({ expected: { years: 65 } }) },
               ],
             },
 
             {
               title: 'Mulher',
-              description: `sessenta anos de idade, se mulher`,
+              description: '60 anos',
               all: [
                 { executor: sex(FEMALE) },
-
-                {
-                  description: '60 anos de idade',
-                  executor: age({ expected: { years: 60 } }),
-                },
+                { executor: age({ expected: { years: 60 } }) },
               ],
             },
           ],
