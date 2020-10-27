@@ -6,6 +6,8 @@ import { Box, Icons, styled, t, css, classnames } from '~design'
 
 const { Engine } = Calculator
 
+type ResultStatus = 'satisfied' | 'unsatisfied' | 'satisfiable'
+
 const d = (date: Date) => format(date, 'dd/MM/yyyy')
 
 const Name = styled.th<{ depth: number }>`
@@ -42,10 +44,11 @@ const period = ({ from, to }: Calculator.RequisiteResult) => {
 
 const Result: React.FC<{
   result: Calculator.RequisiteResult[]
+  status: ResultStatus
   root?: boolean
-}> = ({ result, root }) => (
+}> = ({ result, root, status }) => (
   <ResultDate>
-    {result.length ? (
+    {result.length && status !== 'unsatisfied' ? (
       <ul>
         {result.map(({ from, to }) => (
           <li key={`${from}-${to}`}>
@@ -61,7 +64,7 @@ const Result: React.FC<{
 
 const Icon: React.FC<{
   className?: string
-  status: 'satisfied' | 'unsatisfied' | 'satisfiable'
+  status: ResultStatus
 }> = ({ status, className = '' }) =>
   status === 'satisfiable' ? (
     <Icons.Alert className={`text-warning ${className}`} />
@@ -83,21 +86,24 @@ const getStatus = (
 
 const ChainResult: React.FC<{
   depth: number
+  rootStatus: 'satisfied' | 'satisfiable' | 'unsatisfied'
   rule: Calculator.Rule
   chain: Calculator.RequisiteChain<Calculator.CalculatorInput>
   deadEnd?: boolean
-}> = ({ rule, chain, depth, deadEnd: parentDeadEnd }) => {
+}> = ({ rule, chain, depth, rootStatus, deadEnd: parentDeadEnd }) => {
   const { title, description, lastResult } = chain
   const children = Engine.getChildren(chain)
   const status = getStatus(rule, chain)
   const deadEnd = (parentDeadEnd && depth > 0) || status === 'unsatisfied'
+  const irrelevant =
+    deadEnd && (rootStatus === 'satisfied' || rootStatus === 'satisfiable')
 
   const name = title ?? description
 
   return (
     <>
       {name ? (
-        <tr className={deadEnd ? 'opacity-50' : ''}>
+        <tr className={irrelevant ? 'opacity-50' : ''}>
           <Name depth={depth}>
             {depth ? `└─` : null}
             <span>{name}</span>
@@ -107,7 +113,7 @@ const ChainResult: React.FC<{
           </Name>
 
           <td className="pl-4 relative">
-            <Result result={lastResult} />
+            <Result result={lastResult} status={status} />
             <div className="absolute top-0 right-0 mt-1">
               <Icon status={status} />
             </div>
@@ -122,6 +128,7 @@ const ChainResult: React.FC<{
           chain={child}
           depth={name ? depth + 1 : depth}
           deadEnd={deadEnd}
+          rootStatus={rootStatus}
         />
       ))}
     </>
@@ -145,11 +152,13 @@ const Possibility: React.FC<{
       <AsideTitle>{possibility.title}</AsideTitle>
 
       <div className="absolute top-0 right-0 mt-3 mr-2 flex items-center">
-        <Result result={result} root />
+        <Result result={result} status={status} root />
         <Icon status={status} className="ml-2 text-800" />
       </div>
 
-      <table className="w-full">
+      <table
+        className={`w-full ${status === 'unsatisfied' ? 'opacity-50' : ''}`}
+      >
         <thead className="text-200">
           <tr>
             <th>Condição:</th>
@@ -161,6 +170,7 @@ const Possibility: React.FC<{
           <ChainResult
             rule={rule}
             chain={possibility.requisites.chain}
+            rootStatus={status}
             depth={0}
           />
         </TBody>
