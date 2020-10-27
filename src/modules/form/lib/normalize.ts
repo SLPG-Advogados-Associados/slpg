@@ -7,7 +7,7 @@ const parse = {
   stringToDate: (
     format = 'dd/MM/yyyy'
   ): Yup.TransformFunction<Yup.DateSchema> =>
-    function(_value: Date | string, value: string) {
+    function (_value: Date | string, value: string) {
       if (!value) return null
       if (value.length !== format.length) return new Date(NaN)
       const parsed = parseDate(value, format, new Date())
@@ -16,10 +16,9 @@ const parse = {
 }
 
 const schemas = {
+  ...Yup,
   date: (format?: string) =>
-    Yup.date()
-      .nullable()
-      .transform(parse.stringToDate(format)),
+    Yup.date().nullable().transform(parse.stringToDate(format)),
 }
 
 export { format, parse, schemas }
