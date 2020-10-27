@@ -6,8 +6,18 @@ import { dates } from './dates'
 
 const { TEACHER } = Post
 const { MALE, FEMALE } = Sex
+const { startBefore } = Engine.satisfy
 
-const { sex, contribution, age, after, before } = reachers
+const {
+  sex,
+  contribution: {
+    total,
+    processors: { filter },
+  },
+  age,
+  after,
+  before,
+} = reachers
 
 const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
 
@@ -33,7 +43,7 @@ const possibilities = [
           any: [
             {
               title: 'Geral',
-              description: `a) aos trinta e cinco anos de serviço, se homem, e aos trinta, se mulher, com proventos integrais;`,
+              details: `a) aos trinta e cinco anos de serviço, se homem, e aos trinta, se mulher, com proventos integrais;`,
               any: [
                 {
                   title: 'Homem',
@@ -41,7 +51,8 @@ const possibilities = [
                   all: [
                     { executor: sex(MALE) },
                     {
-                      executor: contribution.total({ expected: { years: 35 } }),
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 35 } }),
                     },
                   ],
                 },
@@ -52,7 +63,8 @@ const possibilities = [
                   all: [
                     { executor: sex(FEMALE) },
                     {
-                      executor: contribution.total({ expected: { years: 30 } }),
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 30 } }),
                     },
                   ],
                 },
@@ -61,19 +73,18 @@ const possibilities = [
 
             {
               title: 'Magistério',
-              description: `b) aos trinta anos de efetivo exercício em funções de magistério, se professor, e vinte e cinco, se professora, com proventos integrais;`,
+              details: `b) aos trinta anos de efetivo exercício em funções de magistério, se professor, e vinte e cinco, se professora, com proventos integrais;`,
               any: [
                 {
                   title: 'Homem',
-                  description: `30 anos de serviço em funções de magistério`,
+                  description: `30 anos de serviço`,
                   all: [
                     { executor: sex(MALE) },
                     {
-                      executor: contribution.total({
+                      satisfiable: startBefore(due),
+                      executor: total({
                         expected: { years: 30 },
-                        processors: {
-                          '^': contribution.processors.filter(isTeacher),
-                        },
+                        processors: { '^': filter(isTeacher) },
                       }),
                     },
                   ],
@@ -81,15 +92,14 @@ const possibilities = [
 
                 {
                   title: 'Mulher',
-                  description: `25 anos de serviço em funções de magistério`,
+                  description: `25 anos de serviço`,
                   all: [
                     { executor: sex(FEMALE) },
                     {
-                      executor: contribution.total({
+                      satisfiable: startBefore(due),
+                      executor: total({
                         expected: { years: 25 },
-                        processors: {
-                          '^': contribution.processors.filter(isTeacher),
-                        },
+                        processors: { '^': filter(isTeacher) },
                       }),
                     },
                   ],
@@ -121,34 +131,28 @@ const possibilities = [
           any: [
             {
               title: 'Tempo total de contribuição',
-              description: `c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher, com proventos proporcionais a esse tempo;`,
+              details: `c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher, com proventos proporcionais a esse tempo;`,
               any: [
                 {
+                  title: 'Homem',
+                  description: '30 anos de serviço',
                   all: [
+                    { executor: sex(MALE) },
                     {
-                      description: 'Homem',
-                      executor: sex(MALE),
-                    },
-                    {
-                      description: '30 anos de serviço',
-                      executor: contribution.total({
-                        expected: { years: 30 },
-                      }),
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 30 } }),
                     },
                   ],
                 },
 
                 {
+                  title: 'Mulher',
+                  description: '25 anos de serviço',
                   all: [
+                    { executor: sex(FEMALE) },
                     {
-                      description: 'Mulher',
-                      executor: sex(FEMALE),
-                    },
-                    {
-                      description: '25 anos de serviço',
-                      executor: contribution.total({
-                        expected: { years: 25 },
-                      }),
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 25 } }),
                     },
                   ],
                 },
@@ -157,31 +161,23 @@ const possibilities = [
 
             {
               title: 'Idade',
-              description: `d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher, com proventos proporcionais ao tempo de serviço.`,
+              details: `d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher, com proventos proporcionais ao tempo de serviço.`,
               any: [
                 {
+                  title: 'Homem',
+                  description: '65 anos de idade',
                   all: [
-                    {
-                      description: 'Homem',
-                      executor: sex(MALE),
-                    },
-                    {
-                      description: '65 anos de idade',
-                      executor: age({ expected: { years: 65 } }),
-                    },
+                    { executor: sex(MALE) },
+                    { executor: age({ expected: { years: 65 } }) },
                   ],
                 },
 
                 {
+                  title: 'Mulher',
+                  description: '60 anos de idade',
                   all: [
-                    {
-                      description: 'Mulher',
-                      executor: sex(FEMALE),
-                    },
-                    {
-                      description: '60 anos de idade',
-                      executor: age({ expected: { years: 60 } }),
-                    },
+                    { executor: sex(FEMALE) },
+                    { executor: age({ expected: { years: 60 } }) },
                   ],
                 },
               ],
