@@ -1,7 +1,7 @@
 import React from 'react'
 import { format as _format } from 'date-fns'
 import { styled } from '~design'
-import { CalculatorInput } from '../lib/calculator'
+import { CalculatorInput, Contribution } from '../lib/calculator'
 
 const format = (value?: Date | null) =>
   value ? _format(value, 'dd/MM/yyyy') : null
@@ -31,39 +31,57 @@ const DefinitionList = styled.dl`
   }
 `
 
-const InputInfo: React.FC<{ input: CalculatorInput }> = ({ input }) => (
-  <DefinitionList>
-    <dt>Sexo:</dt>
-    <dd>{input.gender}</dd>
+type Careers = {
+  [key: number]: Contribution[]
+}
 
-    <dt>Data de nascimento:</dt>
-    <dd>{format(input.birthDate)}</dd>
+const InputInfo: React.FC<{ input: CalculatorInput }> = ({ input }) => {
+  const careers: Careers = {}
 
-    <dt>Contribuições:</dt>
-    <dd>
-      <table>
-        <thead className="text-200">
-          <tr>
-            <th>Início</th>
-            <th>Fim</th>
-            <th>Cargo</th>
-          </tr>
-        </thead>
+  for (const contribution of input.contributions) {
+    const { career } = contribution.service
+    careers[career] = careers[career] ?? []
+    careers[career].push(contribution)
+  }
 
-        <tbody className="text-100">
-          {input.contributions.map((contribution, index) => (
-            <tr key={index}>
-              <td>{format(contribution.start)}</td>
-              <td>{format(contribution.end) || 'atual'}</td>
-              <td>
-                {contribution.service.kind}, {contribution.service.post}
-              </td>
+  return (
+    <DefinitionList>
+      <dt>Sexo:</dt>
+      <dd>{input.sex}</dd>
+
+      <dt>Data de nascimento:</dt>
+      <dd>{format(input.birthDate)}</dd>
+
+      <dt>Contribuições:</dt>
+      <dd>
+        <table>
+          <thead className="text-200">
+            <tr>
+              <th>Carreira</th>
+              <th>Início</th>
+              <th>Fim</th>
+              <th>Cargo</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </dd>
-  </DefinitionList>
-)
+          </thead>
+
+          <tbody className="text-100">
+            {Object.values(careers).map((contributions, career) =>
+              contributions.map(({ start, end, service }, index) => (
+                <tr key={`${career}-${index}`}>
+                  <td>{career + 1}</td>
+                  <td>{format(start)}</td>
+                  <td>{format(end) || 'atual'}</td>
+                  <td>
+                    {service.kind}, {service.post}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </dd>
+    </DefinitionList>
+  )
+}
 
 export { InputInfo }
