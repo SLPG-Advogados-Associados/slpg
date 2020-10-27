@@ -1,16 +1,19 @@
 import { get } from 'object-path-immutable'
 
 import { str } from '../debug'
-import { union, any, all } from './result'
+import { union, any, all, overlaps } from './result'
 
 type Meta = {
   title?: string
   description?: string
+  details?: string
   debug?: ((...args: unknown[]) => void) | boolean
   lastResult?: RequisiteResult[]
+  satisfiable?: (result: RequisiteResult[]) => boolean
 }
 
-export type RequisiteResult = { from?: Date; to?: Date }
+export type Period = { from?: Date; to?: Date }
+export type RequisiteResult = Period // alias, should deprecate
 export type RequisiteExecutor<I extends {}> = (input: I) => RequisiteResult[]
 
 // @todo: replace as it is deprecated
@@ -24,7 +27,6 @@ export type RequisiteGroup<I> = RequisiteGroupAny<I> | RequisiteGroupAll<I>
 export type RequisiteChain<I> = RequisiteGroup<I> | Requisite<I>
 
 type Partial<I extends {}> = [RequisiteChain<I>, RequisiteResult[], I]
-
 type Reference<I extends {}> = [string[][], RequisiteChain<I>]
 
 class Engine<I extends {}> {
@@ -44,16 +46,55 @@ class Engine<I extends {}> {
   /**
    * Verifies if a provided chain is valid.
    */
-  private static validChain(chain: RequisiteChain<unknown>) {
+  private static validChain<I extends unknown>(chain: RequisiteChain<I>) {
     return chain && ('executor' in chain || 'all' in chain || 'any' in chain)
   }
 
-  public static getName(chain: RequisiteChain<unknown>) {
+  public static getName<I extends unknown>(chain: RequisiteChain<I>) {
     return chain.title ?? chain.description ?? null
   }
 
-  public static getChildren(chain: RequisiteChain<unknown>) {
+  public static getChildren<I extends unknown>(chain: RequisiteChain<I>) {
     return 'all' in chain ? chain.all : 'any' in chain ? chain.any : []
+  }
+
+  public static isSatisfied<I extends unknown>(
+    chain: RequisiteChain<I>,
+    constraint: Period
+  ) {
+    return chain.lastResult.length
+      ? chain.lastResult.some(
+          (result) =>
+            overlaps(constraint, result) || overlaps(result, constraint)
+        )
+      : false
+  }
+
+  public static isSatisfiable<I extends unknown>(chain: RequisiteChain<I>) {
+    const result = chain.lastResult ?? []
+
+    // early return if not even a result is available.
+    if (!result.length) return false
+
+    // early return if we know this chain level is already satisfiable
+    if (result.length && chain.satisfiable && chain.satisfiable(result)) {
+      return true
+    }
+
+    // ensure at least one child is satisfiable
+    for (const child of Engine.getChildren(chain)) {
+      if (Engine.isSatisfiable(child)) {
+        return true
+      }
+    }
+
+    // false, otherwise
+    return false
+  }
+
+  public static satisfy = {
+    startBefore: (date: Date) => (result: RequisiteResult[]) =>
+      result.length ? result.some(({ from }) => !from || from < date) : false,
   }
 
   /**
@@ -88,6 +129,7 @@ class Engine<I extends {}> {
 
     // save partials for posterior usage.
     chain.lastResult = result
+    // save partials for further analysis
     this.partials.push([chain, result, input])
 
     return union(result)

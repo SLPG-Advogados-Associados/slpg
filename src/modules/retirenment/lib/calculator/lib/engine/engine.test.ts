@@ -129,7 +129,7 @@ describe('retirement/calculator/engine', () => {
     })
   })
 
-  describe('result', () => {
+  describe('partials', () => {
     it('should save flat partial results for root chain', () => {
       const engine = new Engine(rules.always)
       engine.execute({})

@@ -1,4 +1,4 @@
-import { RequisiteResult } from '../../types'
+import { RequisiteResult } from '.'
 import * as date from '../date'
 
 /*

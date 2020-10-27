@@ -7,14 +7,9 @@ import {
   any,
   all,
 } from './result'
-import { period, d, u } from '../test-utils'
+import { d, u, r } from '../test-utils'
 
 describe('retirement/calculator/engine/result', () => {
-  const res = (span: string) => {
-    const [from, to] = period(span)
-    return { from, to }
-  }
-
   describe('before', () => {
     it.each([
       [d('80'), d('90'), true],
@@ -76,7 +71,7 @@ describe('retirement/calculator/engine/result', () => {
       ['30^60', '20^40', true], // intersected
       ['30^40', '50^60', false], // outer
     ])('%j overlaps with %j: %j', (a, b, result) => {
-      expect(overlaps(res(a), res(b))).toBe(result)
+      expect(overlaps(r(a), r(b))).toBe(result)
     })
   })
 
@@ -117,7 +112,7 @@ describe('retirement/calculator/engine/result', () => {
       // with partial overlap
       [['50^70', '80^90', '40^60'], ['40^70', '80^90']],
     ])('%j should result in %j', (input, output) => {
-      expect(union(input.map(res))).toEqual(output.map(res))
+      expect(union(input.map(r))).toEqual(output.map(r))
     })
   })
 
@@ -161,7 +156,7 @@ describe('retirement/calculator/engine/result', () => {
       // custom
       [['40^50', '30^60'], ['40^50']]
     ])('%j should result in %j', (input, output) => {
-      expect(intersection(input.map(res))).toEqual(output.map(res))
+      expect(intersection(input.map(r))).toEqual(output.map(r))
     })
   })
 
@@ -222,7 +217,7 @@ describe('retirement/calculator/engine/result', () => {
       [[['50^70', '80^90', '40^60']], ['40^70', '80^90']],
       [[['50^70'], ['80^90', '40^60']], ['40^70', '80^90']],
     ])('%j should result in %j', (input, output) => {
-      expect(any(input.map((i) => i.map(res)))).toEqual(output.map(res))
+      expect(any(input.map((i) => i.map(r)))).toEqual(output.map(r))
     })
   })
 
@@ -286,7 +281,7 @@ describe('retirement/calculator/engine/result', () => {
       // custom
       [[['20^50', '70^90'], ['40^80'], ['30^60']], ['40^50']]
     ])('%j should result in %j', (input, output) => {
-      expect(all(input.map((i) => i.map(res)))).toEqual(output.map(res))
+      expect(all(input.map((i) => i.map(r)))).toEqual(output.map(r))
     })
   })
 })
