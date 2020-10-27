@@ -24,7 +24,7 @@ const byFrom = (a: RequisiteResult, b: RequisiteResult) =>
     : 0
 
 const overlaps = (a: RequisiteResult, b: RequisiteResult) =>
-  ((before(a.from, b.from) || !b.from) && before(b.from, a.to)) ||
+  ((before(a.from, b.from) || !b.from) && (before(b.from, a.to) || !a.to)) ||
   (after(b.to, a.from) && after(a.to, b.to))
 
 /**

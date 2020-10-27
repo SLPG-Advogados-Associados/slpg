@@ -70,6 +70,10 @@ describe('retirement/calculator/engine/result', () => {
       ['30^60', '50^70', true], // intersected
       ['30^60', '20^40', true], // intersected
       ['30^40', '50^60', false], // outer
+
+      // custom
+      ['^', '95^2005', true],
+      ['95^2005', '^', true],
     ])('%j overlaps with %j: %j', (a, b, result) => {
       expect(overlaps(r(a), r(b))).toBe(result)
     })
@@ -154,7 +158,8 @@ describe('retirement/calculator/engine/result', () => {
       [['50^70', '80^90', '40^60'], []],
 
       // custom
-      [['40^50', '30^60'], ['40^50']]
+      [['40^50', '30^60'], ['40^50']],
+      [['^', '95^2005'], ['95^2005']]
     ])('%j should result in %j', (input, output) => {
       expect(intersection(input.map(r))).toEqual(output.map(r))
     })
@@ -279,7 +284,8 @@ describe('retirement/calculator/engine/result', () => {
       [[['50^70'], ['80^90', '40^60']], ['50^60']],
 
       // custom
-      [[['20^50', '70^90'], ['40^80'], ['30^60']], ['40^50']]
+      [[['20^50', '70^90'], ['40^80'], ['30^60']], ['40^50']],
+      [[['^'], ['95^2005']], ['95^2005']],
     ])('%j should result in %j', (input, output) => {
       expect(all(input.map((i) => i.map(r)))).toEqual(output.map(r))
     })
