@@ -10,20 +10,46 @@ const meta = {
   title: 'Calculadora de Aposentadoria',
   description: 'Estude aqui suas possibilidades de aposentadoria',
 }
+
+type ParsedInput = {
+  sex: string
+  birthDate: string
+  contributions: {
+    start: string
+    end?: string
+    service: {
+      title?: string
+      kind: string
+      post: string
+      career: string
+    }
+  }[]
+}
+
 const parseInput = (raw: string): Calculator.CalculatorInput => {
   if (!raw) return null
 
-  const parsed = qs.parse(decodeURIComponent(raw), {})
+  const parsed = (qs.parse(
+    decodeURIComponent(raw),
+    {}
+  ) as unknown) as ParsedInput
 
-  parsed.birthDate = new Date(parsed.birthDate)
-  parsed.contributions = parsed.contributions || []
-
-  for (const contribution of parsed.contributions) {
-    contribution.start = new Date(contribution.start)
-    contribution.end = contribution.end ? new Date(contribution.end) : undefined
+  return {
+    sex: parsed.sex as Calculator.Sex,
+    birthDate: new Date(parsed.birthDate as string),
+    contributions: parsed.contributions.map((contribution) => ({
+      start: new Date(contribution.start),
+      end: contribution.end ? new Date(contribution.end) : undefined,
+      salary: 0,
+      service: {
+        title: contribution.service.title,
+        kind: contribution.service.kind as Calculator.ServiceKind,
+        post: contribution.service.post as Calculator.Post,
+        // post: Calculator.Post['OTHER'],
+        career: Number(contribution.service.career),
+      },
+    })),
   }
-
-  return parsed
 }
 
 const CalculatorResultPage = () => {
@@ -32,8 +58,6 @@ const CalculatorResultPage = () => {
   const input = useMemo(() => parseInput(router.query.input), [
     router.query.input,
   ])
-
-  // @todo: check inf input is ok
 
   const result = useMemo(() => (input ? Calculator.calculate(input) : null), [
     input,
