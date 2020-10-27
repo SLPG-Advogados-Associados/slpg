@@ -1,5 +1,6 @@
 import { CalculatorInput } from './types'
 import { rules } from './rules'
+import { all } from './lib/engine/result'
 
 /**
  * Execute input against rules.
@@ -11,7 +12,13 @@ const calculate = (input: CalculatorInput) =>
         rule,
         rule.possibilities.map(
           (possibility) =>
-            [possibility, possibility.requisites.execute(input)] as const
+            [
+              possibility,
+              all([
+                [{ from: rule.promulgation, to: rule.due }],
+                possibility.requisites.execute(input),
+              ]),
+            ] as const
         ),
       ] as const
   )
