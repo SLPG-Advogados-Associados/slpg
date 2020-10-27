@@ -81,15 +81,11 @@ class Engine<I extends {}> {
       return true
     }
 
-    // ensure at least one child is satisfiable
-    for (const child of Engine.getChildren(chain)) {
-      if (Engine.isSatisfiable(child)) {
-        return true
-      }
-    }
-
-    // false, otherwise
-    return false
+    return 'all' in chain || 'any' in chain
+      ? Engine.getChildren(chain)['all' in chain ? 'every' : 'some'](
+          Engine.isSatisfiable
+        )
+      : false
   }
 
   public static satisfy = {
