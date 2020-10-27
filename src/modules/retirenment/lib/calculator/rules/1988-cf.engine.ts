@@ -15,8 +15,6 @@ const {
     processors: { filter },
   },
   age,
-  after,
-  before,
 } = reachers
 
 const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
@@ -36,51 +34,24 @@ const possibilities = [
     `,
     requisites: new Engine<CalculatorInput>({
       all: [
-        { executor: after(promulgation) },
-        { executor: before(due) },
         {
           title: 'Tempo de Contribuição',
           any: [
             {
-              title: 'Geral',
-              details: `a) aos trinta e cinco anos de serviço, se homem, e aos trinta, se mulher, com proventos integrais;`,
-              any: [
+              title: 'Homem',
+              all: [
+                { executor: sex(MALE) },
                 {
-                  title: 'Homem',
-                  description: '35 anos de serviço',
-                  all: [
-                    { executor: sex(MALE) },
+                  any: [
                     {
+                      title: 'Geral',
+                      description: '35 anos de contribuição',
                       satisfiable: startBefore(due),
                       executor: total({ expected: { years: 35 } }),
                     },
-                  ],
-                },
-
-                {
-                  title: 'Mulher',
-                  description: '30 anos de serviço',
-                  all: [
-                    { executor: sex(FEMALE) },
                     {
-                      satisfiable: startBefore(due),
-                      executor: total({ expected: { years: 30 } }),
-                    },
-                  ],
-                },
-              ],
-            },
-
-            {
-              title: 'Magistério',
-              details: `b) aos trinta anos de efetivo exercício em funções de magistério, se professor, e vinte e cinco, se professora, com proventos integrais;`,
-              any: [
-                {
-                  title: 'Homem',
-                  description: `30 anos de serviço`,
-                  all: [
-                    { executor: sex(MALE) },
-                    {
+                      title: 'Magistério',
+                      description: '30 anos de contribuição',
                       satisfiable: startBefore(due),
                       executor: total({
                         expected: { years: 30 },
@@ -89,13 +60,24 @@ const possibilities = [
                     },
                   ],
                 },
+              ],
+            },
 
+            {
+              title: 'Mulher',
+              all: [
+                { executor: sex(FEMALE) },
                 {
-                  title: 'Mulher',
-                  description: `25 anos de serviço`,
-                  all: [
-                    { executor: sex(FEMALE) },
+                  any: [
                     {
+                      title: 'Geral',
+                      description: '30 anos de contribuição',
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 30 } }),
+                    },
+                    {
+                      title: 'Magistério',
+                      description: '25 anos de contribuição',
                       satisfiable: startBefore(due),
                       executor: total({
                         expected: { years: 25 },
@@ -125,8 +107,6 @@ const possibilities = [
 
     requisites: new Engine<CalculatorInput>({
       all: [
-        { executor: after(promulgation) },
-        { executor: before(due) },
         {
           any: [
             {
