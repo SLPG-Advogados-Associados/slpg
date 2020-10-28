@@ -1,5 +1,6 @@
-import { isValid, sub } from './date'
+import { isValid, sub, format } from './date'
 import { RequisiteChain, evaluate } from './engine'
+import { Rule } from './rule'
 import { Post, Service, ServiceKind, Sex, CalculatorInput } from '../types'
 
 const { OTHER, TEACHER } = Post
@@ -179,35 +180,67 @@ const parse = (text: string) => {
   return result
 }
 
-/**
- * Jest test generator for human-language parsed tests of requisite chains.
- */
-/* eslint-disable no-undef */
-const testChain = (
-  title: string,
-  chain: RequisiteChain<CalculatorInput>,
-  items: Array<[string, string[]]>,
-  _it: jest.It = it
-) => {
-  const register = () =>
-    _it.each(items)('%s: %s', (input, output) =>
-      expect(evaluate(parse(input), chain)).toEqual(output.map(result))
-    )
+/* eslint-disable no-undef, @typescript-eslint/no-explicit-any */
+type TestItems = [string, string[]]
 
-  return title ? describe(title, register) : register()
+/**
+ * Wrapper for testers to allow use of only/skip
+ */
+const tester = <F extends (...args: any[]) => void>(
+  fn: F
+): F & { only: F; skip: F } => {
+  const extended = fn as any
+
+  extended.only = (...args) => fn(...args, it.only)
+  extended.skip = (...args) => fn(...args, it.skip)
+
+  return extended
 }
 
-testChain.only = (
-  title: string,
-  chain: RequisiteChain<CalculatorInput>,
-  items: Array<[string, string[]]>
-) => testChain(title, chain, items, it.only)
+const simplify = (item: TestItems) =>
+  [
+    item[0],
+    item[1]
+      .map(period)
+      .map((dates) =>
+        dates.map((date) => (date ? format(date, 'yyyy-MM-dd') : ''))
+      )
+      .map(([from, to]) => `${from}^${to}`),
+  ] as const
 
-testChain.skip = (
-  title: string,
-  chain: RequisiteChain<CalculatorInput>,
-  items: Array<[string, string[]]>
-) => testChain(title, chain, items, it.skip)
+const test = {
+  /**
+   * Jest test generator for human-language parsed tests of rule possibilities.
+   */
+  possibility: tester(
+    (rule: Rule, index: number, items: TestItems[], _it: jest.It = it) =>
+      _it.each(items.map(simplify))('%s: %j', (input, output) =>
+        expect(rule.executePossibility(index, parse(input))).toEqual(
+          output.map(result)
+        )
+      )
+  ),
+
+  /**
+   * Jest test generator for human-language parsed tests of requisite chains.
+   */
+  chain: tester(
+    (
+      title: string,
+      chain: RequisiteChain<CalculatorInput>,
+      items: Array<[string, string[]]>,
+      _it: jest.It = it
+    ) => {
+      const register = () =>
+        _it.each(items)('%s: %s', (input, output) =>
+          expect(evaluate(parse(input), chain)).toEqual(output.map(result))
+        )
+
+      return title ? describe(title, register) : register()
+    }
+  ),
+}
+
 /* eslint-enable */
 
 export {
@@ -227,5 +260,5 @@ export {
   result,
   r,
   parse,
-  testChain,
+  test,
 }
