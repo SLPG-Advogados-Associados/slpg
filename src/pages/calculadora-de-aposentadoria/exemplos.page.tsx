@@ -8,52 +8,35 @@ import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { Box } from '~design'
 
-const samples = [
+const { MALE } = Calculator.Sex
+const { PUBLIC } = Calculator.ServiceKind
+const { OTHER } = Calculator.Post
+
+const samples: Calculator.CalculatorInput[] = [
   {
-    description: '',
-    input: {
-      gender: 'MALE',
-      birthDate: '1940-01-01T00:00:00.000Z',
-      contributions: [
-        {
-          start: '1960-01-01T00:00:00.000Z',
-          salary: 1000,
-          service: { kind: 'PUBLIC', post: 'OTHER' },
-        },
-      ],
-    },
+    sex: MALE,
+    birthDate: new Date('1940-01-01T00:00:00.000Z'),
+    contributions: [
+      {
+        start: new Date('1960-01-01T00:00:00.000Z'),
+        salary: 1000,
+        service: { kind: PUBLIC, post: OTHER, career: 1 },
+      },
+    ],
   },
 
   {
-    description: '',
-    input: {
-      gender: 'MALE',
-      birthDate: '1940-01-01T00:00:00.000Z',
-      contributions: [
-        {
-          start: '1965-01-01T00:00:00.000Z',
-          salary: 1000,
-          service: { kind: 'PUBLIC', post: 'OTHER' },
-        },
-      ],
-    },
+    sex: MALE,
+    birthDate: new Date('1940-01-01T00:00:00.000Z'),
+    contributions: [
+      {
+        start: new Date('1965-01-01T00:00:00.000Z'),
+        salary: 1000,
+        service: { kind: PUBLIC, post: OTHER, career: 1 },
+      },
+    ],
   },
 ]
-
-const parse = ({
-  description,
-  input,
-}): { description: string; input: Calculator.CalculatorInput } => {
-  input.birthDate = new Date(input.birthDate)
-  input.contributions = input.contributions || []
-
-  for (const contribution of input.contributions) {
-    contribution.start = new Date(contribution.start)
-    contribution.end = contribution.end ? new Date(contribution.end) : undefined
-  }
-
-  return { description, input }
-}
 
 const meta = {
   title: 'Calculadora de Aposentadoria',
@@ -63,7 +46,7 @@ const meta = {
 const CalculatorSamplePage = () => {
   const router = useRouter<{ input: string }>()
 
-  const select = input =>
+  const select = (input) =>
     router.push({
       pathname: '/calculadora-de-aposentadoria/resultado',
       query: {
@@ -86,7 +69,7 @@ const CalculatorSamplePage = () => {
       <main>
         <Section className="bg-aside">
           <ul className="flex -mx-4 flex-wrap justify-center">
-            {samples.map(parse).map(({ input }, index) => (
+            {samples.map((input, index) => (
               <Box
                 as="li"
                 key={index}
