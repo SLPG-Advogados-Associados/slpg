@@ -65,11 +65,3 @@ export interface Possibility {
   description: string
   requisites: Engine<CalculatorInput>
 }
-
-export interface Rule {
-  title: string
-  description: string
-  due?: Date
-  promulgation: Date
-  possibilities: Possibility[]
-}

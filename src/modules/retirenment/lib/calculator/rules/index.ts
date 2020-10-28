@@ -1,4 +1,4 @@
-import { Rule } from '../types'
+import type { Rule } from '../lib/rule'
 
 const rules: Rule[] = [
   require('./1988-cf.engine').rule,
