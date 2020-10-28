@@ -1,12 +1,13 @@
 /* cspell: disable */
-import { Rule, Possibility, Sex, CalculatorInput } from '../types'
+import { Possibility, Sex, CalculatorInput } from '../types'
 import * as reachers from '../lib/reachers'
 import { Engine } from '../lib/engine'
+import { Rule } from '../lib/rule'
 import { isTeacher, isPublic } from '../lib/predicates'
 import { dates } from './dates'
 
 const { MALE, FEMALE } = Sex
-const { sex, contribution, age, after, before } = reachers
+const { sex, contribution, age } = reachers
 const { processors, last, total } = contribution
 const { filter } = processors
 const { startBefore } = Engine.satisfy
@@ -38,9 +39,6 @@ const possibilities: Possibility[] = [
     `,
     requisites: new Engine<Input>({
       all: [
-        { executor: after(promulgation) },
-        { executor: before(due) },
-
         {
           title: 'Tempo de serviço público',
           description: '10 anos',
@@ -64,11 +62,10 @@ const possibilities: Possibility[] = [
           title: 'Idade e tempo de contribuição',
           any: [
             {
-              title: 'Geral',
-              details: `a) sessenta anos de idade e trinta e cinco de contribuição, se homem, e cinqüenta e cinco anos de idade e trinta de contribuição, se mulher;`,
+              title: 'Homem',
               any: [
                 {
-                  title: 'Homem',
+                  title: 'Geral',
                   all: [
                     { executor: sex(MALE) },
                     {
@@ -84,42 +81,13 @@ const possibilities: Possibility[] = [
                 },
 
                 {
-                  title: 'Mulher',
-                  all: [
-                    { executor: sex(FEMALE) },
-                    {
-                      description: '55 anos de idade',
-                      executor: age({ expected: { years: 55 } }),
-                    },
-
-                    {
-                      description: '30 anos de contribuição',
-                      satisfiable: startBefore(due),
-                      executor: total({ expected: { years: 30 } }),
-                    },
-                  ],
-                },
-              ],
-            },
-
-            {
-              title: 'Magistério',
-              details: `
-                § 5º - Os requisitos de idade e de tempo de contribuição serão reduzidos em
-                cinco anos, em relação ao disposto no § 1º, III, "a", para o professor que
-                comprove exclusivamente tempo de efetivo exercício das funções de
-                magistério na educação infantil e no ensino fundamental e médio.
-              `,
-              any: [
-                {
-                  title: 'Homem',
+                  title: 'Magistério',
                   all: [
                     { executor: sex(MALE) },
                     {
                       description: '55 anos de idade',
                       executor: age({ expected: { years: 55 } }),
                     },
-
                     {
                       description: '30 anos de contribuição',
                       satisfiable: startBefore(due),
@@ -130,16 +98,36 @@ const possibilities: Possibility[] = [
                     },
                   ],
                 },
+              ],
+            },
+
+            {
+              title: 'Mulher',
+              any: [
+                {
+                  title: 'Geral',
+                  all: [
+                    { executor: sex(FEMALE) },
+                    {
+                      description: '55 anos de idade',
+                      executor: age({ expected: { years: 55 } }),
+                    },
+                    {
+                      description: '30 anos de contribuição',
+                      satisfiable: startBefore(due),
+                      executor: total({ expected: { years: 30 } }),
+                    },
+                  ],
+                },
 
                 {
-                  title: 'Mulher',
+                  title: 'Magistério',
                   all: [
                     { executor: sex(FEMALE) },
                     {
                       description: '50 anos de idade',
                       executor: age({ expected: { years: 50 } }),
                     },
-
                     {
                       description: '25 anos de contribuição',
                       satisfiable: startBefore(due),
@@ -174,9 +162,6 @@ const possibilities: Possibility[] = [
     `,
     requisites: new Engine<Input>({
       all: [
-        { executor: after(promulgation) },
-        { executor: before(due) },
-
         {
           title: 'Tempo de serviço público',
           details: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
@@ -221,12 +206,12 @@ const possibilities: Possibility[] = [
   },
 ]
 
-const rule: Rule = {
-  promulgation: dates.ec20,
-  due: dates.ec41,
+const rule = new Rule({
+  promulgation,
+  due,
   title: 'EC nº 20 - Regra Permanente',
   description: 'Regra permanente como descrita na EC nº 20, de 1998',
   possibilities,
-}
+})
 
 export { rule }
