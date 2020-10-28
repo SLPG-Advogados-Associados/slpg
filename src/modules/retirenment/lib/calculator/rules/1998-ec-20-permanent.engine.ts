@@ -63,38 +63,41 @@ const possibilities: Possibility[] = [
           any: [
             {
               title: 'Homem',
-              any: [
+              all: [
+                { executor: sex(MALE) },
                 {
-                  title: 'Geral',
-                  all: [
-                    { executor: sex(MALE) },
+                  any: [
                     {
-                      description: '60 anos de idade',
-                      executor: age({ expected: { years: 60 } }),
+                      title: 'Geral',
+                      all: [
+                        {
+                          description: '60 anos de idade',
+                          executor: age({ expected: { years: 60 } }),
+                        },
+                        {
+                          description: '35 anos de contribuição',
+                          satisfiable: startBefore(due),
+                          executor: total({ expected: { years: 35 } }),
+                        },
+                      ],
                     },
-                    {
-                      description: '35 anos de contribuição',
-                      satisfiable: startBefore(due),
-                      executor: total({ expected: { years: 35 } }),
-                    },
-                  ],
-                },
 
-                {
-                  title: 'Magistério',
-                  all: [
-                    { executor: sex(MALE) },
                     {
-                      description: '55 anos de idade',
-                      executor: age({ expected: { years: 55 } }),
-                    },
-                    {
-                      description: '30 anos de contribuição',
-                      satisfiable: startBefore(due),
-                      executor: total({
-                        expected: { years: 30 },
-                        processors: { '^': filter(isTeacher) },
-                      }),
+                      title: 'Magistério',
+                      all: [
+                        {
+                          description: '55 anos de idade',
+                          executor: age({ expected: { years: 55 } }),
+                        },
+                        {
+                          description: '30 anos de contribuição',
+                          satisfiable: startBefore(due),
+                          executor: total({
+                            expected: { years: 30 },
+                            processors: { '^': filter(isTeacher) },
+                          }),
+                        },
+                      ],
                     },
                   ],
                 },
@@ -103,38 +106,41 @@ const possibilities: Possibility[] = [
 
             {
               title: 'Mulher',
-              any: [
+              all: [
+                { executor: sex(FEMALE) },
                 {
-                  title: 'Geral',
-                  all: [
-                    { executor: sex(FEMALE) },
+                  any: [
                     {
-                      description: '55 anos de idade',
-                      executor: age({ expected: { years: 55 } }),
+                      title: 'Geral',
+                      all: [
+                        {
+                          description: '55 anos de idade',
+                          executor: age({ expected: { years: 55 } }),
+                        },
+                        {
+                          description: '30 anos de contribuição',
+                          satisfiable: startBefore(due),
+                          executor: total({ expected: { years: 30 } }),
+                        },
+                      ],
                     },
-                    {
-                      description: '30 anos de contribuição',
-                      satisfiable: startBefore(due),
-                      executor: total({ expected: { years: 30 } }),
-                    },
-                  ],
-                },
 
-                {
-                  title: 'Magistério',
-                  all: [
-                    { executor: sex(FEMALE) },
                     {
-                      description: '50 anos de idade',
-                      executor: age({ expected: { years: 50 } }),
-                    },
-                    {
-                      description: '25 anos de contribuição',
-                      satisfiable: startBefore(due),
-                      executor: total({
-                        expected: { years: 25 },
-                        processors: { '^': filter(isTeacher) },
-                      }),
+                      title: 'Magistério',
+                      all: [
+                        {
+                          description: '50 anos de idade',
+                          executor: age({ expected: { years: 50 } }),
+                        },
+                        {
+                          description: '25 anos de contribuição',
+                          satisfiable: startBefore(due),
+                          executor: total({
+                            expected: { years: 25 },
+                            processors: { '^': filter(isTeacher) },
+                          }),
+                        },
+                      ],
                     },
                   ],
                 },
