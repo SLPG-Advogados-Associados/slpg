@@ -1,13 +1,11 @@
 /* cspell: disable */
-import { testChain } from '../lib/test-utils'
+import { test } from '../lib/test-utils'
 import { rule } from './2003-ec-41-permanent.engine'
 
 const { promulgation, due } = rule
 
 describe('retirement/calculator/rules/2003-ec-41.permanent.engine', () => {
   describe('possibilities', () => {
-    const [integral, proportional] = rule.possibilities
-
     /**
      * (...)
      * III - voluntariamente, desde que cumprido tempo mínimo de dez anos de
@@ -27,7 +25,7 @@ describe('retirement/calculator/rules/2003-ec-41.permanent.engine', () => {
      */
     describe('Integral', () => {
       // prettier-ignore
-      testChain(null, integral.requisites.chain, [        
+      test.possibility(rule, 0, [
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
@@ -114,7 +112,7 @@ describe('retirement/calculator/rules/2003-ec-41.permanent.engine', () => {
      */
     describe('Proporcional', () => {
       // prettier-ignore
-      testChain(null, proportional.requisites.chain, [        
+      test.possibility(rule, 1, [
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  60 anos ✅, servidor por >10 ✅, >5 anos no último ✅

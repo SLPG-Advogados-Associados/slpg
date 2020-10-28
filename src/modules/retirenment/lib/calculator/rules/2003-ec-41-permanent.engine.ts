@@ -1,7 +1,6 @@
 /* cspell: disable */
 import * as reachers from '../lib/reachers'
 import {
-  Rule,
   Possibility,
   Sex,
   Post,
@@ -9,6 +8,7 @@ import {
   CalculatorInput,
   Contribution,
 } from '../types'
+import { Rule } from '../lib/rule'
 import { Engine } from '../lib/engine'
 import { dates } from './dates'
 
@@ -268,12 +268,12 @@ const possibilities: Possibility[] = [
   },
 ]
 
-const rule: Rule = {
-  promulgation: promulgation,
+const rule = new Rule({
+  promulgation,
   due,
   title: 'EC nº 41 - Regra Permanente',
   description: 'Regra permanente como descrita na EC nº 41, de 2003',
   possibilities,
-}
+})
 
 export { rule }
