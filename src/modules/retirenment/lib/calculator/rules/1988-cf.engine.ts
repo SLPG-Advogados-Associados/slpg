@@ -2,10 +2,10 @@
 import * as reachers from '../lib/reachers'
 import { Engine } from '../lib/engine'
 import { Rule } from '../lib/rule'
-import { Sex, Post, CalculatorInput, Contribution } from '../types'
 import { dates } from './dates'
+import { isTeacher } from '../lib/predicates'
+import { Sex, CalculatorInput } from '../types'
 
-const { TEACHER } = Post
 const { MALE, FEMALE } = Sex
 const { startBefore } = Engine.satisfy
 
@@ -17,8 +17,6 @@ const {
   },
   age,
 } = reachers
-
-const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
 
 const due = dates.ec20
 const promulgation = dates.constitution

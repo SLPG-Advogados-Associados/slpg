@@ -1,12 +1,12 @@
 /* cspell: disable */
 import * as reachers from '../lib/reachers'
-import { Possibility, Sex, Post, CalculatorInput, Contribution } from '../types'
+import { Possibility, Sex, CalculatorInput } from '../types'
 import { Rule } from '../lib/rule'
 import { Engine } from '../lib/engine'
+import { isTeacher } from '../lib/predicates'
 import { dates } from './dates'
 
 const { MALE, FEMALE } = Sex
-const { TEACHER } = Post
 
 const { sex, contribution, age, after, before } = reachers
 const { processors, last, total } = contribution
@@ -15,8 +15,6 @@ const { startBefore } = Engine.satisfy
 
 const promulgation = dates.ec20
 const due = dates.ec41
-
-const isTeacher = ({ service: { post } }: Contribution) => post === TEACHER
 
 type Input = CalculatorInput
 
