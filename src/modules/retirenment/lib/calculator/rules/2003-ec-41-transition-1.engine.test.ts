@@ -1,5 +1,5 @@
 /* cspell: disable */
-import { testChain } from '../lib/test-utils'
+import { test } from '../lib/test-utils'
 // @ts-ignore
 import { rule } from './2003-ec-41-transition-1.engine'
 
@@ -7,8 +7,6 @@ const { promulgation, due } = rule
 
 describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
   describe('possibilities', () => {
-    const [first, second] = rule.possibilities
-
     /**
      * (...)
      * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos de idade, se mulher;
@@ -53,24 +51,25 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
      */
     describe('Art. 2º', () => {
       describe('Requisitos', () => {
-        const get = first.requisites.find.bind(first.requisites)
+        const requisites = rule.possibilities[0].requisites
+        const get = requisites.find.bind(requisites)
 
-        const requisites = {
+        const chains = {
           total: {
             general: {
-              male: get('Tempo total de contribuição', 'Homem', 'Geral'),
-              female: get('Tempo total de contribuição', 'Mulher', 'Geral'),
+              male: get('Tempo de contribuição', 'Homem', 'Geral'),
+              female: get('Tempo de contribuição', 'Mulher', 'Geral'),
             },
             teacher: {
-              male: get('Tempo total de contribuição', 'Homem', 'Professor'),
+              male: get('Tempo de contribuição', 'Homem', 'Magistério'),
               // prettier-ignore
-              female: get('Tempo total de contribuição', 'Mulher', 'Professora')
+              female: get('Tempo de contribuição', 'Mulher', 'Magistério')
             },
           },
         }
 
         // prettier-ignore
-        testChain('Tempo de contribuição/geral', requisites.total.general.male, [
+        test.chain('Tempo de contribuição/geral', chains.total.general.male, [
           ['homem | contribuinte desde 50', ['1984-12-23^']],
           ['homem | contribuinte entre 50^60 | contribuinte desde 70', ['1994-12-24^']],
 
@@ -85,7 +84,7 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
         ])
 
         // prettier-ignore
-        testChain('Tempo de contribuição/geral', requisites.total.general.female, [
+        test.chain('Tempo de contribuição/geral', chains.total.general.female, [
           ['mulher | nascida em 49 | contribuinte desde 55', ['1984-12-24^']],
           ['mulher | nascida em 49 | contribuinte entre 55^60 | contribuinte desde 70', ['1994-12-25^']],
 
@@ -100,7 +99,7 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
         ])
 
         // prettier-ignore
-        testChain('Tempo de contribuição/professores', requisites.total.teacher.male, [
+        test.chain('Tempo de contribuição/professores', chains.total.teacher.male, [
           // NOT A TEACHER
           ['homem | nascido em 49 | contribuinte desde 50', []],
 
@@ -120,7 +119,7 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
         ])
 
         // prettier-ignore
-        testChain('Tempo de contribuição/professores', requisites.total.teacher.female, [
+        test.chain('Tempo de contribuição/professores', chains.total.teacher.female, [
           // NOT A TEACHER
           ['mulher | nascida em 49 | contribuinte desde 50', []],
 
@@ -141,7 +140,7 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
       })
 
       // prettier-ignore
-      testChain(null, first.requisites.chain, [        
+      test.possibility(rule, 0, [        
         // reached before promulgation:
         ['homem | nascido em 45 | servidor desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
         ['mulher | nascida em 50 | servidor desde 50', [`${promulgation}^${due}`]], //  48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
@@ -223,7 +222,7 @@ describe('retirement/calculator/rules/2003-ec-41-transition-1.engine', () => {
 
     describe('Art. 6º', () => {
       // prettier-ignore
-      testChain(null, second.requisites.chain, [
+      test.possibility(rule, 1, [
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >20 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >20 ✅, >5 anos no último ✅

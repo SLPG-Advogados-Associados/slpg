@@ -1,14 +1,16 @@
 /* cspell: disable */
 import * as reachers from '../lib/reachers'
 import { Engine } from '../lib/engine'
+import { Rule } from '../lib/rule'
 import { isTeacher, isPublic } from '../lib/predicates'
-import { Rule, Possibility, Sex, CalculatorInput } from '../types'
+import { Possibility, Sex, CalculatorInput } from '../types'
 import { dates } from './dates'
 
 const { MALE, FEMALE } = Sex
 
 const { sex, contribution, age, after, before } = reachers
 const { processors, last, total, career } = contribution
+const { filter, bonus, toll } = processors
 
 const promulgation = dates.ec41
 const due = dates.ec103
@@ -66,31 +68,22 @@ const possibilities: Possibility[] = [
 
         {
           title: 'Idade',
-          description: `I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos de idade, se mulher;`,
           any: [
             {
+              title: 'Homem',
+              description: '53 anos',
               all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-                {
-                  description: '53 anos de idade',
-                  executor: age({ expected: { years: 53 } }),
-                },
+                { executor: sex(MALE) },
+                { executor: age({ expected: { years: 53 } }) },
               ],
             },
 
             {
+              title: 'Mulher',
+              description: '48 anos',
               all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
-                {
-                  description: '48 anos de idade',
-                  executor: age({ expected: { years: 48 } }),
-                },
+                { executor: sex(FEMALE) },
+                { executor: age({ expected: { years: 48 } }) },
               ],
             },
           ],
@@ -98,13 +91,13 @@ const possibilities: Possibility[] = [
 
         {
           title: 'Tempo no cargo de aposentadoria',
-          description: `II - tiver cinco anos de efetivo exercício no cargo em que se dará a aposentadoria;`,
+          details: `II - tiver cinco anos de efetivo exercício no cargo em que se dará a aposentadoria;`,
           executor: last({ expected: { years: 5 }, filter: isPublic }),
         },
 
         {
-          title: 'Tempo total de contribuição',
-          description: `
+          title: 'Tempo de contribuição',
+          details: `
             III - contar tempo de contribuição igual, no mínimo, à soma de:
 
               a) trinta e cinco anos, se homem, e trinta anos, se mulher; e
@@ -141,24 +134,19 @@ const possibilities: Possibility[] = [
                       executor: total({
                         expected: { years: 35 },
                         processors: {
-                          '1998-12-16^': processors.toll(0.2),
+                          '1998-12-16^': toll(0.2),
                         },
                       }),
                     },
 
-                    // {
-                    //   title: 'Magistrado',
-                    //   executor: ...
-                    // },
-
                     {
-                      title: 'Professor',
+                      title: 'Magistério',
                       executor: total({
                         expected: { years: 35 },
                         processors: {
-                          '^': processors.filter(isTeacher),
-                          '^1998-12-16': processors.bonus(1.17),
-                          '1998-12-16^': processors.toll(0.2),
+                          '^': filter(isTeacher),
+                          '^1998-12-16': bonus(1.17),
+                          '1998-12-16^': toll(0.2),
                         },
                       }),
                     },
@@ -171,9 +159,7 @@ const possibilities: Possibility[] = [
               title: 'Mulher',
               description: '30 anos de serviço',
               all: [
-                {
-                  executor: sex(FEMALE),
-                },
+                { executor: sex(FEMALE) },
                 {
                   any: [
                     {
@@ -181,24 +167,19 @@ const possibilities: Possibility[] = [
                       executor: total({
                         expected: { years: 30 },
                         processors: {
-                          '1998-12-16^': processors.toll(0.2),
+                          '1998-12-16^': toll(0.2),
                         },
                       }),
                     },
 
-                    // {
-                    //   title: 'Magistrado',
-                    //   executor: ...
-                    // },
-
                     {
-                      title: 'Professora',
+                      title: 'Magistério',
                       executor: total({
                         expected: { years: 30 },
                         processors: {
-                          '^': processors.filter(isTeacher),
-                          '^1998-12-16': processors.bonus(1.2),
-                          '1998-12-16^': processors.toll(0.2),
+                          '^': filter(isTeacher),
+                          '^1998-12-16': bonus(1.2),
+                          '1998-12-16^': toll(0.2),
                         },
                       }),
                     },
@@ -213,7 +194,7 @@ const possibilities: Possibility[] = [
   },
 
   {
-    title: 'Art. 6º (ingresso até 31.12.2003)',
+    title: 'Art. 6º',
     description: `
       (...)
       Art. 6º Ressalvado o direito de opção à aposentadoria pelas normas
@@ -245,6 +226,29 @@ const possibilities: Possibility[] = [
         { executor: before(due) },
 
         {
+          title: 'Tempo de serviço público',
+          details: `III - vinte anos de efetivo exercício no serviço público;`,
+          executor: total({
+            expected: { years: 20 },
+            processors: {
+              '^': filter(isPublic),
+            },
+          }),
+        },
+
+        {
+          title: 'Tempo de carreira',
+          details: `IV - dez anos de carreira (...)`,
+          executor: career({ expected: { years: 10 } }),
+        },
+
+        {
+          title: 'Tempo no cargo de aposentadoria',
+          details: `IV - (...) cinco anos de efetivo exercício no cargo em que se der a aposentadoria.`,
+          executor: last({ expected: { years: 5 } }),
+        },
+
+        {
           title: 'Idade e tempo de contribuição',
           any: [
             {
@@ -274,7 +278,7 @@ const possibilities: Possibility[] = [
                     },
 
                     {
-                      title: 'Professor',
+                      title: 'Magistério',
                       all: [
                         {
                           description: '55 anos de idade',
@@ -288,7 +292,7 @@ const possibilities: Possibility[] = [
                           executor: total({
                             expected: { years: 30 },
                             processors: {
-                              '^': processors.filter(isTeacher),
+                              '^': filter(isTeacher),
                             },
                           }),
                         },
@@ -326,7 +330,7 @@ const possibilities: Possibility[] = [
                     },
 
                     {
-                      title: 'Professora',
+                      title: 'Magistério',
                       all: [
                         {
                           description: '50 anos de idade',
@@ -340,7 +344,7 @@ const possibilities: Possibility[] = [
                           executor: total({
                             expected: { years: 25 },
                             processors: {
-                              '^': processors.filter(isTeacher),
+                              '^': filter(isTeacher),
                             },
                           }),
                         },
@@ -352,40 +356,17 @@ const possibilities: Possibility[] = [
             },
           ],
         },
-
-        {
-          title: 'Tempo de serviço público',
-          description: `III - vinte anos de efetivo exercício no serviço público;`,
-          executor: total({
-            expected: { years: 20 },
-            processors: {
-              '^': processors.filter(isPublic),
-            },
-          }),
-        },
-
-        {
-          title: 'Tempo de carreira',
-          description: `IV - dez anos de carreira (...)`,
-          executor: career({ expected: { years: 10 } }),
-        },
-
-        {
-          title: 'Tempo no cargo de aposentadoria',
-          description: `IV - (...) cinco anos de efetivo exercício no cargo em que se der a aposentadoria.`,
-          executor: last({ expected: { years: 5 } }),
-        },
       ],
     }),
   },
 ]
 
-const rule: Rule = {
+const rule = new Rule({
   promulgation,
   due,
   title: 'EC nº 41 - Regra de Transição',
   description: 'Regras de transição como descritas na EC nº 41, de 2003',
   possibilities,
-}
+})
 
 export { rule }
