@@ -40,75 +40,63 @@ const possibilities: Possibility[] = [
     `,
     requisites: new Engine<Input>({
       all: [
-        { executor: after(promulgation) },
-        { executor: before(due) },
-
         {
           title: 'Tempo de serviço público',
-          description: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
+          details: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
+          satisfiable: startBefore(due),
           executor: total({
             expected: { years: 10 },
             processors: {
-              '^': processors.filter(isPublic),
+              '^': filter(isPublic),
             },
           }),
         },
 
         {
           title: 'Tempo no cargo de aposentadoria',
-          description: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
+          details: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
           executor: last({ expected: { years: 5 } }),
         },
 
         {
+          title: 'Idade e tempo de contribuição',
           any: [
             {
-              title: 'Idade e tempo de contribuição (homem)',
-              description: `sessenta anos de idade e trinta e cinco de contribuição, se homem`,
+              title: 'Homem',
               all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-
+                { executor: sex(MALE) },
                 {
                   any: [
                     {
-                      description: 'Geral',
+                      title: 'Geral',
                       all: [
                         {
                           description: '60 anos de idade',
-                          executor: age({
-                            expected: { years: 60 },
-                          }),
+                          executor: age({ expected: { years: 60 } }),
                         },
 
                         {
                           description: '35 anos de contribuição',
-                          executor: total({
-                            expected: { years: 35 },
-                          }),
+                          satisfiable: startBefore(due),
+                          executor: total({ expected: { years: 35 } }),
                         },
                       ],
                     },
 
                     {
-                      description: 'Professor',
+                      description: 'Magistério',
                       all: [
                         {
                           description: '55 anos de idade',
-                          executor: age({
-                            expected: { years: 55 },
-                          }),
+                          executor: age({ expected: { years: 55 } }),
                         },
 
                         {
                           description: '30 anos de contribuição',
+                          satisfiable: startBefore(due),
                           executor: total({
                             expected: { years: 30 },
-                            processors: {
-                              '^': processors.filter(isTeacher),
-                            },
+                            processors: { '^': filter(isTeacher) },
                           }),
                         },
                       ],
@@ -119,51 +107,42 @@ const possibilities: Possibility[] = [
             },
 
             {
-              title: 'Idade e tempo de contribuição (mulher)',
-              description: `cinqüenta e cinco anos de idade e trinta de contribuição, se mulher;`,
+              title: 'Mulher',
               all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
+                { executor: sex(FEMALE) },
 
                 {
                   any: [
                     {
+                      title: 'Geral',
                       all: [
                         {
                           description: '55 anos de idade',
-                          executor: age({
-                            expected: { years: 55 },
-                          }),
+                          executor: age({ expected: { years: 55 } }),
                         },
 
                         {
                           description: '30 anos de contribuição',
-                          executor: total({
-                            expected: { years: 30 },
-                          }),
+                          satisfiable: startBefore(due),
+                          executor: total({ expected: { years: 30 } }),
                         },
                       ],
                     },
 
                     {
-                      description: 'Professora',
+                      title: 'Magistério',
                       all: [
                         {
                           description: '50 anos de idade',
-                          executor: age({
-                            expected: { years: 50 },
-                          }),
+                          executor: age({ expected: { years: 50 } }),
                         },
 
                         {
                           description: '25 anos de contribuição',
+                          satisfiable: startBefore(due),
                           executor: total({
                             expected: { years: 25 },
-                            processors: {
-                              '^': processors.filter(isTeacher),
-                            },
+                            processors: { '^': filter(isTeacher) },
                           }),
                         },
                       ],
@@ -199,23 +178,21 @@ const possibilities: Possibility[] = [
     `,
     requisites: new Engine<Input>({
       all: [
-        { executor: after(promulgation) },
-        { executor: before(due) },
-
         {
           title: 'Tempo de serviço público',
-          description: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
+          details: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
+          satisfiable: startBefore(due),
           executor: total({
             expected: { years: 10 },
             processors: {
-              '^': processors.filter(isPublic),
+              '^': filter(isPublic),
             },
           }),
         },
 
         {
           title: 'Tempo no cargo de aposentadoria',
-          description: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
+          details: `III - (...) cinco anos no cargo efetivo em que se dará a aposentadoria (...)`,
           executor: last({ expected: { years: 5 } }),
         },
 
@@ -223,32 +200,20 @@ const possibilities: Possibility[] = [
           title: 'Idade',
           any: [
             {
-              description: `sessenta e cinco anos de idade, se homem`,
+              title: 'Homem',
+              description: '65 anos',
               all: [
-                {
-                  description: 'Homem',
-                  executor: sex(MALE),
-                },
-
-                {
-                  description: '65 anos de idade',
-                  executor: age({ expected: { years: 65 } }),
-                },
+                { executor: sex(MALE) },
+                { executor: age({ expected: { years: 65 } }) },
               ],
             },
 
             {
-              description: `sessenta anos de idade, se mulher`,
+              title: 'Mulher',
+              description: '60 anos',
               all: [
-                {
-                  description: 'Mulher',
-                  executor: sex(FEMALE),
-                },
-
-                {
-                  description: '60 anos de idade',
-                  executor: age({ expected: { years: 60 } }),
-                },
+                { executor: sex(FEMALE) },
+                { executor: age({ expected: { years: 60 } }) },
               ],
             },
           ],
