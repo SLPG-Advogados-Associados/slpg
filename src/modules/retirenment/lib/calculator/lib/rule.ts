@@ -55,6 +55,19 @@ class Rule {
       this.possibilities[index].requisites.execute(input),
     ])
   }
+
+  /**
+   * Execute all possibilities, and return results.
+   */
+  public execute(input: CalculatorInput) {
+    return [
+      this,
+      this.possibilities.map(
+        (possibility, i) =>
+          [possibility, this.executePossibility(i, input)] as const
+      ),
+    ] as const
+  }
 }
 
 export { Rule }
