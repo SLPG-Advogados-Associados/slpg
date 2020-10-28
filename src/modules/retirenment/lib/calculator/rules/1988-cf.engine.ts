@@ -1,7 +1,8 @@
 /* cspell: disable */
 import * as reachers from '../lib/reachers'
 import { Engine } from '../lib/engine'
-import { Rule, Sex, Post, CalculatorInput, Contribution } from '../types'
+import { Rule } from '../lib/rule'
+import { Sex, Post, CalculatorInput, Contribution } from '../types'
 import { dates } from './dates'
 
 const { TEACHER } = Post
@@ -169,12 +170,12 @@ const possibilities = [
   },
 ]
 
-const rule: Rule = {
+const rule = new Rule({
   due,
   promulgation,
   title: 'CF 1988',
   description: `Regra do art. 40 da Constituição Federal de 1988, texto original`,
   possibilities,
-}
+})
 
 export { rule }
