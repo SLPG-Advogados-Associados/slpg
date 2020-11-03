@@ -1,3 +1,5 @@
+import { d, u, r } from '../test-utils'
+
 import {
   union,
   intersection,
@@ -7,7 +9,6 @@ import {
   any,
   all,
 } from './result'
-import { d, u, r } from '../test-utils'
 
 describe('retirement/calculator/engine/result', () => {
   describe('before', () => {

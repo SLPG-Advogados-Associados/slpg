@@ -1,5 +1,6 @@
-import { RequisiteResult } from '.'
 import * as date from '../date'
+
+import { Period } from './types'
 
 /*
  * Date comparisons with null-as-infinity accounting.
@@ -14,7 +15,7 @@ const min = (a?: Date, b?: Date, s = false) =>
 const max = (a?: Date, b?: Date, s = false) =>
   !a ? (s ? b : a) : !b ? (s ? a : b) : date.max([a, b])
 
-const byFrom = (a: RequisiteResult, b: RequisiteResult) =>
+const byFrom = (a: Period, b: Period) =>
   !a.from && !b.from
     ? 0
     : !a.from || a.from < b.from
@@ -23,15 +24,15 @@ const byFrom = (a: RequisiteResult, b: RequisiteResult) =>
     ? 1
     : 0
 
-const overlaps = (a: RequisiteResult, b: RequisiteResult) =>
+const overlaps = (a: Period, b: Period) =>
   ((before(a.from, b.from) || !b.from) && (before(b.from, a.to) || !a.to)) ||
   (after(b.to, a.from) && after(a.to, b.to))
 
 /**
  * Combine results using union logic.
  */
-const union = (input: RequisiteResult[]): RequisiteResult[] => {
-  const results: RequisiteResult[] = []
+const union = (input: Period[]): Period[] => {
+  const results: Period[] = []
 
   next: for (const next of input.sort(byFrom)) {
     // try to merge with current intervals
@@ -54,8 +55,8 @@ const union = (input: RequisiteResult[]): RequisiteResult[] => {
 /**
  * Combine results using intersection logic.
  */
-const intersection = (input: RequisiteResult[]): RequisiteResult[] => {
-  const results: RequisiteResult[] = []
+const intersection = (input: Period[]): Period[] => {
+  const results: Period[] = []
 
   next: for (const next of input.sort(byFrom)) {
     // try to merge with current intervals
@@ -78,7 +79,7 @@ const intersection = (input: RequisiteResult[]): RequisiteResult[] => {
   return results
 }
 
-const flatten = (results: RequisiteResult[][]) =>
+const flatten = (results: Period[][]) =>
   results.reduce((c, result) => [...c, ...result], [])
 
 /**
@@ -86,18 +87,17 @@ const flatten = (results: RequisiteResult[][]) =>
  *
  * Basically, combine all periods, and perform a union.
  */
-const any = (input: RequisiteResult[][]): RequisiteResult[] =>
-  union(flatten(input))
+const any = (input: Period[][]): Period[] => union(flatten(input))
 
 /**
  * Processes possible results using ALL logic.
  *
  * Perform chained intersection.
  */
-const all = (input: RequisiteResult[][]): RequisiteResult[] =>
+const all = (input: Period[][]): Period[] =>
   union(
     input.reduce((curr, next) => {
-      const partials: RequisiteResult[] = []
+      const partials: Period[] = []
 
       for (const a of curr) {
         for (const b of next) {
