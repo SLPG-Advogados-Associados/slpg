@@ -14,9 +14,14 @@ import {
 } from './types'
 
 /**
- * Executable representation of requisites.
+ * Executable representation of a requisite chain.
  */
 class Requisites<I extends {}> {
+  constructor(chain: RequisiteChain<I>) {
+    Requisites.validateChain(chain)
+    this.chain = chain
+  }
+
   /**
    * The chain of requisites.
    */
@@ -36,14 +41,6 @@ class Requisites<I extends {}> {
    * Partial results, attached to chain nodes.
    */
   private partials: Partial<I>[] = []
-
-  /**
-   * Creates a new requisites instance.
-   */
-  constructor(chain: RequisiteChain<I>) {
-    Requisites.validateChain(chain)
-    this.chain = chain
-  }
 
   /**
    * Validation
@@ -154,7 +151,12 @@ class Requisites<I extends {}> {
    * -----------------
    */
 
-  // public clone() {}
+  /**
+   * Create a copy of this instance with fresh execution states.
+   */
+  public clone() {
+    return new Requisites(this.chain)
+  }
 
   /**
    * Retrieve the last partial for a provided chain

@@ -140,6 +140,24 @@ describe('retirement/calculator/requisites', () => {
   })
 
   describe('state', () => {
+    describe('clone', () => {
+      it('should be possible to clone, erasing states', () => {
+        const instance = new Requisites(chains.always)
+        expect(instance.getLastPartial()).toBeUndefined()
+
+        instance.execute({})
+        expect(instance.getLastPartial()).not.toBeUndefined()
+
+        const clone = instance.clone()
+
+        expect(instance.getLastPartial()).not.toBeUndefined()
+        expect(clone.getLastPartial()).toBeUndefined()
+
+        clone.execute({})
+        expect(clone.getLastPartial()).not.toBeUndefined()
+      })
+    })
+
     describe('getLastPartial', () => {
       it('should save partial results for root chain', () => {
         const input = {}
