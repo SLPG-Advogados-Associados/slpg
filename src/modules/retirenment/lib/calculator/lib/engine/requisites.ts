@@ -225,7 +225,11 @@ class Requisites<I extends {}> {
   /**
    * Build up textual chain references.
    */
-  private processReferences(chain: RequisiteChain<I>, paths: string[][]) {
+  private processReferences(
+    chain: RequisiteChain<I>,
+    refs: string[][],
+    path: Array<string | number>
+  ) {
     const ref = []
 
     if ('title' in chain) ref.push(chain.title)
@@ -233,34 +237,54 @@ class Requisites<I extends {}> {
 
     // register only references to referencible chains.
     if (ref.length) {
-      // alter paths for posterior use.
-      paths.push(ref)
-      this.references.unshift([paths, chain])
+      // alter refs for posterior use.
+      refs.push(ref)
+      this.references.unshift([refs, path, chain])
     }
 
-    for (const child of Requisites.getChildren(chain)) {
-      this.processReferences(child, [...paths])
+    const kind = 'all' in chain ? 'all' : 'any' in chain ? 'any' : null
+
+    if (kind) {
+      const children = Requisites.getChildren(chain)
+
+      for (let i = 0; i < children.length; i++) {
+        this.processReferences(children[i], [...refs], [...path, kind, i])
+      }
     }
   }
 
   /**
-   * Assessor for requisite chain items based on comparision of composed references.
+   * Find the chain item reference based on comparison of composed references.
    */
-  public find(...refs: string[]): RequisiteChain<I> | null {
+  private findReference(...refs: string[]) {
     // build up refereces, if using for the first time.
     if (typeof this.references === 'undefined') {
       this.references = []
-      this.processReferences(this.chain, [])
+      this.processReferences(this.chain, [], [])
     }
 
-    const found = this.references
+    const reference = this.references
       .filter(([path]) => path.length === refs.length)
       .find(([path]) =>
         path.every((options, i) => options.some((option) => option === refs[i]))
       )
 
-    return found ? found[1] : null
+    if (!reference) {
+      throw new Error(`Could not find chain at ${refs}`)
+    }
+
+    return reference
   }
+
+  /**
+   * Find the direct chain item paths based on comparison of composed references.
+   */
+  public findPath = (...refs: string[]) => this.findReference(...refs)[1]
+
+  /**
+   * Assessor for requisite chain items based on comparision of composed references.
+   */
+  public find = (...refs: string[]) => this.findReference(...refs)[2]
 
   /**
    * Builds a human-readable result tree in JSON format.

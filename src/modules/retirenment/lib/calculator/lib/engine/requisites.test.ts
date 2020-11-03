@@ -412,7 +412,7 @@ describe('retirement/calculator/requisites', () => {
       })
     })
 
-    describe('findChain', () => {
+    describe('findPath', () => {
       let instance: Requisites<{}>
 
       beforeEach(() => {
@@ -428,8 +428,60 @@ describe('retirement/calculator/requisites', () => {
         })
       })
 
-      it('should not find unexisting reference', () => {
-        expect(instance.find('Unexisting')).toBeNull()
+      it('should find direct reference', () => {
+        expect(instance.findPath('Always')).toEqual(['all', 0])
+      })
+
+      it('should find nested references', () => {
+        expect(instance.findPath('Second', 'Never')).toEqual([
+          'all',
+          1,
+          'any',
+          0,
+        ])
+      })
+
+      it('should find nested references with skipping steps', () => {
+        expect(instance.findPath('Second', 'With start')).toEqual([
+          'all',
+          1,
+          'any',
+          1,
+          'all',
+          0,
+        ])
+      })
+
+      it('should find based on description also', () => {
+        expect(instance.findPath('A requisite which is always true')).toEqual([
+          'all',
+          0,
+        ])
+      })
+
+      it('should throw when chain not found', () => {
+        expect(() => instance.findPath('Unexisting')).toThrow('Could not find')
+
+        expect(() => instance.findPath('Second', 'Unexisting')).toThrow(
+          'Could not find'
+        )
+      })
+    })
+
+    describe('find', () => {
+      let instance: Requisites<{}>
+
+      beforeEach(() => {
+        instance = new Requisites({
+          all: [
+            chains.always,
+            {
+              title: 'Second',
+              any: [chains.never, { all: [chains.withStart] }],
+            },
+            { any: [{ all: [chains.withEnd] }] },
+          ],
+        })
       })
 
       it('should find direct reference', () => {
@@ -450,8 +502,12 @@ describe('retirement/calculator/requisites', () => {
         )
       })
 
-      it('should not find when partially fit', () => {
-        expect(instance.find('Second', 'Unexisting')).toBeNull()
+      it('should throw when chain not found', () => {
+        expect(() => instance.find('Unexisting')).toThrow('Could not find')
+
+        expect(() => instance.find('Second', 'Unexisting')).toThrow(
+          'Could not find'
+        )
       })
     })
   })
