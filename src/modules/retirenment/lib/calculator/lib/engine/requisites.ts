@@ -1,4 +1,4 @@
-import { get } from 'object-path-immutable'
+import { get, set } from 'object-path-immutable'
 
 import { str } from '../debug'
 import { union, any, all, overlaps } from './result'
@@ -95,6 +95,24 @@ class Requisites<I extends {}> {
   }
 
   /**
+   * Transformation
+   * --------------
+   */
+
+  public alter(
+    refs: string[],
+    modify: (chain: RequisiteChain<I>) => RequisiteChain<I>
+  ) {
+    const path = this.findPath(...refs)
+    const chain = this.getChain(path)
+
+    this.chain = set(this.chain, path, modify(chain))
+
+    // return chainable
+    return this
+  }
+
+  /**
    * Execution
    * ---------
    */
@@ -147,16 +165,14 @@ class Requisites<I extends {}> {
   public execute = (input: I) => this.executeChain(this.chain, input)
 
   /**
-   * State consumption
-   * -----------------
+   * State
+   * -----
    */
 
   /**
    * Create a copy of this instance with fresh execution states.
    */
-  public clone() {
-    return new Requisites(this.chain)
-  }
+  public clone = () => new Requisites(this.chain)
 
   /**
    * Retrieve the last partial for a provided chain
@@ -208,7 +224,7 @@ class Requisites<I extends {}> {
   /**
    * Direct assessor for a given requisite chain item.
    */
-  public getChain(path?: string) {
+  public getChain(path?: string | Array<string | number>) {
     const chain = path ? get(this.chain, path) : this.chain
 
     if (!chain) {

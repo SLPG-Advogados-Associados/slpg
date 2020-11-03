@@ -158,6 +158,19 @@ describe('retirement/calculator/requisites', () => {
       })
     })
 
+    describe('alter', () => {
+      it('should be possible to alter chain without affecting references', () => {
+        const instance = new Requisites(chains.always)
+
+        const clone = instance
+          .clone()
+          .alter(['Always'], (chain) => ({ ...chain, executor: () => [] }))
+
+        expect(instance.execute({})).toEqual([{}])
+        expect(clone.execute({})).toEqual([])
+      })
+    })
+
     describe('getLastPartial', () => {
       it('should save partial results for root chain', () => {
         const input = {}
