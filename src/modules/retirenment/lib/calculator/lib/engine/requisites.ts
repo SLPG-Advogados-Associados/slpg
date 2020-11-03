@@ -23,19 +23,32 @@ class Requisites<I extends {}> {
   public chain: RequisiteChain<I>
 
   /**
-   * Partial results, attached to chain nodes.
-   */
-  public partials: Partial<I>[] = []
-
-  /**
    * Map of chain nodes, based on unique textual references.
    */
   private references: Reference<I>[]
 
+  /**
+   * States
+   * ------
+   */
+
+  /**
+   * Partial results, attached to chain nodes.
+   */
+  private partials: Partial<I>[] = []
+
+  /**
+   * Creates a new requisites instance.
+   */
   constructor(chain: RequisiteChain<I>) {
     Requisites.validateChain(chain)
     this.chain = chain
   }
+
+  /**
+   * Validation
+   * ----------
+   */
 
   /**
    * Verifies if a chain is valid.
@@ -58,50 +71,36 @@ class Requisites<I extends {}> {
   }
 
   /**
-   *
+   * Static helpers
+   * --------------
+   */
+
+  /**
+   * Get a human name for a chain, if existing.
    */
   public static getName<I extends unknown>(chain: RequisiteChain<I>) {
     return chain.title ?? chain.description ?? null
   }
 
+  /**
+   * Get the children of a chain, if any.
+   */
   public static getChildren<I extends unknown>(chain: RequisiteChain<I>) {
     return 'all' in chain ? chain.all : 'any' in chain ? chain.any : []
   }
 
-  public static isSatisfied<I extends unknown>(
-    chain: RequisiteChain<I>,
-    constraint: Period
-  ) {
-    return chain.lastResult.length
-      ? chain.lastResult.some(
-          (result) =>
-            overlaps(constraint, result) || overlaps(result, constraint)
-        )
-      : false
-  }
-
-  public static isSatisfiable<I extends unknown>(chain: RequisiteChain<I>) {
-    const result = chain.lastResult ?? []
-
-    // early return if not even a result is available.
-    if (!result.length) return false
-
-    // early return if we know this chain level is already satisfiable
-    if (result.length && chain.satisfiable && chain.satisfiable(result)) {
-      return true
-    }
-
-    return 'all' in chain || 'any' in chain
-      ? Requisites.getChildren(chain)['all' in chain ? 'every' : 'some'](
-          Requisites.isSatisfiable
-        )
-      : false
-  }
-
+  /**
+   * Satisfaction assessors.
+   */
   public static satisfy = {
     startBefore: (date: Date) => (result: Period[]) =>
       result.length ? result.some(({ from }) => !from || from < date) : false,
   }
+
+  /**
+   * Execution
+   * ---------
+   */
 
   /**
    * Execute an ANY group using union logic.
@@ -115,16 +114,22 @@ class Requisites<I extends {}> {
   private executeGroupAll = (chain: RequisiteGroupAll<I>, input: I) =>
     all(chain.all.map((requisite) => this.executeChain(requisite, input)))
 
-  private executeGroup(chain: RequisiteGroup<I>, input: I) {
-    if ('any' in chain) return this.executeGroupAny(chain, input)
-    if ('all' in chain) return this.executeGroupAll(chain, input)
-  }
+  /**
+   * Execute a group chain.
+   */
+  private executeGroup = (chain: RequisiteGroup<I>, input: I) =>
+    'any' in chain
+      ? this.executeGroupAny(chain, input)
+      : this.executeGroupAll(chain, input)
 
+  /**
+   * Execute a chain.
+   */
   private executeChain(chain: RequisiteChain<I>, input: I): Period[] {
     const result =
-      'any' in chain || 'all' in chain
-        ? this.executeGroup(chain, input)
-        : chain.executor(input)
+      'executor' in chain
+        ? chain.executor(input)
+        : this.executeGroup(chain, input)
 
     if (chain.debug) {
       typeof chain.debug === 'function'
@@ -133,20 +138,75 @@ class Requisites<I extends {}> {
           console.log({ chain, result, input })
     }
 
-    // save partials for posterior usage.
-    chain.lastResult = result
-    // save partials for further analysis
-    this.partials.push([chain, result, input])
+    // save partial result state for future consumption.
+    this.partials.unshift([chain, result, input])
 
     return union(result)
   }
 
+  /**
+   * Execute the requisites.
+   */
   public execute = (input: I) => this.executeChain(this.chain, input)
 
   /**
-   * Assessor for a given requisite chain item.
+   * State consumption
+   * -----------------
    */
-  public getChain<Chain extends RequisiteChain<I>>(path?: string) {
+
+  // public clone() {}
+
+  /**
+   * Retrieve the last partial for a provided chain
+   */
+  public getLastPartial = (chain: RequisiteChain<I> = this.chain) =>
+    this.partials.find(([compare]) => chain === compare)
+
+  /**
+   * Determine if the provided sub-chain is satisfied within provided constraint,
+   * given previous result.
+   */
+  public isSatisfied(chain: RequisiteChain<I>, constraint: Period) {
+    const [_, lastResult = []] = this.getLastPartial(chain) || []
+
+    return lastResult.length
+      ? lastResult.some((period) => overlaps(constraint, period))
+      : false
+  }
+
+  /**
+   * Determine if the provided sub-chain is satisfiable.
+   */
+  public isSatisfiable(chain: RequisiteChain<I>) {
+    const [_, lastResult = []] = this.getLastPartial(chain) || []
+
+    // early return if not even a result is available.
+    if (!lastResult.length) return false
+
+    // early return if this level has satisfiable opinion.
+    if (chain.satisfiable) {
+      return chain.satisfiable(lastResult)
+    }
+
+    // define combinatory method for children, if applicable.
+    const method = 'all' in chain ? 'every' : 'any' in chain ? 'some' : null
+
+    return method
+      ? Requisites.getChildren(chain)[method]((child) =>
+          this.isSatisfiable(child)
+        )
+      : false
+  }
+
+  /**
+   * Debugging
+   * ---------
+   */
+
+  /**
+   * Direct assessor for a given requisite chain item.
+   */
+  public getChain(path?: string) {
     const chain = path ? get(this.chain, path) : this.chain
 
     if (!chain) {
@@ -157,11 +217,11 @@ class Requisites<I extends {}> {
       throw new Error(`Invalid chain found at "${path}"`)
     }
 
-    return chain as Chain
+    return chain as RequisiteChain<I>
   }
 
   /**
-   * Build up human references.
+   * Build up textual chain references.
    */
   private processReferences(chain: RequisiteChain<I>, paths: string[][]) {
     const ref = []
@@ -185,6 +245,7 @@ class Requisites<I extends {}> {
    * Assessor for requisite chain items based on comparision of composed references.
    */
   public find(...refs: string[]): RequisiteChain<I> | null {
+    // build up refereces, if using for the first time.
     if (typeof this.references === 'undefined') {
       this.references = []
       this.processReferences(this.chain, [])
