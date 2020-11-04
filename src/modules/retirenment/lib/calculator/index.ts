@@ -1,8 +1,5 @@
-// class Calculator {}
-
-// export { Calculator }
 export * from './types'
+export * from './rules'
 export * from './lib/const'
-export * from './hooks/useCalculatorForm'
-export * from './calculator'
 export * from './lib/engine'
+export * from './hooks/useCalculatorForm'

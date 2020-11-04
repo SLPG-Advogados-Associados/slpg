@@ -1,5 +1,3 @@
-import { Engine } from './lib/engine'
-
 /**
  * Inputs and incoming types.
  * --------------------------
@@ -53,15 +51,4 @@ export interface CalculatorInput {
   sex: Sex
   birthDate: Date
   contributions: Contribution[]
-}
-
-/**
- * Rules
- * -----
- */
-
-export interface Possibility {
-  title: string
-  description: string
-  requisites: Engine<CalculatorInput>
 }
