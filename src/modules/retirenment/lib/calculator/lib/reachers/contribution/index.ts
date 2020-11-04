@@ -1,7 +1,7 @@
-export { career } from './career'
-export { last } from './last'
-export { total } from './total'
+export * from './career'
+export * from './last'
+export * from './total'
 export * as processors from './utils/processors'
-export { split, parseContributions } from './utils/contribution'
+export * from './utils/contribution'
 
 export type { Processor } from './utils/processors'

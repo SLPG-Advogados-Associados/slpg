@@ -1,7 +1,8 @@
-import type { RequisiteResult } from '../../engine'
+import type { Period } from '../../engine'
 import { CalculatorInput, Contribution } from '../../../types'
 import { add } from '../../date'
 import { DurationInput } from '../../duration'
+import { isPublic } from '../../predicates'
 
 type Params = {
   expected: DurationInput
@@ -17,11 +18,16 @@ type Input = Pick<CalculatorInput, 'contributions'>
  */
 const last = ({ expected, filter = () => true }: Params) => (
   input: Input
-): RequisiteResult[] =>
+): Period[] =>
   input.contributions
     .filter(filter)
     .map(({ start, end }) => ({ from: add(start, expected), to: end }))
     // it's only satisfiable if "from" date happens before "to" ("end") of this contribution.
     .filter(({ from, to }) => !to || from <= to)
 
-export { last }
+/**
+ * Last reacher derivate for public service starting.
+ */
+const lastIsPublic = () => last({ expected: { days: 1 }, filter: isPublic })
+
+export { last, lastIsPublic }
