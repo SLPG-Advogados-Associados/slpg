@@ -100,7 +100,7 @@ describe('retirement/calculator/engine/rule', () => {
       describe('all', () => {
         it('should be false when all chilren are unsatisfiable', () => {
           const { rule, possibility, chain } = setup({
-            all: [{ executor: () => [{}] }, { executor: () => [{}] }],
+            all: [{ executor: () => [] }, { executor: () => [] }],
           })
           rule.execute(possibility, input)
           expect(rule.isSatisfiable(possibility, chain)).toBeFalse()
@@ -110,7 +110,7 @@ describe('retirement/calculator/engine/rule', () => {
           const { rule, possibility, chain } = setup({
             all: [
               { executor: () => [{}], satisfiable: () => true },
-              { executor: () => [{}], satisfiable: () => false },
+              { executor: () => [], satisfiable: () => false },
             ],
           })
           rule.execute(possibility, input)
@@ -156,7 +156,7 @@ describe('retirement/calculator/engine/rule', () => {
       describe('any', () => {
         it('should be false when all chilren are unsatisfiable', () => {
           const { rule, possibility, chain } = setup({
-            any: [{ executor: () => [{}] }, { executor: () => [{}] }],
+            any: [{ executor: () => [] }, { executor: () => [] }],
           })
           rule.execute(possibility, input)
           expect(rule.isSatisfiable(possibility, chain)).toBeFalse()
