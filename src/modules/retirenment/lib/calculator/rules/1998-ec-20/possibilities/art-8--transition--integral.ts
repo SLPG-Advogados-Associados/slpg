@@ -106,7 +106,7 @@ const possibility = new Possibility({
                 any: [
                   {
                     title: 'Geral',
-                    // satisfiable: startBefore(due),
+                    satisfiable: () => true,
                     executor: total({
                       expected: { years: 35 },
                       processors: {
@@ -117,7 +117,7 @@ const possibility = new Possibility({
 
                   {
                     title: 'Magistério',
-                    // satisfiable: startBefore(due),
+                    satisfiable: () => true,
                     executor: total({
                       expected: { years: 35 },
                       processors: {
@@ -141,7 +141,7 @@ const possibility = new Possibility({
                 any: [
                   {
                     title: 'Geral',
-                    // satisfiable: startBefore(due),
+                    satisfiable: () => true,
                     executor: total({
                       expected: { years: 30 },
                       processors: {
@@ -152,7 +152,7 @@ const possibility = new Possibility({
 
                   {
                     title: 'Magistério',
-                    // satisfiable: startBefore(due),
+                    satisfiable: () => true,
                     executor: total({
                       expected: { years: 30 },
                       processors: {

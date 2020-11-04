@@ -35,7 +35,7 @@ const possibility = new Possibility({
         title: 'Tempo de serviço público',
         description: '10 anos',
         details: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
-        // satisfiable: startBefore(due),
+        satisfiable: () => true,
         executor: total({
           expected: { years: 10 },
           processors: {
@@ -69,7 +69,7 @@ const possibility = new Possibility({
                       },
                       {
                         description: '35 anos de contribuição',
-                        // satisfiable: startBefore(due),
+                        satisfiable: () => true,
                         executor: total({ expected: { years: 35 } }),
                       },
                     ],
@@ -84,7 +84,7 @@ const possibility = new Possibility({
                       },
                       {
                         description: '30 anos de contribuição',
-                        // satisfiable: startBefore(due),
+                        satisfiable: () => true,
                         executor: total({
                           expected: { years: 30 },
                           processors: { '^': filter(isTeacher) },
@@ -112,7 +112,7 @@ const possibility = new Possibility({
                       },
                       {
                         description: '30 anos de contribuição',
-                        // satisfiable: startBefore(due),
+                        satisfiable: () => true,
                         executor: total({ expected: { years: 30 } }),
                       },
                     ],
@@ -127,7 +127,7 @@ const possibility = new Possibility({
                       },
                       {
                         description: '25 anos de contribuição',
-                        // satisfiable: startBefore(due),
+                        satisfiable: () => true,
                         executor: total({
                           expected: { years: 25 },
                           processors: { '^': filter(isTeacher) },

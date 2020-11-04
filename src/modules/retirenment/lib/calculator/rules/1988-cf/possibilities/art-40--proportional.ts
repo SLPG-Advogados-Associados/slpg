@@ -9,13 +9,13 @@ const { total } = contribution
 const possibility = new Possibility({
   title: 'Art. 40º (proporcional)',
   description: `
-      (...)
-      III - voluntariamente:
-      (...)
-      c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher, com proventos proporcionais a esse tempo;
-      d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher, com proventos proporcionais ao tempo de serviço.
-      (...)
-    `,
+    (...)
+    III - voluntariamente:
+    (...)
+    c) aos trinta anos de serviço, se homem, e aos vinte e cinco, se mulher, com proventos proporcionais a esse tempo;
+    d) aos sessenta e cinco anos de idade, se homem, e aos sessenta, se mulher, com proventos proporcionais ao tempo de serviço.
+    (...)
+  `,
 
   requisites: new Requisites<CalculatorInput>({
     all: [
@@ -30,7 +30,10 @@ const possibility = new Possibility({
                 description: '30 anos de serviço',
                 all: [
                   { executor: sex(MALE) },
-                  { executor: total({ expected: { years: 30 } }) },
+                  {
+                    satisfiable: () => true,
+                    executor: total({ expected: { years: 30 } }),
+                  },
                 ],
               },
 
@@ -39,7 +42,10 @@ const possibility = new Possibility({
                 description: '25 anos de serviço',
                 all: [
                   { executor: sex(FEMALE) },
-                  { executor: total({ expected: { years: 25 } }) },
+                  {
+                    satisfiable: () => true,
+                    executor: total({ expected: { years: 25 } }),
+                  },
                 ],
               },
             ],
