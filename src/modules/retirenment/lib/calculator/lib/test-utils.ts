@@ -1,6 +1,5 @@
 import { isValid, sub, format } from './date'
-import { RequisiteChain, evaluate } from './engine'
-import { Rule } from './rule'
+import { Rule, Possibility, RequisiteChain, evaluate } from './engine'
 import { Post, Service, ServiceKind, Sex, CalculatorInput } from '../types'
 
 const { OTHER, TEACHER } = Post
@@ -213,9 +212,14 @@ const test = {
    * Jest test generator for human-language parsed tests of rule possibilities.
    */
   possibility: tester(
-    (rule: Rule, index: number, items: TestItems[], _it: jest.It = it) =>
+    (
+      rule: Rule,
+      possibility: Possibility,
+      items: TestItems[],
+      _it: jest.It = it
+    ) =>
       _it.each(items.map(simplify))('%s: %j', (input, output) =>
-        expect(rule.executePossibility(index, parse(input))).toEqual(
+        expect(rule.execute(possibility, parse(input))).toEqual(
           output.map(result)
         )
       )
