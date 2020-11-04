@@ -73,7 +73,7 @@ class Rule implements RuleInput {
    */
   public isSatisfied(
     { requisites }: Possibility,
-    chain: RequisiteChain<CalculatorInput>
+    chain: RequisiteChain<CalculatorInput> = requisites.chain
   ) {
     const constraint = this.getConstraint()
     const [_, lastResult] = requisites.getLastPartial(chain) || []
@@ -92,8 +92,9 @@ class Rule implements RuleInput {
    */
   public isSatisfiable(
     possibility: Possibility,
-    chain: RequisiteChain<CalculatorInput>
+    chain: RequisiteChain<CalculatorInput> = possibility.requisites.chain
   ) {
+    const constraint = this.getConstraint()
     const { requisites } = possibility
     const [_, lastResult = []] = requisites.getLastPartial(chain) || []
 
