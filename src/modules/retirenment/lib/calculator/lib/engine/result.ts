@@ -24,9 +24,12 @@ const byFrom = (a: Period, b: Period) =>
     ? 1
     : 0
 
+// @TODO: any possbile easier logic here? Has to account for "missing" (infinite
+// representation)
 const overlaps = (a: Period, b: Period) =>
   ((before(a.from, b.from) || !b.from) && (before(b.from, a.to) || !a.to)) ||
-  (after(b.to, a.from) && after(a.to, b.to))
+  (after(b.to, a.from) && after(a.to, b.to)) ||
+  (before(b.from, a.to) && !b.to)
 
 /**
  * Combine results using union logic.

@@ -75,6 +75,7 @@ describe('retirement/calculator/engine/result', () => {
       // custom
       ['^', '95^2005', true],
       ['95^2005', '^', true],
+      ['1998-12-16^2003-12-31', '1994-12-23^', true],
     ])('%j overlaps with %j: %j', (a, b, result) => {
       expect(overlaps(r(a), r(b))).toBe(result)
     })
