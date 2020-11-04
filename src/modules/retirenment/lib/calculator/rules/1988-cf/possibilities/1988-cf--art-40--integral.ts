@@ -4,14 +4,9 @@ import { isTeacher } from '../../../lib/predicates'
 import { Possibility, Requisites } from '../../../lib/engine'
 
 const { MALE, FEMALE } = Sex
-
-const {
-  sex,
-  contribution: {
-    total,
-    processors: { filter },
-  },
-} = reachers
+const { contribution, sex } = reachers
+const { processors, total } = contribution
+const { filter } = processors
 
 const possibility = new Possibility({
   title: 'Art. 40. - Integral',

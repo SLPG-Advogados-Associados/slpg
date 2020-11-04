@@ -3,12 +3,8 @@ import * as reachers from '../../../lib/reachers'
 import { Possibility, Requisites } from '../../../lib/engine'
 
 const { MALE, FEMALE } = Sex
-
-const {
-  sex,
-  contribution: { total },
-  age,
-} = reachers
+const { age, contribution, sex } = reachers
+const { total } = contribution
 
 const possibility = new Possibility({
   title: 'Art. 40. - Proporcional',
