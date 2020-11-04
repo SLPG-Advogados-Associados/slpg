@@ -9,7 +9,7 @@ const { processors, total } = contribution
 const { filter } = processors
 
 const possibility = new Possibility({
-  title: 'Art. 40. - Integral',
+  title: 'Art. 40º (integral)',
   description: `
       (...)
       III - voluntariamente:

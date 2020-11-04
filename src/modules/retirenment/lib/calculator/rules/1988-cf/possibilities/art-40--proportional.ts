@@ -7,7 +7,7 @@ const { age, contribution, sex } = reachers
 const { total } = contribution
 
 const possibility = new Possibility({
-  title: 'Art. 40. - Proporcional',
+  title: 'Art. 40º (proporcional)',
   description: `
       (...)
       III - voluntariamente:

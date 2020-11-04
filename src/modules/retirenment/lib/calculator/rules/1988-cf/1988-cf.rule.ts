@@ -1,8 +1,8 @@
 import { dates } from '../dates'
 import { Rule } from '../../lib/engine'
 
-import { possibility as integral } from './possibilities/1988-cf--art-40--integral'
-import { possibility as proportional } from './possibilities/1988-cf--art-40--proportional'
+import { possibility as integral } from './possibilities/art-40--integral'
+import { possibility as proportional } from './possibilities/art-40--proportional'
 
 const due = dates.ec20
 const promulgation = dates.constitution
