@@ -37,6 +37,12 @@ class Possibility implements PossibilityInput {
    * Execute the possibility's requisites.
    */
   public execute = (input: CalculatorInput) => this.requisites.execute(input)
+
+  /**
+   * Clone the possibility and it's stateful assets.
+   */
+  public clone = () =>
+    new Possibility({ ...this, requisites: this.requisites.clone() })
 }
 
 export { Possibility }

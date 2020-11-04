@@ -1,7 +1,7 @@
 import { get, set } from 'object-path-immutable'
 
 import { str } from '../debug'
-import { union, any, all, overlaps } from './result'
+import { union, any, all } from './result'
 
 import {
   Period,
@@ -179,42 +179,6 @@ class Requisites<I extends {}> {
    */
   public getLastPartial = (chain: RequisiteChain<I> = this.chain) =>
     this.partials.find(([compare]) => chain === compare)
-
-  /**
-   * Determine if the provided sub-chain is satisfied within provided constraint,
-   * given previous result.
-   */
-  public isSatisfied(chain: RequisiteChain<I>, constraint: Period) {
-    const [_, lastResult = []] = this.getLastPartial(chain) || []
-
-    return lastResult.length
-      ? lastResult.some((period) => overlaps(constraint, period))
-      : false
-  }
-
-  /**
-   * Determine if the provided sub-chain is satisfiable.
-   */
-  public isSatisfiable(chain: RequisiteChain<I>) {
-    const [_, lastResult = []] = this.getLastPartial(chain) || []
-
-    // early return if not even a result is available.
-    if (!lastResult.length) return false
-
-    // early return if this level has satisfiable opinion.
-    if (chain.satisfiable) {
-      return chain.satisfiable(lastResult)
-    }
-
-    // define combinatory method for children, if applicable.
-    const method = 'all' in chain ? 'every' : 'any' in chain ? 'some' : null
-
-    return method
-      ? Requisites.getChildren(chain)[method]((child) =>
-          this.isSatisfiable(child)
-        )
-      : false
-  }
 
   /**
    * Debugging
