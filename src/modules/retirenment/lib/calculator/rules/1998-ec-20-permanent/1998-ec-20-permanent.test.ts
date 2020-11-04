@@ -1,7 +1,11 @@
-import { test } from '../lib/test-utils'
-import { rule } from './1998-ec-20-permanent.engine'
+import { test } from '../../lib/test-utils'
+import { rule } from './1998-ec-20-permanent.rule'
 
-const { promulgation, due } = rule
+const {
+  promulgation,
+  due,
+  possibilities: [integral, proportional],
+} = rule
 
 describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
   describe('possibilities', () => {
@@ -24,7 +28,7 @@ describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
      */
     describe('Integral', () => {
       // prettier-ignore
-      test.possibility(rule, 0, [
+      test.possibility(rule, integral, [
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
@@ -114,7 +118,7 @@ describe('retirement/calculator/rules/1998-ec-20-permanent.engine', () => {
      */
     describe('Proporcional', () => {
       // prettier-ignore
-      test.possibility(rule, 1, [
+      test.possibility(rule, proportional, [
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  60 anos ✅, servidor por >10 ✅, >5 anos no último ✅
