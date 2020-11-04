@@ -1,14 +1,12 @@
 import { test } from '../../lib/test-utils'
-import { rule } from './1998-ec-20-transition.rule'
+import { rule } from './1998-ec-20.rule'
 
-const {
-  promulgation,
-  due,
-  possibilities: [integral, proportional],
-} = rule
+const { promulgation, due } = rule
 
-describe('retirement/calculator/rules/1998-ec-20-transition', () => {
-  describe('possibilities', () => {
+describe('retirement/calculator/rules/1998-ec-20', () => {
+  describe('Art. 8 (transição)', () => {
+    const [_i, _p, integral, proportional] = rule.possibilities
+
     /**
      * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito
      * anosde idade, se mulher;
@@ -381,6 +379,150 @@ describe('retirement/calculator/rules/1998-ec-20-transition', () => {
         ['mulher | nascida em 56 | professora entre 60^65 | professora desde 70', []], //                     47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
         // by last:
         ['mulher | nascida em 54 | professora entre 57^00 | professora desde 2000', []], //                   49 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
+      ])
+    })
+  })
+
+  describe('Art. 40º (permanente)', () => {
+    const [integral, proportional] = rule.possibilities
+
+    /**
+     * (...)
+     * III - voluntariamente, desde que cumprido tempo mínimo de dez anos de
+     * efetivo exercício no serviço público e cinco anos no cargo efetivo em que se
+     * dará a aposentadoria, observadas as seguintes condições:
+     *
+     * a) sessenta anos de idade e trinta e cinco de contribuição, se homem, e
+     * cinqüenta e cinco anos de idade e trinta de contribuição, se mulher;
+     *
+     * (...)
+     *
+     * § 5º - Os requisitos de idade e de tempo de contribuição serão reduzidos em
+     * cinco anos, em relação ao disposto no § 1º, III, "a", para o professor que
+     * comprove exclusivamente tempo de efetivo exercício das funções de
+     * magistério na educação infantil e no ensino fundamental e médio.
+     * (...)
+     */
+    describe('Integral', () => {
+      // prettier-ignore
+      test.possibility(rule, integral, [
+        // reached before promulgation:
+        ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
+  
+        // homem
+  
+        // by contrib:
+        ['homem | nascido em 30 | contribuinte entre 50^72 | servidor desde 90', [`2002-12-24^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 30 | contribuinte entre 50^72 | servidor desde 92', []], //                      60 anos ✅, contribuindo 33 ❌, servidor por >10 ✅, >5 anos no último ✅
+        // by age:
+        ['homem | nascido em 43 | servidor desde 50', [`2003-01-01^${due}`]], //                              60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 44 | servidor desde 50', []], //                                                 59 anos ❌, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
+        // by last:
+        ['homem | nascido em 30 | servidor entre 50^90 | servidor desde 1995', [`1999-12-31^${due}`]], //     60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
+        // using not last recorded service
+        ['homem | nascido em 30 | servidor entre 50^00 | servidor desde 2000', [`${promulgation}^2000`]], //  60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, <5 anos no último ❌
+        // by public service
+        ['homem | nascido em 30 | contribuinte entre 50^00 | servidor desde 1990', [`1999-12-30^${due}`]], // 60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 30 | contribuinte entre 50^00 | servidor desde 1995', []], //                    60 anos ✅, contribuindo 35 ✅, servidor por <10 ❌, >5 anos no último ✅
+  
+        // female
+  
+        // by contrib:
+        ['mulher | nascida em 30 | contribuinte entre 50^67 | servidora desde 90', [`2002-12-25^${due}`]], //   55 anos ✅, contribuindo 30 ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 30 | contribuinte entre 50^67 | servidora desde 92', []], //                      55 anos ✅, contribuindo 28 ❌, servidora por >10 ✅, >5 anos no último ✅
+        // by age:
+        ['mulher | nascida em 48 | servidora desde 50', [`2003-01-01^${due}`]], //                              55 anos ✅, contribuindo 30 ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 49 | servidora desde 50', []], //                                                 54 anos ❌, contribuindo 30 ✅, servidora por >10 ✅, >5 anos no último ✅
+        // by last:
+        ['mulher | nascida em 30 | servidora entre 50^90 | servidora desde 1995', [`1999-12-31^${due}`]], //    55 anos ✅, contribuindo 30 ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 30 | servidora entre 50^00 | servidora desde 2000', [`${promulgation}^2000`]], // 55 anos ✅, contribuindo 30 ✅, servidora por >10 ✅, <5 anos no último ❌
+        // by public service
+        ['mulher | nascida em 30 | contribuinte entre 50^00 | servidora desde 1990', [`1999-12-30^${due}`]], // 55 anos ✅, contribuindo 30 ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 30 | contribuinte entre 50^00 | servidora desde 1995', []], //                    55 anos ✅, contribuindo 30 ✅, servidora por <10 ❌, >5 anos no último ✅
+  
+        /**
+         * Teacher
+         *
+         * § 5º - Os requisitos de idade e de tempo de contribuição serão reduzidos em
+         * cinco anos, em relação ao disposto no § 1º, III, "a", para o professor que
+         * comprove exclusivamente tempo de efetivo exercício das funções de
+         * magistério na educação infantil e no ensino fundamental e médio.
+         */
+  
+        // homem
+  
+        // by contrib:
+        ['homem | nascido em 30 | professor entre 50^67 | professor desde 90', [`2002-12-25^${due}`]], // 55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 30 | professor entre 50^67 | professor desde 92', []], //                    55 anos ✅, contribuindo 28 ❌, servidor por >10 ✅, >5 anos no último ✅
+        // by age:
+        ['homem | nascido em 48 | professor desde 50', [`2003-01-01^${due}`]], //                         55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 49 | professor desde 50', []], //                                            54 anos ❌, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
+  
+        // female
+  
+        // by contrib:
+        ['mulher | nascida em 35 | professora entre 50^62 | professora desde 90', [`2002-12-26^${due}`]], //  50 anos ✅, contribuindo 25 ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 35 | professora entre 50^62 | professora desde 92', []], //                     50 anos ✅, contribuindo 23 ❌, servidora por >10 ✅, >5 anos no último ✅
+        // by age:
+        ['mulher | nascida em 53 | professora desde 50', [`2003-01-01^${due}`]], //                           50 anos ✅, contribuindo 25 ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 54 | professora desde 50', []], //                                              49 anos ❌, contribuindo 25 ✅, servidora por >10 ✅, >5 anos no último ✅
+  
+        /**
+         * Customn
+         */
+        // has multiple resolution periods
+        ['homem | nascido em 30 | servidor entre 50^1998-12-20 | servidor desde 1998-12-25', [`${promulgation}^1998-12-20`, `2003-12-24^${due}`]]
+      ])
+    })
+
+    /**
+     * (...)
+     * III - voluntariamente, desde que cumprido tempo mínimo de dez anos de
+     * efetivo exercício no serviço público e cinco anos no cargo efetivo em que se
+     * dará a aposentadoria, observadas as seguintes condições:
+     *
+     * (...)
+     *
+     * b) sessenta e cinco anos de idade, se homem, e sessenta anos de idade, se
+     * mulher, com proventos proporcionais ao tempo de contribuição.
+     *
+     * § 5º - Os requisitos de idade e de tempo de contribuição serão reduzidos em
+     * cinco anos, em relação ao disposto no § 1º, III, "a", para o professor que
+     * comprove exclusivamente tempo de efetivo exercício das funções de
+     * magistério na educação infantil e no ensino fundamental e médio.
+     * (...)
+     */
+    describe('Proporcional', () => {
+      // prettier-ignore
+      test.possibility(rule, proportional, [
+        // reached before promulgation:
+        ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  60 anos ✅, servidor por >10 ✅, >5 anos no último ✅
+
+        // homem
+
+        // by age:
+        ['homem | nascido em 38 | servidor desde 50', [`2003-01-01^${due}`]], //                              65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 39 | servidor desde 50', []], //                                                 64 anos ❌, servidor por >10 ✅, >5 anos no último ✅
+        // by last:
+        ['homem | nascido em 30 | servidor entre 50^90 | servidor desde 1995', [`1999-12-31^${due}`]], //     65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 30 | servidor entre 50^00 | servidor desde 2000', [`${promulgation}^2000`]], //  65 anos ✅, servidor por >10 ✅, <5 anos no último ❌
+        // by public service
+        ['homem | nascido em 30 | contribuinte entre 50^00 | servidor desde 1990', [`1999-12-30^${due}`]], // 65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
+        ['homem | nascido em 30 | contribuinte entre 50^00 | servidor desde 1995', []], //                    65 anos ✅, servidor por <10 ❌, >5 anos no último ✅
+
+        // female
+
+        // by age:
+        ['mulher | nascida em 43 | servidora desde 50', [`2003-01-01^${due}`]], //                              60 anos ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 44 | servidora desde 50', []], //                                                 59 anos ❌, servidora por >10 ✅, >5 anos no último ✅
+        // by last:
+        ['mulher | nascida em 30 | servidora entre 50^90 | servidora desde 1995', [`1999-12-31^${due}`]], //    60 anos ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 30 | servidora entre 50^00 | servidora desde 2000', [`${promulgation}^2000`]], // 60 anos ✅, servidora por >10 ✅, <5 anos no último ❌
+        // by public service
+        ['mulher | nascida em 30 | contribuinte entre 50^00 | servidora desde 1990', [`1999-12-30^${due}`]], // 60 anos ✅, servidora por >10 ✅, >5 anos no último ✅
+        ['mulher | nascida em 30 | contribuinte entre 50^00 | servidora desde 1995', []], //                    60 anos ✅, servidora por <10 ❌, >5 anos no último ✅
       ])
     })
   })

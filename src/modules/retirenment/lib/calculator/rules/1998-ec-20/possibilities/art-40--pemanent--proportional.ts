@@ -11,7 +11,7 @@ const { filter } = processors
 type Input = CalculatorInput
 
 const possibility = new Possibility({
-  title: 'Art. 40. - Proporcional',
+  title: 'Art. 40º (proporcional)',
   description: `
     (...)
     III - voluntariamente, desde que cumprido tempo mínimo de dez anos de
