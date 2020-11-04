@@ -1,12 +1,14 @@
-import { test } from '../lib/test-utils'
-import { rule } from './1998-ec-20-transition.engine'
+import { test } from '../../lib/test-utils'
+import { rule } from './1998-ec-20-transition.rule'
 
-const { promulgation, due } = rule
+const {
+  promulgation,
+  due,
+  possibilities: [integral, proportional],
+} = rule
 
-describe('retirement/calculator/rules/1998-ec-20-transition.engine', () => {
+describe('retirement/calculator/rules/1998-ec-20-transition', () => {
   describe('possibilities', () => {
-    const [integral, proportional] = rule.possibilities
-
     /**
      * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito
      * anosde idade, se mulher;
@@ -119,7 +121,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition.engine', () => {
       })
 
       // prettier-ignore
-      test.possibility(rule, 0, [
+      test.possibility(rule, integral, [
         // reached before promulgation:
         ['homem | nascido em 45 | contribuinte desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
         ['mulher | nascida em 50 | contribuinte desde 50', [`${promulgation}^${due}`]], //  48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
@@ -300,7 +302,7 @@ describe('retirement/calculator/rules/1998-ec-20-transition.engine', () => {
       })
 
       // prettier-ignore
-      test.possibility(rule, 1, [
+      test.possibility(rule, proportional, [
         // reached before promulgation:
         ['homem | nascido em 45 | contribuinte desde 50', [`${promulgation}^${due}`]], //  53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
         ['mulher | nascida em 50 | contribuinte desde 50', [`${promulgation}^${due}`]], // 48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
