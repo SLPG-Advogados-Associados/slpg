@@ -5,7 +5,7 @@ import { isTeacher, isPublic } from '../../../lib/predicates'
 
 const { MALE, FEMALE } = Sex
 const { sex, contribution, age } = reachers
-const { processors, last, total } = contribution
+const { processors, last, total, lastIsPublic } = contribution
 const { filter, bonus, toll } = processors
 
 type Input = CalculatorInput
@@ -55,6 +55,8 @@ const possibility = new Possibility({
   `,
   requisites: new Requisites<Input>({
     all: [
+      { title: 'Serviço público', executor: lastIsPublic() },
+
       {
         title: 'Idade',
         any: [

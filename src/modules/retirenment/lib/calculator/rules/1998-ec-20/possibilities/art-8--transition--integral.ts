@@ -5,7 +5,7 @@ import { Possibility, Requisites } from '../../../lib/engine'
 
 const { MALE, FEMALE } = Sex
 const { sex, contribution, age } = reachers
-const { processors, last, total } = contribution
+const { processors, last, lastIsPublic, total } = contribution
 const { filter, toll, bonus } = processors
 
 type Input = CalculatorInput
@@ -27,7 +27,7 @@ const possibility = new Possibility({
     membro do Ministério Público ou de Tribunal de Contas, se homem, terá o
     tempo de serviço exercido até a publicação desta Emenda contado com o
     acréscimo de dezessete por cento.
-          
+
     § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
     dos Municípios, incluídas suas autarquias e fundações, que, até a data da
     publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
@@ -41,6 +41,8 @@ const possibility = new Possibility({
   `,
   requisites: new Requisites<Input>({
     all: [
+      { title: 'Serviço público', executor: lastIsPublic() },
+
       {
         title: 'Idade',
         details: `I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito anos de idade, se mulher;`,

@@ -4,7 +4,7 @@ import { Possibility, Requisites } from '../../../lib/engine'
 
 const { MALE, FEMALE } = Sex
 const { age, contribution, sex } = reachers
-const { total } = contribution
+const { total, lastIsPublic } = contribution
 
 const possibility = new Possibility({
   title: 'Art. 40º (proporcional)',
@@ -19,6 +19,8 @@ const possibility = new Possibility({
 
   requisites: new Requisites<CalculatorInput>({
     all: [
+      { title: 'Serviço público', executor: lastIsPublic() },
+
       {
         any: [
           {

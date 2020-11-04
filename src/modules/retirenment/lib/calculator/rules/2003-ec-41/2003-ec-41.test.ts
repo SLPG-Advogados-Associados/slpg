@@ -27,6 +27,10 @@ describe('retirement/calculator/rules/2003-ec-41', () => {
     describe('Integral', () => {
       // prettier-ignore
       test.possibility(rule, art40integral, [
+        // not civil servant
+        ['homem | nascido em 30 | servidor entre 40^50 | contribuinte desde 50', []],
+        ['mulher | nascida em 30 | servidora entre 40^50 | contribuinte desde 50', []],
+
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
@@ -114,6 +118,10 @@ describe('retirement/calculator/rules/2003-ec-41', () => {
     describe('Proporcional', () => {
       // prettier-ignore
       test.possibility(rule, art40proportional, [
+        // not civil servant
+        ['homem | nascido em 30 | servidor entre 40^50 | contribuinte desde 50', []],
+        ['mulher | nascida em 30 | servidora entre 40^50 | contribuinte desde 50', []],
+
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  60 anos ✅, servidor por >10 ✅, >5 anos no último ✅
@@ -212,154 +220,158 @@ describe('retirement/calculator/rules/2003-ec-41', () => {
 
       // prettier-ignore
       test.chain('Tempo de contribuição/geral', chains.total.general.male, [
-          ['homem | contribuinte desde 50', ['1984-12-23^']],
-          ['homem | contribuinte entre 50^60 | contribuinte desde 70', ['1994-12-24^']],
+        ['homem | contribuinte desde 50', ['1984-12-23^']],
+        ['homem | contribuinte entre 50^60 | contribuinte desde 70', ['1994-12-24^']],
 
-          // Precisely
-          ['homem | contribuinte desde 1963-12-25', ['1998-12-16^']],
+        // Precisely
+        ['homem | contribuinte desde 1963-12-25', ['1998-12-16^']],
 
-          // Toll of 20%
-          // 5 days missing, 1 extra day
-          ['homem | contribuinte desde 1963-12-30', ['1998-12-22^']],
-          // 366 days missing, 73.2 extra days
-          ['homem | contribuinte desde 1964-12-25', ['2000-02-28^']],
-        ])
+        // Toll of 20%
+        // 5 days missing, 1 extra day
+        ['homem | contribuinte desde 1963-12-30', ['1998-12-22^']],
+        // 366 days missing, 73.2 extra days
+        ['homem | contribuinte desde 1964-12-25', ['2000-02-28^']],
+      ])
 
       // prettier-ignore
       test.chain('Tempo de contribuição/geral', chains.total.general.female, [
-          ['mulher | nascida em 49 | contribuinte desde 55', ['1984-12-24^']],
-          ['mulher | nascida em 49 | contribuinte entre 55^60 | contribuinte desde 70', ['1994-12-25^']],
+        ['mulher | nascida em 49 | contribuinte desde 55', ['1984-12-24^']],
+        ['mulher | nascida em 49 | contribuinte entre 55^60 | contribuinte desde 70', ['1994-12-25^']],
 
-          // Precisely
-          ['mulher | nascida em 49 | contribuinte desde 1968-12-23', ['1998-12-16^']],
+        // Precisely
+        ['mulher | nascida em 49 | contribuinte desde 1968-12-23', ['1998-12-16^']],
 
-          // Toll of 20%
-          // 5 days missing, 1 extra day
-          ['mulher | nascida em 49 | contribuinte desde 1968-12-28', ['1998-12-22^']],
-          // 366 days missing, 73.4 extra days
-          ['mulher | nascida em 49 | contribuinte desde 1969-12-25', ['2000-02-29^']],
-        ])
+        // Toll of 20%
+        // 5 days missing, 1 extra day
+        ['mulher | nascida em 49 | contribuinte desde 1968-12-28', ['1998-12-22^']],
+        // 366 days missing, 73.4 extra days
+        ['mulher | nascida em 49 | contribuinte desde 1969-12-25', ['2000-02-29^']],
+      ])
 
       // prettier-ignore
       test.chain('Tempo de contribuição/professores', chains.total.teacher.male, [
-          // NOT A TEACHER
-          ['homem | nascido em 49 | contribuinte desde 50', []],
+        // NOT A TEACHER
+        ['homem | nascido em 49 | contribuinte desde 50', []],
 
-          // 35 years, with 17% extra
-          ['homem | nascido em 49 | professor desde 50', ['1979-11-24^']],
-          ['homem | nascido em 49 | professor entre 50^60 | professor desde 60', ['1979-11-24^']],
-          ['homem | nascido em 49 | professor entre 50^60 | professor entre 60^65 | professor desde 70', ['1984-11-23^']],
+        // 35 years, with 17% extra
+        ['homem | nascido em 49 | professor desde 50', ['1979-11-24^']],
+        ['homem | nascido em 49 | professor entre 50^60 | professor desde 60', ['1979-11-24^']],
+        ['homem | nascido em 49 | professor entre 50^60 | professor entre 60^65 | professor desde 70', ['1984-11-23^']],
 
-          // Precisely
-          ['homem | nascido em 49 | professor desde 1969-01-23', ['1998-12-16^']],
+        // Precisely
+        ['homem | nascido em 49 | professor desde 1969-01-23', ['1998-12-16^']],
 
-          // Toll of 20%
-          // 10 * 1,17 days missing, 2 extra day
-          ['homem | nascido em 49 | professor desde 1969-02-01', ['1998-12-28^']],
-          // 365 * 1,17 days missing, 85.41 extra days
-          ['homem | nascido em 49 | professor desde 1970-01-23', ['2000-05-11^']],
-        ])
+        // Toll of 20%
+        // 10 * 1,17 days missing, 2 extra day
+        ['homem | nascido em 49 | professor desde 1969-02-01', ['1998-12-28^']],
+        // 365 * 1,17 days missing, 85.41 extra days
+        ['homem | nascido em 49 | professor desde 1970-01-23', ['2000-05-11^']],
+      ])
 
       // prettier-ignore
       test.chain('Tempo de contribuição/professores', chains.total.teacher.female, [
-          // NOT A TEACHER
-          ['mulher | nascida em 49 | contribuinte desde 50', []],
+        // NOT A TEACHER
+        ['mulher | nascida em 49 | contribuinte desde 50', []],
 
-          // 30 years, with 20% extra
-          ['mulher | nascida em 49 | professora desde 55', ['1979-12-26^']],
-          ['mulher | nascida em 49 | professora entre 55^60 | professora desde 60', ['1979-12-26^']],
-          ['mulher | nascida em 49 | professora entre 55^60 | professora entre 60^65 | professora desde 70', ['1984-12-25^']],
+        // 30 years, with 20% extra
+        ['mulher | nascida em 49 | professora desde 55', ['1979-12-26^']],
+        ['mulher | nascida em 49 | professora entre 55^60 | professora desde 60', ['1979-12-26^']],
+        ['mulher | nascida em 49 | professora entre 55^60 | professora entre 60^65 | professora desde 70', ['1984-12-25^']],
 
-          // Precisely
-          ['mulher | nascida em 49 | professora desde 1973-12-22', ['1998-12-16^']],
+        // Precisely
+        ['mulher | nascida em 49 | professora desde 1973-12-22', ['1998-12-16^']],
 
-          // Toll of 20%
-          // 10 * 1,2 days missing, 2 extra day
-          ['mulher | nascida em 49 | professora desde 1973-12-30', ['1998-12-28^']],
-          // 365 * 1,2 days missing, 85.41 extra days
-          ['mulher | nascida em 49 | professora desde 1974-12-22', ['2000-05-25^']],
-        ])
+        // Toll of 20%
+        // 10 * 1,2 days missing, 2 extra day
+        ['mulher | nascida em 49 | professora desde 1973-12-30', ['1998-12-28^']],
+        // 365 * 1,2 days missing, 85.41 extra days
+        ['mulher | nascida em 49 | professora desde 1974-12-22', ['2000-05-25^']],
+      ])
     })
 
     // prettier-ignore
-    test.possibility(rule, art2, [        
-        // reached before promulgation:
-        ['homem | nascido em 45 | servidor desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 50 | servidor desde 50', [`${promulgation}^${due}`]], //  48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+    test.possibility(rule, art2, [
+      // not civil servant
+      ['homem | nascido em 30 | servidor entre 40^50 | contribuinte desde 50', []],
+      ['mulher | nascida em 30 | servidora entre 40^50 | contribuinte desde 50', []],
 
-        // male
+      // reached before promulgation:
+      ['homem | nascido em 45 | servidor desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+      ['mulher | nascida em 50 | servidor desde 50', [`${promulgation}^${due}`]], //  48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
 
-        // // by contrib:
-        ['homem | nascido em 49 | contribuinte entre 57^67 | servidor desde 79', [`2004-12-25^${due}`]], //   54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 49 | contribuinte entre 57^67 | servidor desde 95', []], //                      54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
-        // // by age:
-        ['homem | nascido em 51 | contribuinte entre 57^67 | servidor desde 70', [`2004^${due}`]], //         54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 80 | contribuinte entre 57^67 | servidor desde 70', []], //                      52 anos ❌, contribuindo 36 ✅, mais de 5 anos no último ✅
-        // by last:
-        ['homem | nascido em 49 | contribuinte entre 57^00 | servidor desde 2015', []], //                    54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
-        ['homem | nascido em 49 | servidor entre 57^05 | servidor desde 2015', [`${promulgation}^2005`]], //  54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
+      // male
 
-        // female
+      // // by contrib:
+      ['homem | nascido em 49 | contribuinte entre 57^67 | servidor desde 79', [`2004-12-25^${due}`]], //   54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
+      ['homem | nascido em 49 | contribuinte entre 57^67 | servidor desde 95', []], //                      54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
+      // // by age:
+      ['homem | nascido em 51 | contribuinte entre 57^67 | servidor desde 70', [`2004^${due}`]], //         54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
+      ['homem | nascido em 80 | contribuinte entre 57^67 | servidor desde 70', []], //                      52 anos ❌, contribuindo 36 ✅, mais de 5 anos no último ✅
+      // by last:
+      ['homem | nascido em 49 | contribuinte entre 57^00 | servidor desde 2015', []], //                    54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
+      ['homem | nascido em 49 | servidor entre 57^05 | servidor desde 2015', [`${promulgation}^2005`]], //  54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
 
-        // by contrib:
-        ['mulher | nascida em 54 | contribuinte entre 57^62 | servidor desde 79', [`2004-12-26^${due}`]], //  49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 54 | contribuinte entre 57^62 | servidor desde 95', []], //                     49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
-        // by age:
-        ['mulher | nascida em 56 | contribuinte entre 57^62 | servidor desde 70', [`2004^${due}`]], //        49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 80 | contribuinte entre 57^62 | servidor desde 70', []], //                     47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
-        // by last
-        ['mulher | nascida em 54 | contribuinte entre 57^00 | servidor desde 2015', []], //                   49 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
+      // female
 
-        /**
-         * Teacher
-         *
-         * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
-         * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
-         * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
-         * de magistério e que opte por aposentar-se na forma do disposto no
-         * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
-         * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
-         * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
-         * efetivo exercício das funções de magistério.
-         */
+      // by contrib:
+      ['mulher | nascida em 54 | contribuinte entre 57^62 | servidor desde 79', [`2004-12-26^${due}`]], //  49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+      ['mulher | nascida em 54 | contribuinte entre 57^62 | servidor desde 95', []], //                     49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
+      // by age:
+      ['mulher | nascida em 56 | contribuinte entre 57^62 | servidor desde 70', [`2004^${due}`]], //        49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+      ['mulher | nascida em 80 | contribuinte entre 57^62 | servidor desde 70', []], //                     47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
+      // by last
+      ['mulher | nascida em 54 | contribuinte entre 57^00 | servidor desde 2015', []], //                   49 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
 
-        // reached before promulgation:
-        ['homem | nascido em 40 | professor desde 50', [`${promulgation}^${due}`]], //    58 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 40 | professora desde 50', [`${promulgation}^${due}`]], //  58 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+      /**
+       * Teacher
+       *
+       * § 4º - O professor, servidor da União, dos Estados, do Distrito Federal e
+       * dos Municípios, incluídas suas autarquias e fundações, que, até a data da
+       * publicação desta Emenda, tenha ingressado, regularmente, em cargo efetivo
+       * de magistério e que opte por aposentar-se na forma do disposto no
+       * "caput", terá o tempo de serviço exercido até a publicação desta Emenda
+       * contado com o acréscimo de dezessete por cento, se homem, e de vinte por
+       * cento, se mulher, desde que se aposente, exclusivamente, com tempo de
+       * efetivo exercício das funções de magistério.
+       */
 
-        // male
+      // reached before promulgation:
+      ['homem | nascido em 40 | professor desde 50', [`${promulgation}^${due}`]], //    58 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+      ['mulher | nascida em 40 | professora desde 50', [`${promulgation}^${due}`]], //  58 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
 
-        // by contrib:
-        ['homem | nascido em 49 | professor entre 60^65 | professor desde 78', [`2004-06-26^${due}`]], //       54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 49 | professor entre 60^65 | professor desde 90', []], //                          54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
-        // combined teacher/non-teacher periods
-        // reaches general first:
-        ['homem | nascido em 49 | contribuinte entre 60^65 | professor desde 78', [`2009-10-12^${due}`]], //    54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
-        // reaches teacher first:
-        ['homem | nascido em 49 | contribuinte entre 60^61 | professor desde 78', [`2011-07-05^${due}`]], //    54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
-        // by age:
-        ['homem | nascido em 51 | professor entre 57^67 | professor desde 70', [`2004^${due}`]], //             54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 80 | professor entre 57^67 | professor desde 70', []], //                          52 anos ❌, contribuindo 36 ✅, mais de 5 anos no último ✅
-        // by last:
-        ['homem | nascido em 49 | professor entre 57^00 | professor desde 2015', []], //                        54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
-        ['homem | nascido em 49 | professor entre 57^05 | professor desde 2015', [`${promulgation}^2005`]], //  54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
+      // male
 
-        // female
+      // by contrib:
+      ['homem | nascido em 49 | professor entre 60^65 | professor desde 78', [`2004-06-26^${due}`]], //       54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
+      ['homem | nascido em 49 | professor entre 60^65 | professor desde 90', []], //                          54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
+      // combined teacher/non-teacher periods
+      // reaches general first:
+      ['homem | nascido em 49 | contribuinte entre 60^65 | professor desde 78', [`2009-10-12^${due}`]], //    54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
+      // reaches teacher first:
+      ['homem | nascido em 49 | contribuinte entre 60^61 | professor desde 78', [`2011-07-05^${due}`]], //    54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
+      // by age:
+      ['homem | nascido em 51 | professor entre 57^67 | professor desde 70', [`2004^${due}`]], //             54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
+      ['homem | nascido em 80 | professor entre 57^67 | professor desde 70', []], //                          52 anos ❌, contribuindo 36 ✅, mais de 5 anos no último ✅
+      // by last:
+      ['homem | nascido em 49 | professor entre 57^00 | professor desde 2015', []], //                        54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
+      ['homem | nascido em 49 | professor entre 57^05 | professor desde 2015', [`${promulgation}^2005`]], //  54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
 
-        // by contrib:
-        ['mulher | nascida em 54 | professora entre 60^65 | professora desde 83', [`2004-10-02^${due}`]], //    49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 54 | professora entre 60^65 | professora desde 94', []], //                       49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
-        // combined teacher/non-teacher periods (reaches general first)
-        // reaches general first:
-        ['mulher | nascida em 54 | contribuinte entre 60^65 | professora desde 83', [`2009-10-13^${due}`]], //  49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
-        // reaches teacher first:
-        ['mulher | nascida em 54 | contribuinte entre 60^61 | professora desde 83', [`2011-12-16^${due}`]], //  49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
-        // by age:
-        ['mulher | nascida em 56 | professora entre 60^65 | professora desde 70', [`2004^${due}`]], //          49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 80 | professora entre 60^65 | professora desde 70', []], //                       47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
-        // by last:
-        ['mulher | nascida em 54 | professora entre 57^00 | professora desde 2015', []], //                     49 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
-      ])
+      // female
+
+      // by contrib:
+      ['mulher | nascida em 54 | professora entre 60^65 | professora desde 83', [`2004-10-02^${due}`]], //    49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+      ['mulher | nascida em 54 | professora entre 60^65 | professora desde 94', []], //                       49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
+      // combined teacher/non-teacher periods (reaches general first)
+      // reaches general first:
+      ['mulher | nascida em 54 | contribuinte entre 60^65 | professora desde 83', [`2009-10-13^${due}`]], //  49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
+      // reaches teacher first:
+      ['mulher | nascida em 54 | contribuinte entre 60^61 | professora desde 83', [`2011-12-16^${due}`]], //  49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
+      // by age:
+      ['mulher | nascida em 56 | professora entre 60^65 | professora desde 70', [`2004^${due}`]], //          49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+      ['mulher | nascida em 80 | professora entre 60^65 | professora desde 70', []], //                       47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
+      // by last:
+      ['mulher | nascida em 54 | professora entre 57^00 | professora desde 2015', []], //                     49 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
+    ])
   })
 
   /**
@@ -390,6 +402,10 @@ describe('retirement/calculator/rules/2003-ec-41', () => {
   describe('Art. 6º', () => {
     // prettier-ignore
     test.possibility(rule, art6, [
+      // not civil servant
+      ['homem | nascido em 30 | servidor entre 40^60 | contribuinte desde 60', []],
+      ['mulher | nascida em 30 | servidora entre 40^60 | contribuinte desde 60', []],
+
       // reached before promulgation:
       ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >20 ✅, >5 anos no último ✅
       ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >20 ✅, >5 anos no último ✅

@@ -127,35 +127,39 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
 
       // prettier-ignore
       test.possibility(rule, art8integral, [
+        // not civil servant
+        ['homem | nascido em 30 | contribuinte desde 50', []],
+        ['mulher | nascida em 30 | contribuinte desde 50', []],
+
         // reached before promulgation:
-        ['homem | nascido em 45 | contribuinte desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 50 | contribuinte desde 50', [`${promulgation}^${due}`]], //  48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 45 | servidor desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 50 | servidora desde 50', [`${promulgation}^${due}`]], //  48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
 
         // male
 
         // by contrib:
-        ['homem | nascido em 49 | contribuinte entre 57^67 | contribuinte desde 78', [`2003-10-14^${due}`]], // 54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 49 | contribuinte entre 57^67 | contribuinte desde 80', []], //                    54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
+        ['homem | nascido em 49 | contribuinte entre 57^67 | servidor desde 78', [`2003-10-14^${due}`]], // 54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 49 | contribuinte entre 57^67 | servidor desde 80', []], //                    54 anos ✅, contribuindo 34 ❌, mais de 5 anos no último ✅
         // by age:
-        ['homem | nascido em 49 | contribuinte entre 57^67 | contribuinte desde 70', [`2002-01-01^${due}`]], // 54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 51 | contribuinte entre 57^67 | contribuinte desde 70', []], //                    52 anos ❌, contribuindo 36 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 49 | contribuinte entre 57^67 | servidor desde 70', [`2002-01-01^${due}`]], // 54 anos ✅, contribuindo 36 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 51 | contribuinte entre 57^67 | servidor desde 70', []], //                    52 anos ❌, contribuindo 36 ✅, mais de 5 anos no último ✅
         // by last:
         // @TODO: this should be ok, as last one isn't needed to fulfil
         // requirements in time!
-        ['homem | nascido em 49 | contribuinte entre 57^00 | contribuinte desde 2000', []], //                  54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
+        ['homem | nascido em 49 | contribuinte entre 57^00 | servidor desde 2000', []], //                  54 anos ✅, contribuindo 36 ✅, menos de 5 anos no último ❌
 
         // female
 
         // by contrib:
-        ['mulher | nascida em 54 | contribuinte entre 57^62 | contribuinte desde 78', [`2003-10-15^${due}`]], //  49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 54 | contribuinte entre 57^62 | contribuinte desde 80', []], //                     49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
+        ['mulher | nascida em 54 | contribuinte entre 57^62 | servidora desde 78', [`2003-10-15^${due}`]], //  49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 54 | contribuinte entre 57^62 | servidora desde 80', []], //                     49 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
         // by age:
-        ['mulher | nascida em 54 | contribuinte entre 57^62 | contribuinte desde 70', [`2002-01-01^${due}`]], //  49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 56 | contribuinte entre 57^62 | contribuinte desde 70', []], //                     47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 54 | contribuinte entre 57^62 | servidora desde 70', [`2002-01-01^${due}`]], //  49 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 56 | contribuinte entre 57^62 | servidora desde 70', []], //                     47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
         // by last:
         // @TODO: this should be ok, as last one isn't needed to fulfil
         // requirements in time!
-        ['mulher | nascida em 54 | contribuinte entre 57^00 | contribuinte desde 2000', []], //                   49 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
+        ['mulher | nascida em 54 | contribuinte entre 57^00 | servidora desde 2000', []], //                   49 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
         
         /**
          * Teacher
@@ -310,35 +314,39 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
 
       // prettier-ignore
       test.possibility(rule, art8proportional, [
+        // not civil servant
+        ['homem | nascido em 45 | contribuinte desde 50', []],
+        ['mulher | nascida em 50 | contribuinte desde 50', []],
+
         // reached before promulgation:
-        ['homem | nascido em 45 | contribuinte desde 50', [`${promulgation}^${due}`]], //  53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 50 | contribuinte desde 50', [`${promulgation}^${due}`]], // 48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 45 | servidor desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 50 | servidora desde 50', [`${promulgation}^${due}`]], // 48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
 
         // male
 
         // by contrib:
-        ['homem | nascido em 50 | contribuinte entre 57^62 | contribuinte desde 77', [`2003-03-12^${due}`]], // 53 anos ✅, contribuindo 30 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 50 | contribuinte entre 57^62 | contribuinte desde 78', []], //                    53 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
+        ['homem | nascido em 50 | contribuinte entre 57^62 | servidor desde 77', [`2003-03-12^${due}`]], // 53 anos ✅, contribuindo 30 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 50 | contribuinte entre 57^62 | servidor desde 78', []], //                    53 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
         // by age:
-        ['homem | nascido em 50 | contribuinte desde 70', [`2003-01-01^${due}`]], //                            53 anos ✅, contribuindo 30 ✅, mais de 5 anos no último ✅
-        ['homem | nascido em 51 | contribuinte desde 70', []], //                                               52 anos ❌, contribuindo 30 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 50 | servidor desde 70', [`2003-01-01^${due}`]], //                            53 anos ✅, contribuindo 30 ✅, mais de 5 anos no último ✅
+        ['homem | nascido em 51 | servidor desde 70', []], //                                               52 anos ❌, contribuindo 30 ✅, mais de 5 anos no último ✅
         // by last:
         // @TODO: this should be ok, as last one isn't needed to fulfil
         // requirements in time!
-        ['homem | nascido em 50 | contribuinte entre 57^00 | contribuinte desde 2000', []], //                  54 anos ✅, contribuindo 30 ✅, menos de 5 anos no último ❌
+        ['homem | nascido em 50 | contribuinte entre 57^00 | servidor desde 2000', []], //                  54 anos ✅, contribuindo 30 ✅, menos de 5 anos no último ❌
 
         // female
 
         // by contrib:
-        ['mulher | nascida em 54 | contribuinte entre 57^62 | contribuinte desde 82', [`2003-03-13^${due}`]], //  48 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 54 | contribuinte entre 57^62 | contribuinte desde 83', []], //                     48 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
+        ['mulher | nascida em 54 | contribuinte entre 57^62 | servidora desde 82', [`2003-03-13^${due}`]], //  48 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 54 | contribuinte entre 57^62 | servidora desde 83', []], //                     48 anos ✅, contribuindo 29 ❌, mais de 5 anos no último ✅
         // by age:
-        ['mulher | nascida em 54 | contribuinte desde 76', [`2002-01-01^${due}`]], //                             48 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
-        ['mulher | nascida em 56 | contribuinte desde 76', []], //                                                47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 54 | servidora desde 76', [`2002-01-01^${due}`]], //                             48 anos ✅, contribuindo 31 ✅, mais de 5 anos no último ✅
+        ['mulher | nascida em 56 | servidora desde 76', []], //                                                47 anos ❌, contribuindo 31 ✅, mais de 5 anos no último ✅
         // by last:
         // @TODO: this should be ok, as last one isn't needed to fulfil
         // requirements in time!
-        ['mulher | nascida em 54 | contribuinte entre 76^00 | contribuinte desde 2000', []], //                   48 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
+        ['mulher | nascida em 54 | contribuinte entre 76^00 | servidora desde 2000', []], //                   48 anos ✅, contribuindo 31 ✅, menos de 5 anos no último ❌
 
         /**
          * Teacher
@@ -413,6 +421,10 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
     describe('Integral', () => {
       // prettier-ignore
       test.possibility(rule, art40integral, [
+        // not civil servant
+        ['homem | nascido em 30 | servidor entre 40^50 | contribuinte desde 50', []],
+        ['mulher | nascida em 30 | servidora entre 40^50 | contribuinte desde 50', []],
+
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
@@ -503,6 +515,10 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
     describe('Proporcional', () => {
       // prettier-ignore
       test.possibility(rule, art40proportional, [
+        // not civil servant
+        ['homem | nascido em 30 | servidor entre 40^50 | contribuinte desde 50', []],
+        ['mulher | nascida em 30 | servidora entre 40^50 | contribuinte desde 50', []],
+
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  60 anos ✅, servidor por >10 ✅, >5 anos no último ✅

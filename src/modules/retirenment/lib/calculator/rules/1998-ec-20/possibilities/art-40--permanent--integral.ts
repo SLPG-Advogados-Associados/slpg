@@ -5,7 +5,7 @@ import { Possibility, Requisites } from '../../../lib/engine'
 
 const { MALE, FEMALE } = Sex
 const { sex, contribution, age } = reachers
-const { processors, last, total } = contribution
+const { processors, last, lastIsPublic, total } = contribution
 const { filter } = processors
 
 type Input = CalculatorInput
@@ -31,6 +31,8 @@ const possibility = new Possibility({
   `,
   requisites: new Requisites<Input>({
     all: [
+      { title: 'Serviço público', executor: lastIsPublic() },
+
       {
         title: 'Tempo de serviço público',
         description: '10 anos',
