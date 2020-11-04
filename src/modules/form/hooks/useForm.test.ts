@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 import { useForm } from './useForm'
 
-describe('form/useForm', () => {
+describe.skip('form/useForm', () => {
   it('should return core api', () => {
     const { result } = renderHook(() => useForm())
 
