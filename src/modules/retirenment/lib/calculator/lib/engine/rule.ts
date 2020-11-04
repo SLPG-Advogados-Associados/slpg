@@ -102,22 +102,22 @@ class Rule implements RuleInput {
       throw new Error('Could not find existing result for chain.')
     }
 
-    console.log({ lastResult, chain, possibility })
-
     // early return if not even a result is available.
     if (!lastResult.length) return false
 
     // early return if this level has satisfiable opinion.
     if (chain.satisfiable) {
-      return chain.satisfiable(lastResult)
+      return chain.satisfiable(lastResult, constraint)
     }
 
     // define combinatory method for children, if applicable.
     const method = 'all' in chain ? 'every' : 'any' in chain ? 'some' : null
 
     return method
-      ? Requisites.getChildren(chain)[method]((child) =>
-          this.isSatisfiable(possibility, child)
+      ? Requisites.getChildren(chain)[method](
+          (child) =>
+            this.isSatisfiable(possibility, child) ||
+            this.isSatisfied(possibility, child)
         )
       : false
   }

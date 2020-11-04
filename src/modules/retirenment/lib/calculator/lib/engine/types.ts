@@ -3,7 +3,7 @@ type Base = {
   description?: string
   details?: string
   debug?: ((...args: unknown[]) => void) | boolean
-  satisfiable?: (result: Period[]) => boolean
+  satisfiable?: (result: Period[], constraint: Period) => boolean
 }
 
 export type Period = { from?: Date; to?: Date }
