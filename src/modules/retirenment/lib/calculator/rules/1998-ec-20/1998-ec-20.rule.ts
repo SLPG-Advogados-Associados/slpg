@@ -4,8 +4,8 @@ import { dates } from '../dates'
 const promulgation = dates.ec20
 const due = dates.ec41
 
-import { possibility as permanentIntegral } from './possibilities/art-40--pemanent--integral'
-import { possibility as permanentProportional } from './possibilities/art-40--pemanent--proportional'
+import { possibility as permanentIntegral } from './possibilities/art-40--permanent--integral'
+import { possibility as permanentProportional } from './possibilities/art-40--permanent--proportional'
 import { possibility as transitionIntegral } from './possibilities/art-8--transition--integral'
 import { possibility as transitionProportional } from './possibilities/art-8--transition--proportional'
 

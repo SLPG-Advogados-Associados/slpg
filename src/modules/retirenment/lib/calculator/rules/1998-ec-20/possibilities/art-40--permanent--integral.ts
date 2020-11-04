@@ -35,6 +35,7 @@ const possibility = new Possibility({
         title: 'Tempo de serviço público',
         description: '10 anos',
         details: `III - (...) tempo mínimo de dez anos de efetivo exercício no serviço público (...)`,
+        // satisfiable: startBefore(due),
         executor: total({
           expected: { years: 10 },
           processors: {
