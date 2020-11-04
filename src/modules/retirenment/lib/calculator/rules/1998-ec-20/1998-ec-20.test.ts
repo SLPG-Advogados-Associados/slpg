@@ -1,12 +1,19 @@
 import { test } from '../../lib/test-utils'
 import { rule } from './1998-ec-20.rule'
 
-const { promulgation, due } = rule
+const {
+  promulgation,
+  due,
+  possibilities: [
+    art40integral,
+    art40proportional,
+    art8integral,
+    art8proportional,
+  ],
+} = rule
 
 describe('retirement/calculator/rules/1998-ec-20', () => {
   describe('Art. 8 (transição)', () => {
-    const [_i, _p, integral, proportional] = rule.possibilities
-
     /**
      * I - tiver cinqüenta e três anos de idade, se homem, e quarenta e oito
      * anosde idade, se mulher;
@@ -37,7 +44,7 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
      */
     describe('Integral', () => {
       describe('Requisitos', () => {
-        const get = integral.requisites.find.bind(integral.requisites)
+        const get = art8integral.requisites.find.bind(art8integral.requisites)
 
         const requisites = {
           total: {
@@ -119,7 +126,7 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
       })
 
       // prettier-ignore
-      test.possibility(rule, integral, [
+      test.possibility(rule, art8integral, [
         // reached before promulgation:
         ['homem | nascido em 45 | contribuinte desde 50', [`${promulgation}^${due}`]], //   53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
         ['mulher | nascida em 50 | contribuinte desde 50', [`${promulgation}^${due}`]], //  48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
@@ -212,7 +219,9 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
      */
     describe('Proporcional', () => {
       describe('Requisitos', () => {
-        const get = proportional.requisites.find.bind(proportional.requisites)
+        const get = art8proportional.requisites.find.bind(
+          art8proportional.requisites
+        )
 
         const requisites = {
           total: {
@@ -300,7 +309,7 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
       })
 
       // prettier-ignore
-      test.possibility(rule, proportional, [
+      test.possibility(rule, art8proportional, [
         // reached before promulgation:
         ['homem | nascido em 45 | contribuinte desde 50', [`${promulgation}^${due}`]], //  53 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
         ['mulher | nascida em 50 | contribuinte desde 50', [`${promulgation}^${due}`]], // 48 anos ✅, contribuindo 48 ✅, mais de 5 anos no último ✅
@@ -384,8 +393,6 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
   })
 
   describe('Art. 40º (permanente)', () => {
-    const [integral, proportional] = rule.possibilities
-
     /**
      * (...)
      * III - voluntariamente, desde que cumprido tempo mínimo de dez anos de
@@ -405,7 +412,7 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
      */
     describe('Integral', () => {
       // prettier-ignore
-      test.possibility(rule, integral, [
+      test.possibility(rule, art40integral, [
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   60 anos ✅, contribuindo 35 ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  55 anos ✅, contribuindo 30 ✅, servidor por >10 ✅, >5 anos no último ✅
@@ -495,7 +502,7 @@ describe('retirement/calculator/rules/1998-ec-20', () => {
      */
     describe('Proporcional', () => {
       // prettier-ignore
-      test.possibility(rule, proportional, [
+      test.possibility(rule, art40proportional, [
         // reached before promulgation:
         ['homem | nascido em 30 | servidor desde 50', [`${promulgation}^${due}`]], //   65 anos ✅, servidor por >10 ✅, >5 anos no último ✅
         ['mulher | nascida em 30 | servidor desde 50', [`${promulgation}^${due}`]], //  60 anos ✅, servidor por >10 ✅, >5 anos no último ✅
