@@ -1,8 +1,7 @@
-import type { RequisiteResult } from '../../engine'
 import { normalize } from 'duration-fns'
 
 import { CalculatorInput } from '../../../types'
-import { ceil, max } from '../../date'
+import { ceil } from '../../date'
 import { FUTURE, NO_DURATION } from '../../const'
 import {
   compare,
@@ -72,7 +71,6 @@ const total = (config: Params) =>
     }
 
     let from: Date
-    let to: Date
 
     for (const contribution of contributions) {
       const { start, end = FUTURE } = contribution
@@ -95,15 +93,9 @@ const total = (config: Params) =>
         // remove these extra days from end date.
         from = ceil('days', apply(end, negate({ days: Math.round(overlap) })))
       }
-
-      // push end to as far as possible, once we have a satisfying start
-      if (from && toDays(processed) > 0) {
-        // if contribution is "endless", push future day forever
-        to = contribution.end ? max([from, contribution.end]) : contribution.end
-      }
     }
 
-    return from ? [{ from, to }] : []
+    return from ? [{ from }] : []
   }, `total ${str.duration(config.expected)}`)
 
 export { total }
