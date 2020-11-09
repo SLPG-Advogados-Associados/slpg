@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { format } from 'date-fns'
 import { AsideTitle } from '~design'
 import { Calculator } from '~modules/retirenment'
-import { Box, Icons, styled, t, css, classnames } from '~design'
-
-const { Engine } = Calculator
+import { Box, Icons, styled, t, css } from '~design'
 
 type ResultStatus = 'satisfied' | 'unsatisfied' | 'satisfiable'
 
@@ -35,7 +33,7 @@ const ResultDate = styled.div`
   opacity: 0.75;
 `
 
-const period = ({ from, to }: Calculator.RequisiteResult) => {
+const period = ({ from, to }: Calculator.Period) => {
   if (!from && !to) return null
   if (from && !to) return `de ${d(from)} em diante`
   if (to && !from) return `até ${d(to)}`
@@ -43,16 +41,16 @@ const period = ({ from, to }: Calculator.RequisiteResult) => {
 }
 
 const Result: React.FC<{
-  result: Calculator.RequisiteResult[]
+  result: Calculator.Period[]
   status: ResultStatus
   root?: boolean
 }> = ({ result, root, status }) => (
   <ResultDate>
     {result.length && status !== 'unsatisfied' ? (
       <ul>
-        {result.map(({ from, to }) => (
+        {result.slice(0, root ? 1 : result.length).map(({ from, to }) => (
           <li key={`${from}-${to}`}>
-            <pre>{period({ from, to })}</pre>
+            <pre>{root ? d(from) : period({ from, to })}</pre>
           </li>
         ))}
       </ul>
@@ -75,12 +73,13 @@ const Icon: React.FC<{
   )
 
 const getStatus = (
-  { promulgation: from, due: to }: Calculator.Rule,
-  chain: Calculator.RequisiteChain<Calculator.CalculatorInput>
+  rule: Calculator.Rule,
+  possibility: Calculator.Possibility,
+  chain?: Calculator.RequisiteChain<Calculator.CalculatorInput>
 ) =>
-  Engine.isSatisfied(chain, { from, to })
+  rule.isSatisfied(possibility, chain)
     ? 'satisfied'
-    : Engine.isSatisfiable(chain)
+    : rule.isSatisfiable(possibility, chain)
     ? 'satisfiable'
     : 'unsatisfied'
 
@@ -88,12 +87,21 @@ const ChainResult: React.FC<{
   depth: number
   rootStatus: 'satisfied' | 'satisfiable' | 'unsatisfied'
   rule: Calculator.Rule
+  possibility: Calculator.Possibility
   chain: Calculator.RequisiteChain<Calculator.CalculatorInput>
   deadEnd?: boolean
-}> = ({ rule, chain, depth, rootStatus, deadEnd: parentDeadEnd }) => {
-  const { title, description, lastResult } = chain
-  const children = Engine.getChildren(chain)
-  const status = getStatus(rule, chain)
+}> = ({
+  rule,
+  possibility,
+  chain,
+  depth,
+  rootStatus,
+  deadEnd: parentDeadEnd,
+}) => {
+  const { title, description } = chain
+  const [_refs, lastResult] = possibility.requisites.getLastPartial(chain)
+  const children = Calculator.Requisites.getChildren(chain)
+  const status = getStatus(rule, possibility, chain)
   const deadEnd = (parentDeadEnd && depth > 0) || status === 'unsatisfied'
   const irrelevant =
     deadEnd && (rootStatus === 'satisfied' || rootStatus === 'satisfiable')
@@ -125,6 +133,7 @@ const ChainResult: React.FC<{
         <ChainResult
           key={i}
           rule={rule}
+          possibility={possibility}
           chain={child}
           depth={name ? depth + 1 : depth}
           deadEnd={deadEnd}
@@ -136,19 +145,20 @@ const ChainResult: React.FC<{
 }
 
 const Possibility: React.FC<{
-  className?: string
   rule: Calculator.Rule
   possibility: Calculator.Possibility
-  result: Calculator.RequisiteResult[]
-}> = ({ className, rule, possibility, result }) => {
-  const status = getStatus(rule, possibility.requisites.chain)
+  input: Calculator.CalculatorInput
+}> = ({ rule, possibility, input }) => {
+  const result = useMemo(() => rule.execute(possibility, input), [
+    rule,
+    possibility,
+    input,
+  ])
+
+  const status = getStatus(rule, possibility)
 
   return (
-    <StyledBox
-      as="li"
-      success={status === 'satisfied'}
-      className={classnames('relative', className)}
-    >
+    <StyledBox success={status === 'satisfied'} className={'relative'}>
       <AsideTitle>{possibility.title}</AsideTitle>
 
       <div className="absolute top-0 right-0 mt-3 mr-2 flex items-center">
@@ -169,6 +179,7 @@ const Possibility: React.FC<{
         <TBody className="text-100">
           <ChainResult
             rule={rule}
+            possibility={possibility}
             chain={possibility.requisites.chain}
             rootStatus={status}
             depth={0}
