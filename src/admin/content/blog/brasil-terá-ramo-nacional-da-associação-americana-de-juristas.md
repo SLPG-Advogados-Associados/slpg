@@ -18,5 +18,3 @@ Pois bem, no dia 19 de dezembro (neste sábado) será realizando um evento para 
 O evento começará às 16h, terá [**transmissão ao vivo através do Youtube**](https://youtu.be/u1vW8fetI_A), e contará com a palestra de Eugênio Raúl Zaffaroni (juiz da Corte Interamericana de Direitos Humanos), com o tema: "Atransmissão ao vivo através do Youtube AAJ e os desafios dos juristas americanos no contexto das ameaças à democracia e aos Direitos Humanos". 
 
 O Escritório SLPG tem a honra de ter um dos seus integrantes, o advogado Luís Fernando Silva, compondo o grupo diretivo da AAJ Rama Brasil, na condição de membro titular do seu Conselho Consultivo.
-
-![](/admin/content/media/whatsapp-image-2020-12-16-at-14.17.40.jpeg)
