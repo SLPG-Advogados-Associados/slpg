@@ -14,4 +14,4 @@ Desejamos a todos que o próximo ano traga muita saúde, segurança, educação,
 
 **Em casos de emergência** neste período de recesso pedimos que nos envie uma mensagem para secretaria@slpgadvogados.adv.br ou pelo WhatsApp (48) 98835-9010. Responderemos assim que for possível. 
 
-Feliz Natal e próspero ano novo!
+Feliz natal e próspero ano novo!
