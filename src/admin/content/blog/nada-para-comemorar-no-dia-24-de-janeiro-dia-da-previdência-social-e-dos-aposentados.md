@@ -6,9 +6,9 @@ date: 2021-01-24T17:28:46.453Z
 image: /admin/content/media/whatsapp-image-2021-01-22-at-10.04.50.jpeg
 summary: Um convite a reflexão e a mobilização
 ---
-_**Escrito por Luis Fernando Silva, advogado (OAB/SC 9582) e sócio fundador do SLPG Advogados Associados**_
+**_Escrito por Luis Fernando Silva, advogado (OAB/SC 9582) e sócio fundador do SLPG Advogados Associados_**
 
-Aproxima-se o dia 24 de janeiro, em que se comemora o dia da Previdência Social brasileira e o dia do(a) aposentado(a), mas infelizmente nada há a comemorar, restando apenas elogiar e enaltecer o trabalho desses milhões de brasileiros que dedicaram suas vidas ao País.
+Aproxima-se o dia 24 de janeiro, em que se comemora o dia da Previdência Social brasileira e o dia do(a) aposentado(a), mas infelizmente nada há a comemorar, restando apenas elogiar e fazer uma reflexão sobre o trabalho desses milhões de brasileiros que dedicaram suas vidas ao País.
 
 Não há o que comemorar porque o Governo Bolsonaro reajustou o salário-mínimo de R$ 1.045,00 para apenas R$ 1.100,00, com vigência a partir de janeiro de 2021, **o que significa um índice de reajustamento de apenas 5,263%, contra uma inflação oficial de 5,45%, medida pelo INPC.**
 
