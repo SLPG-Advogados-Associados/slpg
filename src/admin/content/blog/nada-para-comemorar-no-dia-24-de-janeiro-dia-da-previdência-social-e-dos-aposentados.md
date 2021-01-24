@@ -1,6 +1,6 @@
 ---
 title: >-
-  Nada para comemorar no dia 24 de janeiro, dia da Previdência Social e dos
+  Nada a comemorar no dia 24 de janeiro, dia da Previdência Social e dos
   aposentados
 date: 2021-01-24T17:28:46.453Z
 image: /admin/content/media/whatsapp-image-2021-01-22-at-10.04.50.jpeg
