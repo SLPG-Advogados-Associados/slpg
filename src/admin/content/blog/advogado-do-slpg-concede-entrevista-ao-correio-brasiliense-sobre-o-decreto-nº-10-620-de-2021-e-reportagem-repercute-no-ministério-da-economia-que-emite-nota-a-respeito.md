@@ -21,6 +21,8 @@ A Nota do Ministério da Economia afirma, também, que não há definição gove
 
 Em resposta à Nota emitida pelo Governo Bolsonaro, algumas entidades nacionais representativas dos servidores federais resolveram emitir [**Nota Pública**](https://www.correiobraziliense.com.br/economia/2021/02/4907258-decreto-muda-gestao-de-previdencia-do-servidor-publico-confira.html), na qual reforçam os argumentos apresentados por Luís Fernando e conclamam a sociedade brasileira a resistir a toda e qualquer medida que objetive, direta ou indiretamente, caminhar no sentido da privatização da Previdência Social.
 
+Este novo ataque a previdência foi tratado ontem em uma videoconferência da FASUBRA, que também contou com a colaboração de Luis Fernando. Confira:
+
 ```youtube
 https://www.youtube.com/watch?v=zNugsQOPDhw
 ```
