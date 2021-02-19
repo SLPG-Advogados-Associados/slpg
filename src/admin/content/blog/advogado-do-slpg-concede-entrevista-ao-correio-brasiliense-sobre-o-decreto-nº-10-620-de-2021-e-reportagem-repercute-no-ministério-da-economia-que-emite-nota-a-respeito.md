@@ -27,6 +27,7 @@ Este novo ataque a previdência foi tratado ontem em uma videoconferência da FA
 https://www.youtube.com/watch?v=zNugsQOPDhw
 ```
 
-___\
+___
+
 **Nota de rodapé:**\
 ¹ A proposta está nas modificações que a PEC 6/2019 pretendia fazer no art. 40, § 6º, no art. 201-A, e no art. 115, da Constituição Federal.
