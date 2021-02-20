@@ -19,7 +19,7 @@ Verificando a repercussão da matéria jornalística,[ **o Ministério da Econom
 
 A Nota do Ministério da Economia afirma, também, que não há definição governamental de tornar o INSS a entidade gestora única do regime próprio de previdência dos servidores federais, e que o governo não visa privatizar a Previdência Pública, mas não explica porque propôs, através da PEC nº 6/2019¹, a adoção do regime de capitalização privado, em substituição aos atuais regimes previdenciários públicos.
 
-Em resposta à Nota emitida pelo Governo Bolsonaro, algumas entidades nacionais representativas dos servidores federais resolveram emitir [**Nota Pública**](https://www.correiobraziliense.com.br/economia/2021/02/4907258-decreto-muda-gestao-de-previdencia-do-servidor-publico-confira.html), na qual reforçam os argumentos apresentados por Luís Fernando e conclamam a sociedade brasileira a resistir a toda e qualquer medida que objetive, direta ou indiretamente, caminhar no sentido da privatização da Previdência Social.
+Em resposta à Nota emitida pelo Governo Bolsonaro, algumas entidades nacionais representativas dos servidores federais resolveram emitir [**Nota Pública**](http://fenasps.org.br/2021/02/19/nota-aos-servidores-publicos-e-a-populacao-em-geral-sobre-o-decreto-10-620-21/), na qual reforçam os argumentos apresentados por Luís Fernando e conclamam a sociedade brasileira a resistir a toda e qualquer medida que objetive, direta ou indiretamente, caminhar no sentido da privatização da Previdência Social.
 
 Este novo ataque a previdência foi tratado ontem em uma videoconferência da FASUBRA, que também contou com a colaboração de Luis Fernando. Confira:
 
@@ -27,7 +27,7 @@ Este novo ataque a previdência foi tratado ontem em uma videoconferência da FA
 https://www.youtube.com/watch?v=zNugsQOPDhw
 ```
 
-___
+- - -
 
 **Nota de rodapé:**\
 ¹ A proposta está nas modificações que a PEC 6/2019 pretendia fazer no art. 40, § 6º, no art. 201-A, e no art. 115, da Constituição Federal.
