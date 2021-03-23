@@ -3,7 +3,7 @@ title: >-
   Pesquisa realizada pela Fiocruz por todo o Brasil aponta o colapso físico,
   mental e das condições de trabalho daqueles que estão na luta contra a COVID
 date: 2021-03-23T17:16:43.737Z
-image: /admin/content/media/manguinhos_fiocruz1.png
+image: /admin/content/media/índice.jpeg
 summary: >-
   Pesquisa mostra os impactos devastadores da pandemia sobre a classe
   trabalhadora. Sobrecarga de trabalho, falta de recursos básicos, e desrespeito
