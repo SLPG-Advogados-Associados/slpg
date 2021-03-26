@@ -8,7 +8,7 @@ summary: >-
   Evento contou também com a participação do atual Secretário de Previdência do
   Ministério da Economia. Assista.
 ---
-Em função do Dia Nacional em Defesa do Serviço Público, a ANFIP – Associação Nacional dos Auditores Fiscais da Receita Federal do Brasil – realizou na última quarta feira (24/3) uma videoconferência com debate acerca do “Impacto do Decreto 10.620/2021 na vida do Servidor Público”. 
+Em função do Dia Nacional em Defesa do Serviço Público, a ANFIP – Associação Nacional dos Auditores Fiscais da Receita Federal do Brasil – realizou na última quarta feira (24/3) uma videoconferência com debate acerca do **“Impacto do Decreto 10.620/2021 na vida do Servidor Público”**. 
 
 Como havíamos noticiado em publicações anteriores em nosso blogue, o Decreto em questão transfere a concessão e a manutenção de aposentadorias de servidores das autarquias e fundações públicas federais (como o próprio INSS, o IBAMA, o INCRA, a FUNASA, as Universidades Federais, os Institutos Tecnológicos, a FIOCRIUZ, etc.), para o INSS, autarquia previdenciária hoje responsável pela gestão da previdência dos trabalhadores do setor privado e servidores públicos regidos pela CLT. 
 
@@ -22,8 +22,8 @@ https://www.youtube.com/watch?v=AYco9ZvXnjQ
 
 __
 
-Matérias relacionadas em nosso blogue:
+Publicaçoes relacionadas em nosso blogue:
 
-[**Advogado do SLPG concede entrevista ao Correio Brasiliense, sobre o Decreto nº 10.620, de 2021, e reportagem repercute no Ministério da Economia, que emite Nota a respeito**](https://www.slpgadvogados.adv.br/noticias/advogado-do-slpg-concede-entrevista-ao-correio-brasiliense-sobre-o-decreto-n%C2%BA-10-620-de-2021-e-reportagem-repercute-no-minist%C3%A9rio-da-economia-que-emite-nota-a-respeito)****
+[**Advogado do SLPG concede entrevista ao Correio Brasiliense, sobre o Decreto nº 10.620, de 2021, e reportagem repercute no Ministério da Economia, que emite Nota a respeito**](https://www.slpgadvogados.adv.br/noticias/advogado-do-slpg-concede-entrevista-ao-correio-brasiliense-sobre-o-decreto-n%C2%BA-10-620-de-2021-e-reportagem-repercute-no-minist%C3%A9rio-da-economia-que-emite-nota-a-respeito)
 
-****[**Decreto que passa aposentadorias de servidores públicos para o INSS repercute em Portugal**](https://www.slpgadvogados.adv.br/noticias/decreto-que-passa-aposentadorias-de-servidores-p%C3%BAblicos-para-o-inss-repercute-em-portugal)****
+[Decreto que passa aposentadorias de servidores públicos para o INSS repercute em Portugal](https://www.slpgadvogados.adv.br/noticias/decreto-que-passa-aposentadorias-de-servidores-p%C3%BAblicos-para-o-inss-repercute-em-portugal)
