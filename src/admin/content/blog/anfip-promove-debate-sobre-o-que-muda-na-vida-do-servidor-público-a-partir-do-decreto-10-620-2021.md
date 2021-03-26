@@ -24,6 +24,6 @@ __
 
 Publicaçoes relacionadas em nosso blogue:
 
-[**Advogado do SLPG concede entrevista ao Correio Brasiliense, sobre o Decreto nº 10.620, de 2021, e reportagem repercute no Ministério da Economia, que emite Nota a respeito**](https://www.slpgadvogados.adv.br/noticias/advogado-do-slpg-concede-entrevista-ao-correio-brasiliense-sobre-o-decreto-n%C2%BA-10-620-de-2021-e-reportagem-repercute-no-minist%C3%A9rio-da-economia-que-emite-nota-a-respeito)
+[Advogado do SLPG concede entrevista ao Correio Brasiliense, sobre o Decreto nº 10.620, de 2021, e reportagem repercute no Ministério da Economia, que emite Nota a respeito](https://www.slpgadvogados.adv.br/noticias/advogado-do-slpg-concede-entrevista-ao-correio-brasiliense-sobre-o-decreto-n%C2%BA-10-620-de-2021-e-reportagem-repercute-no-minist%C3%A9rio-da-economia-que-emite-nota-a-respeito)
 
 [Decreto que passa aposentadorias de servidores públicos para o INSS repercute em Portugal](https://www.slpgadvogados.adv.br/noticias/decreto-que-passa-aposentadorias-de-servidores-p%C3%BAblicos-para-o-inss-repercute-em-portugal)
