@@ -3,7 +3,7 @@ title: >-
   ANFIP promove debate sobre o que muda na vida do servidor público a partir do
   decreto 10.620/2021
 date: 2021-03-26T12:48:52.633Z
-image: /admin/content/media/arte-site-capa-anfip-11.jpg
+image: /admin/content/media/live-anfip.png
 summary: >-
   Evento contou também com a participação do atual Secretário de Previdência do
   Ministério da Economia. Assista.
