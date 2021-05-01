@@ -6,9 +6,9 @@ summary: >-
   Conhecer a história e ter consciência de classe é uma tarefa fundamental para
   entendermos e enfrentarmos a difícil situação que vivemos hoje.
 ---
-**_Texto de autoria de Marcio Locks Filho, advogado (OAB/SC 11208) e sócio do SLPG, pelo Dia do Trabalhador._**
+_**Texto de autoria de Marcio Locks Filho, advogado (OAB/SC 11208) e sócio do SLPG, pelo Dia do Trabalhador.**_
 
-## Breve Histórico
+# Breve Histórico
 
 No dia 1º de maio de 1886, trabalhadores tomaram as ruas de Chicago (EUA) para protestar contra as condições de trabalho desumanas a que eram submetidos e exigir a redução da jornada de trabalho de 13 para 8 horas diárias. Naquele dia as manifestações movimentaram a cidade, causando a ira dos patrões. A repressão ao movimento foi dura, com prisões, feridos e até mesmo trabalhadores mortos nos confrontos entre os manifestantes e a polícia.
 
@@ -18,7 +18,7 @@ No Brasil esta data começa a se consolidar no ano de 1917 com a vinda de trabal
 
 Não sem razão, a Consolidação das Leis do Trabalho (CLT) foi anunciada no dia 1º de maio de 1943, pelo então presidente Getúlio Vargas. Por muito tempo, o reajuste anual do salário mínimo também acontecia no Dia do Trabalhador.
 
-## 1º de Maio de 2021
+# 1º de Maio de 2021
 
 Conhecer a história e ter consciência de classe é uma tarefa fundamental para entendermos e enfrentarmos a difícil situação que vivemos hoje. Direitos conquistados com sangue e suor estão sendo destruídos, salários estão sendo rebaixados e formas de exploração ainda mais efetivas estão sendo desenvolvidas. 
 
