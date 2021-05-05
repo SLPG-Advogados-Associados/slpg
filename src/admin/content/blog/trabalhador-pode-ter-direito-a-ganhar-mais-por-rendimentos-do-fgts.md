@@ -4,7 +4,7 @@ date: 2021-05-05T19:31:29.715Z
 image: /admin/content/media/fgts.jpg
 summary: >-
   Qualquer trabalhador que, desde 1999, já teve ou ainda tenha saldo do FGTS
-  poderá ser beneficiado.
+  poderá ser beneficiado a depender de julgamento do STF.
 ---
 _**Texto de autoria da advogada Paula Ávila Poli (OAB/SC 25685).**_
 
