@@ -2,9 +2,7 @@
 title: 9/05/2021 – Dia das Mães
 date: 2021-05-09T12:45:09.027Z
 image: /admin/content/media/whatsapp-image-2021-05-06-at-16.23.4aa8.jpeg
-summary: >-
-  Desejamos e lutamos por tempos de mulheres visíveis, unidas e que ecoam sua
-  voz.
+summary: Leia a homenagem que a advogada Paula Avila Poli escreveu pelo dia das mães.
 ---
 _**Texto de autoria da advogada Paula Ávila Poli (OAB/SC 25685) pelo dia das mães.**_
 
