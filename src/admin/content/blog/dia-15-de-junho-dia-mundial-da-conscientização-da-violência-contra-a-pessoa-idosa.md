@@ -3,7 +3,7 @@ title: 15/06/2021 - Dia Mundial da Conscientização da Violência contra a Pess
 date: 2021-06-15T15:51:34.776Z
 image: /admin/content/media/whatsapp-image-2021-06-10-at-16.34.45.jpeg
 summary: >-
-  Conheça os direitos da pessoa idosa e saiba o que fazer para defendê-los.
+  Conheça os direitos da pessoa idosa e saiba o que fazer para protegê-los.
   (Video)
 ---
 _Texto de autoria da advogada Ana Maria Rosa (OAB/SC 5984)._
