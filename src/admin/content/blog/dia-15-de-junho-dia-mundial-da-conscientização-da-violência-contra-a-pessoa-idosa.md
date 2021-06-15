@@ -8,12 +8,6 @@ summary: >-
 ---
 _Texto de autoria da advogada Ana Maria Rosa (OAB/SC 5984)._
 
-__
-
-```youtube
-https://youtu.be/PCwEgVuyGss
-```
-
 No dia 15 de junho comemora-se o Dia Mundial da Conscientização da Violência contra a Pessoa Idosa. Esta data foi  instituída no ano de 2006,  pela ONU e pela Rede Internacional de Prevenção à Pessoa Idosa, sendo marcada anualmente por eventos, ao redor do mundo. O objetivo dessa celebração é conscientizar a sociedade acerca dos diversos tipos de violência a que pessoas idosas são submetidas, e prevenir novos casos.
 
 No Brasil, tanto a Constituição Federal como a Lei nº 10.741/2003, conhecida como Estatuto do Idoso, asseguram que nenhum idoso será objeto de qualquer tipo de negligência, discriminação, violência, crueldade ou opressão, e todo atentado aos seus direitos, por ação ou omissão, será punido na forma da lei, sendo dever de todos prevenir a ameaça ou violação aos direitos do idoso.
@@ -56,8 +50,6 @@ No tocante à defesa jurídica da pessoa idosa, notadamente no que diz respeito 
 
 Já nos casos em que o curador não possa mais exercer a curatela, seja pela idade avançada ou por questões particulares, ou pior, naqueles casos em que se constata que o curador constituído é o Ana Maria Rosa
 
-
-
  OAB/SC 5984próprio agressor, mediante provas  nesse sentido, é perfeitamente possível o ajuizamento de uma ação de substituição dessa curatela, vindo outra pessoa a assumir a curatela.
 
 Ressalte-se, ainda, que a administração das finanças na velhice, a depender do caso, pode apresentar muita dificuldade, sobretudo dentro de casa, onde se faz presente o vínculo afetivo e a confiança, muitas das vezes havendo a usurpação financeira da pessoa idosa.
@@ -71,3 +63,11 @@ Porém, essas dívidas com os consignados acabam se acumulando em alguns casos, 
 A depender da situação, é possível ajuizar uma demanda contra o banco, de forma que, diante da ausência de contrato que tenha dado origem ao débito, consegue-se a declaração da inexistência da suposta contratação com a instituição financeira.
 
 Em suma, que a celebração do Dia Mundial da Conscientização da Violência contra a pessoa Idosa, promova debates e ações concretas para a problemática que envolve a população idosa, posto que merecedora de proteção, com políticas públicas eficazes para combater qualquer tipo de violência.
+
+__
+
+```youtube
+https://youtu.be/PCwEgVuyGss
+```
+
+.
