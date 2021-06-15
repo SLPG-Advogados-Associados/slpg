@@ -1,7 +1,5 @@
 ---
-title: >-
-  Dia 15 de junho - Dia Mundial da Conscientização da Violência contra a Pessoa
-  Idosa
+title: 15/06/2021 - Dia Mundial da Conscientização da Violência contra a Pessoa Idosa
 date: 2021-06-15T15:51:34.776Z
 image: /admin/content/media/whatsapp-image-2021-06-10-at-16.34.45.jpeg
 summary: >-
