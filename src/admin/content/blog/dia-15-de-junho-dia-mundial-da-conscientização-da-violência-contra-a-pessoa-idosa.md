@@ -67,7 +67,7 @@ Em suma, que a celebração do Dia Mundial da Conscientização da Violência co
 __
 
 ```youtube
-https://youtu.be/PCwEgVuyGss
+https://youtu.be/PCwEgVuyGss?t=6416
 ```
 
 .
