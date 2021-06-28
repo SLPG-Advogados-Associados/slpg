@@ -8,7 +8,7 @@ summary: >-
 ---
 **_Texto de autoria do advogado Rivera Vieira (OAB/SC 41213-A)._**
 
-Enquanto diversos países já colhem os frutos da vacinação em massa e contabilizam cada vez menos casos de covid 19 e começam a liberar sua população para a retomada da convivência social sem restrições, no Brasil a situação permanece caótica, são mais de 500.000 mortos, milhões de doentes e sequelados; o registro de casos aumenta diariamente e é provável que ainda enfrentaremos mais uma onda de contágio.
+Enquanto diversos países já colhem os frutos da vacinação em massa e contabilizam cada vez menos casos de Covid-19 e começam a liberar sua população para a retomada da convivência social sem restrições, no Brasil a situação permanece caótica, são mais de 500.000 mortos, milhões de doentes e sequelados; o registro de casos aumenta diariamente e é provável que ainda enfrentaremos mais uma onda de contágio.
 
 As condições de proteção para a população são desiguais. Enquanto alguns conseguem trabalhar na segurança de suas casas, outros são expostos ao transporte público, ambientes com grande circulação e permanência de pessoas, e muitos são privados de itens básicos de proteção por deliberada omissão dos empregadores. Cabe aqui destacar os trabalhadores da área da saúde, que atuam diretamente expostos ao vírus enquanto atendem a população.
 
