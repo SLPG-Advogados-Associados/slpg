@@ -82,6 +82,10 @@ d) a doença endêmica adquirida por segurado habitante de região em que ela se
 
 § 2º Em caso excepcional, constatando-se que a doença não incluída na relação prevista nos incisos I e II deste artigo resultou das condições especiais em que o trabalho é executado e com ele se relaciona diretamente, a Previdência Social deve considerá-la acidente do trabalho.
 
+\_\_\_\_
+
+**Atualização:** Confira a entrevista concedida dia 8 de julho pelo advogado Rivera Vieira ao jornalista Gilberto Del'Pozzo, da TV Floripa.
+
 ```youtube
 https://www.youtube.com/watch?v=vvaj5GooRe8&t=122s
 ```
