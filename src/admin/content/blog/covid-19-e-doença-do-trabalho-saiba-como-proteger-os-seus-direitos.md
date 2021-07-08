@@ -6,7 +6,7 @@ summary: >-
   Trabalhadores que contraíram covid-19 e que atuam sob risco de contaminação
   devem ter o nexo causal entre o trabalho e a doença reconhecidos.
 ---
-**_Texto de autoria do advogado Rivera Vieira (OAB/SC 41213-A)._**
+_**Texto de autoria do advogado Rivera Vieira (OAB/SC 41213-A).**_
 
 Enquanto diversos países já colhem os frutos da vacinação em massa e contabilizam cada vez menos casos de Covid-19 e começam a liberar sua população para a retomada da convivência social sem restrições, no Brasil a situação permanece caótica, são mais de 500.000 mortos, milhões de doentes e sequelados; o registro de casos aumenta diariamente e é provável que ainda enfrentaremos mais uma onda de contágio.
 
@@ -81,6 +81,10 @@ c) a que não produza incapacidade laborativa;
 d) a doença endêmica adquirida por segurado habitante de região em que ela se desenvolva, salvo comprovação de que é resultante de exposição ou contato direto determinado pela natureza do trabalho.
 
 § 2º Em caso excepcional, constatando-se que a doença não incluída na relação prevista nos incisos I e II deste artigo resultou das condições especiais em que o trabalho é executado e com ele se relaciona diretamente, a Previdência Social deve considerá-la acidente do trabalho.
+
+\_\_\_\_
+
+**Atualização:** Confira a entrevista concedida dia 8 de julho pelo advogado Rivera Vieira ao jornalista Gilberto Del'Pozzo, da TV Floripa.
 
 ```youtube
 https://www.youtube.com/watch?v=vvaj5GooRe8&t=122s
