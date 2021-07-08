@@ -13,5 +13,4 @@ https://www.youtube.com/watch?v=vvaj5GooRe8&t=122s
 
 \_\_\_\_\
 \
-Matéria relacionada:\
-[Covid-19 e doença do trabalho: saiba como proteger os seus direitos](https://www.slpgadvogados.adv.br/noticias/covid-19-e-doen%C3%A7a-do-trabalho-saiba-como-proteger-os-seus-direitos), por Rivera Vieira
+Veja também o artigo escrito por Rivera Vieira sobre [Covid-19 e doença do trabalho: saiba como proteger os seus direitos](https://www.slpgadvogados.adv.br/noticias/covid-19-e-doen%C3%A7a-do-trabalho-saiba-como-proteger-os-seus-direitos).
