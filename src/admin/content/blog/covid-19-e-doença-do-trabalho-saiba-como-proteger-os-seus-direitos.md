@@ -81,3 +81,7 @@ c) a que não produza incapacidade laborativa;
 d) a doença endêmica adquirida por segurado habitante de região em que ela se desenvolva, salvo comprovação de que é resultante de exposição ou contato direto determinado pela natureza do trabalho.
 
 § 2º Em caso excepcional, constatando-se que a doença não incluída na relação prevista nos incisos I e II deste artigo resultou das condições especiais em que o trabalho é executado e com ele se relaciona diretamente, a Previdência Social deve considerá-la acidente do trabalho.
+
+```youtube
+https://www.youtube.com/watch?v=vvaj5GooRe8&t=122s
+```
