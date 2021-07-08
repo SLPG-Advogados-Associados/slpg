@@ -6,7 +6,7 @@ summary: >-
   Trabalhadores que contraíram covid-19 e que atuam sob risco de contaminação
   devem ter o nexo causal entre o trabalho e a doença reconhecidos.
 ---
-_**Texto de autoria do advogado Rivera Vieira (OAB/SC 41213-A).**_
+**_Texto de autoria do advogado Rivera Vieira (OAB/SC 41213-A)._**
 
 Enquanto diversos países já colhem os frutos da vacinação em massa e contabilizam cada vez menos casos de Covid-19 e começam a liberar sua população para a retomada da convivência social sem restrições, no Brasil a situação permanece caótica, são mais de 500.000 mortos, milhões de doentes e sequelados; o registro de casos aumenta diariamente e é provável que ainda enfrentaremos mais uma onda de contágio.
 
