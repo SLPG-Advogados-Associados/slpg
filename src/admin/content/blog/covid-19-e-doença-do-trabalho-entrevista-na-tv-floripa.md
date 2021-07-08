@@ -1,8 +1,10 @@
 ---
 title: 'Covid-19 e doença do trabalho: entrevista na TV Floripa'
 date: 2021-07-08T14:27:51.313Z
+image: >-
+  /admin/content/media/tv-floripa-covid-19-e-doença-do-trabalho-saiba-como-proteger-os-seus-direitos.-vvaj5goore8-640x360-4m00s-.png
 summary: >-
-  Confira a entrevista concedida ontem pelo advogado Rivera Vieira ao jornalista
+  Confira a entrevista concedida pelo advogado Rivera Vieira ao jornalista
   Gilberto Del'Pozzo.
 ---
 Confira a entrevista concedida ontem (8 de julho) pelo advogado Rivera Vieira (OAB/SC 41213-A) ao jornalista Gilberto Del'Pozzo.
