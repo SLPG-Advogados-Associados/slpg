@@ -5,8 +5,12 @@ summary: >-
   Confira a entrevista concedida ontem pelo advogado Rivera Vieira ao jornalista
   Gilberto Del'Pozzo.
 ---
-Confira a entrevista concedida ontem (8 de julho) pelo advogado Rivera Vieira ao jornalista Gilberto Del'Pozzo.
+Confira a entrevista concedida ontem (8 de julho) pelo advogado Rivera Vieira (OAB/SC 41213-A) ao jornalista Gilberto Del'Pozzo.
 
 ```youtube
 https://www.youtube.com/watch?v=vvaj5GooRe8&t=122s
 ```
+
+___\
+Matérias relacionadas:\
+[Covid-19 e doença do trabalho: saiba como proteger os seus direitos](https://www.slpgadvogados.adv.br/noticias/covid-19-e-doen%C3%A7a-do-trabalho-saiba-como-proteger-os-seus-direitos) - por Rivera Vieira
