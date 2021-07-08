@@ -11,7 +11,6 @@ Confira a entrevista concedida ontem (8 de julho) pelo advogado Rivera Vieira (O
 https://www.youtube.com/watch?v=vvaj5GooRe8&t=122s
 ```
 
-___\
+\_\_\_\_\
 \
-Matérias relacionadas:\
-[_Covid-19 e doença do trabalho: saiba como proteger os seus direitos_](https://www.slpgadvogados.adv.br/noticias/covid-19-e-doen%C3%A7a-do-trabalho-saiba-como-proteger-os-seus-direitos) _\- por Rivera Vieira_
+Veja também o artigo escrito por Rivera Vieira sobre [Covid-19 e doença do trabalho: saiba como proteger os seus direitos](https://www.slpgadvogados.adv.br/noticias/covid-19-e-doen%C3%A7a-do-trabalho-saiba-como-proteger-os-seus-direitos).
