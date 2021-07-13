@@ -73,7 +73,7 @@ const PostPage = () => {
 
     body = (
       <Section>
-        <Container as="main" className="clear">
+        <Container as="main" className="clear" fullOnMobile>
           <header className="border-b pb-2 mb-2 lg:mb-8">
             <StyledTitle className="mb-0">{post.title}</StyledTitle>
             <time

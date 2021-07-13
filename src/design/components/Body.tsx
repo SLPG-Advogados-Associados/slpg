@@ -2,12 +2,8 @@ import React from 'react'
 import Markdown, { renderers } from 'react-markdown'
 import { HTMLContent } from './HTMLContent'
 import parse from 'url-parse'
-import ReactPlayer from 'react-player'
-import styled from 'styled-components'
 
-const Player = styled(ReactPlayer)`
-  margin: 2em auto 2em;
-`
+import { Player } from './Player'
 
 const custom: { [key: string]: React.FC<{ value: string }> } = {
   youtube({ value }) {

@@ -77,6 +77,10 @@ const HTMLContent = styled.div`
     border-left: 0.3em solid ${t.theme('colors.primary')};
     margin: 2em 0em;
     padding: 1em 1.5em;
+
+    @media screen and (max-width: ${t.theme('screens.sm')}) {
+      margin: 2em -${t.theme('spacing.8')};
+    }
   }
 
   ${Image} {
