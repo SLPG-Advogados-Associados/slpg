@@ -72,6 +72,13 @@ const HTMLContent = styled.div`
     }
   }
 
+  blockquote {
+    background-color: ${t.theme('colors.pampas')};
+    border-left: 0.3em solid ${t.theme('colors.primary')};
+    margin: 2em 0em;
+    padding: 1em 1.5em;
+  }
+
   ${Image} {
     max-width: 48em;
     margin: 2em auto;
