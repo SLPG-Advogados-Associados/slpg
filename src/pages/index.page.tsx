@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import { theme } from 'styled-tools'
 import { useQuery } from '@apollo/react-hooks'
 import { withGraphQL, GT } from '~api'
@@ -104,14 +103,7 @@ const HomePage = () => {
       <Welcome>
         <div className="content">
           <p className="mb-4">
-            Por causa da quarentena{' '}
-            <Link
-              href="/noticias/[slug]"
-              as="/noticias/escritório-slpg-trabalhará-remotamente"
-            >
-              estamos trabalhando
-            </Link>{' '}
-            por meios remotos.
+            Nosso trabalho é defender os direitos da classe trabalhadora.
           </p>
 
           <p className="mb-4">
