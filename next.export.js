@@ -1,6 +1,7 @@
 
 const path = require('path')
 const glob = require('glob')
+const slugify = require('slugify')
 
 const admin = path.resolve(__dirname, 'src/admin')
 
@@ -13,7 +14,9 @@ const getDynamicPages = () => {
    * build blog post pages.
    */
 
-  for (const slug of posts) {
+  for (const orig of posts) {
+    const slug = slugify(orig)
+
     pages[`/noticias/${slug}`] = {
       page: '/noticias/[slug]',
       query: { slug },

@@ -1,9 +1,10 @@
+import slugify from 'slugify'
 import { GT } from '~api'
 import { blog } from '~content'
 import typeDefs from './blog.graphql'
 
 // `./slug-of-post.md` becomes `slug-of-post`
-const pathToSlug = (id: string) => id.slice(2).slice(0, -3)
+const pathToSlug = (id: string) => slugify(id.slice(2).slice(0, -3))
 
 const posts = blog
   .keys()
