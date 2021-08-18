@@ -1,5 +1,5 @@
 ---
-title: 11/08/2021 - Dia das Advogadas e Advogados
+title: Dia das Advogadas e Advogados
 date: 2021-08-11T20:03:19.474Z
 image: /admin/content/media/whatsapp-image-2021-08-11-at-15.59.03.jpeg
 summary: >-
