@@ -34,7 +34,8 @@ Logo, é ingênuo acreditar que todos os credores estão no mesmo barco, em pé 
 
 Portanto, impor um teto de gastos com precatórios fere a independência entre os Poderes, fragiliza a autoridade das decisões judiciais e privilegia o mercado financeiro em detrimento dos credores, em especial, as pessoas físicas titulares de créditos de natureza alimentar.
 
-\_\_\_\_\
+\_\_\_\_
+
 (*) Advogado, membro da Comissão Especial de Precatórios do Conselho Federal da OAB, membro da Associação Americana de Juristas (AAJ) – rama Brasil e do Coletivo Nacional de Advogados de Servidores Públicos (CNASP)
 
-Publicado originalmente pelo portal [Sul21](https://sul21.com.br/opiniao/2021/09/mercado-financeiro-e-credores-de-precatorios-nao-estao-no-mesmo-barco-por-francis-campos-bordas/)
+Publicado originalmente pelo portal [**Sul21**](https://sul21.com.br/opiniao/2021/09/mercado-financeiro-e-credores-de-precatorios-nao-estao-no-mesmo-barco-por-francis-campos-bordas/)****
