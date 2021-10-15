@@ -33,3 +33,5 @@ Portanto, fique atento, e antes de negociar seu Precatório verifique exatamente
 \_\_\_\_
 
 _\* Luis Fernando Silva é advogado (OAB/SC 9582) e fundador do SLPG Advogados._
+
+_\*\* Leia também:_ [_Mercado financeiro e credores de precatórios não estão no mesmo barco_](https://www.slpgadvogados.adv.br/noticias/mercado-financeiro-e-credores-de-precat%C3%B3rios-n%C3%A3o-est%C3%A3o-no-mesmo-barco)__
