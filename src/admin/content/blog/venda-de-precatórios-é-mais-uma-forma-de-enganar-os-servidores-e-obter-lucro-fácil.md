@@ -8,7 +8,7 @@ summary: >-
   Antes de negociar seu Precatório verifique exatamente a previsão de pagamento
   com o seu advogado, de modo a evitar prejuízos financeiros
 ---
-**_Por Luis Fernando Silva*_**
+_**Por Luis Fernando Silva***_
 
 Nos últimos meses os servidores públicos têm sido assediados por Bancos, escritórios de advocacia e outras pessoas, se oferecendo para comprar Precatórios inscritos para pagamento, evidentemente com um deságio em relação ao valor inscrito.
 
@@ -33,5 +33,3 @@ Portanto, fique atento, e antes de negociar seu Precatório verifique exatamente
 \_\_\_\_
 
 _\* Luis Fernando Silva é advogado (OAB/SC 9582) e fundador do SLPG Advogados._
-
-_\*\* Leia também:_ [_Mercado financeiro e credores de precatórios não estão no mesmo barco_](https://www.slpgadvogados.adv.br/noticias/mercado-financeiro-e-credores-de-precat%C3%B3rios-n%C3%A3o-est%C3%A3o-no-mesmo-barco)__
