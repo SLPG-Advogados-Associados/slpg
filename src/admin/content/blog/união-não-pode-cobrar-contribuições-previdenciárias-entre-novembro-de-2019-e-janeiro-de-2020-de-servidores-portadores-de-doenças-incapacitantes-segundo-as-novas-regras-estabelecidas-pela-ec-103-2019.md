@@ -32,45 +32,19 @@ Conforme vimos acima, a questão veiculada através da Mensagem nº 563622, do M
 
 Antes de prosseguir, portanto, importa relembrar que os aposentados e pensionistas do serviço público apenas passaram a ser sujeitos passivos da incidência de contribuição previdenciária para o financiamento de suas próprias aposentadorias e pensões com a promulgação da Emenda Constitucional nº 41, de 2003, que fez acrescentar ao art. 40, da CF, o seguinte § 18, ainda vigente:
 
-> Art. 40 (...)
->
-> \
->
-> § 18. Incidirá contribuição sobre os proventos de aposentadorias e pensões concedidas pelo regime de que trata este artigo 
->
-> **que superem o limite máximo estabelecido para os benefícios do regime geral de previdência social**
->
->  de que trata o art. 201, 
->
-> **com percentual igual ao estabelecido para os servidores titulares de cargos efetivos**
->
-> . (grifamos)
+> Art. 40 (...)\
+> § 18. Incidirá contribuição sobre os proventos de aposentadorias e pensões concedidas pelo regime de que trata este artigo **que superem o limite máximo estabelecido para os benefícios do regime geral de previdência social**  de que trata o art. 201, **com percentual igual ao estabelecido para os servidores titulares de cargos efetivos**. (grifamos)
 
 Pois bem, em consequência do que veio prever o suso transcrito § 18, do art. 40, da CF, em 18 de junho de 2004 era sancionada a Lei nº 10.887, cujo art. 5º assim veio definir:
 
-> Art. 5º Os aposentados e os pensionistas de qualquer dos Poderes da União, incluídas suas autarquias e fundações, contribuirão com 11% (onze por cento), 
->
-> **incidentes sobre o valor da parcela dos proventos de aposentadorias e pensões**
->
->  concedidas de acordo com os critérios estabelecidos no art. 40 da Constituição Federal e nos arts. 2º e 6º da Emenda Constitucional nº 41, de 19 de dezembro de 2003, 
->
-> **que supere o limite máximo estabelecido para os benefícios do regime geral de previdência social**
->
-> . (grifamos)
+> Art. 5º Os aposentados e os pensionistas de qualquer dos Poderes da União, incluídas suas autarquias e fundações, contribuirão com 11% (onze por cento), **incidentes sobre o valor da parcela dos proventos de aposentadorias e pensões** concedidas de acordo com os critérios estabelecidos no art. 40 da Constituição Federal e nos arts. 2º e 6º da Emenda Constitucional nº 41, de 19 de dezembro de 2003, **que supere o limite máximo estabelecido para os benefícios do regime geral de previdência social**. (grifamos)
 
 Assim é que a partir da EC nº 41, de 2003 (e ainda mais exatamente da Lei nº 10.887, de 2004), todos os aposentados e pensionistas teriam passado a ser sujeitos passivos da incidência tributária ora em análise, nos mesmos percentuais aplicáveis aos servidores em atividade, mas essa contribuição incidiria apenas sobre a parcela dos proventos que ultrapassasse o “teto” de contribuições para o RGPS/INSS.
 
 Em 5 de julho de 2005, entretanto, era promulgada a Emenda Constitucional nº 47, que dentre outras providências fez inserir ao art. 40, da Lei Maior, o seguinte § 21:
 
-> Art. 40 – (...)
->
-> \
->
-> § 21. A contribuição prevista no § 18 deste artigo incidirá apenas sobre as parcelas de proventos de aposentadoria e de pensão 
->
-> **que superem o dobro do limite máximo estabelecido para os benefícios do regime geral de previdência social**
->
->  de que trata o art. 201 desta Constituição, quando o beneficiário, na forma da lei, for portador de doença incapacitante. (destacamos)
+> Art. 40 – (...)\
+> § 21. A contribuição prevista no § 18 deste artigo incidirá apenas sobre as parcelas de proventos de aposentadoria e de pensão **que superem o dobro do limite máximo estabelecido para os benefícios do regime geral de previdência social** de que trata o art. 201 desta Constituição, quando o beneficiário, na forma da lei, for portador de doença incapacitante. (destacamos)
 
 Ou seja, os aposentados portadores de doenças incapacitantes, aos quais o § 18, do art. 40, da CF (na redação dada pela EC 41/2003) havia atribuído a qualidade de sujeito passivo da contribuição previdenciária, e que num primeiro momento passaram a contribuir sobre o valor dos proventos que excedesse ao “teto” do RGPS/INSS, a partir de 2005 passaram a ter essa contribuição incidente apenas sobre a parte dos proventos situada acima do dobro do mesmo “teto”.
 
@@ -80,31 +54,12 @@ Questão que se coloca, então, é saber se essa mudança – que evidentemente 
 
 Vejamos e tão, neste sentido, o que diz o art. 150, III, “c”, da Carta da República:
 
-> Art. 150. Sem prejuízo de outras garantias asseguradas ao contribuinte, é vedado à União, aos Estados, ao Distrito Federal e aos Municípios:
->
-> \
->
-> (...)
->
-> \
->
-> III - cobrar tributos:
->
-> \
->
-> (...)
->
-> \
->
-> b) no mesmo exercício financeiro em que haja sido publicada a lei que os instituiu ou aumentou;       
->
-> \
->
-> c) 
->
-> **antes de decorridos noventa dias da data em que haja sido publicada a lei que os instituiu ou aumentou**
->
-> , observado o disposto na alínea b; (grifamos)       
+> Art. 150. Sem prejuízo de outras garantias asseguradas ao contribuinte, é vedado à União, aos Estados, ao Distrito Federal e aos Municípios:\
+> (...)\
+> III - cobrar tributos:\
+> (...)\
+> b) no mesmo exercício financeiro em que haja sido publicada a lei que os instituiu ou aumentou;       \
+> c) **antes de decorridos noventa dias da data em que haja sido publicada a lei que os instituiu ou aumentou**, observado o disposto na alínea b; (grifamos)       
 
 Com efeito, o princípio da anterioridade tributária tem por objetivo fundamental evitar a surpresa do contribuinte com a cobrança de novos tributos (ou a majoração de tributos já existentes), de modo a assegurar-lhe a necessária previsibilidade, evitando assim que a exação tributária venha a lhe trazer transtornos repentinos e inadvertidos, capazes de impactar severamente sobre o seu planejamento financeiro.
 
@@ -122,79 +77,7 @@ Pois bem, colocada a questão nestes termos, é imperioso afirmar que ao revogar
 
 Veja-se abaixo o exemplo de um servidor aposentado, portador de doença incapacitante, que em novembro de 2019 percebia proventos no valor de R$ 20.000,00 (vinte mil reais), ocasião em que o “teto” do RGPS era de R$ 5.839,45 (cinco mil, oitocentos e trinta e nove reais e quarenta e cinco centavos):
 
-\    Valor             dos proventos
-
-\    
-
-\    Situação             anterior
-
-\    
-
-\    
-
-\    
-
-\    Situação                          
-
-\    
-
-nova
-
-\    
-
-\    
-
-\    
-
-\    Diferença
-
-\    
-
-\    Proventos
-
-\    
-
-\    Dobro             do teto do RGPS
-
-\    
-
-\    CS             11% sobre o que exceder ao dobro do teto do RGPS
-
-\    
-
-\    Teto             do RGPS
-
-\    
-
-\    CS             11% sobre o que exceder ao teto do RGPS
-
-\    
-
-\    
-
-\    
-
-\    R$             20.000,00
-
-\    
-
-\    R$             11.678,90
-
-\    
-
-\    R$             915,32
-
-\    
-
-\    R$             5.839,45
-
-\    
-
-\    R$             1.557,66
-
-\    
-
-\-R$             642,34
+![](/admin/content/media/123421342341234.png)
 
 Como se percebe facilmente, na situação anterior à EC 103, de 2019, o servidor do exemplo aportava contribuições previdenciárias mensais de R$ 915,32 (novecentos e quinze reais e trinta e dois centavos), passando a pagar essas mesmas contribuições, após a EC nº 103, de 2019, no importe mensal de R$ 1.557,66 (um mil, quinhentos e cinquenta e sete reais e sessenta e seis centavos), o que importou numa tributação majorada em R$ 642,34 (seiscentos e quarenta e dois reais e trinta e quatro centavos), o que representa um incremento percentual de 70,17% (setenta vírgula dezessete por cento).
 
@@ -202,18 +85,14 @@ Ora, é evidente que mesmo que a majoração tributária em questão não haja d
 
 Aliás, o § 1º, do art. 150, da Carta Magna é claro e expresso ao dispor sobre quais espécies tributárias não devem obediência à anterioridade de exercício ou à anterioridade nonagesimal, senão vejamos:
 
-> Art. 150 – (...)
->
-> \
->
+> Art. 150 – \
+> (...)\
 > § 1º A vedação do inciso III, b, não se aplica aos tributos previstos nos arts. 148, I, 153, I, II, IV e V; e 154, II; e a vedação do inciso III, c, não se aplica aos tributos previstos nos arts. 148, I, 153, I, II, III e V; e 154, II, nem à fixação da base de cálculo dos impostos previstos nos arts. 155, III, e 156, I.    
 
 Já o § 6º, do art. 195, da CF, traz mais uma exceção à incidência do princípio da anterioridade, estabelecendo que as contribuições sociais não devem observância à anterioridade de exercício, mantendo apenas a submissão à anterioridade nonagesimal:
 
-> Art. 195. A seguridade social será financiada por toda a sociedade, de forma direta e indireta, nos termos da lei, mediante recursos provenientes dos orçamentos da União, dos Estados, do Distrito Federal e dos Municípios, e das seguintes contribuições sociais:
->
-> (...)
->
+> Art. 195. A seguridade social será financiada por toda a sociedade, de forma direta e indireta, nos termos da lei, mediante recursos provenientes dos orçamentos da União, dos Estados, do Distrito Federal e dos Municípios, e das seguintes contribuições sociais:\
+> (...)\
 > § 6º As contribuições sociais de que trata este artigo só poderão ser exigidas após decorridos noventa dias da data da publicação da lei que as houver instituído ou modificado, não se lhes aplicando o disposto no art. 150, III, "b".
 
 Ora, sabendo-se que os elementos constitutivos dos tributos, lato sensu, são o fato gerador, a base de cálculo, a alíquota e os sujeitos passivos, soa evidente que qualquer modificação em um desses elementos constitutivos faz emergir o direito do contribuinte à anterioridade, seja ela de exercício ou nonagesimal, observadas apenas as exceções expressamente contidas no Texto Constitucional.
