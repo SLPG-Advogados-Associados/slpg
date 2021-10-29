@@ -16,7 +16,7 @@ summary: >-
 
 _Contribuições previdenciárias decorrentes da modificação imposta pelo art. 1º, da EC nº 103, de 2019, que revogou o § 21, do art. 40, da Carta da República. Cobrança de valores relativos aos proventos devidos nos meses de novembro e dezembro de 2019, e respectivo 13º salário. Inobservância da garantia de anterioridade nonagesimal. Inconstitucionalidade._
 
-## Introdução
+# Introdução
 
 No último dia 18 de outubro o Governo Federal fez circular A Mensagem nº 563622, expedida pelo Ministério da Economia e direcionada aos dirigentes de recursos humanos dos órgãos e entidades da administração pública federal, dando conta de que a Secretaria da Receita Federal do Brasil teria emitido a Nota COSIT/SUTRI/RFB nº 164, de 5 de abril de 2021, através da qual orienta que a revogação do § 21, do art. 40, da Carta da República - operada pela Emenda Constitucional nº 103, de 12 de novembro de 2019 -, não teria criado tributo novo, mas sim apenas trazido para a condição de sujeito passivo da incidência tributária os aposentados e pensionistas cujos proventos tenham valor superior ao “teto” do RGPS/INSS e inferior ao dobro desse “teto”, que antes eram albergados pelo dispositivo constitucional em referência, haja vista sua revogação.
 
@@ -26,7 +26,7 @@ Logo, como a cobrança em questão apenas teria ocorrido a partir da folha de pa
 
 Conquanto a matéria veiculada pela mencionada Mensagem nº 563622, tenha sido objeto do posterior Comunica SIGEPE nº 563663, de 18 de outubro, que “valores incluídos como desconto, via apuração especial, na sequência 8, não constarão da versão final da folha de outubro”, é importante destacar que a mesma mensagem eletrônica informa que “novas orientações sobre os procedimentos operacionais para desconto serão expedidas nos próximos dias, em especial quanto à possibilidade de parcelamento dos valores devidos”, de modo que o assunto não pode ser dado como superado, justificando a emissão urgente da presente Nota Técnica.
 
-## Análise das razões de direito envolvidas
+# Análise das razões de direito envolvidas
 
 Conforme vimos acima, a questão veiculada através da Mensagem nº 563622, do Ministério da Economia, diz respeito à contribuição previdenciária devida por servidores públicos federais aposentados por incapacidade permanente para o trabalho (e pensões daí decorrentes), haja vista a garantia que lhes era deferida pelo § 21, do art. 40, da Carta da República, na redação que lhe fora dada pela Emenda Constitucional nº 47, de 2005.
 
@@ -101,7 +101,7 @@ Pois bem, o que tivemos na situação em exame foi a modificação da base de c�
 
 Logo, impõe-se a fiel observância ao princípio da anterioridade nonagesimal como medida de proteção ao contribuinte contra transtornos repentinos e inadvertidos, capazes de impactar severamente sobre o seu planejamento financeiro, que do contrário lhe seriam impostos pela imediata exigibilidade dos novos valores das contribuições sociais em tela.
 
-## Conclusão
+# Conclusão
 
 A revogação do § 21, do art. 40, da CF (promovida pela EC nº 103, de 2019), **importou na ampliação da base de cálculo** da contribuição previdenciária devida por servidores públicos aposentados que sejam portadores de doenças incapacitantes, o que atrai a incidência do princípio da anterioridade nonagesimal, esculpido no art. 150, III, “c”, da Carta da República, de tal sorte que os efeitos da aludida modificação constitucional **somente poderiam ser sentidos a partir da folha de pagamento do mês de fevereiro de 2020**, eis que promulgada a EC nº 103 em 12 de novembro de 2019.
 
