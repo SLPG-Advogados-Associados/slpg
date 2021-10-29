@@ -14,7 +14,7 @@ summary: >-
 ---
 **Por Luis Fernando Silva***
 
-> _Contribuições previdenciárias decorrentes da modificação imposta pelo art. 1º, da EC nº 103, de 2019, que revogou o § 21, do art. 40, da Carta da República. Cobrança de valores relativos aos proventos devidos nos meses de novembro e dezembro de 2019, e respectivo 13º salário. Inobservância da garantia de anterioridade nonagesimal. Inconstitucionalidade._
+_Contribuições previdenciárias decorrentes da modificação imposta pelo art. 1º, da EC nº 103, de 2019, que revogou o § 21, do art. 40, da Carta da República. Cobrança de valores relativos aos proventos devidos nos meses de novembro e dezembro de 2019, e respectivo 13º salário. Inobservância da garantia de anterioridade nonagesimal. Inconstitucionalidade._
 
 ## Introdução
 
@@ -35,7 +35,6 @@ Antes de prosseguir, portanto, importa relembrar que os aposentados e pensionist
 > Art. 40 (...)
 >
 > \
->
 >
 > § 18. Incidirá contribuição sobre os proventos de aposentadorias e pensões concedidas pelo regime de que trata este artigo 
 >
@@ -67,7 +66,6 @@ Em 5 de julho de 2005, entretanto, era promulgada a Emenda Constitucional nº 47
 >
 > \
 >
->
 > § 21. A contribuição prevista no § 18 deste artigo incidirá apenas sobre as parcelas de proventos de aposentadoria e de pensão 
 >
 > **que superem o dobro do limite máximo estabelecido para os benefícios do regime geral de previdência social**
@@ -86,26 +84,21 @@ Vejamos e tão, neste sentido, o que diz o art. 150, III, “c”, da Carta da R
 >
 > \
 >
->
 > (...)
 >
 > \
->
 >
 > III - cobrar tributos:
 >
 > \
 >
->
 > (...)
 >
 > \
 >
->
 > b) no mesmo exercício financeiro em que haja sido publicada a lei que os instituiu ou aumentou;       
 >
 > \
->
 >
 > c) 
 >
@@ -212,7 +205,6 @@ Aliás, o § 1º, do art. 150, da Carta Magna é claro e expresso ao dispor sobr
 > Art. 150 – (...)
 >
 > \
->
 >
 > § 1º A vedação do inciso III, b, não se aplica aos tributos previstos nos arts. 148, I, 153, I, II, IV e V; e 154, II; e a vedação do inciso III, c, não se aplica aos tributos previstos nos arts. 148, I, 153, I, II, III e V; e 154, II, nem à fixação da base de cálculo dos impostos previstos nos arts. 155, III, e 156, I.    
 
