@@ -113,6 +113,6 @@ SMJ.
 
 \_\_\_\_
 
-\* Luis Fernando Silva é advogado e sócio do SLPG Advogados.
+\* Luis Fernando Silva é advogado (OAB/SC 9582) e fundador do SLPG Advogados.
 
 1 CARRAZZA, Roque Antônio. Curso de direito constitucional tributário. 18 ªed. São Paulo: Malheiros Editores, 2002, p.170;
