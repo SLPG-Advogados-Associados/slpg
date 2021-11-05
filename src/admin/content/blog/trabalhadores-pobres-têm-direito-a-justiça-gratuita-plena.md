@@ -1,5 +1,5 @@
 ---
-title: Trabalhadores pobres têm direito a justiça gratuita plena
+title: Trabalhadores pobres têm direito à justiça gratuita plena
 date: 2021-11-05T19:11:22.029Z
 image: /admin/content/media/rivera-da-silva-rodriguez-vieira.jpg
 summary: >-
