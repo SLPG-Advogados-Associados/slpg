@@ -101,7 +101,7 @@ const HomePage = () => {
             Formas de contato:
             <br />
             <span className="phone">
-              (48) 3024-4166 <span className="hidden md:inline">/</span>
+              (48) 3024-4166
               <br />
               <a href="mailto:secretaria@slpgadvogados.adv.br">
                 secretaria@slpgadvogados.adv.br
