@@ -10,7 +10,6 @@ import { Section } from '~app/components/Section'
 import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
 import { isMobile } from '~app/lib/userAgent'
 import { BLOG_LATEST } from './index.gql'
-import { WhatsApp } from './whats-app-icon'
 
 const Welcome = styled.div`
   position: relative;
@@ -90,14 +89,6 @@ const HomePage = () => {
   const blog = useQuery<GT.BLOG_LATEST_QUERY>(BLOG_LATEST)
   const posts = blog.data ? blog.data.posts.items.map(({ item }) => item) : []
 
-  const openWhatsApp = () =>
-    window.open(
-      `https://${
-        isMobile() ? 'api' : 'web'
-      }.whatsapp.com/send?phone=+5548988359010`,
-      '_blank'
-    )
-
   return (
     <Page meta={{ type: 'website' }}>
       <Welcome>
@@ -111,10 +102,6 @@ const HomePage = () => {
             <br />
             <span className="phone">
               (48) 3024-4166 <span className="hidden md:inline">/</span>
-              <br className="md:hidden" /> (48) 98835-9010{' '}
-              <a href="#" onClick={openWhatsApp}>
-                <WhatsApp className="inline-block align-text-top" />
-              </a>
               <br />
               <a href="mailto:secretaria@slpgadvogados.adv.br">
                 secretaria@slpgadvogados.adv.br
