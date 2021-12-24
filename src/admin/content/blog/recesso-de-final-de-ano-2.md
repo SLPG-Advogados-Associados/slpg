@@ -1,7 +1,7 @@
 ---
 title: Recesso de final de ano
 date: 2021-12-23T11:41:39.178Z
-image: /admin/content/media/whatsapp-image-2021-12-23-at-14.46.59.jpeg
+image: /admin/content/media/whatsapp-image-2021-12-24-at-10.00.05.jpeg
 summary: >-
   Informamos que estaremos de recesso do dia 24 de dezembro até o dia 12 de
   janeiro de 2022.
