@@ -8,7 +8,7 @@ summary: >-
   imposto às remunerações e proventos desses servidores ao menos desde janeiro
   de 2017 (Governos Temer e Bolsonaro)
 ---
-**_Por Luis Fernando Silva*_**
+_**Por Luis Fernando Silva***_
 
 Desde a promulgação da Emenda Constitucional no 103, em novembro de 2019, os servidores federais passaram a contribuir para o respectivo Regime Próprio de Previdência Social segundo 8 (oito) diferentes faixas remuneratórias, sobre as quais incidem diferentes percentuais, que oscilam entre o mínimo de 7,5% (sete inteiro e 5 décimos por cento) e o máximo de 22% (vinte e dois inteiros por cento).
 
@@ -34,7 +34,7 @@ O mesmo ocorre no exemplo de um servidor em atividade ocupante do cargo de Anali
 
 Como se vê, a contribuição previdenciária do servidor de que trata a Tabela 4, acima, caiu de R$ 1.749,34 (um mil, setecentos e quarenta e nove reais e trinta e quatro centavos), em 2021, para R$ 1.708,58 (um mil, setecentos e oito reais e cinquenta e oito centavos), em 2022.
 
-E o mesmo se constata, ainda, ao tomarmos a situação de um servidor em atividade ocupante do Cargo de Auditor-Fiscal da Receita Federal do Brasil, posicionado na Referência “Especial III”, de Nível Superior, com remuneração de R$ 30.303,62 (trinta mil, trezentos e três reais e sessenta e coisa centavos), como demonstra a Tabela 5, a seguir:
+E o mesmo se constata, ainda, ao tomarmos a situação de um servidor em atividade ocupante do Cargo de Auditor-Fiscal da Receita Federal do Brasil, posicionado na Referência “Especial III”, de Nível Superior, com remuneração de R$ 27.303,62 (vinte e sete, trezentos e três reais e sessenta e coisa centavos), como demonstra a Tabela 5, a seguir:
 
 ![](/admin/content/media/5.png)
 
