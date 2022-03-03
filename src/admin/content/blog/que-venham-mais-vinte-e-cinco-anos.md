@@ -3,12 +3,8 @@ title: Que venham mais vinte e cinco anos!
 date: 2022-03-03T15:00:13.931Z
 image: /admin/content/media/25.jpeg
 summary: >-
-  Lá já se vão 25 anos... Foi nessa época, depois de anos de trabalho no serviço
-  público e de militância sindical em defesa dos interesses dos servidores
-  públicos federais e dos trabalhadores em geral, que, em Florianópolis, dois
-  advogados recém-formados foram convidados por sindicatos de servidores
-  públicos a construir um escritório de advocacia que atuasse na defesa dos seus
-  interesses no terreno jurídico.
+  Em março completamos 25 anos de trabalho em defesa dos direitos da classe
+  trabalhadora, suas organizações e sindicatos.
 ---
 **_Por José Augusto Pedroso Alvarenga*_** 
 
