@@ -94,7 +94,7 @@ const HomePage = () => {
       <Welcome>
         <div className="content">
           <p className="mb-4">
-            Nosso trabalho é defender os direitos da classe trabalhadora.
+            Há 25 anos defendendo os direitos da classe trabalhadora.
           </p>
 
           <p className="mb-4">
