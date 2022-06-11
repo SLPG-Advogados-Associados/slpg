@@ -8,7 +8,6 @@ import { list as expertises } from '~modules/expertise'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
-import { isMobile } from '~app/lib/userAgent'
 import { BLOG_LATEST } from './index.gql'
 
 const Welcome = styled.div`
