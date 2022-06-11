@@ -1,10 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Logo, Container } from '~design'
+import { styled, t, Logo, Container } from '~design'
 import { MainMenu } from './MainMenu'
 
 const NavbarLogo = styled(Logo)`
-  max-width: 252px;
+  max-width: 180px;
+  margin: 12px 0;
+
+  @media screen and (min-width: ${t.theme('screens.lg')}) {
+    max-width: 252px;
+  }
 `
 
 const Header = () => (
