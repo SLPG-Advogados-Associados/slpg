@@ -6,7 +6,9 @@ date: 2022-06-23T17:37:02.952Z
 image: /admin/content/media/whatsapp-image-2022-06-14-at-14.50.57.jpeg
 summary: >-
   A transmissão ao vivo será dia 4 de agosto às 18h, pelo canal do SLPG
-  Advogados e Advogadas no Youtube. Estão todos convidados!
+  Advogados e Advogadas no Youtube. As palestras serão proferidas por Luciano
+  Verás, do Sindprevs/SC, Maria Lúcia Fattorelli, da Auditoria Cidadã da Dívida,
+  e Maurício Mulinari, assessor sindical e técnico do Dieese. Fica o convite!
 ---
 Você sabia que de tudo que o povo brasileiro paga de impostos metade (1,96 trilhão de reais) vai para custear os juros e a rolagem do “esquema da dívida pública”? 
 
