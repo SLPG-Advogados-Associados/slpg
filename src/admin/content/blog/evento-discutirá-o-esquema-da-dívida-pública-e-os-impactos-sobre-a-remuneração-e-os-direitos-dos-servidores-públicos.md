@@ -14,7 +14,9 @@ Você sabia que de tudo que o povo brasileiro paga de impostos metade (1,96 tril
 
 A quem beneficia esse esquema? Será que a culpa é da "gastança" com os servidores e os serviços públicos, como a grande mídia gosta de dizer, ou será que é dos banqueiros e fundos de investimento que mesmo na crise batem recordes de lucros a partir deste esquema? 
 
-Em 2021, 19,58% do Orçamento Federal Executado foi destinado para a Previdência Social (chamado cinicamente pela mídia de “rombo da previdência”), rubrica que comporta tanto a aposentadoria pública como uma série de outros serviços fundamentais para a população. Além disso, 4,18% foi gasto com saúde, 2,49% com educação, 0,27% com segurança pública, 0,16% com transporte, 0,01% com direitos a cidadania, 0,01% com saneamento, 0,005% para desporto e lazer, 0,0001 para habitação, entre outros... 
+Em 2021, 19,58% do [Orçamento Federal Executado](https://auditoriacidada.org.br/conteudo/gasto-com-divida-publica-sem-contrapartida-quase-dobrou-de-2019-a-2021/) foi destinado para a Previdência Social (chamado cinicamente pela mídia de “rombo da previdência”), rubrica que comporta tanto a aposentadoria pública como uma série de outros serviços fundamentais para a população. Além disso, 4,18% foi gasto com saúde, 2,49% com educação, 0,27% com segurança pública, 0,16% com transporte, 0,01% com direitos a cidadania, 0,01% com saneamento, 0,005% para desporto e lazer, 0,0001 para habitação, só para citar alguns...
+
+![](/admin/content/media/grafico2021.png)
 
 Vendo estes números, o impacto desse esquema contra a população de um modo geral até parece bastante óbvio. O dinheiro que sobra para os capitalistas falta para garantir os direitos da classe trabalhadora. Mas a aparência imediata do problema não revela toda a sua extensão e gravidade. Precisamos analisar tudo isso com mais rigor e profundidade.
 
