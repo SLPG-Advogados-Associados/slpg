@@ -24,6 +24,6 @@ Para responder a estas e outras questões convidamos Luciano Verás, dirigente d
 
 Se a classe trabalhadora não quer ver minguar as conquistas do passado e nem quer abrir mão da possibilidade de construir um futuro melhor então será preciso enfrentar esse esquema da dívida pública.
 
-O evento será dia 4 de agosto às 18h, pelo canal do SLPG Advogados e Advogadas no Youtube. 
+O evento será dia 4 de agosto às 18h, pelo [canal do SLPG Advogados e Advogadas](https://www.youtube.com/c/SLPGAdvogadosAssociados) no Youtube. 
 
 Estão todos convidados!
