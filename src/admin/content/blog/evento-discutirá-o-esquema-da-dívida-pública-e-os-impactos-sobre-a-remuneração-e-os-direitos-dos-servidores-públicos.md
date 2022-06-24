@@ -22,7 +22,7 @@ Vendo estes números, o impacto desse esquema contra a população de um modo ge
 
 Especificante, queremos saber qual é o impacto que esse esquema tem sobre a remuneração e os direitos dos servidores públicos.
 
-Para responder a estas e outras questões convidamos Luciano Verás, dirigente do Sindicatos dos Previdenciários de Santa Catarina (Sindprevs/SC), Maria Lúcia Fattorelli, auditora fiscal aposentada e fundadora da organização Auditoria Cidadã da Dívida (ACD), e Maurício Mulinari, técnico do Dieese e assessor sindical.
+Para responder a estas e outras questões convidamos Luciano Verás, dirigente do Sindicato dos Trabalhadores em Saúde e Previdência do Serviço Público Federal no Estado de Santa Catarina (Sindprevs/SC), Maria Lúcia Fattorelli, auditora fiscal aposentada e fundadora da organização Auditoria Cidadã da Dívida (ACD), e Maurício Mulinari, técnico do Dieese e assessor sindical.
 
 Se a classe trabalhadora não quer ver minguar as conquistas do passado e nem quer abrir mão da possibilidade de construir um futuro melhor então será preciso enfrentar esse esquema da dívida pública.
 
