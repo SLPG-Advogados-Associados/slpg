@@ -7,9 +7,10 @@ image: /admin/content/media/m-14447588a.jpg
 summary: >-
   A lei que institui o piso salarial nacional do Enfermeiro, Técnico de
   Enfermagem, do Auxiliar de Enfermagem e da Parteira, publicado dia 4 de
-  agosto, não é um presente do governo ou dos parlamentares, como querem fazer
-  parecer, mas sim uma prova de que é a organização e a luta dos trabalhadores e
-  trabalhadoras que cria direitos e faz valer os seus interesses.
+  agosto, não é um presente do governo ou dos parlamentares, como alguns querem
+  fazer parecer, mas sim uma prova de que é a organização e a luta dos
+  trabalhadores e trabalhadoras que cria direitos e faz valer os seus
+  interesses.
 ---
 **Por Rivera Vieira***\
 \
