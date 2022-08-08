@@ -12,8 +12,8 @@ summary: >-
   trabalhadores e trabalhadoras que cria direitos e faz valer os seus
   interesses.
 ---
-**Por Rivera Vieira***\
-\
+**Por Rivera Vieira***
+
 Foi publica a [Lei Nº 14.434, de 4 de agosto DE 2022](http://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2022/Lei/L14434.htm#:~:text=LEI%20N%C2%BA%2014.434%2C%20DE%204%20DE%20AGOSTO%20DE%202022&text=Altera%20a%20Lei%20n%C2%BA%207.498,de%20Enfermagem%20e%20da%20Parteira) que institui o piso salarial nacional do Enfermeiro, do Técnico de Enfermagem, do Auxiliar de Enfermagem e da Parteira, tanto no âmbito dos serviços públicos federais, estaduais e municipais, quanto no âmbito da iniciativa privada com contrato de trabalho celetista.
 
 A lei fixa o piso nacional para enfermeira e enfermeiro no valor de R$ 4.750, e o valor R$ 3.324,00 (70% do piso) para técnicos de enfermagem, e R$ 2.375,00 (50% do piso) para auxiliares de enfermagem e para parteiras.
