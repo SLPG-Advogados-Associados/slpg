@@ -20,7 +20,7 @@ Para tentar enganar o servidor, o golpista apresenta o CPF do cliente, o número
 
 Segundo as palavras do falsário:
 
-![](/admin/content/media/whatsapp-image-2022-08-17-at-11.09.36.png)
+![](/admin/content/media/whatsapp-image-2022-08-17-at-11.09.36-1-.png)
 
 Ocorre que as informações são falsas e por essa razão já foi feito um boletim de ocorrência com solicitação de investigação policial sobre o ocorrido na tentativa de encontrar os golpistas.
 
