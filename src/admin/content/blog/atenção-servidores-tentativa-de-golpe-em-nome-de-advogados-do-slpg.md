@@ -1,5 +1,5 @@
 ---
-title: Atenção servidores! Tentativa de golpe em nome de advogados do SLPG
+title: Atenção servidores! Tentativa de golpe em nome de advogados(as) do SLPG
 date: 2022-08-17T18:49:28.148Z
 image: /admin/content/media/whatsapp-image-2022-08-18-at-14.54.26.jpeg
 summary: >-
