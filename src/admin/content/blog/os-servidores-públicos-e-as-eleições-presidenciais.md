@@ -8,7 +8,7 @@ summary: >-
   projeto de País, ao qual estará intimamente relacionado um projeto de Estado,
   com importantes consequências para o funcionalismo público.
 ---
-_**Por Luis Fernando Silva¹**_
+**_Por Luis Fernando Silva¹_**
 
 O Segundo Turno das eleições para Presidente da República não definirá apenas o candidato que governará o Brasil nos próximos quatro anos. Ela definirá um projeto de País, ao qual estará intimamente relacionado um projeto de Estado, com importantes consequências para o funcionalismo público. 
 
@@ -72,25 +72,25 @@ Num quadro como esse não se trata simplesmente de escolher entre um e outro can
 
 ¹ **Luís Fernando Silva** é advogado integrante do Escritório SLPG Advogados Associados, com sede em Florianópolis; é membro do Conselho Consultivo da Associação Americana de Juristas – Rama Brasil; é Pesquisador-Colaborador da Escola Nacional de Saúde Pública, da Fundação Oswaldo Cruz - FIOCRUZ; e é assessor jurídico de diversas entidades representativas de servidores federais e estaduais em Santa Catarina e em nível nacional;
 
-² Conforme notícia veiculada pelo site UOL em 28/10/2020. Disponível em: [l1nq.com/OC1XO](l1nq.com/OC1XO). Acesso em 4/10/2022;
+² Conforme notícia veiculada pelo site UOL em 28/10/2020. Disponível em: <https://ictq.com.br/politica-farmaceutica/2213-decreto-assinado-por-bolsonaro-preve-privatizacao-do-sus>. Acesso em 4/10/2022;
 
-³ Disponível em: [l1nq.com/CKrNz](l1nq.com/CKrNz). Acesso em: 4/10/2022
+³ Disponível em: <https://www.in.gov.br/en/web/dou/-/decreto-n-10.530-de-26-de-outubro-de-2020-284999568>. Acesso em: 4/10/2022
 
-⁴ A PEC nº 6/2019 acabou gerando a Emenda Constitucional nº 103, de 2019, mas durante a tramitação no Congresso a pressão das entidades sindicais conseguiu excluir do texto a proposta de privatização da Previdência, como havia sido originalmente proposto pelo Governo Bolsonaro. Texto da proposta original disponível em: [l1nq.com/1yfOL](l1nq.com/1yfOL). Acesso em: 03/10/2022
+⁴ A PEC nº 6/2019 acabou gerando a Emenda Constitucional nº 103, de 2019, mas durante a tramitação no Congresso a pressão das entidades sindicais conseguiu excluir do texto a proposta de privatização da Previdência, como havia sido originalmente proposto pelo Governo Bolsonaro. Texto da proposta original disponível em: <https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2192459>. Acesso em: 03/10/2022
 
-⁵ Conforme matéria veiculada pela Revista Fórum em 12/04/2019, disponível em:  [l1nq.com/95IKc](l1nq.com/95IKc). Acesso em 04/10/2022
+⁵ Conforme matéria veiculada pela Revista Fórum em 12/04/2019, disponível em:  <https://revistaforum.com.br/global/2019/4/12/chile-capitalizao-da-previdncia-faz-idosos-morrerem-trabalhando-suicidio-bater-recorde-54963.html>. Acesso em 04/10/2022
 
 ⁶ Como a vigilância sanitária, com a ANVISA; a fiscalização de produtos de origem animal e vegetal, com o MAPA; a fiscalização do trabalho, inclusive escravo, com o Ministério do Trabalho e Previdência; etc.;
 
-⁷ Conforme notícia veiculada pelo site G1. Disponível em: [l1nq.com/1plVs](l1nq.com/1plVs). Acesso em: 04/10/2022;
+⁷ Conforme notícia veiculada pelo site G1. Disponível em: <https://g1.globo.com/meio-ambiente/noticia/2022/08/17/amazonia-legal-tem-o-maior-desmatamento-em-15-anos-aponta-imazon.ghtml>. Acesso em: 04/10/2022;
 
-⁸ Conforme matéria veiculada pelo site Observatório da Mineração em 27/09/2022. Disponível em: [l1nq.com/wqJhz](l1nq.com/wqJhz). Acesso em: 04/10/2022;
+⁸ Conforme matéria veiculada pelo site Observatório da Mineração em 27/09/2022. Disponível em: <https://observatoriodamineracao.com.br/bolsonaro-cumpre-promessa-e-garimpo-em-terras-indigenas-cresce-632-em-uma-decada/>. Acesso em: 04/10/2022;
 
-⁹ Veja matéria disponível em: [l1nq.com/vdsJq](l1nq.com/vdsJq). Acesso em: 03/10/2022; 
+⁹ Veja matéria disponível em: [https://g1.globo.com/educacao/noticia/2021/08/10/ministro-da-educacao-defende-que-universidade-seja-para-poucos.ghtml. Acesso em: 03/10/2022](https://g1.globo.com/educacao/noticia/2021/08/10/ministro-da-educacao-defende-que-universidade-seja-para-poucos.ghtml); 
 
-¹⁰ Disponível em: [l1nq.com/Yd4gG](l1nq.com/Yd4gG). Acesso em: 13/10/2022;
+¹⁰ Disponível em: <https://www.gov.br/servidor/pt-br/observatorio-de-pessoal-govbr/tabela-de-remuneracao-dos-servidores-publicos-federais-civis-e-dos-ex-territorios>. Acesso em: 13/10/2022;
 
-¹¹ Vide Portaria nº 1.132, de 21/07/2003. Disponível em: [l1nq.com/9Mkqk](l1nq.com/9Mkqk). Acesso em: 18/10/2022;
+¹¹ Vide Portaria nº 1.132, de 21/07/2003. Disponível em: <https://legis.sigepe.planejamento.gov.br/legis/detalhar/863>. Acesso em: 18/10/2022;
 
 ¹² Foram consideradas as remunerações relativas a servidores localizados na última referencia de cada cargo, com jornada de 40 horas e GDASS de 100 pontos;
 
@@ -98,8 +98,8 @@ Num quadro como esse não se trata simplesmente de escolher entre um e outro can
 
 ¹⁴ Considerados servidores posicionados na última referência de cada nível de escolaridade, com GDPST de 100 pontos e GDPGPE de 100 pontos;
 
-¹⁵ Disponível em:  [encurtador.com.br/tDX24](encurtador.com.br/tDX24). Acesso em: 18/10/2022;
+¹⁵ Disponível em:  <https://www.gov.br/servidor/pt-br/observatorio-de-pessoal-govbr/tabela-de-remuneracao-dos-servidores-publicos-federais-civis-e-dos-ex-territorios>. Acesso em: 18/10/2022;
 
-¹⁶ Conforme o portal Câmara dos Deputados. Disponível em: [l1nq.com/wopc8](l1nq.com/wopc8). Acesso em: 04/10/2022;
+¹⁶ Conforme o portal Câmara dos Deputados. Disponível em: <https://www.camara.leg.br/noticias/911716-lira-afirma-que-congresso-continuara-liberal-e-reformista/>. Acesso em: 04/10/2022;
 
-¹⁷ A PEC 32/2020 está disponível em: [l1nq.com/VV3s5](l1nq.com/VV3s5). Acesso em 03/10/2022;
+¹⁷ A PEC 32/2020 está disponível em: <https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2262083>. Acesso em 03/10/2022;
