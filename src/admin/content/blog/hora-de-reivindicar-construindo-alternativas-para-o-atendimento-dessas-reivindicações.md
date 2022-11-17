@@ -3,7 +3,7 @@ title: >-
   Hora de reivindicar, construindo alternativas para o atendimento dessas
   reivindicações
 date: 2022-11-16T19:55:00.509Z
-image: /admin/content/media/whatsapp-image-2022-11-16-at-17.22.51.jpeg
+image: /admin/content/media/images.jpeg
 summary: >-
   Passadas as emoções da apuração e as comemorações pela vitória, é chegada a
   hora das organizações sindicais de servidores públicos pautarem, com o governo
