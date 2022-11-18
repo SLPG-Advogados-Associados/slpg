@@ -11,7 +11,7 @@ summary: >-
   estabelecer um roteiro de discussões e de negociações que possa levar ao
   atendimento dos pleitos apresentados, cada qual no seu devido tempo.
 ---
-_**Por Luís Fernando Silva***_
+**_Por Luís Fernando Silva*_**
 
 Passadas as emoções da apuração e as comemorações pela vitória, é chegada a hora das organizações sindicais de servidores públicos pautarem, com o governo eleito, alguns dos principais temas que os afetam diretamente, de modo a se estabelecer um roteiro de discussões e de negociações que possa levar ao atendimento dos pleitos apresentados, cada qual no seu devido tempo.
 
@@ -39,7 +39,7 @@ Deve ficar claro também, por outro lado, que o presente documento não tem a pr
 
 Vamos a essas questões, então:
 
-## 1. Temas sem repercussão econômica:
+# 1. Temas sem repercussão econômica:
 
 **1.1. Recuperação dos serviços públicos**
 
@@ -99,7 +99,7 @@ Vamos a essas questões, então:
 
 • Quanto aos reflexos financeiros da medida, penso que não seriam expressivos, até porque o pagamento de verbas de exercícios anteriores responde a um limite orçamentário já orçado, sendo perfeitamente possível a manutenção do limite constante da LOA para 2023, projetando-se para o ano seguinte o pagamento da diferença resultante da aplicação do índice de correção;
 
-## 2. Temas com repercussão econômica:
+# 2. Temas com repercussão econômica:
 
 **2.1. Aprovação de Lei dispondo sobre política salarial aplicável aos servidores federais**
 
