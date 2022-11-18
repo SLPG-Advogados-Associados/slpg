@@ -11,7 +11,7 @@ summary: >-
   estabelecer um roteiro de discussões e de negociações que possa levar ao
   atendimento dos pleitos apresentados, cada qual no seu devido tempo.
 ---
-_**Por Luís Fernando Silva***_
+**_Por Luís Fernando Silva*_**
 
 Passadas as emoções da apuração e as comemorações pela vitória, é chegada a hora das organizações sindicais de servidores públicos pautarem, com o governo eleito, alguns dos principais temas que os afetam diretamente, de modo a se estabelecer um roteiro de discussões e de negociações que possa levar ao atendimento dos pleitos apresentados, cada qual no seu devido tempo. 
 
@@ -59,13 +59,9 @@ Vamos a essas questões, então:
 >
 > **1.3. Regulamentação do direito à negociação coletiva**
 >
->  
->
 > • Assegurar a edição, logo no início do Governo, de ato instituindo Grupo de Trabalho envolvendo juristas (indicados pelo Governo e pelas entidades representativas dos servidores), bem assim outros representantes de ambos os lados, com o objetivo de elaborar, em 90 (noventa) dias após a posse, uma proposta de Projeto de Lei regulamentando a Negociação Coletiva entre os servidores públicos e os órgãos governamentais, que dê conta de atender às respectivas Convenções Internacionais de que o Brasil é signatário;
 >
 > **1.4. Regulamentação do direito de greve no serviço público**
->
->  
 >
 > • Assegurar a edição, logo no início do Governo, de ato instituindo Grupo de Trabalho envolvendo juristas (indicados pelo Governo e pelas entidades representativas dos servidores), bem assim outros representantes de ambos os lados, com o objetivo de elaborar, no prazo de 90 (noventa) dias após a posse, uma proposta de Projeto de Lei atribuindo às organizações sindicais de servidores públicos, regularmente constituídas, a prerrogativa de elaborar uma norma de auto-regulamentação do exercício do direito de greve, que dê conta de atender às respectivas Convenções Internacionais de que o Brasil é signatário;
 >
@@ -82,8 +78,6 @@ Vamos a essas questões, então:
 > • Essas unidades regionais terão a atribuição de dar andamento a todas as questões envolvendo os direitos funcionais dos servidores públicos, aí compreendidas as perícias médicas; a concessão e manutenção de aposentadoria; os requerimentos de qualquer natureza; a orientação sobre o uso de sistemas informatizados de gestão de pessoas e aposentadoria; etc, utilizando-se, para tanto, de sistemas informatizados de gestão de pessoas e de aposentadorias e pensões, mas também assegurando o atendimento presencial aos servidores ativos, aposentados e pensionistas que assim o desejarem;
 >
 > **1.7. Regulamentação da aposentadoria especial e da contagem especial de tempo de serviço**
->
->  
 >
 > • Trata-se de instituir Grupo de Trabalho, composto por juristas (indicados pelo Governo e pelas entidades representativas dos servidores), bem assim outros representantes de ambos os lados, com o objetivo de elaborar, no prazo de 90 (noventa) dias após a posse, uma proposta de Projeto de Lei (ou outro ato infralegal, se assim entenderem suficiente), visando regulamentar o direito dos servidores públicos à aposentadoria especial e à contagem especial de tempo de serviço, no âmbito federal, mais especificamente quanto ao período entre 11.12.1990 (Lei nº 8.112/1990) e 11.11.2019 (EC 103/2019), tarefa para a qual deverão tomar por base as decisões firmadas pelo STF na Súmula Vinculante nº 33 e no Tema 942; 
 >
@@ -117,8 +111,6 @@ Vamos a essas questões, então:
 >
 > **2.3. Estabelecimento de custeio paritário nos planos de saúde suplementar organizados na modalidade de autogestão**
 >
->  
->
 > • Todos sabemos que há cerca de 10 (dez) anos vem crescendo vertiginosamente as contribuições cobradas dos servidores para o custeio de entidades prestadoras de serviços de saúde suplementar organizadas na forma de autogestão, o que se deve a redução expressiva das contribuições vertidas pelos órgãos e entidades da administração pública para esse custeio. Para termos uma ideia, na GEAP, por exemplo, essa participação já foi de 80% (oitenta por cento) a cargo da União, suas autarquias e fundações, e está hoje em menos de 5% (cinco por cento), obrigando os servidores ao custeio dos 95% (noventa e cinco por cento) restantes, numa situação que já obrigou milhares desses servidores ao desligamento dessas entidades;
 >
 > • O que propomos aqui é que o Governo se comprometa em adotar, em relação às entidades de autogestão que prestam serviços aos servidores federais (GEAP, CAPSAUDE, etc.), o mesmo percentual paritário (50% para cada lado) que vem adotando há alguns anos em relação ao custeio de entidades congêneres, quando prestam esses mesmos serviços aos trabalhadores das estatais federais;
@@ -130,8 +122,6 @@ Vamos a essas questões, então:
 > • Trata-se de propor a modificação da Emenda Constitucional nº 113, de 2021 (PEC dos Precatórios), no mínimo de modo a incluir como pagamento prioritário - no ano subsequente ao da inscrição -, as dívidas de natureza alimentar (diferenças de remuneração ou provento, indenizações e benefícios previdenciários a cargo do RGPS/INSS), independentemente do fato credor originário, ou por sucessão hereditária, ter mais de 60 anos, ser portador de doença grave, ou ser portador de ou deficiência, observado o limite de 3 (três) vezes a RPV
 >
 > **2.5. Revisão da Emenda Constitucional nº 103/2019 (Reforma da Previdência)**
->
->  
 >
 > • Trata-se de instituir Grupo de Trabalho, composto por juristas e especialistas em Previdência, com o objetivo de promover, num prazo de 180 (cento e oitenta) dias, um estudo detalhado sobre os reflexos das modificações constitucionais impostas pela Emenda Constitucional nº 103, de 2019 (Reforma da Previdência), sobre a aposentadoria e a pensão de servidores públicos da União, com vistas a eventuais sugestões de modificações constitucionais ou edição de regulamento capaz de minorar ou excluir esses deletérios reflexos; 
 
