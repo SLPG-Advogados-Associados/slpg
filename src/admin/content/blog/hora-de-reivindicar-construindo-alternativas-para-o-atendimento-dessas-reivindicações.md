@@ -11,7 +11,7 @@ summary: >-
   estabelecer um roteiro de discussões e de negociações que possa levar ao
   atendimento dos pleitos apresentados, cada qual no seu devido tempo.
 ---
-**_Por Luís Fernando Silva*_**
+_**Por Luís Fernando Silva***_
 
 Passadas as emoções da apuração e as comemorações pela vitória, é chegada a hora das organizações sindicais de servidores públicos pautarem, com o governo eleito, alguns dos principais temas que os afetam diretamente, de modo a se estabelecer um roteiro de discussões e de negociações que possa levar ao atendimento dos pleitos apresentados, cada qual no seu devido tempo. 
 
