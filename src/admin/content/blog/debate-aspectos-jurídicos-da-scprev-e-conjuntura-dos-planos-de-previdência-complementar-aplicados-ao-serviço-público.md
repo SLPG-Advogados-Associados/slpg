@@ -5,7 +5,7 @@ title: >-
 date: 2022-11-21T20:15:06.177Z
 image: /admin/content/media/whatsapp-image-2022-11-21-at-15.18.11.jpeg
 summary: >-
-  Nesta quarta feira, 22/11, Luis fernando Silva conversa com o Sindicato dos
+  Nesta quarta feira, 22/11, Luis Fernando Silva conversa com o Sindicato dos
   trabalhadores no serviço público estadual de Santa Catarina (SINTESPE) para
   debater a previdência complementar proposto pelo governo do estado de Santa
   Catarina aos servidores públicos estaduais.
