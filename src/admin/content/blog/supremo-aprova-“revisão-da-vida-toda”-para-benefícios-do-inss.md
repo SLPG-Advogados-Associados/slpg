@@ -39,7 +39,7 @@ Florianópolis, 6 de dezembro de 2022.
 
 \_\_\_\_\_\_
 
-\* Luís Fernando Silva é advogado (OAB/SC 9582) integrante do Escritório SLPG Advogados Associados, com sede em Florianópolis; é membro do Conselho Consultivo da Associação Americana de Juristas – Rama Brasil; é Pesquisador-Colaborador da Escola Nacional de Saúde Pública, da Fundação Oswaldo Cruz - FIOCRUZ; e é assessor jurídico de diversas entidades representativas de servidores federais e estaduais em Santa Catarina e em nível nacional;
+\* **Luís Fernando Silva** é advogado (OAB/SC 9582) integrante do Escritório SLPG Advogados Associados, com sede em Florianópolis; é membro do Conselho Consultivo da Associação Americana de Juristas – Rama Brasil; é Pesquisador-Colaborador da Escola Nacional de Saúde Pública, da Fundação Oswaldo Cruz - FIOCRUZ; e é assessor jurídico de diversas entidades representativas de servidores federais e estaduais em Santa Catarina e em nível nacional;
 
 ¹ Data da promulgação da Emenda Constitucional nº 103, de 2019;
 
