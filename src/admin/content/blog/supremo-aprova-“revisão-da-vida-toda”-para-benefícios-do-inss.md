@@ -9,7 +9,7 @@ summary: >-
   Trabalho, Previdência e Assistência Social, defendendo o direito dos segurados
   do INSS à referida revisão, caso essa lhes seja mais favorável.
 ---
-Vídeo**_Por Luis Fernando Silva*_**
+_**Por Luis Fernando Silva***_
 
 Por 6 votos a 5 o Supremo Tribunal Federal (STF) reconheceu que os segurados vinculados ao Regime Geral de Previdência Social (RGPS/INSS) **até 28 de novembro de 1999**, e cujas aposentadorias tenham sido concedidas **a partir de 29 de novembro de 1999 e antes de 12 de novembro de 2019¹**, conforme a média das contribuições pagas a partir de julho de 1994, t**êm o direito de verem consideradas, no cálculo dessa média, as contribuições previdenciárias realizadas antes de julho de 1994**, caso essas contribuições melhorem o valor do benefício a que fazem jus².
 
@@ -29,7 +29,7 @@ Se você é segurado do INSS e preenche as condições acima, procure imediatame
 
 O escritório SLPG Advogados Associados participou do referido julgamento através de um dos seus sócios, o advogado Luís Fernando Silva, que representou a FENASPS – Federação Nacional dos Sindicatos de Trabalhadores em Saúde, Trabalho, Previdência e Assistência Social, defendendo o direito dos segurados do INSS à referida revisão, caso essa lhes seja mais favorável.
 
-Para quem quiser se aprofundar sobre os detalhes jurídicos deste assunto, segue abaixo o vídeo com o julgamento do STF, que foi transmitido pela TV Justiça:
+Para quem quiser se aprofundar sobre os detalhes jurídicos deste assunto segue abaixo o vídeo com o julgamento do STF, que foi transmitido pela TV Justiça:
 
 ```youtube
 https://youtu.be/c0VQUWNzD3g
