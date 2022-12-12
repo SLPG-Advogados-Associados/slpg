@@ -43,10 +43,12 @@ const TeamList = styled.ul`
   text-align: center;
 
   li {
-    margin: 0 1.5rem 4rem;
+    /* margin: 0 1.5rem 4rem; */
+    margin: 0 0.75rem 4rem;
   }
 
   h4 {
+    font-weight: bold;
     margin-top: 0.5rem;
     font-size: ${t.theme('fontSize.aside-title')};
     color: ${t.theme('colors.primary')};
@@ -219,9 +221,9 @@ const QuemSomosPage = () => {
 
           {team.data ? (
             <TeamList>
-              {team.data.team.map(({ id, name, photo, role, oab }) => (
+              {team.data.team.map(({ id, name /*, photo*/, role, oab }) => (
                 <li key={id}>
-                  <img src={photo} alt={name} title={name} />
+                  {/* <img src={photo} alt={name} title={name} /> */}
                   <h4>{name}</h4>
                   <span>{role}</span>
                   {oab ? <span>{oab}</span> : null}
