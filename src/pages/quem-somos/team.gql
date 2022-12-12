@@ -7,6 +7,6 @@ query TEAM {
     name
     role
     oab
-    photo
+    # photo
   }
 }
