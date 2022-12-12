@@ -220,7 +220,7 @@ export type TEAM_QUERY = (
   { __typename?: 'Query' }
   & { team: Array<(
     { __typename?: 'Member' }
-    & Pick<Member, 'id' | 'slug' | 'name' | 'role' | 'oab' | 'photo'>
+    & Pick<Member, 'id' | 'slug' | 'name' | 'role' | 'oab'>
   )> }
 );
 
