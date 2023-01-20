@@ -8,9 +8,9 @@ image: >-
   /admin/content/media/golpitas-invadem-congresso-nacional-e-pedem-intervencao-militar-1673203219622_v2_900x506.jpg
 summary: >-
   Diversos advogados e advogadas atuantes em Santa Catarina (alguns deles
-  vinculados ao Escritório SLPG Advogados e Advogadas Associados), ajuizaram
-  Ação Popular visando obrigar o Governador do Estado a repor ao erário as
-  despesas realizadas com o envio de pelo menos 5 (cinco) servidores estaduais a
+  vinculados ao escritório SLPG Advogados e Advogadas), ajuizaram Ação Popular
+  visando obrigar o Governador do Estado a repor ao erário as despesas
+  realizadas com o envio de pelo menos 5 (cinco) servidores estaduais a
   Brasília, e com a utilização de servidores lotados na Secretaria de
   Articulação Nacional, com sede no Distrito Federal, com o objetivo de prestar
   “apoio”, “orientação” e “assistência judiciária” a alguns catarinenses detidos
