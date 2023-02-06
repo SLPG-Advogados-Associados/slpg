@@ -4,6 +4,7 @@ import ErrorPage from './_error.page'
 import { ThemeProvider } from '~design'
 import { Provider as UserAgentProvider, getUserAgent } from '~app/lib/userAgent'
 
+import '~design/base.css'
 import '../setup'
 
 class App extends NextApp<{ statusCode: number; userAgent: string }> {

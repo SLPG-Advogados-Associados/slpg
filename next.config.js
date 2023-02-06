@@ -1,5 +1,4 @@
 const compose = require('next-compose-plugins')
-const withCSS = require('@zeit/next-css')
 const withImages = require('next-images')
 const nextEnv = require('next-env')
 const { exportPathMap } = require('./next.export')
@@ -7,7 +6,7 @@ const { exportPathMap } = require('./next.export')
 require('dotenv-load')()
 const withNextEnv = nextEnv()
 
-const plugins = [[withNextEnv], [withImages], [withCSS]]
+const plugins = [[withNextEnv], [withImages]]
 
 const config = {
   exportPathMap,
