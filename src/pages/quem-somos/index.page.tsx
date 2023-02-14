@@ -111,7 +111,7 @@ const QuemSomosPage = () => {
         >
           <HTMLContent>
             <p>
-              O SLPG é um escritório de advocacia (OAB/SC 270/97) com sede em
+              O SLPG Avogados e Advogadas é um escritório de advocacia (OAB/SC 270/97) com sede em
               Florianópolis, especializado na defesa dos direitos da classe
               trabalhadora, em especial dos servidores públicos.
             </p>
@@ -124,7 +124,7 @@ const QuemSomosPage = () => {
 
             <p>
               A sigla SLPG - Silva, Locks Filho, Palanowski & Goulart Advogados
-              Associados foi constituida pelas iniciais dos sobrenomes dos
+              e Advogadas foi constituida pelas iniciais dos sobrenomes dos
               quatros primeiros sócios fundadores, e se mantém até os dias
               atuais.
             </p>
