@@ -3,7 +3,8 @@ title: >-
   Primeira Turma do STF inicia julgamento sobre extensão dos 70 pontos da GDASS
   aos aposentados e pensionistas
 date: 2023-02-10T17:18:15.271Z
-image: /admin/content/media/aaa.jpeg
+image: >-
+  /admin/content/media/stf-decide-sobre-correcao-monetaria-dos-pagamentos-judiciais-em-processos-de-servidores.jpg
 summary: >-
   Começa nesta sexta-feira (10/02) o julgamento na 1ª Turma do STF sobre a
   paridade da GDASS 70 pontos. No início da semana os advogados do SLPG, em
