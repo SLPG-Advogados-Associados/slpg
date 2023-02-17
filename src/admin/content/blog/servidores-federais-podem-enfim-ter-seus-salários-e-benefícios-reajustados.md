@@ -2,9 +2,9 @@
 title: 'Servidores federais podem, enfim, ter seus salários e benefícios reajustados'
 date: 2023-02-17T18:41:03.233Z
 image: /admin/content/media/bbb.jpg
-summary: |-
-  Governo propõe reajuste emergencial de 7,8% para os servidores 
-  do Poder Executivo, com reajuste de 43,6% no auxílio alimentação.
+summary: >-
+  Governo propõe reajuste emergencial de 7,8% para os servidores do Poder
+  Executivo, com reajuste de 43,6% no auxílio alimentação.
 ---
 Depois de autorizar a liberação de recursos para pagamento de verbas de exercícios anteriores, no valor de R$ 350 milhões, e de suspender o calendário de migração das aposentadorias e pensões dos servidores federais para o INSS (visando reestudar o assunto), o Governo Federal apresentou às entidades sindicais, ontem, dia 16, duas propostas que envolvem incremento financeiro em favor desses servidores. Vejamos;
 
