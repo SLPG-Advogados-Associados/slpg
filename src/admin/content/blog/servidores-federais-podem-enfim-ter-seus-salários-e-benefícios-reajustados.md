@@ -8,8 +8,9 @@ summary: >-
 ---
 Depois de autorizar a liberação de recursos para pagamento de verbas de exercícios anteriores, no valor de R$ 350 milhões, e de suspender o calendário de migração das aposentadorias e pensões dos servidores federais para o INSS (visando reestudar o assunto), o Governo Federal apresentou às entidades sindicais, ontem, dia 16, duas propostas que envolvem incremento financeiro em favor desses servidores. Vejamos;
 
-1. **Propôs um** reajuste geral linear de 7,8%\*\*, a vigorar a partir de março, incidente sobre as remunerações, proventos e pensões, percentual superior ao índice de 6%, concedido aos servidores dos Poderes Judiciário e Legislativo; e,
-2. Propôs a aplicação de um **reajuste de 43,6% sobre o valor do Auxílio Alimentação**, que passaria dos R$ 458,00 atuais para R$ 658,00, beneficiando os servidores em atividade.  
+1) Propôs um r**eajuste geral linear de 7,8%**, a vigorar a partir de março, incidente sobre as remunerações, proventos e pensões, percentual superior ao índice de 6%, concedido aos servidores dos Poderes Judiciário e Legislativo; e,
+
+2) Propôs a aplicação de um **reajuste de 43,6% sobre o valor do Auxílio Alimentação**, que passaria dos R$ 458,00 atuais para R$ 658,00, beneficiando os servidores em atividade.  
 
 As entidades sindicais se comprometeram a analisar a proposta e apresentar uma resposta ao Governo.
 
