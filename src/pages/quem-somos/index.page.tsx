@@ -111,9 +111,10 @@ const QuemSomosPage = () => {
         >
           <HTMLContent>
             <p>
-              O SLPG Avogados e Advogadas é um escritório de advocacia (OAB/SC 270/97) com sede em
-              Florianópolis, especializado na defesa dos direitos da classe
-              trabalhadora, em especial dos servidores públicos.
+              O SLPG Avogados e Advogadas é um escritório de advocacia (OAB/SC
+              270/97) com sede em Florianópolis, especializado na defesa dos
+              direitos da classe trabalhadora, em especial dos servidores
+              públicos.
             </p>
 
             <p>
