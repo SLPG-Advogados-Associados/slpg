@@ -1,5 +1,5 @@
 ---
-title: 'Imposto de renda em 2023: como declarar ganhos judicais'
+title: 'Imposto de renda em 2023: como declarar ganhos judiciais'
 date: 2023-04-03T10:19:16.425Z
 image: /admin/content/media/sem-título.jpeg
 summary: >-
