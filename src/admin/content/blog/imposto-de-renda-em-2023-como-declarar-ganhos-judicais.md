@@ -71,5 +71,6 @@ Contudo, **esse benefício somente será auferido se o contribuinte optar por in
 
 Como os honorários advocatícios de êxito já foram descontados nos próprios processos respectivos, antes de gerar crédito em seu favor, é desnecessário lançar essas informações na ficha de “pagamentos efetuados”, pois nesses casos a Receita Federal entende que a “fonte pagadora” dos honorários não é o beneficiário do Precatório ou do RPV, e sim a instituição bancária que pagará o valor descontado diretamente ao profissional..
 
-\
+
+
 Vale ressaltar, por fim, que para que os valores recebidos em ações judiciais durante o ano de 2022 sejam corretamente inseridos em sua Declaração de 2023, de modo a gerar o menor imposto a pagar possível, ou até mesmo gerar restituição de imposto pago, **é fundamental que você consulte o seu contador antes da entrega da sua Declaração à Receita Federal**, pois ele é o profissional habilitado para tirar suas dúvidas e orientá-lo nas escolhas que terá que fazer.
