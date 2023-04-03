@@ -32,9 +32,9 @@ A seguir algumas orientações iniciais sobre como proceder, em cada caso, sem p
 **Resposta:** 
 
 Todos os valores recebidos em 2022 em decorrência de processos judiciais devem ser lançados na ficha RRA da Declaração de 2023.\
- Ao abrir essa ficha em sua Declaração, você perceberá que **existem ali 2 (duas) diferentes formas de lançamento**, uma denominada “ajuste anual” e outra denominada “exclusiva na fonte”, cada qual com suas características próprias e resultando em diferentes formas de cálculo do tributo, conforme as situações individuais de cada contribuinte.\
- Regra geral **a modalidade mais vantajosa é a “exclusiva na fonte”,** pois nessa forma de cálculo o programa da Receita Federal levará em consideração o número de meses a que se refere o Precatório ou RPV recebidos, diluindo o tributo e geralmente reduzindo o imposto devido. \
- Há **casos excepcionais**, entretanto, nos quais o lançamento das informações na modalidade “ajuste anual” pode ser mais vantajosa para determinado contribuinte, **o que pode ocorrer** notadamente naquelas situações em que o contribuinte tem como comprovar elevados gastos com serviços médicos ou odontológicos e/ou com o pagamento de pensão alimentícia, de modo que é imperioso simular os resultados de cada uma dessas hipóteses antes da entrega da Declaração à Receita Federal, de preferência consultando o seu contador a respeito dessa escolha.
+Ao abrir essa ficha em sua Declaração, você perceberá que **existem ali 2 (duas) diferentes formas de lançamento**, uma denominada “ajuste anual” e outra denominada “exclusiva na fonte”, cada qual com suas características próprias e resultando em diferentes formas de cálculo do tributo, conforme as situações individuais de cada contribuinte.\
+Regra geral **a modalidade mais vantajosa é a “exclusiva na fonte”,** pois nessa forma de cálculo o programa da Receita Federal levará em consideração o número de meses a que se refere o Precatório ou RPV recebidos, diluindo o tributo e geralmente reduzindo o imposto devido.\
+Há **casos excepcionais**, entretanto, nos quais o lançamento das informações na modalidade “ajuste anual” pode ser mais vantajosa para determinado contribuinte, **o que pode ocorrer** notadamente naquelas situações em que o contribuinte tem como comprovar elevados gastos com serviços médicos ou odontológicos e/ou com o pagamento de pensão alimentícia, de modo que é imperioso simular os resultados de cada uma dessas hipóteses antes da entrega da Declaração à Receita Federal, de preferência consultando o seu contador a respeito dessa escolha.
 
 **b) Como devo proceder em relação às informações relativas à “contribuição previdenciária oficial”, ao “valor recebido referente a juros”, a “pensão alimentícia”, ao “imposto retido na fonte”, e ao "número de meses”, que constam do “Demonstrativo de Pagamento” que recebi dessa entidade?**
 
@@ -62,7 +62,7 @@ Caso o banco depositário, no momento do crédito, haja descontado indevidamente
 
 **Resposta:**
 
-A legislação tributária atual prevê que os contribuintes com idade igual ou superior a 65 (sessenta e cinco) anos fazem jus à isenção de imposto de renda até o valor mensal de R$ 1.903,98, relativos ao ano-calendário de 2022. \
+A legislação tributária atual prevê que os contribuintes com idade igual ou superior a 65 (sessenta e cinco) anos fazem jus à isenção de imposto de renda até o valor mensal de R$ 1.903,98, relativos ao ano-calendário de 2022.\
 Contudo, **esse benefício somente será auferido se o contribuinte optar por incluir o total desses rendimentos na base de cálculo do imposto sobre a renda** na Declaração de 2023, o que mais uma vez remete à necessidade de prévia conferência da situação, de preferência com o seu contador.
 
 **f) Como devo proceder em relação aos honorários advocatícios de êxito, que foram descontados do meu crédito?**
@@ -71,5 +71,6 @@ Contudo, **esse benefício somente será auferido se o contribuinte optar por in
 
 Como os honorários advocatícios de êxito já foram descontados nos próprios processos respectivos, antes de gerar crédito em seu favor, é desnecessário lançar essas informações na ficha de “pagamentos efetuados”, pois nesses casos a Receita Federal entende que a “fonte pagadora” dos honorários não é o beneficiário do Precatório ou do RPV, e sim a instituição bancária que pagará o valor descontado diretamente ao profissional..
 
-\
+
+
 Vale ressaltar, por fim, que para que os valores recebidos em ações judiciais durante o ano de 2022 sejam corretamente inseridos em sua Declaração de 2023, de modo a gerar o menor imposto a pagar possível, ou até mesmo gerar restituição de imposto pago, **é fundamental que você consulte o seu contador antes da entrega da sua Declaração à Receita Federal**, pois ele é o profissional habilitado para tirar suas dúvidas e orientá-lo nas escolhas que terá que fazer.
