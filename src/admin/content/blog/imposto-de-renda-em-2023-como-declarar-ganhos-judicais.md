@@ -27,37 +27,49 @@ Feitos os esclarecimentos acima, cumpre realçar que todos os valores recebidos 
 
 A seguir algumas orientações iniciais sobre como proceder, em cada caso, sem prejuízo da prudente consulta ao seu contador, antes da entrega final da Declaração à Receita Federal.
 
-1. **Em que ficha da Declaração de 2023 devo lançar as informações relativas aos processos judiciais que foram creditados em meu favor durante o ano de 2022?**\
-   \
-   **Resposta:** \
-   Todos os valores recebidos em 2022 em decorrência de processos judiciais devem ser lançados na ficha RRA da Declaração de 2023.\
-   Ao abrir essa ficha em sua Declaração, você perceberá que **existem ali 2 (duas) diferentes formas de lançamento**, uma denominada “ajuste anual” e outra denominada “exclusiva na fonte”, cada qual com suas características próprias e resultando em diferentes formas de cálculo do tributo, conforme as situações individuais de cada contribuinte.\
-   Regra geral **a modalidade mais vantajosa é a “exclusiva na fonte”,** pois nessa forma de cálculo o programa da Receita Federal levará em consideração o número de meses a que se refere o Precatório ou RPV recebidos, diluindo o tributo e geralmente reduzindo o imposto devido. \
-   Há **casos excepcionais**, entretanto, nos quais o lançamento das informações na modalidade “ajuste anual” pode ser mais vantajosa para determinado contribuinte, **o que pode ocorrer** notadamente naquelas situações em que o contribuinte tem como comprovar elevados gastos com serviços médicos ou odontológicos e/ou com o pagamento de pensão alimentícia, de modo que é imperioso simular os resultados de cada uma dessas hipóteses antes da entrega da Declaração à Receita Federal, de preferência consultando o seu contador a respeito dessa escolha.
-2. **Como devo proceder em relação às informações relativas à “contribuição previdenciária oficial”, ao “valor recebido referente a juros”, a “pensão alimentícia”, ao “imposto retido na fonte”, e ao "número de meses”, que constam do “Demonstrativo de Pagamento” que recebi dessa entidade?**\
-   \
-   **Resposta:** \
-   Como você deve ter visto, o documento “Demonstrativo de Pagamento”, que você recebeu do SLPG ou do seu sindicato traz uma série de informações que **devem ser lançadas na ficha RRA** da Declaração de 2023, mais especificamente na modalidade “exclusiva na fonte” (que normalmente é a mais vantajosa).\
-   Nesse caso, além de informar no campo “rendimentos tributáveis” **o valor bruto recebido** em cada específico processo, você deve preencher também os campos seguintes, lançando ali, respectivamente, as informações sobre o “número de meses” a que se refere o respectivo processo pago, a “contribuição previdenciária oficial” descontada, o “valor recebido referente a juros”, o valor da “pensão alimentícia” descontada do crédito,  o valor do “Imposto retido na fonte”, e o “Mês do recebimento”.\
-   O mesmo deve ocorrer se a sua escolha for pela modalidade “ajuste anual” do RRA, com a diferença que, neste caso, não haverá o campo “número de meses” a ser informado.
-3. **Se o processo pago em 2022 se referir a verbas de natureza indenizatória, e não de natureza remuneratória, como devo proceder?**\
-   ****\
-   **Resposta:** \
-   Se o processo pago se referir exclusivamente a verbas de natureza indenizatória (tais como nas ações de repetição de indébito e conversão de licença-prêmio em pecúnia), os valores recebidos **devem ser lançados na ficha “rendimentos isentos e não tributáveis”**, em sua linha 99, denominada “outros”, mencionando ali a natureza da verba recebida e o número do processo judicial respectivo.\
-   Caso o banco depositário, no momento do crédito, haja descontado indevidamente algum tributo, o valor descontado deve ser lançado na ficha “rendimento tributável recebido de pessoa jurídica”, na linha “imposto retido na fonte”, indicando como “fonte pagadora” o respectivo banco depositário e seu CNPJ.
-4. **Como devo proceder se sou isento de imposto de renda por ser portador de moléstia grave?**\
-   \
-   **Resposta:** \
-   Se você é isento de imposto de renda em virtude de **moléstia grave**, os valores recebidos em decorrência de processos judiciais **deverão ser lançados na ficha “rendimentos isentos e não tributáveis”**, e não na ficha RRA.\
-   Caso o banco depositário, no momento do crédito, haja descontado indevidamente algum tributo, o valor descontado deve ser lançado na ficha “rendimento tributável recebido de pessoa jurídica”, na linha “imposto retido na fonte”, indicando como “fonte pagadora” o respectivo banco depositário e seu CNPJ.
-5. **Contribuintes com mais de 65 anos de idade têm direito à isenção de IRPF?**\
-   \
-   **Resposta:** \
-   A legislação tributária atual prevê que os contribuintes com idade igual ou superior a 65 (sessenta e cinco) anos fazem jus à isenção de imposto de renda até o valor mensal de R$ 1.903,98, relativos ao ano-calendário de 2022. \
-   Contudo, **esse benefício somente será auferido se o contribuinte optar por incluir o total desses rendimentos na base de cálculo do imposto sobre a renda** na Declaração de 2023, o que mais uma vez remete à necessidade de prévia conferência da situação, de preferência com o seu contador.
-6. **Como devo proceder em relação aos honorários advocatícios de êxito, que foram descontados do meu crédito?**\
-   \
-   **Resposta:** \
-   Como os honorários advocatícios de êxito já foram descontados nos próprios processos respectivos, antes de gerar crédito em seu favor, é desnecessário lançar essas informações na ficha de “pagamentos efetuados”, pois nesses casos a Receita Federal entende que a “fonte pagadora” dos honorários não é o beneficiário do Precatório ou do RPV, e sim a instituição bancária que pagará o valor descontado diretamente ao profissional..
+**a) Em que ficha da Declaração de 2023 devo lançar as informações relativas aos processos judiciais que foram creditados em meu favor durante o ano de 2022?**
 
+**Resposta:** 
+
+Todos os valores recebidos em 2022 em decorrência de processos judiciais devem ser lançados na ficha RRA da Declaração de 2023.\
+ Ao abrir essa ficha em sua Declaração, você perceberá que **existem ali 2 (duas) diferentes formas de lançamento**, uma denominada “ajuste anual” e outra denominada “exclusiva na fonte”, cada qual com suas características próprias e resultando em diferentes formas de cálculo do tributo, conforme as situações individuais de cada contribuinte.\
+ Regra geral **a modalidade mais vantajosa é a “exclusiva na fonte”,** pois nessa forma de cálculo o programa da Receita Federal levará em consideração o número de meses a que se refere o Precatório ou RPV recebidos, diluindo o tributo e geralmente reduzindo o imposto devido. \
+ Há **casos excepcionais**, entretanto, nos quais o lançamento das informações na modalidade “ajuste anual” pode ser mais vantajosa para determinado contribuinte, **o que pode ocorrer** notadamente naquelas situações em que o contribuinte tem como comprovar elevados gastos com serviços médicos ou odontológicos e/ou com o pagamento de pensão alimentícia, de modo que é imperioso simular os resultados de cada uma dessas hipóteses antes da entrega da Declaração à Receita Federal, de preferência consultando o seu contador a respeito dessa escolha.
+
+**b) Como devo proceder em relação às informações relativas à “contribuição previdenciária oficial”, ao “valor recebido referente a juros”, a “pensão alimentícia”, ao “imposto retido na fonte”, e ao "número de meses”, que constam do “Demonstrativo de Pagamento” que recebi dessa entidade?**
+
+**Resposta:** 
+
+Como você deve ter visto, o documento “Demonstrativo de Pagamento”, que você recebeu do SLPG ou do seu sindicato traz uma série de informações que **devem ser lançadas na ficha RRA** da Declaração de 2023, mais especificamente na modalidade “exclusiva na fonte” (que normalmente é a mais vantajosa).\
+Nesse caso, além de informar no campo “rendimentos tributáveis” **o valor bruto recebido** em cada específico processo, você deve preencher também os campos seguintes, lançando ali, respectivamente, as informações sobre o “número de meses” a que se refere o respectivo processo pago, a “contribuição previdenciária oficial” descontada, o “valor recebido referente a juros”, o valor da “pensão alimentícia” descontada do crédito,  o valor do “Imposto retido na fonte”, e o “Mês do recebimento”.\
+O mesmo deve ocorrer se a sua escolha for pela modalidade “ajuste anual” do RRA, com a diferença que, neste caso, não haverá o campo “número de meses” a ser informado.
+
+**c) Se o processo pago em 2022 se referir a verbas de natureza indenizatória, e não de natureza remuneratória, como devo proceder?**
+
+**Resposta:** 
+
+Se o processo pago se referir exclusivamente a verbas de natureza indenizatória (tais como nas ações de repetição de indébito e conversão de licença-prêmio em pecúnia), os valores recebidos **devem ser lançados na ficha “rendimentos isentos e não tributáveis**”, em sua linha 99, denominada “outros”, mencionando ali a natureza da verba recebida e o número do processo judicial respectivo.\
+Caso o banco depositário, no momento do crédito, haja descontado indevidamente algum tributo, o valor descontado deve ser lançado na ficha “rendimento tributável recebido de pessoa jurídica”, na linha “imposto retido na fonte”, indicando como “fonte pagadora” o respectivo banco depositário e seu CNPJ.
+
+**d) Como devo proceder se sou isento de imposto de renda por ser portador de moléstia grave?**
+
+**Resposta:** 
+
+Se você é isento de imposto de renda em virtude de **moléstia grave**, os valores recebidos em decorrência de processos judiciais **deverão ser lançados na ficha “rendimentos isentos e não tributáveis”**, e não na ficha RRA.\
+Caso o banco depositário, no momento do crédito, haja descontado indevidamente algum tributo, o valor descontado deve ser lançado na ficha “rendimento tributável recebido de pessoa jurídica”, na linha “imposto retido na fonte”, indicando como “fonte pagadora” o respectivo banco depositário e seu CNPJ.
+
+**e) Contribuintes com mais de 65 anos de idade têm direito à isenção de IRPF?**
+
+**Resposta:**
+
+A legislação tributária atual prevê que os contribuintes com idade igual ou superior a 65 (sessenta e cinco) anos fazem jus à isenção de imposto de renda até o valor mensal de R$ 1.903,98, relativos ao ano-calendário de 2022. \
+Contudo, **esse benefício somente será auferido se o contribuinte optar por incluir o total desses rendimentos na base de cálculo do imposto sobre a renda** na Declaração de 2023, o que mais uma vez remete à necessidade de prévia conferência da situação, de preferência com o seu contador.
+
+**f) Como devo proceder em relação aos honorários advocatícios de êxito, que foram descontados do meu crédito?**
+
+**Resposta:** 
+
+Como os honorários advocatícios de êxito já foram descontados nos próprios processos respectivos, antes de gerar crédito em seu favor, é desnecessário lançar essas informações na ficha de “pagamentos efetuados”, pois nesses casos a Receita Federal entende que a “fonte pagadora” dos honorários não é o beneficiário do Precatório ou do RPV, e sim a instituição bancária que pagará o valor descontado diretamente ao profissional..
+
+\
 Vale ressaltar, por fim, que para que os valores recebidos em ações judiciais durante o ano de 2022 sejam corretamente inseridos em sua Declaração de 2023, de modo a gerar o menor imposto a pagar possível, ou até mesmo gerar restituição de imposto pago, **é fundamental que você consulte o seu contador antes da entrega da sua Declaração à Receita Federal**, pois ele é o profissional habilitado para tirar suas dúvidas e orientá-lo nas escolhas que terá que fazer.
