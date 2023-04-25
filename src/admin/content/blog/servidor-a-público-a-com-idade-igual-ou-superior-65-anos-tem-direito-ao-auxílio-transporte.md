@@ -1,6 +1,6 @@
 ---
 title: >-
-  Servidor(a) público(a) com idade igual ou superior 65 anos tem direito ao
+  Servidor(a) público(a) com idade igual ou superior a 65 anos tem direito ao
   auxílio-transporte
 date: 2023-04-25T11:11:41.040Z
 image: /admin/content/media/whatsapp-image-2023-04-18-at-10.25.05-1-.jpeg
