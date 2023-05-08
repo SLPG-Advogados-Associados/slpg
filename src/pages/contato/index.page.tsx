@@ -8,6 +8,7 @@ import { withGraphQL, GT } from '~api'
 import { Page } from '~app/components/Page'
 import { Button, Heading, AlertContent, styled, t, theme } from '~design'
 import { Section } from '~app/components/Section'
+import { Phone } from '~app/components/Phone'
 import { CONTACT } from './contact.gql'
 
 const Map = styled.iframe.attrs({
@@ -88,7 +89,11 @@ const ContatoPage = () => {
             Se você é nosso cliente particular, ou se você ainda não é nosso
             cliente e gostaria de tirar dúvidas conosco sobre os serviços que
             prestamos, por favor, entre em contato agora mesmo através do
-            formulário abaixo, ou pelo telefone <strong>(48) 3024-4166</strong>.
+            formulário abaixo, ou pelo telefone{' '}
+            <strong>
+              <Phone />
+            </strong>
+            .
           </p>
 
           <Formik
@@ -164,7 +169,9 @@ const ContatoPage = () => {
 
           <p className="font-bold mb-0">
             Telefone/FAX:{' '}
-            <span className="block lg:inline">(48) 3024-4166</span>
+            <span className="block lg:inline">
+              <Phone />
+            </span>
           </p>
         </Section>
 

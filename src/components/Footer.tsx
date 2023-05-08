@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
-import { theme } from 'styled-tools'
 import {
+  t,
+  styled,
   Container,
   Button,
   AsideTitle,
@@ -14,6 +14,7 @@ import {
 } from '~design'
 import { list as expertises } from '~modules/expertise'
 import { NewsletterForm } from '~modules/newsletter'
+import { Phone } from '~app/components/Phone'
 
 const FooterColumn = styled.div.attrs(classed('px-md'))`
   flex-grow: 1;
@@ -22,22 +23,40 @@ const FooterColumn = styled.div.attrs(classed('px-md'))`
 `
 
 const FooterSocial = styled.ul`
-  margin: ${theme('spacing.4')} 0;
+  margin: ${t.theme('spacing.4')} 0;
 
   li {
     display: inline-block;
-    margin: ${theme('spacing.2')};
+    margin: ${t.theme('spacing.2')};
   }
 `
 
 const FooterMenu = styled.ul`
   li {
-    margin-top: ${theme('spacing.2')};
+    margin-top: ${t.theme('spacing.2')};
   }
 `
 
 const FooterLogoAnchor = styled.a`
   max-width: 320px;
+`
+
+const Address = styled.div`
+  > span {
+    display: block;
+    line-height: 2em;
+  }
+
+  @media screen and (min-width: ${t.theme('screens.lg')}) {
+    > span {
+      display: inline;
+    }
+
+    > span:not(:last-child):after {
+      content: ' – ';
+      display: inline;
+    }
+  }
 `
 
 const Footer = () => {
@@ -145,8 +164,14 @@ const Footer = () => {
 
       <div className="bg-reverse text-white py-3 text-center">
         <Container>
-          Florianópolis/SC. Rua: Nunes Machado, ed. Tiradentes, nº 94, 9º andar.
-          CEP 88010-460. Telefone: (48) 3024-4166
+          <Address>
+            <span>Florianópolis/SC</span>
+            <span>Rua Nunes Machado, ed. Tiradentes, nº 94, 9º andar</span>
+            <span>CEP: 88010-460</span>
+            <span>
+              Telefone: <Phone />
+            </span>
+          </Address>
         </Container>
       </div>
     </footer>

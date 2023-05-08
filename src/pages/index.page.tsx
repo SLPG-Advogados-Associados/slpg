@@ -8,8 +8,8 @@ import { list as expertises } from '~modules/expertise'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
+import { Phone } from '~app/components/Phone'
 import { BLOG_LATEST } from './index.gql'
-import { WhatsApp } from './whats-app-icon'
 
 const Welcome = styled.div`
   position: relative;
@@ -89,9 +89,6 @@ const HomePage = () => {
   const blog = useQuery<GT.BLOG_LATEST_QUERY>(BLOG_LATEST)
   const posts = blog.data ? blog.data.posts.items.map(({ item }) => item) : []
 
-  const openWhatsApp = () =>
-    window.open('https://wa.me/5548988359010', '_blank')
-
   return (
     <Page meta={{ type: 'website' }}>
       <Welcome>
@@ -104,23 +101,13 @@ const HomePage = () => {
             Formas de contato:
             <br />
             <span className="phone">
-              <a href="tel:+554830244166">(48) 3024-4166</a>{' '}
-              <a href="#" onClick={openWhatsApp}>
-                <WhatsApp className="inline-block align-text-top" />
-              </a>
+              <Phone />
               <br />
               <a href="mailto:contato@slpgadvogados.adv.br">
                 contato@slpgadvogados.adv.br
               </a>
             </span>
           </p>
-
-          {/* <p className="mb-4">
-          Nosso trabalho é defender os direitos da classe trabalhadora.
-        </p>
-        <p className="mb-4">
-          Ligue: <span className="phone">(48) 3024-4166</span>
-        </p> */}
         </div>
       </Welcome>
 
