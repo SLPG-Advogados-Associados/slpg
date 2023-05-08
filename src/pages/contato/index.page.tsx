@@ -9,6 +9,7 @@ import { Page } from '~app/components/Page'
 import { Button, Heading, AlertContent, styled, t, theme } from '~design'
 import { Section } from '~app/components/Section'
 import { Phone } from '~app/components/Phone'
+import { Address } from '~app/components/Address'
 import { CONTACT } from './contact.gql'
 
 const Map = styled.iframe.attrs({
@@ -162,10 +163,7 @@ const ContatoPage = () => {
         </Section>
 
         <Section className="text-center lg:text-textual-title">
-          <p>
-            Rua Nunes Machado, 94 - 9º andar Centro, Florianópolis - Santa
-            Catarina
-          </p>
+          <Address />
 
           <p className="font-bold mb-0">
             Telefone/FAX:{' '}

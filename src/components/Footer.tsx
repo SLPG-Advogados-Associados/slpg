@@ -14,6 +14,7 @@ import {
 } from '~design'
 import { list as expertises } from '~modules/expertise'
 // import { NewsletterForm } from '~modules/newsletter'
+import { Address } from '~app/components/Address'
 import { Phone } from '~app/components/Phone'
 
 const FooterColumn = styled.div.attrs(classed('px-md'))`
@@ -39,24 +40,6 @@ const FooterMenu = styled.ul`
 
 const FooterLogoAnchor = styled.a`
   max-width: 320px;
-`
-
-const Address = styled.div`
-  > span {
-    display: block;
-    line-height: 2em;
-  }
-
-  @media screen and (min-width: ${t.theme('screens.lg')}) {
-    > span {
-      display: inline;
-    }
-
-    > span:not(:last-child):after {
-      content: ' – ';
-      display: inline;
-    }
-  }
 `
 
 const Footer = () => {
@@ -165,9 +148,6 @@ const Footer = () => {
       <div className="bg-reverse text-white py-3 text-center">
         <Container>
           <Address>
-            <span>Florianópolis/SC</span>
-            <span>Rua Nunes Machado, ed. Tiradentes, nº 94, 9º andar</span>
-            <span>CEP: 88010-460</span>
             <span>
               Telefone: <Phone />
             </span>
