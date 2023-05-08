@@ -17,7 +17,7 @@ interface Meta {
 }
 
 const defaults: Meta = {
-  siteName: 'SLPG Advogados Associados',
+  siteName: 'SLPG Advogados e Advogadas',
   description: 'Nosso trabalho é defender os direitos da classe trabalhadora.',
   image: origin + '/site-image.png',
   type: 'article',

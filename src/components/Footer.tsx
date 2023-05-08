@@ -1,19 +1,21 @@
 import React from 'react'
-import styled from 'styled-components'
-import { theme } from 'styled-tools'
 import {
+  t,
+  styled,
   Container,
   Button,
   AsideTitle,
   Logo,
   Icons,
-  Modal,
-  ModalClose,
-  useModal,
+  // Modal,
+  // ModalClose,
+  // useModal,
   classed,
 } from '~design'
 import { list as expertises } from '~modules/expertise'
-import { NewsletterForm } from '~modules/newsletter'
+// import { NewsletterForm } from '~modules/newsletter'
+import { Address } from '~app/components/Address'
+import { Phone } from '~app/components/Phone'
 
 const FooterColumn = styled.div.attrs(classed('px-md'))`
   flex-grow: 1;
@@ -22,17 +24,17 @@ const FooterColumn = styled.div.attrs(classed('px-md'))`
 `
 
 const FooterSocial = styled.ul`
-  margin: ${theme('spacing.4')} 0;
+  margin: ${t.theme('spacing.4')} 0;
 
   li {
     display: inline-block;
-    margin: ${theme('spacing.2')};
+    margin: ${t.theme('spacing.2')};
   }
 `
 
 const FooterMenu = styled.ul`
   li {
-    margin-top: ${theme('spacing.2')};
+    margin-top: ${t.theme('spacing.2')};
   }
 `
 
@@ -41,7 +43,7 @@ const FooterLogoAnchor = styled.a`
 `
 
 const Footer = () => {
-  const newsletter = useModal()
+  // const newsletter = useModal()
 
   return (
     <footer>
@@ -51,16 +53,16 @@ const Footer = () => {
             <Logo />
           </FooterLogoAnchor>
           <p>OAB/SC 270/97</p>
-          <Button small onClick={newsletter.open}>
+          {/* <Button small onClick={newsletter.open}>
             Receba nossos informativos
-          </Button>
+          </Button> */}
 
-          <Modal isOpen={newsletter.isOpen} onRequestClose={newsletter.close}>
+          {/* <Modal isOpen={newsletter.isOpen} onRequestClose={newsletter.close}>
             <div className="bg-white text-left border py-6 relative">
               <ModalClose onRequestClose={newsletter.close} />
               <NewsletterForm onSuccess={newsletter.close} />
             </div>
-          </Modal>
+          </Modal> */}
 
           <FooterSocial>
             <li>
@@ -85,6 +87,18 @@ const Footer = () => {
                 href="https://www.youtube.com/channel/UCjbphG4OMGO9n7DhJ4ckS3g"
               >
                 <Icons.YouTube />
+              </Button>
+            </li>
+            <li>
+              <Button
+                circle
+                small
+                as="a"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/slpgadvogados/"
+              >
+                <Icons.Instagram />
               </Button>
             </li>
           </FooterSocial>
@@ -133,8 +147,11 @@ const Footer = () => {
 
       <div className="bg-reverse text-white py-3 text-center">
         <Container>
-          Florianópolis/SC. Rua: Nunes Machado, ed. Tiradentes, nº 94, 9º andar.
-          CEP 88010-460. Telefone: (48) 3024-4166
+          <Address>
+            <span>
+              Telefone: <Phone />
+            </span>
+          </Address>
         </Container>
       </div>
     </footer>

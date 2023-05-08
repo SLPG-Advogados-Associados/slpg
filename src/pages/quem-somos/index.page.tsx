@@ -4,37 +4,34 @@ import Link from 'next/link'
 import { withGraphQL, GT } from '~api'
 import { HTMLContent, Heading, Image, styled, t } from '~design'
 import { Page } from '~app/components/Page'
-import { Section } from '~app/components/Section'
+import { Section as PageSection } from '~app/components/Section'
 import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
 import equipe from './equipe.jpg'
 import { TEAM } from './team.gql'
 
-const sections = {
-  apresentacao: {
-    href: '/quem-somos#apresentacao',
-    label: 'Apresentação',
-  },
-  compromissos: {
-    href: '/quem-somos#compromissos-e-principios',
-    label: 'Compromissos e princípios',
-  },
-  historia: {
-    href: '/quem-somos#historia',
-    label: 'História',
-  },
-  equipe: { href: '/quem-somos#equipe', label: 'Equipe' },
+const map = [
+  ['apresentacao', 'Apresentação'],
+  // ['compromissos', 'Compromissos e princípios'],
+  ['missao', 'Missão'],
+  ['visao', 'Visão'],
+  ['valores', 'Valores'],
+  ['historia', 'História'],
+  ['equipe', 'Equipe'],
+] as const
+
+type SectionID = typeof map[number][0]
+
+type SectionProps = {
+  id: string
+  href: string
+  label: string
 }
 
-const sectionsList = Object.values(sections)
+const sections = Object.fromEntries(
+  map.map(([id, label]) => [id, { id, label, href: `/quem-somos#${id}` }])
+) as Record<SectionID, SectionProps>
 
-const SectionTitle: React.FC<{ href: string; label: string }> = ({
-  href,
-  label,
-}) => (
-  <a href={href} title={label}>
-    {label}
-  </a>
-)
+const sectionsList = Object.values(sections)
 
 const TeamList = styled.ul`
   display: grid;
@@ -77,6 +74,29 @@ const TeamList = styled.ul`
   }
 `
 
+const StyledSetion = styled(PageSection)`
+  &:nth-child(even) {
+    background-color: #f8f6f3;
+  }
+`
+
+const Section: React.FC<{ section: SectionProps }> = ({
+  section,
+  children,
+}) => (
+  <StyledSetion
+    textual
+    id={section.id}
+    title={
+      <a href={section.href} title={section.label}>
+        {section.label}
+      </a>
+    }
+  >
+    {children}
+  </StyledSetion>
+)
+
 const QuemSomosPage = () => {
   const team = useQuery<GT.TEAM_QUERY>(TEAM)
 
@@ -104,30 +124,60 @@ const QuemSomosPage = () => {
       </LocalNav>
 
       <main>
-        <Section
-          id="apresentacao"
-          title={<SectionTitle {...sections.apresentacao} />}
-          textual
-        >
+        <Section section={sections.apresentacao}>
           <HTMLContent>
             <p>
-              O SLPG Avogados e Advogadas é um escritório de advocacia (OAB/SC
+              O SLPG Advogados e Advogadas é um escritório de advocacia (OAB/SC
               270/97) com sede em Florianópolis, especializado na defesa dos
-              direitos da classe trabalhadora, em especial dos servidores
-              públicos.
+              direitos da classe trabalhadora, em especial os{' '}
+              <Link href="/direito-dos-servidores-publicos">
+                Direitos dos Servidores Públicos
+              </Link>
+              .
             </p>
 
             <p>
-              Em Santa Catarina somos um dos maiores escritórios de advocacia do
-              ramo, com mais de 10 mil processos em andamento, sobretudo na
-              Justiça Federal.
+              A nossa atuação contempla também os{' '}
+              <Link href="/direitos-trabalhistas-do-setor-privado">
+                Direitos Trabalhistas
+              </Link>
+              ,{' '}
+              <Link href="/direitos-previdenciarios">
+                Direitos Previdenciários
+              </Link>
+              , <Link href="/direitos-sindicais">Direitos Sindicais</Link> e{' '}
+              <Link href="/direitos-civis">Direitos Civis</Link>.
             </p>
 
             <p>
-              A sigla SLPG - Silva, Locks Filho, Palanowski & Goulart Advogados
-              e Advogadas foi constituida pelas iniciais dos sobrenomes dos
-              quatros primeiros sócios fundadores, e se mantém até os dias
-              atuais.
+              Em Santa Catarina nos destacamos pela atuação em favor de diversas
+              categorias do funcionalismo, tendo atualmente mais de 12.500
+              processos em andamento.{' '}
+              <Link href="/atuacao-em-outros-estados-da-federacao">
+                Atuamos também em outros estados da federação
+              </Link>{' '}
+              e dispomos de estrutura para acompanhamento dos processos nos{' '}
+              <Link href="/atuacao-nos-tribunais-superiores">
+                tribunais superiores
+              </Link>
+              .
+            </p>
+
+            <p>
+              A sigla SLPG - Silva, Locks Filho, Palanowski & Goulart foi
+              constituída pelas iniciais dos sobrenomes dos quatros primeiros
+              sócios fundadores, e se mantém até os dias atuais.
+            </p>
+
+            <p>
+              Em 2022, ano em que completamos 25 anos de existência,{' '}
+              <Link href="/noticias/pelo-reconhecimento-das-mulheres">
+                decidimos mudar o nome do escritório
+              </Link>{' '}
+              de SLPG Advogados Associados para SLPG Advogados e Advogadas,
+              entendendo que o novo nome está mais alinhado com os princípios
+              defendidos pelo escritório e com o seu histórico de luta pela
+              igualdade de gênero.
             </p>
 
             <Image
@@ -138,12 +188,7 @@ const QuemSomosPage = () => {
           </HTMLContent>
         </Section>
 
-        <Section
-          id="compromissos-e-principios"
-          className="bg-aside"
-          title={<SectionTitle {...sections.compromissos} />}
-          textual
-        >
+        {/* <Section className="bg-aside" section={sections.compromissos}>
           <HTMLContent>
             <p>
               Nosso Escritório foi constituído com a finalidade principal de
@@ -164,39 +209,88 @@ const QuemSomosPage = () => {
               Constituição Federal de 1988.
             </p>
           </HTMLContent>
-        </Section>
+        </Section> */}
 
-        <Section
-          id="historia"
-          title={<SectionTitle {...sections.historia} />}
-          textual
-        >
+        <Section section={sections.missao}>
           <HTMLContent>
             <p>
-              Nosso Escritório foi fundado em 1997, a partir do interesse de
-              algumas entidades sindicais que já à época viam a necessidade de
-              contar com um escritório de advocacia comprometido com as lutas
-              dos trabalhadores, sugerindo então que alguns advogados egressos
-              do movimento sindical o constituíssem.
+              Continuar sendo um escritório de advocacia comprometido com a
+              qualidade e agilidade dos serviços que presta à classe
+              trabalhadora, de maneira geral, e aos servidores públicos, em
+              particular, buscando satisfazer cada vez mais as expectativas dos
+              nossos clientes nas diferentes áreas do Direito.
+            </p>
+          </HTMLContent>
+        </Section>
+
+        <Section section={sections.visao}>
+          <HTMLContent>
+            <p>
+              Ser reconhecido como um escritório de advocacia comprometido com
+              os direitos dos trabalhadores e dos servidores públicos, e
+              engajado nas lutas por democracia, justiça social, distribuição de
+              renda e defesa dos direitos humanos.
+            </p>
+          </HTMLContent>
+        </Section>
+
+        <Section section={sections.valores}>
+          <HTMLContent>
+            <p>
+              Sabedoria, Liderança, Integridade, Criatividade, Proatividade,
+              Comprometimento, Solidariedade.
+            </p>
+          </HTMLContent>
+        </Section>
+
+        <Section section={sections.historia}>
+          <HTMLContent>
+            <p>
+              Nosso Escritório foi fundado em 1997 com a finalidade principal de
+              prestar assessoria jurídica às entidades representativas de
+              servidores públicos e às categorias por elas representadas, sempre
+              pautando sua atuação profissional por uma conduta ética,
+              responsável e comprometida com a classe trabalhadora.
             </p>
 
             <p>
-              Com o passar do tempo, o Escritório foi crescendo e a ele foram se
+              Sua constituição se deu a partir do interesse de algumas entidades
+              sindicais que já à época viam a necessidade de contar com um
+              escritório de advocacia comprometido com as lutas dos
+              trabalhadores, sugerindo então que alguns advogados egressos do
+              movimento sindical o constituíssem.
+            </p>
+
+            <p>
+              Com o passar do tempo o Escritório foi crescendo e a ele foram se
               ligando outras entidades sindicais e associativas representativas
-              de servidores públicos e se incorporando outros advogados e
-              advogadas, o que permitiu que o Escritório ultrapassasse as
-              fronteiras de Santa Catarina. E, através de parcerias
-              estabelecidas com escritórios de outros estados, que comungam dos
-              mesmos princípios e ideais, contribuímos para a fundação do CNASP
-              - Coletivo Nacional de Advogados de Servidores Públicos.
+              de servidores públicos. Novos advogados foram incorporados à
+              equipe e o Escritório ultrapassou as fronteiras de Santa Catarina.
+              Em 2006, através de parcerias estabelecidas com escritórios de
+              outros estados, que comungam dos mesmos princípios e ideais,
+              contribuímos para a fundação do{' '}
+              <Link href="/o-coletivo-nacional-de-advogados-de-servidores-publicos">
+                CNASP - Coletivo Nacional de Advogados de Servidores Públicos.
+              </Link>
             </p>
 
             <p>
-              Nestes mais de 20 anos de história, participamos ativamente de
+              Ao longo de mais de duas décadas participamos ativamente de
               diversas lutas contra as reformas da previdência, trabalhista e
               outras que visavam a atacar os direitos sociais, assim como de
               campanhas pela conquista de novos direitos, apoiando juridicamente
               greves e outras ações empreendidas pelo movimento sindical.
+            </p>
+
+            <p>
+              Nesta condição, e conscientes do papel social que desempenhamos,
+              não nos omitimos em manifestar nossas posições com relação aos
+              grandes temas de interesse da sociedade brasileira, procurando
+              fazê-lo sempre com o propósito de auxiliar as entidades sindicais
+              e organizações da classe trabalhadora na luta por melhorias de
+              suas condições salariais e de trabalho, bem como pela manutenção,
+              eficácia e ampliação dos direitos sociais previstos na
+              Constituição Federal de 1988.
             </p>
 
             <p>
@@ -210,21 +304,16 @@ const QuemSomosPage = () => {
           </HTMLContent>
         </Section>
 
-        <Section
-          id="equipe"
-          className="bg-aside"
-          title={<SectionTitle {...sections.equipe} />}
-          textual
-        >
+        <Section section={sections.equipe}>
           <HTMLContent>
             <p>Conheça os trabalhadores e trabalhadoras do SLPG</p>
           </HTMLContent>
 
           {team.data ? (
             <TeamList>
-              {team.data.team.map(({ id, name /*, photo*/, role, oab }) => (
+              {team.data.team.map(({ id, name, photo, role, oab }) => (
                 <li key={id}>
-                  {/* <img src={photo} alt={name} title={name} /> */}
+                  <img src={photo} alt={name} title={name} />
                   <h4>{name}</h4>
                   <span>{role}</span>
                   {oab ? <span>{oab}</span> : null}

@@ -8,6 +8,7 @@ import { list as expertises } from '~modules/expertise'
 import { Page } from '~app/components/Page'
 import { Section } from '~app/components/Section'
 import { LocalNav, LocalNavButton } from '~app/components/LocalNav'
+import { Phone } from '~app/components/Phone'
 import { BLOG_LATEST } from './index.gql'
 
 const Welcome = styled.div`
@@ -100,20 +101,13 @@ const HomePage = () => {
             Formas de contato:
             <br />
             <span className="phone">
-              (48) 3024-4166
+              <Phone />
               <br />
-              <a href="mailto:secretaria@slpgadvogados.adv.br">
-                secretaria@slpgadvogados.adv.br
+              <a href="mailto:contato@slpgadvogados.adv.br">
+                contato@slpgadvogados.adv.br
               </a>
             </span>
           </p>
-
-          {/* <p className="mb-4">
-          Nosso trabalho é defender os direitos da classe trabalhadora.
-        </p>
-        <p className="mb-4">
-          Ligue: <span className="phone">(48) 3024-4166</span>
-        </p> */}
         </div>
       </Welcome>
 
