@@ -109,8 +109,8 @@ const HomePage = () => {
                 <WhatsApp className="inline-block align-text-top" />
               </a>
               <br />
-              <a href="mailto:secretaria@slpgadvogados.adv.br">
-                secretaria@slpgadvogados.adv.br
+              <a href="mailto:contato@slpgadvogados.adv.br">
+                contato@slpgadvogados.adv.br
               </a>
             </span>
           </p>
