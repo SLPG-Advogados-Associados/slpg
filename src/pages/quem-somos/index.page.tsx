@@ -222,9 +222,9 @@ const QuemSomosPage = () => {
 
           {team.data ? (
             <TeamList>
-              {team.data.team.map(({ id, name /*, photo*/, role, oab }) => (
+              {team.data.team.map(({ id, name, photo, role, oab }) => (
                 <li key={id}>
-                  {/* <img src={photo} alt={name} title={name} /> */}
+                  <img src={photo} alt={name} title={name} />
                   <h4>{name}</h4>
                   <span>{role}</span>
                   {oab ? <span>{oab}</span> : null}
