@@ -7,13 +7,13 @@ import {
   AsideTitle,
   Logo,
   Icons,
-  Modal,
-  ModalClose,
-  useModal,
+  // Modal,
+  // ModalClose,
+  // useModal,
   classed,
 } from '~design'
 import { list as expertises } from '~modules/expertise'
-import { NewsletterForm } from '~modules/newsletter'
+// import { NewsletterForm } from '~modules/newsletter'
 import { Phone } from '~app/components/Phone'
 
 const FooterColumn = styled.div.attrs(classed('px-md'))`
@@ -60,7 +60,7 @@ const Address = styled.div`
 `
 
 const Footer = () => {
-  const newsletter = useModal()
+  // const newsletter = useModal()
 
   return (
     <footer>
@@ -70,16 +70,16 @@ const Footer = () => {
             <Logo />
           </FooterLogoAnchor>
           <p>OAB/SC 270/97</p>
-          <Button small onClick={newsletter.open}>
+          {/* <Button small onClick={newsletter.open}>
             Receba nossos informativos
-          </Button>
+          </Button> */}
 
-          <Modal isOpen={newsletter.isOpen} onRequestClose={newsletter.close}>
+          {/* <Modal isOpen={newsletter.isOpen} onRequestClose={newsletter.close}>
             <div className="bg-white text-left border py-6 relative">
               <ModalClose onRequestClose={newsletter.close} />
               <NewsletterForm onSuccess={newsletter.close} />
             </div>
-          </Modal>
+          </Modal> */}
 
           <FooterSocial>
             <li>
