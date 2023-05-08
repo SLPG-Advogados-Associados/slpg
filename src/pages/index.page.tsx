@@ -104,7 +104,7 @@ const HomePage = () => {
             Formas de contato:
             <br />
             <span className="phone">
-              (48) 3024-4166{' '}
+              <a href="tel:+554830244166">(48) 3024-4166</a>{' '}
               <a href="#" onClick={openWhatsApp}>
                 <WhatsApp className="inline-block align-text-top" />
               </a>
