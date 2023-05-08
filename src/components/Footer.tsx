@@ -87,6 +87,18 @@ const Footer = () => {
                 <Icons.YouTube />
               </Button>
             </li>
+            <li>
+              <Button
+                circle
+                small
+                as="a"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/slpgadvogados/"
+              >
+                <Icons.Instagram />
+              </Button>
+            </li>
           </FooterSocial>
         </FooterColumn>
 
