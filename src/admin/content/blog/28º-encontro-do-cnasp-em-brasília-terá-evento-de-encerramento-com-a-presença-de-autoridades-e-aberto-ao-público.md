@@ -17,6 +17,8 @@ Os primeiros dois dias, restritos aos integrantes do CNASP, terão como as pauta
 
 No dia 19, em evento aberto ao público, será realizado o Seminário de lançamento do livro “Constitucionalismo intermitente e lutas sociais no Brasil e no Chile”. O seminário terá as presenças da prefaciadora do livro, Daniela Marzi Muñoz, Ministra do Tribunal Constitucional chileno, do Ministro Maurício Godinho Delgado (TST), da Ministra Esther Dweck (Ministério da Gestão), de pesquisadores(as) dos dois países, advogados(as) e entidades sindicais. O livro, de distribuição digital gratuita, é uma iniciativa do CNASP, da Fundación SOL, do Instituto Lavoro e da Auditoria Cidadã da Dívida.
 
-Confira a programação completa e o link para inscrições [**CLICANDO AQUI**](https://cnasp.adv.br/seminario-de-lancamento-do-livro-constitucionalismo-intermitente-e-lutas-sociais-no-brasil-e-no-chile/)**.**
+![](/admin/content/media/constitucionalismo-intermitente-e-lutas-sociais-no-brasil-e-no-chile-2.png)
 
-**O SLPG Advogados e Advogadas tem orgulho de ser um dos fundadores do CNASP e estará presente para prestigiar este importante evento.**
+[Confira aqui a programação completa do Seminário e o link para inscrições.](https://cnasp.adv.br/seminario-de-lancamento-do-livro-constitucionalismo-intermitente-e-lutas-sociais-no-brasil-e-no-chile/)
+
+**O escritório SLPG Advogados e Advogadas tem orgulho de ser um dos fundadores do CNASP e informa que estará presente para prestigiar este importante evento.**
