@@ -19,4 +19,4 @@ No dia 19, em evento aberto ao público, será realizado o Seminário de lançam
 
 Confira a programação completa e o link para inscrições [**CLICANDO AQUI**](https://cnasp.adv.br/seminario-de-lancamento-do-livro-constitucionalismo-intermitente-e-lutas-sociais-no-brasil-e-no-chile/)**.**
 
-**O SLPG Advogados e Advogadas tem orgulho de ser um dos fundadores do CNASP e estar presente para prestigiar este importante evento.**
+**O SLPG Advogados e Advogadas tem orgulho de ser um dos fundadores do CNASP e estará presente para prestigiar este importante evento.**
