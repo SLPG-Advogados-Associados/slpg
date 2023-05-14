@@ -26,7 +26,7 @@ const StaticPage = () => (
             com um ou mais escritórios de advocacia.
           </p>
           <p>
-            É o caso de MInas Gerais, onde ao lado dos Escritórios{' '}
+            É o caso de Minas Gerais, onde ao lado dos Escritórios{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
