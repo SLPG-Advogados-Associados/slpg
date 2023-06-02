@@ -4,7 +4,7 @@ title: >-
   tem a participação do SLPG
 date: 2023-06-02T17:18:01.790Z
 image: /admin/content/media/capa-vol-1-cnasp-e1684951530516.png
-summary: Baixe o livro e assista o vídeo de lançamento do livro na íntegra.
+summary: Baixe o livro e assista o vídeo do evento de lançamento na íntegra.
 ---
 O livro  CONSTITUCIONALISMO INTERMITENTE E LUTAS SOCIAIS NO BRASIL E NO CHILE é fruto do grandioso projeto de pesquisa do Programa de Pós-graduação em Direito da Universidade Federal da Bahia e da articulação entre academia e entidades como, Fundación SOL, Instituto Lavoro, Coletivo Nacional de Advogados de Servidores Públicos (CNASP) e Auditoria Cidadã da Dívida, decorrente do entendimento da necessidade de conhecimento e reflexão sobre os processos constitucionais de Brasil e Chile, e dos danosos reflexos do avanço do neoliberalismo sobre os direitos sociais. 
 
