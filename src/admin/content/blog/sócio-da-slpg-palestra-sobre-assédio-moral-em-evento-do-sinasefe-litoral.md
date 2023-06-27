@@ -1,5 +1,5 @@
 ---
-title: Sócio da SLPG palestra sobre assédio moral em evento do SINASEFE Litoral
+title: Sócio da SLPG palestra sobre assédio moral em evento do SINASEFE litoral
 date: 2023-06-27T19:26:56.899Z
 image: /admin/content/media/visitas-camboriu-redes2.jpg
 summary: >-
