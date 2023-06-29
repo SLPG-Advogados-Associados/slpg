@@ -8,4 +8,4 @@ summary: >-
 ---
 Dr. Rivera Vieira, sócios do SLPG Advogados e Advogadas, falou ontem, na Rádio Guarujá, sobre as regras de concessão do benefício de pensão.
 
-Veja a entrevista completa >> https://youtu.be/I9l6ivt1vMc
+[\>> Clique para ver a entrevista completa <<](https://youtu.be/I9l6ivt1vMc)
