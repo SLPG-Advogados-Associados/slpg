@@ -29,6 +29,4 @@ Isso porque, a análise sobre a constitucionalidade de suas respectivas situaç�
 
 Por essa razão, a conclusão é que na hipótese de a administração vir a adotar alguma medida objetivando aplicar a esses servidores as teses firmadas pelo STF em torno dos temas acima citados, caberá a interposição de medidas judiciais cabíveis para defender a permanência das situações consolidadas pelo tempo.
 
-
-
 Leia a nota técnica na íntegra acessando [aqui](https://multiformaci.com.br/clientes/slpg/nota-tec.pdf)
