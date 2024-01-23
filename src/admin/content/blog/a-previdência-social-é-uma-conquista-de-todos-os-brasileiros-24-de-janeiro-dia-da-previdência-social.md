@@ -14,8 +14,9 @@ summary: >-
 ---
 Defender a previdência social significa buscar a efetividade dos direitos e garantias dos cidadãos, sobretudo dos contribuintes, mas, não apenas destes, assegurando-lhes a possibilidade de concessão de benefícios previdenciários que façam frente ao avanço da idade e diminuição da capacidade laborativa, ou até mesmo nos casos de incapacidade total para o trabalho, e em diversas outras situações previstas em lei, conferindo dignidade a tais cidadãos.
 
-A previdência social se encontra no rol de direitos sociais garantidos pela Constituição Federal de 1988, em seu art. 6º, o qual prevê:\
-- Art. 6º São direitos sociais a educação, a saúde, a alimentação, o trabalho, a moradia, o transporte, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição.
+A previdência social se encontra no rol de direitos sociais garantidos pela Constituição Federal de 1988, em seu art. 6º, o qual prevê:
+
+* Art. 6º São direitos sociais a educação, a saúde, a alimentação, o trabalho, a moradia, o transporte, o lazer, a segurança, a previdência social, a proteção à maternidade e à infância, a assistência aos desamparados, na forma desta Constituição.
 
 O marco inaugural da previdência social, no Brasil, ocorreu com a promulgação da Lei Eloy Chaves, consubstanciada no Decreto nº 4.682, de 24 de janeiro de 2023, que garantiu aos ferroviários do setor privado o direito ao recebimento mensal de benefício durante a velhice.
 
