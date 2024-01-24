@@ -32,4 +32,4 @@ A previdência social, ao lado da educação e da saúde - estes últimos que in
 
 Não será por meio de privatização, dessa indispensável ferramenta social, que atingiremos essas finalidades.
 
-\- Evandro Herculano
+Evandro Herculano - OAB/SC 41105
