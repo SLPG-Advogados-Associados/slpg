@@ -49,3 +49,5 @@ Insta consignar, ainda, que, nos termos de entendimento firmado pelo Supremo Tri
 Do mesmo modo, a “jurisprudência do Superior Tribunal de Justiça é firme no sentido de que os candidatos aprovados em concurso público que tiveram suas nomeações tardiamente efetivadas por força de decisão judicial não têm direito a efeitos funcionais, porquanto estes pressupõem efetivo exercício do cargo.” - AgInt no AREsp 686.747/ES.
 
 Por fim, e como vimos em entendimento sufragado pela Súmula 15 do Supremo Tribunal Federal, o candidato possui direito subjetivo à nomeação e à posse, quando a aprovação ocorrer dentro do número de vagas dispostas no edital; quando o candidato for preterido na nomeação por inobservância à ordem de classificação; e quando houver preterição arbitrária por parte da Administração Pública. Nestes casos, o candidato poderá acionar o Poder Judiciário, se valendo de uma tutela de urgência/liminar, a fim de obter a posse no cargo.
+
+Por: Evandro Herculano - OAB/SC 41.105
