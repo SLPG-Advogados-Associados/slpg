@@ -3,12 +3,9 @@ title: Conheça os principais direitos sociais das pessoas com câncer
 date: 2024-10-14T16:11:33.157Z
 image: /admin/content/media/cancer.jpg
 summary: >-
-  Licença para tratamento de saúde
-
-  Quando estiver temporariamente incapacitado para o trabalho, o servidor tem
-  direito à licença,
-
-  devendo comprovar a necessidade na perícia médica.
+  As pessoas com câncer possuem vários direitos, que abrangem o acesso à saúde,
+  o direito do trabalho, além de isenção de impostos. Deslize para o lado para
+  conhecer um resumo desses direitos.
 ---
 **Licença para tratamento de saúde**\
 Quando estiver temporariamente incapacitado para o trabalho, o servidor tem direito à licença,devendo comprovar a necessidade na perícia médica.
