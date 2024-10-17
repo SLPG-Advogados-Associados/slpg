@@ -17,4 +17,6 @@ Essa decisão atende a um pedido da Associação dos Delegados de Polícia do Br
 
 Enquanto o Congresso Nacional edita uma nova legislação sobre o tema, o ministro determinou a aplicação da regra geral, que prevê uma redução de três anos nos requisitos de aposentadoria para mulheres policiais civis e federais.
 
+[\>> Leia a decisão na íntegra <<](https://x.gd/H859U)
+
 **Foto e fonte:** Carta Capital
