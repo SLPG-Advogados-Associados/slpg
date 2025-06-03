@@ -15,6 +15,6 @@ No decorrer da sua já longa trajetória sindical, foram marcantes a presença d
 
 A essas lutas gerais se somam dezenas de greves nacionais e outras campanhas salariais vitoriosas, que lograram melhorar as condições salariais e de trabalho da categoria, ao tempo em que impediram o retrocesso em direitos duramente conquistados.
 
-É em homenagem à essa linda história de luta e comprometimento com a democracia que o escritório SLPG Advogados e Advogadas, vem da seus parabéns à Federação e seus dirigentes, expressando seu orgulho em fazer parte da Assessoria Jurídica Nacional da entidade, ao lado de colegas dos escritórios Paese, Ferreira & Advogados Associados, e Trindade & Arzeno Advogados Associados.
+É em homenagem à essa linda história de luta e comprometimento com a democracia que o escritório SLPG Advogados e Advogadas, vem dar seus parabéns à Federação e seus dirigentes, expressando seu orgulho em fazer parte da Assessoria Jurídica Nacional da entidade, ao lado de colegas dos escritórios Paese, Ferreira & Advogados Associados, e Trindade & Arzeno Advogados Associados.
 
 Vida longa à FENASPS!
