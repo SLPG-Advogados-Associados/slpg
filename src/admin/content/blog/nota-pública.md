@@ -18,5 +18,4 @@ Esse ódio constitui o amálgama sob o qual se desenvolve o mesmo pensamento fas
 
 Combater de forma intransigente esses descalabros constitui tarefa de toda a sociedade, é verdade, mas ainda mais de nós, profissionais do direito, em especial aqueles que professam verdadeiramente a defesa do Estado Democrático de Direito e das liberdades individuais, que sabem ser incompatíveis com todas as formas de preconceito.
 
-Florianópolis, 1 de dezembro de 2025.\
-SLPG Advogados e Advogadas
+Florianópolis, 1 de dezembro de 2025.
